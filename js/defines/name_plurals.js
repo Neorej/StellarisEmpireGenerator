@@ -1,0 +1,17 @@
+plurals = [
+    's',
+    's',
+    's',
+    's',
+    'ons',
+    'on',
+    'ans',
+    'ans',
+    'an',
+    'an',
+    'ans',
+    'ians',
+    'oans',
+    'i',
+    'ii',
+];
