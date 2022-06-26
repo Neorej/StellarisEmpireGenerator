@@ -12,6 +12,13 @@ Object.prototype.randomkey = function() {
     return keys[keys.length * Math.random() << 0];
 };
 
+Object.defineProperty(String.prototype, 'capitalize', {
+    value: function() {
+        return this.charAt(0).toUpperCase() + this.slice(1);
+    },
+    enumerable: false
+});
+
 var logging = true;
 var log     = logging ? console.log.bind(window.console) : function() {
 };
@@ -20,16 +27,21 @@ class Empire {
     key         = '';
     ship_prefix = '';
     species     = {
-        class    : '',
-        portrait : '',
-        name     : '',
-        plural   : '',
+        gender   : 'not_set',
         adjective: '',
+        class    : '',
+        name     : '',
         name_list: 'ART1',
+        plural   : '',
+        portrait : '',
         traits   : [],
     };
-    name        = '';
-    adjective   = '';
+    name        = {
+		'key': ''
+	};
+    adjective   = {
+		'key': ''
+	};
     authority   = '';
     government  = 'gov_hive_mind'; // Game will reset this to proper government on boot
     //advisor_voice_type   = ''; // Leaving this empty will default to "Based on government"
@@ -232,11 +244,14 @@ class Empire {
         if (this.authority === 'auth_machine_intelligence') {
             this.species.class    = 'MACHINE';
             this.species.portrait = species_machine.MACHINE.portraits.random();
+			this.disabled_origins.push('origin_post_apocalyptic');
+			this.disabled_origins.push('origin_life_seeded');
             return;
         }
 
         let random_species    = species.random();
         this.species.class    = random_species[0];
+        this.species.gender   = genders.random();
         this.species.portrait = random_species[1].portraits.random();
     }
 
@@ -290,6 +305,17 @@ class Empire {
 
     set_traits() {
         let traits_list = traits;
+		
+		// Aquatic trait for ocena worlds
+		if (this.planet_class === 'pc_ocean' 
+		&& (this.species.class === 'AQUATIC' || this.species.class === 'MOL'  || this.species.class === 'HUM'  || this.species.class === 'MAM'  || this.species.class === 'LITHOID' )) {
+			traits_list = {...traits_list, ...ocean_traits};
+		}
+		
+		// Plants and Fungoids have access to extra traits
+		if (this.species.class === 'PLANT' || this.species.class === 'FUN') {
+			traits_list = {...traits_list, ...plant_traits};
+		}
 
         if (this.species.class === 'MACHINE') {
             // Machines start with one fewer trait point
@@ -316,6 +342,7 @@ class Empire {
 
             // Hives do not have their own traits, but have incompatibilities
             this.disabled_traits.push('trait_thrifty');
+			this.disabled_traits.push('trait_thrifty');
             this.disabled_traits.push('trait_conformists');
             this.disabled_traits.push('trait_deviants');
             this.disabled_traits.push('trait_decadent');
@@ -436,7 +463,11 @@ class Empire {
     }
 
     set_ruler() {
-        this.ruler.gender   = random_percentage_check(50) ? 'female' : 'male';
+        this.ruler.gender   = this.species.gender;
+        if(this.ruler.gender === 'not_set' || this.ruler.gender === 'indeterminable'){
+            this.ruler.gender   = random_percentage_check(50) ? 'female' : 'male';
+        }
+        
         this.ruler.name     = leader_names[this.ruler.gender].random();
         this.ruler.portrait = this.species.portrait;
         this.ruler.texture  = 0;
@@ -446,6 +477,10 @@ class Empire {
 
     set_name() {
         let name         = species_names.random();
+		if (name.length > 6 && random_percentage_check(40)) {
+			let splitAt = random_percentage_check(50) ? 3 : 4;
+			name = name.slice(0, splitAt) + " " + name.slice(splitAt).capitalize();
+		}
         let plural       = name + (random_percentage_check(50) ? plurals.random() : '');
         let adjective    = name + (random_percentage_check(70) ? adjectives.random() : '');
         let empire_name  = '';
@@ -486,7 +521,6 @@ class Empire {
                 empire_name += (random_percentage_check(50) ? name : adjective) + ' '
                     + (random_percentage_check(10) ? modifier.random() + ' ' : '')
                     + suffix.random();
-//
                 continue;
             }
 
@@ -510,8 +544,8 @@ class Empire {
                 + suffix.random();
         }
 
-        this.name              = name;
-        this.adjective         = adjective;
+        this.name.key          = empire_name;
+        this.adjective.key     = adjective;
         this.species.name      = name;
         this.species.plural    = plural;
         this.species.adjective = adjective;
@@ -540,7 +574,7 @@ class Empire {
         this.system_name = system_names.random();
     }
 
-	// Convert JSON to Clausewitz Engine-style notation
+    // Convert JSON to Clausewitz Engine-style notation
     clausewitzify() {
 
         // Traits are not set with an array in Clausewitz, rather they use the same key multiple times. JSON no can do
@@ -612,8 +646,9 @@ class Empire {
         string = string.replace(/colors=""/, 'colors={\r\n' + empire_flag_colors_string + '}');
 
         // Ruler gender, spawn_as_fallen, ignore_portrait_duplication and spawn_enabled do not use quote despite being strings (??)
-        string = string.replace(/gender="female"/, 'gender=female');
-        string = string.replace(/gender="male"/, 'gender=male');
+        string = string.replace(/gender="female"/g, 'gender=female');
+        string = string.replace(/gender="male"/g, 'gender=male');
+        string = string.replace(/gender="not_set"/, 'gender=not_set');
         string = string.replace(/spawn_as_fallen="yes"/, 'spawn_as_fallen=yes');
         string = string.replace(/spawn_as_fallen="no"/, 'spawn_as_fallen=no');
         string = string.replace(/ignore_portrait_duplication="no"/, 'ignore_portrait_duplication=no');
@@ -622,7 +657,7 @@ class Empire {
         // ,'s to newlines
         string = string.replace(/,/g, '\r\n');
 
-        //
+        // NEWLINES
         string = '"' + this.key + '"\r\n=' + string + '\r\n';
 
         return string;
@@ -645,6 +680,8 @@ function yes_requirement_checker(requirements, current_values, singular, plural,
                 if ($.inArray(current_values[k], requirements[j]) > -1) {
                     log('Chosen ' + singular + ' ' + current_values[k] + ' is in list of required ' + plural);
                     requirements_met++;
+					// Make a set cannot meet multiple requirements on its own
+					break;
                 }
             }
         }
@@ -691,11 +728,11 @@ $(function() {
     $('#generate').on('click tap', function() {
         $('#result').html('');
         console.clear();
-		
-		let empiresNum = $('#empire_amount').val();
+        
+        let empiresNum = $('#empire_amount').val();
         let results = '';
-		
-		log('Generating ' + empiresNum + ' empires');
+        
+        log('Generating ' + empiresNum + ' empires');
 
         for (let k = 0; k < empiresNum; k++) {
             let empire = new Empire();

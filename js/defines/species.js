@@ -193,6 +193,25 @@ species = {
             'lith15',
         ],
     },
+    'AQUATIC': {
+        secondary: true,
+        portraits: [
+            'aqu1',
+            'aqu2',
+            'aqu3',
+            'aqu4',
+            'aqu5',
+            'aqu6',
+            'aqu7',
+            'aqu8',
+            'aqu9',
+            'aqu10',
+            'aqu11',
+            'aqu12',
+            'aqu13',
+            'aqu14',
+        ],
+    },
 };
 
 species_machine = {

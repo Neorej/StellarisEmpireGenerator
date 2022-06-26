@@ -471,7 +471,11 @@ civics = {
         no : {
             'authorities': ['auth_corporate'],
             'civics'     : [],
-            'ethics'     : ['ethic_gestalt_consciousness'],
+            'ethics'     : [
+				'ethic_gestalt_consciousness',
+				'ethic_spiritualist',
+                'ethic_fanatic_spiritualist',
+			],
         },
     },
     'civic_merchant_guilds'        : {
@@ -738,18 +742,6 @@ machine_civics = {
         },
     },
     'civic_machine_zero_waste_protocols' : {
-        yes: {
-            'authorities': ['auth_machine_intelligence'],
-            'civics'     : [],
-            'ethics'     : [],
-        },
-        no : {
-            'authorities': [],
-            'civics'     : [],
-            'ethics'     : [],
-        },
-    },
-    'civic_machine_built_to_last'        : {
         yes: {
             'authorities': ['auth_machine_intelligence'],
             'civics'     : [],
