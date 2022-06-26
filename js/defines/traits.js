@@ -21,7 +21,7 @@ traits = {
     },
     'trait_thrifty'             : {
         cost: 2,
-        no  : [],
+        no  : ['trait_hive_mind'],
     },
     'trait_natural_engineers'   : {
         cost: 1,
@@ -200,7 +200,7 @@ traits = {
     },
     'trait_decadent'            : {
         cost: -1,
-        no  : [],
+        no  : ['trait_hive_mind'],
     },
     'trait_resilient'           : {
         cost: 1,
@@ -235,7 +235,7 @@ lithoid_traits = {
     },
     'trait_thrifty'                    : {
         cost: 2,
-        no  : [],
+        no  : ['trait_hive_mind'],
     },
     'trait_natural_engineers'          : {
         cost: 1,
@@ -259,23 +259,6 @@ lithoid_traits = {
             'trait_natural_physicists',
             'trait_natural_engineers',
             'trait_nerve_stapled',
-        ],
-    },
-    'trait_adaptive_lithoid'           : {
-        cost: 2,
-        no  : [
-            'trait_nonadaptive',        // ??
-            'trait_extremely_adaptive', // ??
-            'trait_robust',             // ??
-            'trait_adaptive',           // ??
-        ],
-    },
-    'trait_rapid_breeders_lithoid'     : {
-        cost: 2,
-        no  : [
-            'trait_slow_breeders',  // ??
-            'trait_rapid_breeders', // ??
-            'trait_fertile',        // ??
         ],
     },
     'trait_talented'                   : {
@@ -587,6 +570,39 @@ robot_traits = {
     },
 };
 
+plant_traits = {
+	'trait_plantoid_phototrophic'            : {
+        cost: 1,
+        no  : [
+			'trait_plantoid_radiotrophic', 
+			'trait_cave_dweller'
+		],
+    },
+	'trait_plantoid_radiotrophic'            : {
+        cost: 2,
+        no  : [
+			'trait_plantoid_phototrophic'
+		],
+    },
+	'trait_plantoid_budding'            : {
+        cost: 2,
+        no  : [
+			'trait_slow_breeders',
+			'trait_rapid_breeders',
+			'trait_rapid_breeders_lithoid',
+			'trait_necrophage',
+			'trait_clone_soldier_infertile',
+			'trait_clone_soldier_infertile_full_potential',
+		],
+    },
+};
+
+ocean_traits = {
+	'trait_aquatic'          : {
+        cost: 1,
+        no  : [],
+    },
+};
 /*
 template = {
     '': {

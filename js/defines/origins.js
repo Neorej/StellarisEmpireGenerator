@@ -214,6 +214,8 @@ origins = {
                 'ethic_gestalt_consciousness',
                 'ethic_xenophobe',
                 'ethic_fanatic_xenophobe',
+				'ethic_egalitarian',
+				'ethic_fanatic_egalitarian',
             ],
         },
     },

@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=Edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no">
-    <title>Stellaris Civilization Generator</title>
+    <title>Stellaris Empire Generator</title>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="js/defines/authorities.js"></script>
@@ -13,6 +13,7 @@
     <script src="js/defines/ethics.js"></script>
     <script src="js/defines/origins.js"></script>
     <script src="js/defines/planets.js"></script>
+	<script src="js/defines/genders.js"></script>
     <script src="js/defines/species.js"></script>
     <script src="js/defines/traits.js"></script>
     <script src="js/defines/flags.js"></script>
@@ -28,14 +29,42 @@
 </head>
 <body>
 <h1>Stellaris Empire Generator</h1>
-Empires to generate: <input type="number" value="10" id="empire_amount" />
+<p>
+	Tool for generating random empires for Stellaris, updated for v3.4.*. <br>
+	Assumes all DLC is installed, with exception of Galaxy Edition Upgrade Pack. <br>
+	<br>
+	Empires that require the generation of multiple empires (such as Syncretic Evolution) are not currently supported.<br>
+	<br>
+	Put the generated empires in <i>\Documents\Paradox Interactive\Stellaris\user_empire_designs_v3.4.txt</i></p>
+Empires to generate: <input type="number" value="100" id="empire_amount" />
 <br>
-<button id="generate">Generate</button>
+<button id="generate">Generate</button> <button onClick="CopyToClipboard('result')">Copy results</button>
 
 
 <div id="result">
 
 </div>
+
+
+<script>
+    function CopyToClipboard (containerid) {
+        // Create a new textarea element and give it id='temp_element'
+        const textarea = document.createElement('textarea')
+        textarea.id = 'temp_element'
+        // Optional step to make less noise on the page, if any!
+        textarea.style.height = 0
+        // Now append it to your page somewhere, I chose <body>
+        document.body.appendChild(textarea)
+        // Give our textarea a value of whatever inside the div of id=containerid
+        textarea.value = document.getElementById(containerid).innerText
+        // Now copy whatever inside the textarea to clipboard
+        const selector = document.querySelector('#temp_element')
+        selector.select()
+        document.execCommand('copy')
+        // Remove the textarea
+        document.body.removeChild(textarea)
+    }
+</script>
 
 </body>
 </html>
