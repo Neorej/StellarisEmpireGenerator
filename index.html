@@ -3,7 +3,8 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=Edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no">
     <title>Stellaris Empire Generator</title>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
@@ -13,7 +14,7 @@
     <script src="js/defines/ethics.js"></script>
     <script src="js/defines/origins.js"></script>
     <script src="js/defines/planets.js"></script>
-	<script src="js/defines/genders.js"></script>
+    <script src="js/defines/genders.js"></script>
     <script src="js/defines/species.js"></script>
     <script src="js/defines/traits.js"></script>
     <script src="js/defines/flags.js"></script>
@@ -30,15 +31,28 @@
 <body>
 <h1>Stellaris Empire Generator</h1>
 <p>
-	Tool for generating random empires for Stellaris, updated for v3.4.*. <br>
-	Assumes all DLC is installed, with exception of Galaxy Edition Upgrade Pack. <br>
-	<br>
-	Empires that require the generation of multiple empires (such as Syncretic Evolution) are not currently supported.<br>
-	<br>
-	Put the generated empires in <i>\Documents\Paradox Interactive\Stellaris\user_empire_designs_v3.4.txt</i></p>
-Empires to generate: <input type="number" value="100" id="empire_amount" />
+    Tool for generating random empires for Stellaris, updated for v3.4.*. <br>
+    Assumes all DLC is installed, with exception of Galaxy Edition Upgrade Pack. <br>
+    <br>
+    Put the generated empires in <i>\Documents\Paradox Interactive\Stellaris\user_empire_designs_v3.4.txt</i>
+</p>
+Empires to generate: <input type="number" value="100" id="empire_amount"/><br>
+
+Spawn_Enabled:
+<input name="spawn_enabled" type="radio" value="yes" checked/><label for="yes">Yes</label>
+<input name="spawn_enabled" type="radio" value="always"/><label for="always">Always</label>
+<input name="spawn_enabled" type="radio" value="no"/><label for="no">No</label>
 <br>
-<button id="generate">Generate</button> <button onClick="CopyToClipboard('result')">Copy results</button>
+
+Generate types:
+<input name="generate_type" type="radio" value="mix" checked/><label for="yes">Everything</label>
+<input name="generate_type" type="radio" value="no_gestalts"/><label for="always">No gestalts</label>
+<input name="generate_type" type="radio" value="hiveminds"/><label for="always">Only Hiveminds</label>
+<input name="generate_type" type="radio" value="machines"/><label for="no">Only Machines</label>
+<br>
+<br>
+<button id="generate">Generate empires</button>
+<button onClick="CopyToClipboard('result')">Copy results to clipboard</button>
 
 
 <div id="result">
@@ -47,10 +61,10 @@ Empires to generate: <input type="number" value="100" id="empire_amount" />
 
 
 <script>
-    function CopyToClipboard (containerid) {
+    function CopyToClipboard(containerid) {
         // Create a new textarea element and give it id='temp_element'
-        const textarea = document.createElement('textarea')
-        textarea.id = 'temp_element'
+        const textarea        = document.createElement('textarea')
+        textarea.id           = 'temp_element'
         // Optional step to make less noise on the page, if any!
         textarea.style.height = 0
         // Now append it to your page somewhere, I chose <body>

@@ -8,6 +8,6 @@ cultures = [
     'fungoid_01',
     'arthropoid_01',
     'lithoid_01',
-	'nemesis_01',
-	'aquatic_01'
+    'nemesis_01',
+    'aquatic_01',
 ];

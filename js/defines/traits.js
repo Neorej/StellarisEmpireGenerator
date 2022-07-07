@@ -571,43 +571,37 @@ robot_traits = {
 };
 
 plant_traits = {
-	'trait_plantoid_phototrophic'            : {
+    'trait_plantoid_phototrophic': {
         cost: 1,
         no  : [
-			'trait_plantoid_radiotrophic', 
-			'trait_cave_dweller'
-		],
+            'trait_plantoid_radiotrophic',
+            'trait_cave_dweller',
+        ],
     },
-	'trait_plantoid_radiotrophic'            : {
+    'trait_plantoid_radiotrophic': {
         cost: 2,
         no  : [
-			'trait_plantoid_phototrophic'
-		],
+            'trait_plantoid_phototrophic',
+        ],
     },
-	'trait_plantoid_budding'            : {
+    'trait_plantoid_budding'     : {
         cost: 2,
         no  : [
-			'trait_slow_breeders',
-			'trait_rapid_breeders',
-			'trait_rapid_breeders_lithoid',
-			'trait_necrophage',
-			'trait_clone_soldier_infertile',
-			'trait_clone_soldier_infertile_full_potential',
-		],
+            'trait_slow_breeders',
+            'trait_rapid_breeders',
+            'trait_rapid_breeders_lithoid',
+            'trait_necrophage',
+            'trait_clone_soldier_infertile',
+            'trait_clone_soldier_infertile_full_potential',
+        ],
     },
 };
 
 ocean_traits = {
-	'trait_aquatic'          : {
+    'trait_aquatic': {
         cost: 1,
-        no  : [],
+        no  : [
+            'trait_cave_dweller',
+        ],
     },
 };
-/*
-template = {
-    '': {
-        cost: ,
-        no  : [],
-    },
-};
-*/

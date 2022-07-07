@@ -1,14 +1,14 @@
 leader_names = {
-    'female': [
+    'female'        : [
         ' ',
     ],
-    'male'  : [
+    'male'          : [
         ' ',
     ],
-	'not_set'  : [
+    'not_set'       : [
         ' ',
     ],
-	'indeterminable'  : [
+    'indeterminable': [
         ' ',
     ],
 };
