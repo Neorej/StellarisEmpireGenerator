@@ -210,7 +210,7 @@ civics = {
     'civic_inwards_perfection'     : {
         yes: {
             'authorities': [],
-            'civics'     : [],
+            'civics'     : ['civic_diplomatic_corps'],
             'ethics'     : [
                 ['ethic_pacifist', 'ethic_fanatic_pacifist'],
                 ['ethic_xenophobe', 'ethic_fanatic_xenophobe'],
