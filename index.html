@@ -19,6 +19,7 @@
     <script src="js/defines/traits.js"></script>
     <script src="js/defines/flags.js"></script>
     <script src="js/defines/colors.js"></script>
+    <script src="js/defines/rooms.js"></script>
     <script src="js/defines/name_empire_parts.js"></script>
     <script src="js/defines/name_plurals.js"></script>
     <script src="js/defines/name_adjectives.js"></script>
@@ -39,16 +40,23 @@
 Empires to generate: <input type="number" value="100" id="empire_amount"/><br>
 
 Spawn_Enabled:
-<input name="spawn_enabled" type="radio" value="yes" checked/><label for="yes">Yes</label>
-<input name="spawn_enabled" type="radio" value="always"/><label for="always">Always</label>
-<input name="spawn_enabled" type="radio" value="no"/><label for="no">No</label>
+<input name="spawn_enabled" type="radio" id="spawn_yes" value="yes" checked/>
+<label for="spawn_yes">Yes</label>
+<input name="spawn_enabled" type="radio" id="spawn_always" value="always"/>
+<label for="spawn_always">Always</label>
+<input name="spawn_enabled" type="radio" id="spawn_no" value="no"/>
+<label for="spawn_no">No</label>
 <br>
 
 Generate types:
-<input name="generate_type" type="radio" value="mix" checked/><label for="yes">Everything</label>
-<input name="generate_type" type="radio" value="no_gestalts"/><label for="always">No gestalts</label>
-<input name="generate_type" type="radio" value="hiveminds"/><label for="always">Only Hiveminds</label>
-<input name="generate_type" type="radio" value="machines"/><label for="no">Only Machines</label>
+<input name="generate_type" type="radio" id="generate_mix" value="mix" checked/>
+<label for="generate_mix">Everything</label>
+<input name="generate_type" type="radio" id="generate_no_gestalts" value="no_gestalts"/>
+<label for="generate_no_gestalts">No gestalts</label>
+<input name="generate_type" type="radio" id="generate_hiveminds" value="hiveminds"/>
+<label for="generate_hiveminds">Only Hiveminds</label>
+<input name="generate_type" type="radio" id="generate_machines" value="machines"/>
+<label for="generate_machines">Only Machines</label>
 <br>
 <br>
 <button id="generate">Generate empires</button>

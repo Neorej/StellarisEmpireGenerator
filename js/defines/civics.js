@@ -637,8 +637,6 @@ hive_civics = {
 };
 
 machine_civics = {
-    /*
-     // Requires generating a second species
     'civic_machine_servitor'             : {
         yes: {
             'authorities': ['auth_machine_intelligence'],
@@ -654,7 +652,6 @@ machine_civics = {
             'ethics'     : [],
         },
     },
-    */
     'civic_machine_terminator'           : {
         yes: {
             'authorities': ['auth_machine_intelligence'],
@@ -674,8 +671,6 @@ machine_civics = {
             ],
         },
     },
-    /*
-     // Requires generating a second species
     'civic_machine_assimilator'          : {
         yes: {
             'authorities': ['auth_machine_intelligence'],
@@ -691,7 +686,6 @@ machine_civics = {
             'ethics'     : [],
         },
     },
-    */
     'civic_machine_builder'              : {
         yes: {
             'authorities': ['auth_machine_intelligence'],
