@@ -226,11 +226,11 @@ class Empire {
     government  = 'gov_hive_mind'; // Game will reset this to proper government on boot
     //advisor_voice_type   = ''; // Leaving this empty will default to "Based on government"
     planet_name                 = '';
-    planet_class                = '';
+    planet_class                = planets.random();
     system_name                 = '';
     initializer                 = ''; // Always empty
-    graphical_culture           = ''; // Ship graphics
-    city_graphical_culture      = ''; // City graphics
+    graphical_culture           = cultures.random(); // Ship graphics
+    city_graphical_culture      = cultures.random(); // City graphics
     empire_flag                 = {
         icon      : {
             category: '',
@@ -254,7 +254,7 @@ class Empire {
     };
     spawn_as_fallen             = 'yes';
     ignore_portrait_duplication = 'no';
-    room                        = 'default_room';
+    room                        = rooms.random()
     spawn_enabled               = 'yes';
     ethics                      = [];
     civics                      = [];
@@ -265,11 +265,8 @@ class Empire {
     trait_points_left           = 2;
 
     constructor(options) {
-        this.spawn_enabled          = options.spawn_enabled;
-        this.generate_type          = options.generate_type;
-        this.planet_class           = planets.random();
-        this.graphical_culture      = cultures.random();
-        this.city_graphical_culture = cultures.random();
+        this.spawn_enabled = options.spawn_enabled;
+        this.generate_type = options.generate_type;
 
         this.set_ethics();
         this.set_authority();
@@ -436,6 +433,12 @@ class Empire {
                 this.disabled_origins = this.disabled_origins.concat(civic_no.origins);
             }
 
+            if (civic_name === 'civic_machine_servitor') {
+                this.secondary_species = new SecondarySpecies([], [], 5, 2, this.portrait);
+            } else if (civic_name === 'civic_machine_assimilator') {
+                this.secondary_species = new SecondarySpecies(['trait_cybernetic'], [], 5, 2, this.portrait);
+            }
+
         }
     }
 
@@ -443,8 +446,6 @@ class Empire {
         if (this.authority === 'auth_machine_intelligence') {
             this.species.class    = 'MACHINE';
             this.species.portrait = species_machine.MACHINE.portraits.random();
-            // this.disabled_origins.push('origin_post_apocalyptic');
-            // this.disabled_origins.push('origin_life_seeded');
             return;
         }
 
@@ -489,51 +490,64 @@ class Empire {
                 continue;
             }
 
+            log('Selected origin ' + origin_name);
+            this.origin = origin_name;
+
             if (origin_name === 'origin_post_apocalyptic') {
                 this.species.traits.push('trait_survivor');
+                return;
             }
 
             if (origin_name === 'origin_void_dwellers') {
                 this.species.traits.push('trait_void_dweller_1');
+                return;
             }
 
             if (origin_name === 'origin_clone_army') {
                 this.species.traits.push('trait_clone_soldier_infertile');
                 this.disabled_traits.push('trait_slow_breeders');
                 this.disabled_traits.push('trait_rapid_breeders');
+                return;
             }
 
             if (origin_name === 'origin_subterranean') {
                 this.species.traits.push('trait_cave_dweller');
+                return;
             }
 
             if (origin_name === 'origin_shroudwalker_apprentice') {
                 this.species.traits.push('trait_latent_psionic');
+                return;
             }
 
             if (origin_name === 'origin_necrophage') {
                 this.species.traits.push('trait_necrophage');
                 this.disabled_traits.push('trait_plantoid_budding');
                 this.secondary_species = new SecondarySpecies([], [], 5, 2, this.portrait);
+                return;
             }
 
             if (origin_name === 'origin_syncretic_evolution') {
                 this.secondary_species = new SecondarySpecies(['trait_syncretic_proles'], ['trait_natural_engineers', 'trait_natural_physicists', 'trait_natural_sociologists', 'trait_intelligent'], 4, 1, this.portrait);
+                return;
             }
 
             if (origin_name === 'origin_ocean_paradise') {
                 this.species.traits.push('trait_aquatic');
                 this.trait_picks_left--;
                 this.trait_points_left--;
+                return;
             }
 
             if (origin_name === 'origin_shattered_ring') {
-                //this.planet_class = 'pc_shattered_ring_habitable'; // Doesn't work =/
                 this.planet_class = 'pc_savannah'; // Just make sure it's not ocean, to disable Aquatic trait (which requires ocean world) on shattered ring starts
+                return;
             }
 
-            log('Selected origin ' + origin_name);
-            this.origin = origin_name;
+            if (origin_name === 'origin_life_seeded') {
+                this.planet_class = 'pc_savannah'; // Just make sure it's not ocean, to disable Aquatic trait (which requires ocean world) on life seeded
+                return;
+            }
         }
     }
 
@@ -581,12 +595,6 @@ class Empire {
             this.disabled_traits.push('trait_conservational');
             this.disabled_traits.push('trait_wasteful');
         }
-
-        // secondary species are not implemented
-        // if syncretic
-        // this.species.traits.push('trait_syncretic_proles');
-        // if driver assimilator cyborgs
-        // this.species.traits.push('trait_cybernetic');
 
         // chance to pick negative trait
         if (random_percentage_check(50)) {
