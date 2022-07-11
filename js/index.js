@@ -211,7 +211,7 @@ class Empire {
         adjective: '',
         class    : '',
         name     : '',
-        name_list: 'ART1',
+        name_list: name_lists.random(),
         plural   : '',
         portrait : '',
         traits   : [],
@@ -333,7 +333,8 @@ class Empire {
         }
 
         if (this.generate_type === 'machines') {
-            this.authority = 'auth_machine_intelligence';
+            this.species.name_list = machine_name_lists.random();
+            this.authority         = 'auth_machine_intelligence';
             return;
         }
 
@@ -819,31 +820,28 @@ class Empire {
         this.system_name = system_names.random();
     }
 
-    // Convert JSON to Clausewitz Engine-style notation
+    // Convert JS object to Clausewitz Engine-style notation
     clausewitzify() {
-
-        // Traits are not set with an array in Clausewitz, rather they use the same key multiple times. JSON no can do
         let traits_string = '';
         for (let i = 0; i < this.species.traits.length; i++) {
             traits_string += 'trait="' + this.species.traits[i] + '"\r\n';
         }
         // Remove the last newline
-        traits_string       = traits_string.substring(0, traits_string.length - 2);
+        traits_string = traits_string.substring(0, traits_string.length - 2);
+
         this.species.traits = '';
 
         let secondary_species_traits_string = '';
         if (typeof this.secondary_species !== 'undefined') {
-            // Traits are not set with an array in Clausewitz, rather they use the same key multiple times. JSON no can do
-
             for (let i = 0; i < this.secondary_species.secondary_species_traits.length; i++) {
                 secondary_species_traits_string += 'trait="' + this.secondary_species.secondary_species_traits[i] + '"\r\n';
             }
             // Remove the last newline
-            secondary_species_traits_string                 = secondary_species_traits_string.substring(0, secondary_species_traits_string.length - 2);
+            secondary_species_traits_string = secondary_species_traits_string.substring(0, secondary_species_traits_string.length - 2);
+
             this.secondary_species.secondary_species_traits = '';
         }
 
-        // Ethics are not set with an array in Clausewitz, rather they use the same key multiple times. JSON no can do
         let ethics_string = '';
         for (let i = 0; i < this.ethics.length; i++) {
             ethics_string += 'ethic="' + this.ethics[i] + '"\r\n';
