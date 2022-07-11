@@ -2,71 +2,72 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=Edge">
-    <meta name="viewport"
-          content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Stellaris Empire Generator</title>
 
+    <link rel="stylesheet" href="css/index.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="js/defines/authorities.js"></script>
     <script src="js/defines/civics.js"></script>
+    <script src="js/defines/colors.js"></script>
     <script src="js/defines/cultures.js"></script>
     <script src="js/defines/ethics.js"></script>
+    <script src="js/defines/flags.js"></script>
+    <script src="js/defines/genders.js"></script>
+    <script src="js/defines/name_adjectives.js"></script>
+    <script src="js/defines/name_empire_parts.js"></script>
+    <script src="js/defines/name_leaders.js"></script>
+    <script src="js/defines/name_lists.js"></script>
+    <script src="js/defines/name_planets.js"></script>
+    <script src="js/defines/name_plurals.js"></script>
+    <script src="js/defines/name_species.js"></script>
+    <script src="js/defines/name_systems.js"></script>
     <script src="js/defines/origins.js"></script>
     <script src="js/defines/planets.js"></script>
-    <script src="js/defines/genders.js"></script>
+    <script src="js/defines/rooms.js"></script>
     <script src="js/defines/species.js"></script>
     <script src="js/defines/traits.js"></script>
-    <script src="js/defines/flags.js"></script>
-    <script src="js/defines/colors.js"></script>
-    <script src="js/defines/rooms.js"></script>
-    <script src="js/defines/name_empire_parts.js"></script>
-    <script src="js/defines/name_plurals.js"></script>
-    <script src="js/defines/name_adjectives.js"></script>
-    <script src="js/defines/name_species.js"></script>
-    <script src="js/defines/name_planets.js"></script>
-    <script src="js/defines/name_systems.js"></script>
-    <script src="js/defines/name_leaders.js"></script>
+
     <script src="js/index.js"></script>
 </head>
 <body>
-<h1>Stellaris Empire Generator</h1>
-<p>
-    Tool for generating random empires for Stellaris, updated for v3.4.*. <br>
-    Assumes all DLC is installed, with exception of Galaxy Edition Upgrade Pack. <br>
+<div id="main-content">
+    <h1>Stellaris Empire Generator</h1>
+    <p>
+        Tool for generating random empires for Stellaris, updated for v3.4.*. <br>
+        Assumes all DLC is installed, with exception of Galaxy Edition Upgrade Pack. <br>
+        <br>
+        Put the generated empires in <i>\Documents\Paradox Interactive\Stellaris\user_empire_designs_v3.4.txt</i>
+    </p>
+    <label for="empire_amount">Empires to generate: </label><input type="number" value="100" id="empire_amount"/><br>
+
+    Spawn_Enabled:
+    <input name="spawn_enabled" type="radio" id="spawn_yes" value="yes" checked/>
+    <label for="spawn_yes">Yes</label>
+    <input name="spawn_enabled" type="radio" id="spawn_always" value="always"/>
+    <label for="spawn_always">Always</label>
+    <input name="spawn_enabled" type="radio" id="spawn_no" value="no"/>
+    <label for="spawn_no">No</label>
     <br>
-    Put the generated empires in <i>\Documents\Paradox Interactive\Stellaris\user_empire_designs_v3.4.txt</i>
-</p>
-Empires to generate: <input type="number" value="100" id="empire_amount"/><br>
 
-Spawn_Enabled:
-<input name="spawn_enabled" type="radio" id="spawn_yes" value="yes" checked/>
-<label for="spawn_yes">Yes</label>
-<input name="spawn_enabled" type="radio" id="spawn_always" value="always"/>
-<label for="spawn_always">Always</label>
-<input name="spawn_enabled" type="radio" id="spawn_no" value="no"/>
-<label for="spawn_no">No</label>
-<br>
+    Generate types:
+    <input name="generate_type" type="radio" id="generate_mix" value="mix" checked/>
+    <label for="generate_mix">Everything</label>
+    <input name="generate_type" type="radio" id="generate_no_gestalts" value="no_gestalts"/>
+    <label for="generate_no_gestalts">No gestalts</label>
+    <input name="generate_type" type="radio" id="generate_hiveminds" value="hiveminds"/>
+    <label for="generate_hiveminds">Only Hiveminds</label>
+    <input name="generate_type" type="radio" id="generate_machines" value="machines"/>
+    <label for="generate_machines">Only Machines</label>
+    <br>
+    <br>
+    <button id="generate">Generate empires</button>
+    <button onClick="CopyToClipboard('result')">Copy results to clipboard</button>
 
-Generate types:
-<input name="generate_type" type="radio" id="generate_mix" value="mix" checked/>
-<label for="generate_mix">Everything</label>
-<input name="generate_type" type="radio" id="generate_no_gestalts" value="no_gestalts"/>
-<label for="generate_no_gestalts">No gestalts</label>
-<input name="generate_type" type="radio" id="generate_hiveminds" value="hiveminds"/>
-<label for="generate_hiveminds">Only Hiveminds</label>
-<input name="generate_type" type="radio" id="generate_machines" value="machines"/>
-<label for="generate_machines">Only Machines</label>
-<br>
-<br>
-<button id="generate">Generate empires</button>
-<button onClick="CopyToClipboard('result')">Copy results to clipboard</button>
-
-
-<div id="result">
-
+    <div id="result"></div>
 </div>
-
+<div class="background-static"></div>
+<div class="background-moving"></div>
 
 <script>
     function CopyToClipboard(containerid) {
@@ -87,6 +88,5 @@ Generate types:
         document.body.removeChild(textarea)
     }
 </script>
-
 </body>
 </html>
