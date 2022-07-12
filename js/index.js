@@ -290,6 +290,14 @@ class Empire {
             return;
         }
 
+        // Fanatic Purifiers have very strict requirements and as such are very rare. Improve their chances by force-picking their required ethics.
+        // Even with this they are still much less likely to spawn (~4%?) than Devouring Swarm or Determined Exterminators (10-15%?)
+        if (random_percentage_check(5)) {
+            this.ethics.push('ethic_fanatic_xenophobe');
+            this.ethics.push(random_percentage_check(50) ? 'ethic_militarist' : 'ethic_spiritualist');
+            return;
+        }
+
         while (ethics_points > 0) {
             let random_ethic = ethics.random();
 
@@ -383,12 +391,18 @@ class Empire {
         let civics_list      = civics;
         if (this.authority === 'auth_hive_mind') {
             civics_list = hive_civics;
-        }
-        if (this.authority === 'auth_machine_intelligence') {
+        } else if (this.authority === 'auth_machine_intelligence') {
             civics_list = machine_civics;
-        }
-        if (this.authority === 'auth_corporate') {
+        } else if (this.authority === 'auth_corporate') {
             civics_list = corporate_civics;
+        } else {
+            // If specific ethics required by Fanatic Purifiers have been picked, increase chance of picking Fanatic Purifiers
+            if (this.ethics.includes('ethic_fanatic_xenophobe') && (this.ethics.includes('ethic_militarist') || this.ethics.includes('ethic_spiritualist'))) {
+                if (random_percentage_check(75)) {
+                    civic_picks_left--;
+                    this.civics.push('civic_fanatic_purifiers');
+                }
+            }
         }
 
         while (civic_picks_left > 0) {
@@ -429,17 +443,24 @@ class Empire {
             civic_picks_left--;
             this.civics.push(civic_name);
 
-            // Disable incompatible origins
-            if (typeof civic_no.origins !== 'undefined') {
-                this.disabled_origins = this.disabled_origins.concat(civic_no.origins);
-            }
-
             if (civic_name === 'civic_machine_servitor') {
-                this.secondary_species = new SecondarySpecies([], [], 5, 2, this.portrait);
+                this.secondary_species = new SecondarySpecies([], [], 5, 2);
             } else if (civic_name === 'civic_machine_assimilator') {
-                this.secondary_species = new SecondarySpecies(['trait_cybernetic'], [], 5, 2, this.portrait);
-            }
+                this.secondary_species = new SecondarySpecies(['trait_cybernetic'], [], 5, 2);
+            } else if (civic_name === 'civic_anglers' || civic_name === 'civic_corporate_anglers') {
+                this.species.traits.push('trait_aquatic');
+                this.trait_picks_left--;
+                this.trait_points_left--;
+                this.planet_class = 'pc_ocean';
 
+                // Cannot select origins which require a non-ocean planet when we have already picked an ocean planet
+                this.disabled_origins.push('origin_shattered_ring');
+                this.disabled_origins.push('origin_life_seeded');
+                this.disabled_origins.push('origin_void_dwellers');
+                this.disabled_origins.push('origin_post_apocalyptic');
+                this.disabled_origins.push('origin_subterranean');
+                // this.disabled_origins.push('origin_remnants'); // Remnants forces a Relic World, but is somehow still compatible with Anglers
+            }
         }
     }
 
@@ -450,10 +471,27 @@ class Empire {
             return;
         }
 
-        let random_species    = species.random();
-        this.species.class    = random_species[0];
-        this.species.gender   = genders.random();
-        this.species.portrait = random_species[1].portraits.random();
+        this.species.gender = genders.random();
+
+        // Idyllic Bloom requires FUN or PLANT
+        if (this.civics.includes('civic_idyllic_bloom') || this.civics.includes('civic_hive_idyllic_bloom')) {
+            if (random_percentage_check(50)) {
+                this.species.class    = 'FUN';
+                this.species.portrait = species.FUN.portraits.random();
+            } else {
+                this.species.class    = 'PLANT';
+                this.species.portrait = species.PLANT.portraits.random();
+            }
+        } else {
+            let random_species    = species.random();
+            this.species.class    = random_species[0];
+            this.species.portrait = random_species[1].portraits.random();
+        }
+
+        // Secondary species may not use same portrait as primary species
+        if (typeof this.secondary_species !== 'undefined') {
+            this.secondary_species.set_species(this.species.portrait);
+        }
     }
 
     set_origin() {
@@ -494,12 +532,19 @@ class Empire {
             log('Selected origin ' + origin_name);
             this.origin = origin_name;
 
+            // These origins force their own planet type, but Aquatic requires Ocean planet
+            if (origin_name === 'origin_shattered_ring' || origin_name === 'origin_life_seeded') {
+                this.disabled_traits.push('trait_aquatic');
+            }
+
             if (origin_name === 'origin_post_apocalyptic') {
+                this.disabled_traits.push('trait_aquatic');
                 this.species.traits.push('trait_survivor');
                 return;
             }
 
             if (origin_name === 'origin_void_dwellers') {
+                this.disabled_traits.push('trait_aquatic');
                 this.species.traits.push('trait_void_dweller_1');
                 return;
             }
@@ -512,6 +557,7 @@ class Empire {
             }
 
             if (origin_name === 'origin_subterranean') {
+                this.disabled_traits.push('trait_aquatic');
                 this.species.traits.push('trait_cave_dweller');
                 return;
             }
@@ -534,20 +580,13 @@ class Empire {
             }
 
             if (origin_name === 'origin_ocean_paradise') {
-                this.species.traits.push('trait_aquatic');
-                this.trait_picks_left--;
-                this.trait_points_left--;
-                return;
-            }
-
-            if (origin_name === 'origin_shattered_ring') {
-                this.planet_class = 'pc_savannah'; // Just make sure it's not ocean, to disable Aquatic trait (which requires ocean world) on shattered ring starts
-                return;
-            }
-
-            if (origin_name === 'origin_life_seeded') {
-                this.planet_class = 'pc_savannah'; // Just make sure it's not ocean, to disable Aquatic trait (which requires ocean world) on life seeded
-                return;
+                // Aquatic could've been added already by angler civic
+                if (!this.species.traits.includes('trait_aquatic')) {
+                    this.species.traits.push('trait_aquatic');
+                    this.trait_picks_left--;
+                    this.trait_points_left--;
+                    return;
+                }
             }
         }
     }
