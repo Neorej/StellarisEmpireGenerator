@@ -1,5 +1,5 @@
 origins = {
-    'origin_default'   : { // Prosperous Unification
+    'origin_default'                : { // Prosperous Unification
         yes: {
             'authorities': [],
             'civics'     : [],
@@ -13,7 +13,7 @@ origins = {
 
         },
     },
-    'origin_mechanists': {
+    'origin_mechanists'             : {
         yes: {
             'authorities': [],
             'civics'     : [],
@@ -28,8 +28,6 @@ origins = {
             'ethics'     : ['ethic_gestalt_consciousness'],
         },
     },
-
-    // Requires generating a second species
     'origin_syncretic_evolution'    : {
         yes: {
             'authorities': [],
@@ -212,6 +210,8 @@ origins = {
                 'civic_barbaric_despoilers',
                 'civic_fanatic_purifiers',
                 'civic_inwards_perfection',
+                'civic_hive_devouring_swarm',
+                'civic_machine_terminator',
             ],
             'ethics'     : [
                 'ethic_gestalt_consciousness',
@@ -231,6 +231,8 @@ origins = {
             'civics'     : [
                 'civic_fanatic_purifiers',
                 'civic_inwards_perfection',
+                'civic_hive_devouring_swarm',
+                'civic_machine_terminator',
             ],
             'ethics'     : [
                 'ethic_gestalt_consciousness',
@@ -346,7 +348,10 @@ origins = {
         },
         no : {
             'authorities': ['auth_machine_intelligence'],
-            'civics'     : [],
+            'civics'     : [
+                'civic_anglers',
+                'civic_corporate_anglers',
+            ],
             'ethics'     : [],
         },
     },
@@ -372,7 +377,7 @@ origins = {
             ],
         },
         no : {
-            'authorities': ['auth_machine_intelligence'], // Not directly incompatible, but machines cannot select trait_latent_psionic trait
+            'authorities': ['auth_machine_intelligence'], // Not directly incompatible, but machines cannot select trait_latent_psionic trait which comes with this origin
             'civics'     : ['civic_fanatic_purifiers'],
             'ethics'     : [],
         },
