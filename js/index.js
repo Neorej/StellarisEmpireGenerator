@@ -265,8 +265,8 @@ class Empire {
     trait_points_left           = 2;
 
     constructor(options) {
-        this.spawn_enabled = options.spawn_enabled;
-        this.generate_type = options.generate_type;
+        this.options       = options;
+        this.spawn_enabled = this.options.spawn_enabled;
 
         this.set_ethics();
         this.set_authority();
@@ -285,14 +285,14 @@ class Empire {
         let ethics_points = 3;
         let ethics_no     = [];
 
-        if (this.generate_type === 'hiveminds' || this.generate_type === 'machines') {
+        if (this.options.generate_type === 'hiveminds' || this.options.generate_type === 'machines' || (this.options.generate_type !== 'no_gestalts' && this.options.generate_purifiers === 'yes' && random_percentage_check(50))) {
             this.ethics.push('ethic_gestalt_consciousness');
             return;
         }
 
         // Fanatic Purifiers have very strict requirements and as such are very rare. Improve their chances by force-picking their required ethics.
         // Even with this they are still much less likely to spawn (~4%?) than Devouring Swarm or Determined Exterminators (10-15%?)
-        if (random_percentage_check(5)) {
+        if (random_percentage_check(5) || this.options.generate_purifiers === 'yes') {
             this.ethics.push('ethic_fanatic_xenophobe');
             this.ethics.push(random_percentage_check(50) ? 'ethic_militarist' : 'ethic_spiritualist');
             return;
@@ -301,7 +301,7 @@ class Empire {
         while (ethics_points > 0) {
             let random_ethic = ethics.random();
 
-            if (this.generate_type === 'no_gestalts') {
+            if (this.options.generate_type === 'no_gestalts') {
                 while (random_ethic[0] === 'ethic_gestalt_consciousness') {
                     random_ethic = ethics.random();
                 }
@@ -335,12 +335,12 @@ class Empire {
         log('Selected ethics');
         log(this.ethics);
 
-        if (this.generate_type === 'hiveminds') {
+        if (this.options.generate_type === 'hiveminds') {
             this.authority = 'auth_hive_mind';
             return;
         }
 
-        if (this.generate_type === 'machines') {
+        if (this.options.generate_type === 'machines') {
             this.species.name_list = machine_name_lists.random();
             this.authority         = 'auth_machine_intelligence';
             return;
@@ -360,6 +360,11 @@ class Empire {
             let requirements_met = false;
 
             log('Attempt to select authority ' + authority_name);
+
+            // Corporate cannot be purifier
+            if (authority_name === 'auth_corporate' && this.options.generate_purifiers === 'yes') {
+                continue;
+            }
 
             if (authority_yes.length === 0) {
                 requirements_met = true;
@@ -391,14 +396,22 @@ class Empire {
         let civics_list      = civics;
         if (this.authority === 'auth_hive_mind') {
             civics_list = hive_civics;
+            if (this.options.generate_purifiers === 'yes') {
+                civic_picks_left--;
+                this.civics.push('civic_hive_devouring_swarm');
+            }
         } else if (this.authority === 'auth_machine_intelligence') {
             civics_list = machine_civics;
+            if (this.options.generate_purifiers === 'yes') {
+                civic_picks_left--;
+                this.civics.push('civic_machine_terminator');
+            }
         } else if (this.authority === 'auth_corporate') {
             civics_list = corporate_civics;
         } else {
             // If specific ethics required by Fanatic Purifiers have been picked, increase chance of picking Fanatic Purifiers
             if (this.ethics.includes('ethic_fanatic_xenophobe') && (this.ethics.includes('ethic_militarist') || this.ethics.includes('ethic_spiritualist'))) {
-                if (random_percentage_check(75)) {
+                if ((random_percentage_check(75) && this.options.generate_purifiers !== 'no') || this.options.generate_purifiers === 'yes') {
                     civic_picks_left--;
                     this.civics.push('civic_fanatic_purifiers');
                 }
@@ -417,6 +430,12 @@ class Empire {
             // Can't pick a civic twice :(
             if ($.inArray(civic_name, this.civics) > -1) {
                 continue;
+            }
+
+            if (this.options.generate_purifiers === 'no') {
+                if (civic_name === 'civic_hive_devouring_swarm' || civic_name === 'civic_machine_terminator' || civic_name === 'civic_fanatic_purifiers') {
+                    continue;
+                }
             }
 
             if (yes_requirement_checker(civic_yes.authorities, this.authority, 'Authority', 'Authorities', 'Civics') === false) {
@@ -908,7 +927,7 @@ class Empire {
         delete this.disabled_traits;
         delete this.trait_picks_left;
         delete this.trait_points_left;
-        delete this.generate_type;
+        delete this.options;
 
         // Convert empire to JSON
         let string = JSON.stringify(this, null, '\r\n');
@@ -1034,8 +1053,9 @@ $(function () {
         log('Generating ' + empiresNum + ' empires');
 
         let options = {
-            spawn_enabled: $('input[name="spawn_enabled"]:checked').val(),
-            generate_type: $('input[name="generate_type"]:checked').val(),
+            spawn_enabled     : $('input[name="spawn_enabled"]:checked').val(),
+            generate_type     : $('input[name="generate_type"]:checked').val(),
+            generate_purifiers: $('input[name="generate_purifiers"]:checked').val(),
         };
 
         log(options);

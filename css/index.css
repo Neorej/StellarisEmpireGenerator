@@ -26,6 +26,9 @@ h1 {
     line-height: 25px;
 }
 
+#empire_amount {
+    width: 55px;
+}
 
 .background-static {
     background: url(images/background.png) no-repeat;
