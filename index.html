@@ -38,28 +38,45 @@
         Assumes all DLC is installed, with exception of Galaxy Edition Upgrade Pack. <br>
         <br>
         Put the generated empires in <i>\Documents\Paradox Interactive\Stellaris\user_empire_designs_v3.4.txt</i>
+
     </p>
-    <label for="empire_amount">Empires to generate: </label><input type="number" value="100" id="empire_amount"/><br>
-
-    Spawn_Enabled:
-    <input name="spawn_enabled" type="radio" id="spawn_yes" value="yes" checked/>
-    <label for="spawn_yes">Yes</label>
-    <input name="spawn_enabled" type="radio" id="spawn_always" value="always"/>
-    <label for="spawn_always">Always</label>
-    <input name="spawn_enabled" type="radio" id="spawn_no" value="no"/>
-    <label for="spawn_no">No</label>
     <br>
+    <p>
+        <label for="empire_amount">Empires to generate: </label>
+        <input type="number" value="100" id="empire_amount"/>
+    </p>
+    <p>
+        Spawn enabled:
+        <input name="spawn_enabled" type="radio" id="spawn_always" value="always" checked/>
+        <label for="spawn_always">Spawn always</label>
+        <input name="spawn_enabled" type="radio" id="spawn_yes" value="yes"/>
+        <label for="spawn_yes">Yes</label>
+        <input name="spawn_enabled" type="radio" id="spawn_no" value="no"/>
+        <label for="spawn_no">No</label>
+    </p>
 
-    Generate types:
-    <input name="generate_type" type="radio" id="generate_mix" value="mix" checked/>
-    <label for="generate_mix">Everything</label>
-    <input name="generate_type" type="radio" id="generate_no_gestalts" value="no_gestalts"/>
-    <label for="generate_no_gestalts">No gestalts</label>
-    <input name="generate_type" type="radio" id="generate_hiveminds" value="hiveminds"/>
-    <label for="generate_hiveminds">Only Hiveminds</label>
-    <input name="generate_type" type="radio" id="generate_machines" value="machines"/>
-    <label for="generate_machines">Only Machines</label>
-    <br>
+    <p>
+        Generate empire types:
+        <input name="generate_type" type="radio" id="generate_type_mix" value="mix" checked/>
+        <label for="generate_type_mix">Everything</label>
+        <input name="generate_type" type="radio" id="generate_type_no_gestalts" value="no_gestalts"/>
+        <label for="generate_type_no_gestalts">No gestalts</label>
+        <input name="generate_type" type="radio" id="generate_type_hiveminds" value="hiveminds"/>
+        <label for="generate_type_hiveminds">Only Hiveminds</label>
+        <input name="generate_type" type="radio" id="generate_type_machines" value="machines"/>
+        <label for="generate_type_machines">Only Machines</label>
+    </p>
+
+    <p>
+        <span>Generate <abbr title="Fanatic Purifiers, Devouring Swarm, Determined Exterminators">purifiers:</abbr></span>
+        <input name="generate_purifiers" type="radio" id="generate_purifiers_mix" value="mix" checked/>
+        <label for="generate_purifiers_mix">Both purifiers and non-purifiers</label>
+        <input name="generate_purifiers" type="radio" id="generate_purifiers_yes" value="yes"/>
+        <label for="generate_purifiers_yes">Only purifiers</label>
+        <input name="generate_purifiers" type="radio" id="generate_purifiers_no" value="no"/>
+        <label for="generate_purifiers_no">No purifiers</label>
+    </p>
+
     <br>
     <button id="generate">Generate empires</button>
     <button onClick="CopyToClipboard('result')">Copy results to clipboard</button>
