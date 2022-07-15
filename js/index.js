@@ -19,7 +19,7 @@ Object.defineProperty(String.prototype, 'capitalize', {
     enumerable: false,
 });
 
-var logging = true;
+var logging = false;
 var log     = logging ? console.log.bind(window.console) : function () {
 };
 
@@ -265,8 +265,9 @@ class Empire {
     trait_points_left           = 2;
 
     constructor(options) {
-        this.options       = options;
-        this.spawn_enabled = this.options.spawn_enabled;
+        this.options          = options;
+        this.spawn_enabled    = this.options.spawn_enabled;
+        this.disabled_origins = this.disabled_origins.concat(this.options.disabled_origins);
 
         this.set_ethics();
         this.set_authority();
@@ -521,6 +522,7 @@ class Empire {
             let origin_no     = random_origin[1].no;
 
             if ($.inArray(origin_name, this.disabled_origins) > -1) {
+                log(origin_name + ' is disabled');
                 continue;
             }
 
@@ -1040,30 +1042,3 @@ function no_requirement_checker(requirements, current_values, singular, plural, 
     log(check_type + ': ' + plural + ' no_requirements met');
     return true;
 }
-
-$(function () {
-
-    $('#generate').on('click tap', function () {
-        $('#result').html('');
-        console.clear();
-
-        let empiresNum = $('#empire_amount').val();
-        let results    = '';
-
-        log('Generating ' + empiresNum + ' empires');
-
-        let options = {
-            spawn_enabled     : $('input[name="spawn_enabled"]:checked').val(),
-            generate_type     : $('input[name="generate_type"]:checked').val(),
-            generate_purifiers: $('input[name="generate_purifiers"]:checked').val(),
-        };
-
-        log(options);
-
-        for (let k = 0; k < empiresNum; k++) {
-            let empire = new Empire(options);
-            results += empire.clausewitzify();
-        }
-        $('#result').html('<pre style="width:600px; height: 800px; overflow-y:scroll;">' + results + '</pre>');
-    });
-});
