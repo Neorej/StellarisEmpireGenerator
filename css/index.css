@@ -26,6 +26,10 @@ h1 {
     line-height: 25px;
 }
 
+label {
+    cursor: pointer;
+}
+
 #empire_amount {
     width: 55px;
 }
