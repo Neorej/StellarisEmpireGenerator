@@ -269,6 +269,10 @@ class Empire {
         this.spawn_enabled    = this.options.spawn_enabled;
         this.disabled_origins = this.disabled_origins.concat(this.options.disabled_origins);
 
+        if (this.options.generate_purifiers === 'metal') {
+            this.options.generate_type = 'no_gestalts';
+        }
+
         this.set_ethics();
         this.set_authority();
         this.set_civics();
@@ -285,6 +289,13 @@ class Empire {
     set_ethics() {
         let ethics_points = 3;
         let ethics_no     = [];
+
+        if (this.options.generate_purifiers === 'metal') {
+            this.ethics.push('ethic_militarist');
+            this.ethics.push('ethic_xenophobe');
+            this.ethics.push('ethic_materialist');
+            return;
+        }
 
         if (this.options.generate_type === 'hiveminds' || this.options.generate_type === 'machines' || (this.options.generate_type !== 'no_gestalts' && this.options.generate_purifiers === 'yes' && random_percentage_check(50))) {
             this.ethics.push('ethic_gestalt_consciousness');
@@ -335,6 +346,11 @@ class Empire {
     set_authority() {
         log('Selected ethics');
         log(this.ethics);
+
+        if (this.options.generate_purifiers === 'metal') {
+            this.authority = random_percentage_check(50) ? 'auth_dictatorial' : 'auth_imperial';
+            return;
+        }
 
         if (this.options.generate_type === 'hiveminds') {
             this.authority = 'auth_hive_mind';
@@ -642,6 +658,18 @@ class Empire {
 
             // Lithoids have their own traits
             traits_list = lithoid_traits;
+        }
+
+        if (this.options.generate_purifiers === 'metal') {
+            this.species.traits.push('trait_strong');
+            this.species.traits.push('trait_industrious');
+            if (this.species.traits.includes('trait_aquatic')) {
+                this.species.traits.push(random_percentage_check(50) ? 'trait_unruly' : 'trait_repugnant');
+            } else {
+                this.species.traits.push(random_percentage_check(50) ? 'trait_deviants' : 'trait_solitary');
+            }
+
+            return;
         }
 
         if (this.authority === 'auth_hive_mind') {
