@@ -72,6 +72,8 @@
         <label for="generate_purifiers_mix">Both purifiers and non-purifiers</label>
         <input name="generate_purifiers" type="radio" id="generate_purifiers_yes" value="yes"/>
         <label for="generate_purifiers_yes">Only purifiers</label>
+        <input name="generate_purifiers" type="radio" id="generate_purifiers_metal" value="metal"/>
+        <label for="generate_purifiers_metal"><abbr title="Not purifiers per se, but aggressive to the point of suicide">Metalheads</abbr></label>
         <input name="generate_purifiers" type="radio" id="generate_purifiers_no" value="no"/>
         <label for="generate_purifiers_no">No purifiers</label>
     </p>
@@ -84,8 +86,8 @@
         <label for="disable_origin_void_dwellers"><abbr title="Starts with 3 orbital habitats instead of a planet">Void Dwellers</abbr></label>
         <input name="disable_shattered_ring" type="checkbox" id="disable_shattered_ring"/>
         <label for="disable_shattered_ring"><abbr title="Starts with a shattered Ring World">Shattered Ring</abbr></label>
-        <input name="disable_origin_slingshot" type="checkbox" id="disable_origin_slingshot"/>
-        <label for="disable_origin_slingshot"><abbr title="Starts with a ruined Quantum Catapult">Slingshot</abbr></label>
+        <input name="disable_origin_scion" type="checkbox" id="disable_origin_scion"/>
+        <label for="disable_origin_scion"><abbr title="Starts as a vassal of a Fallen Empire">Scion</abbr></label>
         <input name="disable_origin_lost_colony" type="checkbox" id="disable_origin_lost_colony" checked/>
         <label for="disable_origin_lost_colony"><abbr title="An Advanced Empire of this species spawns somewhere in the galaxy">Lost Colony</abbr></label>
         <br>
@@ -95,38 +97,50 @@
         <label for="disable_origin_common_ground"><abbr title="Starts as the leader of a Galactic Union federation with 2 additional members">Common Ground</abbr></label>
         <input name="disable_origin_here_be_dragons" type="checkbox" id="disable_origin_here_be_dragons"/>
         <label for="disable_origin_here_be_dragons"><abbr title="Starts with a Space Dragon in their home system">Here Be Dragons</abbr></label>
-        <input name="disable_origin_imperial_fiefdom" type="checkbox" id="disable_origin_imperial_fiefdom"/>
+        <input name="disable_origin_slingshot" type="checkbox" id="disable_origin_slingshot"/>
+        <label for="disable_origin_slingshot"><abbr title="Starts with a ruined Quantum Catapult">Slingshot</abbr></label>
+        <input name="disable_origin_imperial_fiefdom" type="checkbox" id="disable_origin_imperial_fiefdom" checked/>
         <label for="disable_origin_imperial_fiefdom"><abbr title="Starts as a vassal of an advanced AI empire">Imperial Fiefdom</abbr></label>
-        <input name="disable_origin_scion" type="checkbox" id="disable_origin_scion"/>
-        <label for="disable_origin_scion"><abbr title="Starts as a vassal of a Fallen Empire">Scion</abbr></label>
     </p>
 
     <br>
-    <button id="generate">Generate empires</button>
-    <button onClick="CopyToClipboard('result')">Copy results to clipboard</button>
+    <button type="button" id="generate">Generate empires</button>
+    <button type="button" onClick="CopyToClipboard('result')">Copy results to clipboard</button>
 
     <div id="result"></div>
-</div>
-<div class="background-static"></div>
-<div class="background-moving"></div>
 
+</div>
+<div class="background">
+    <div class="background1-static"></div>
+    <div class="background1-moving"></div>
+</div>
+
+<div class="background" style="display:none">
+    <div class="background2-static"></div>
+    <div class="background2-lightning"></div>
+    <div class="background2-moving1"></div>
+    <div class="background2-moving2"></div>
+    <div class="background2-moving3"></div>
+</div>
+
+<div id="background-switcher">></div>
 <script>
     function CopyToClipboard(containerid) {
         // Create a new textarea element and give it id='temp_element'
-        const textarea        = document.createElement('textarea')
-        textarea.id           = 'temp_element'
+        const textarea        = document.createElement('textarea');
+        textarea.id           = 'temp_element';
         // Optional step to make less noise on the page, if any!
-        textarea.style.height = 0
+        textarea.style.height = 0;
         // Now append it to your page somewhere, I chose <body>
-        document.body.appendChild(textarea)
+        document.body.appendChild(textarea);
         // Give our textarea a value of whatever inside the div of id=containerid
-        textarea.value = document.getElementById(containerid).innerText
+        textarea.value = document.getElementById(containerid).innerText;
         // Now copy whatever inside the textarea to clipboard
-        const selector = document.querySelector('#temp_element')
-        selector.select()
-        document.execCommand('copy')
+        const selector = document.querySelector('#temp_element');
+        selector.select();
+        document.execCommand('copy');
         // Remove the textarea
-        document.body.removeChild(textarea)
+        document.body.removeChild(textarea);
     }
 
     $(function () {
@@ -174,6 +188,10 @@
         });
 
         $('#generate').click();
+
+        $('#background-switcher').on('click tap', function () {
+            $('.background').toggle();
+        });
     });
 </script>
 </body>
