@@ -184,7 +184,7 @@ civics = {
         },
         no : {
             'authorities': [],
-            'civics'     : [],
+            'civics'     : ['civic_relentless_industrialists'],
             'ethics'     : [],
         },
     },
@@ -290,6 +290,7 @@ civics = {
             'authorities': [],
             'civics'     : [
                 'civic_anglers',
+                'civic_relentless_industrialists',
             ],
             'ethics'     : [],
         },
@@ -537,7 +538,10 @@ civics = {
         },
         no : {
             'authorities': [],
-            'civics'     : ['civic_fanatic_purifiers'],
+            'civics'     : [
+                'civic_fanatic_purifiers',
+                'civic_relentless_industrialists',
+            ],
             'ethics'     : [],
         },
     },
@@ -577,7 +581,7 @@ civics = {
         },
         no : {
             'authorities': [],
-            'civics'     : [],
+            'civics'     : ['civic_relentless_industrialists'],
             'ethics'     : [],
         },
     },
@@ -1251,6 +1255,53 @@ corporate_civics = {
             'ethics'     : [
                 'ethic_egalitarian',
                 'ethic_fanatic_egalitarian',
+            ],
+        },
+    },
+    'civic_toxic_baths'                   : { // Mutagenic Spas
+        yes: {
+            'authorities': [],
+            'civics'     : [],
+            'ethics'     : [],
+        },
+        no : {
+            'authorities': ['auth_corporate'],
+            'civics'     : [],
+            'ethics'     : [
+                'ethic_gestalt_consciousness',
+            ],
+        },
+    },
+    'civic_relentless_industrialists'     : {
+        yes: {
+            'authorities': [],
+            'civics'     : [],
+            'ethics'     : ['ethic_materialist', 'ethic_fanatic_materialist'],
+        },
+        no : {
+            'authorities': ['auth_corporate'],
+            'civics'     : [
+                'civic_environmentalist',
+                'civic_agrarian_idyll',
+                'civic_idyllic_bloom',
+                'civic_memorialist',
+            ],
+            'ethics'     : [
+                'ethic_gestalt_consciousness',
+            ],
+        },
+    },
+    'civic_scavengers'                    : {
+        yes: {
+            'authorities': [],
+            'civics'     : [],
+            'ethics'     : [],
+        },
+        no : {
+            'authorities': ['auth_corporate'],
+            'civics'     : [],
+            'ethics'     : [
+                'ethic_gestalt_consciousness',
             ],
         },
     },

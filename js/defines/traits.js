@@ -605,3 +605,80 @@ ocean_traits = {
         ],
     },
 };
+
+overtuned_traits = {
+    'trait_crack_miner'            : {
+        cost: 1,
+        no  : [],
+    },
+    'trait_technical_skill'        : {
+        cost: 1,
+        no  : [],
+    },
+    'trait_crafted_smiles'         : {
+        cost: 1,
+        no  : [],
+    },
+    'trait_low_maintenance'        : {
+        cost: 1,
+        no  : [],
+    },
+    'trait_artificial_intelligence': {
+        cost: 1,
+        no  : [],
+    },
+    'trait_gene_mentorship'        : {
+        cost: 1,
+        no  : [],
+    },
+    'trait_expressed_tradition'    : {
+        cost: 1,
+        no  : [],
+    },
+    'trait_elevated_synapses'      : {
+        cost: 2,
+        no  : [],
+    },
+    'trait_preplanned_growth'      : {
+        cost: 2,
+        no  : [],
+    },
+    'trait_excessive_endurance'    : {
+        cost: 3,
+        no  : [],
+    },
+    'trait_incubator'              : {
+        cost: 2,
+        no  : [
+            'trait_slow_breeders',
+            'trait_rapid_breeders',
+            'trait_rapid_breeders_lithoid',
+            'trait_fertile',
+            'trait_plantoid_budding',
+            'trait_lithoid_budding',
+        ],
+    },
+    'trait_inorganic_breath'       : {
+        cost: 3,
+        no  : [],
+    },
+    'trait_noxious'                : {
+        cost: 1,
+        no  : [],
+    },
+};
+
+biological_overtuned_traits = {
+    'trait_spliced_adaptability': {
+        cost: 1,
+        no  : [],
+    },
+    'trait_juiced_power'        : {
+        cost: 1,
+        no  : [],
+    },
+    'trait_farm_hands'          : {
+        cost: 1,
+        no  : [],
+    },
+};

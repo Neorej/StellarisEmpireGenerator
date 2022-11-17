@@ -212,6 +212,26 @@ species = {
             'aqu14',
         ],
     },
+    'TOX': {
+        secondary: true,
+        portraits: [
+            'tox1',
+            'tox2',
+            'tox3',
+            'tox4',
+            'tox5',
+            'tox6',
+            'tox7',
+            'tox8',
+            'tox9',
+            'tox10',
+            'tox11',
+            'tox12',
+            'tox13',
+            'tox14',
+            'tox15',
+        ],
+    },
 };
 
 species_machine = {

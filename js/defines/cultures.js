@@ -10,4 +10,5 @@ cultures = [
     'lithoid_01',
     'nemesis_01',
     'aquatic_01',
+    'toxoid_01',
 ];

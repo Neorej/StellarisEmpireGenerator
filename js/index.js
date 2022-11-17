@@ -607,12 +607,12 @@ class Empire {
             if (origin_name === 'origin_necrophage') {
                 this.species.traits.push('trait_necrophage');
                 this.disabled_traits.push('trait_plantoid_budding');
-                this.secondary_species = new SecondarySpecies([], [], 5, 2, this.portrait);
+                this.secondary_species = new SecondarySpecies([], [], 5, 2, this.species.portrait);
                 return;
             }
 
             if (origin_name === 'origin_syncretic_evolution') {
-                this.secondary_species = new SecondarySpecies(['trait_syncretic_proles'], ['trait_natural_engineers', 'trait_natural_physicists', 'trait_natural_sociologists', 'trait_intelligent'], 4, 1, this.portrait);
+                this.secondary_species = new SecondarySpecies(['trait_syncretic_proles'], ['trait_natural_engineers', 'trait_natural_physicists', 'trait_natural_sociologists', 'trait_intelligent'], 4, 1, this.species.portrait);
                 return;
             }
 
@@ -629,7 +629,21 @@ class Empire {
     }
 
     set_traits() {
+        // Generate metalheads
+        if (this.options.generate_purifiers === 'metal') {
+            this.species.traits.push('trait_strong');
+            this.species.traits.push('trait_industrious');
+            if (this.species.traits.includes('trait_aquatic')) {
+                this.species.traits.push(random_percentage_check(50) ? 'trait_unruly' : 'trait_repugnant');
+            } else {
+                this.species.traits.push(random_percentage_check(50) ? 'trait_deviants' : 'trait_solitary');
+            }
+
+            return;
+        }
+
         let traits_list = traits;
+        let picked_negative_trait_for_overtuned = false;
 
         // Aquatic trait for ocean worlds
         if (this.planet_class === 'pc_ocean' && (this.species.class === 'AQUATIC' || this.species.class === 'MOL' || this.species.class === 'HUM' || this.species.class === 'MAM' || this.species.class === 'LITHOID')) {
@@ -660,16 +674,26 @@ class Empire {
             traits_list = lithoid_traits;
         }
 
-        if (this.options.generate_purifiers === 'metal') {
-            this.species.traits.push('trait_strong');
-            this.species.traits.push('trait_industrious');
-            if (this.species.traits.includes('trait_aquatic')) {
-                this.species.traits.push(random_percentage_check(50) ? 'trait_unruly' : 'trait_repugnant');
-            } else {
-                this.species.traits.push(random_percentage_check(50) ? 'trait_deviants' : 'trait_solitary');
+
+        if (this.origin === 'origin_overtuned') {
+            let overtuned_traits_list = overtuned_traits;
+
+            // Biologicals get extra overtuned traits, machines have already been excluded at this point due to origin
+            if (this.species.class !== 'LITHOID') {
+                overtuned_traits_list = {...overtuned_traits_list, ...biological_overtuned_traits};
             }
 
-            return;
+            // Always pick at least one overtuned trait when generating overtuned
+            // Allow going negative on trait points; some overtuned traits cost 3
+            this.pick_trait(overtuned_traits_list, false, true);
+            if (this.trait_points_left < 0) {
+                // Pick negative to balance 3-cost trait picked earlier
+                this.pick_trait(traits_list, true, false);
+                // Prevent picking 2nd negative trait later on
+                picked_negative_trait_for_overtuned = true;
+            }
+            // Give chance to pick more overtuned traits
+            traits_list = {...traits_list, ...overtuned_traits_list};
         }
 
         if (this.authority === 'auth_hive_mind') {
@@ -686,31 +710,31 @@ class Empire {
         }
 
         // chance to pick negative trait
-        if (random_percentage_check(50)) {
+        if (random_percentage_check(50) && picked_negative_trait_for_overtuned === false) {
             // Picking negatives first reduces the chance of some positives appearing due to being opposites
             // To crank up the chance a bit, chance to pick positive trait before negative
             if (random_percentage_check(50)) {
                 log('Picking first positive trait');
-                this.pick_trait(traits_list, false);
+                this.pick_trait(traits_list, false, false);
             }
 
             log('Picking negative trait');
-            this.pick_trait(traits_list, true);
+            this.pick_trait(traits_list, true, false);
 
             // chance to pick 2 negative traits
             if (random_percentage_check(20)) {
                 log('Picking second negative trait');
-                this.pick_trait(traits_list, true);
+                this.pick_trait(traits_list, true, false);
             }
         }
 
         while (this.trait_points_left > 0 && this.trait_picks_left > 0) {
             log('Picking loop positive trait');
-            this.pick_trait(traits_list, false);
+            this.pick_trait(traits_list, false, false);
         }
     }
 
-    pick_trait(traits_list, negative_trait) {
+    pick_trait(traits_list, negative_trait, allow_negative) {
         let i = 0;
         // Max 100 attempts to find an acceptable trait, prevent theoretical infinite loop
         while (i < 100) {
@@ -743,7 +767,7 @@ class Empire {
             }
 
             // No money
-            if (trait_cost > this.trait_points_left) {
+            if (trait_cost > this.trait_points_left && allow_negative === false) {
                 log(' - Not enough trait points left (' + this.trait_points_left + ' points left, ' + trait_cost + ' required)');
                 continue;
             }
@@ -1061,9 +1085,16 @@ function yes_requirement_checker(requirements, current_values, singular, plural,
 }
 
 function no_requirement_checker(requirements, current_values, singular, plural, check_type) {
-    for (let k = 0; k < current_values.length; k++) {
-        if ($.inArray(current_values[k], requirements) > -1) {
-            log(' - ' + singular + ' ' + current_values[k] + ' is in list of forbidden ' + plural);
+    if ($.isArray(current_values)) {
+        for (let k = 0; k < current_values.length; k++) {
+            if ($.inArray(current_values[k], requirements) > -1) {
+                log(' - ' + singular + ' ' + current_values[k] + ' is in list of forbidden ' + plural);
+                return false;
+            }
+        }
+    } else {
+        if ($.inArray(current_values, requirements) > -1) {
+            log(' - ' + singular + ' ' + current_values + ' is in list of forbidden ' + plural);
             return false;
         }
     }

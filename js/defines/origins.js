@@ -48,7 +48,10 @@ origins = {
         },
         no : {
             'authorities': ['auth_machine_intelligence'],
-            'civics'     : [],
+            'civics'     : [
+                'civic_toxic_baths',
+                'civic_relentless_industrialists',
+            ],
             'ethics'     : [],
         },
     },
@@ -398,6 +401,30 @@ origins = {
                 'civic_machine_terminator',
             ],
             'ethics'     : [],
+        },
+    },
+    'origin_overtuned'             : {
+        yes: {
+            'authorities': [],
+            'civics'     : [],
+            'ethics'     : [],
+        },
+        no : {
+            'authorities': ['auth_machine_intelligence'],
+            'civics'     : [],
+            'ethics'     : [],
+        },
+    },
+    'origin_toxic_knights'             : {
+        yes: {
+            'authorities': [],
+            'civics'     : [],
+            'ethics'     : [],
+        },
+        no : {
+            'authorities': [],
+            'civics'     : ['civic_fanatic_purifiers'],
+            'ethics'     : ['ethic_gestalt_consciousness'],
         },
     },
 };
