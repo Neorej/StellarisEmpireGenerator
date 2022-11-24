@@ -96,7 +96,10 @@ traits = {
     },
     'trait_quick_learners'      : {
         cost: 1,
-        no  : ['trait_slow_learners'],
+        no  : [
+            'trait_slow_learners',
+            'trait_syncretic_proles',
+        ],
     },
     'trait_slow_learners'       : {
         cost: -1,
@@ -200,7 +203,10 @@ traits = {
     },
     'trait_decadent'            : {
         cost: -1,
-        no  : ['trait_hive_mind'],
+        no  : [
+            'trait_hive_mind',
+            'trait_syncretic_proles,',
+        ],
     },
     'trait_resilient'           : {
         cost: 1,
@@ -213,6 +219,14 @@ traits = {
     'trait_wasteful'            : {
         cost: -1,
         no  : ['trait_conservational'],
+    },
+    'trait_inorganic_breath'       : {
+        cost: 3,
+        no  : [],
+    },
+    'trait_noxious'                : {
+        cost: 1,
+        no  : [],
     },
 };
 
@@ -267,7 +281,10 @@ lithoid_traits = {
     },
     'trait_quick_learners'             : {
         cost: 1,
-        no  : ['trait_slow_learners'],
+        no  : [
+            'trait_slow_learners',
+            'trait_syncretic_proles',
+        ],
     },
     'trait_slow_learners'              : {
         cost: -1,
@@ -371,7 +388,7 @@ lithoid_traits = {
     },
     'trait_decadent'                   : {
         cost: -1,
-        no  : [],
+        no  : ['trait_syncretic_proles'],
     },
     'trait_resilient'                  : {
         cost: 1,
@@ -658,14 +675,6 @@ overtuned_traits = {
             'trait_lithoid_budding',
         ],
     },
-    'trait_inorganic_breath'       : {
-        cost: 3,
-        no  : [],
-    },
-    'trait_noxious'                : {
-        cost: 1,
-        no  : [],
-    },
 };
 
 biological_overtuned_traits = {
@@ -682,3 +691,12 @@ biological_overtuned_traits = {
         no  : [],
     },
 };
+
+// Traits that are incompatible with syncretic species (through the forced "Serviles" trait, trait_syncretic_proles)
+syncretic_disabled_traits = [
+    'trait_natural_engineers',
+    'trait_natural_physicists',
+    'trait_natural_sociologists',
+    'trait_intelligent',
+    'trait_talented',
+];

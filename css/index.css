@@ -1,6 +1,6 @@
 body {
     background: #000;
-    margin: 0px;
+    margin: 0;
     overflow: hidden;
     color: azure;
 }
@@ -11,7 +11,7 @@ body {
     overflow: hidden;
 
     margin: 2%;
-    font-family: system-ui;
+    font-family: system-ui, sans-serif;
 }
 
 #main-content pre {
@@ -20,6 +20,13 @@ body {
 
 #result pre::-webkit-scrollbar {
     display: none
+}
+
+#result pre {
+    width: 600px;
+    height: 800px;
+    overflow-y: scroll;
+    max-width: 100%;
 }
 
 h1 {
@@ -33,6 +40,10 @@ label {
 
 #empire_amount {
     width: 55px;
+}
+
+.background {
+    max-width: 100%;
 }
 
 #background-switcher {
@@ -70,7 +81,7 @@ label {
     display: block;
     position: absolute;
     overflow: hidden;
-    animation: background-move 500s linear infinite;
+    animation: background-move 1000s linear infinite;
 }
 
 

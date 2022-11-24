@@ -34,18 +34,18 @@
 <div id="main-content">
     <h1>Stellaris Empire Generator</h1>
     <p>
-        Tool for generating random empires for Stellaris, updated for v3.5.*. (Fornax) <br>
+        Tool for generating random empires for Stellaris, updated for v3.5.* (Fornax) <br>
         Assumes all DLC is installed, with exception of Galaxy Edition Upgrade Pack. <br>
         <br>
-        Put the generated empires in <i>\Documents\Paradox Interactive\Stellaris\user_empire_designs.txt</i>
+        Put the generated empires in <i>\Documents\Paradox Interactive\Stellaris\user_empire_designs_v3.4.txt</i>
     </p>
     <br>
     <p>
-        <label for="empire_amount">Empires to generate: </label>
+        <label for="empire_amount"><b>Empires to generate: </b></label>
         <input type="number" value="100" id="empire_amount"/>
     </p>
     <p>
-        Spawn enabled:
+        <span><b>Spawn enabled:</b></span>
         <input name="spawn_enabled" type="radio" id="spawn_always" value="always" checked/>
         <label for="spawn_always">Spawn always</label>
         <input name="spawn_enabled" type="radio" id="spawn_yes" value="yes"/>
@@ -55,7 +55,7 @@
     </p>
 
     <p>
-        Generate empire types:
+        <span><b>Generate empire types:</b></span>
         <input name="generate_type" type="radio" id="generate_type_mix" value="mix" checked/>
         <label for="generate_type_mix">Everything</label>
         <input name="generate_type" type="radio" id="generate_type_no_gestalts" value="no_gestalts"/>
@@ -67,7 +67,7 @@
     </p>
 
     <p>
-        <span>Generate <abbr title="Fanatic Purifiers, Devouring Swarm, Determined Exterminators">purifiers:</abbr></span>
+        <span><b>Generate <abbr title="Fanatic Purifiers, Devouring Swarm, Determined Exterminators">purifiers:</abbr></b></span>
         <input name="generate_purifiers" type="radio" id="generate_purifiers_mix" value="mix" checked/>
         <label for="generate_purifiers_mix">Both purifiers and non-purifiers</label>
         <input name="generate_purifiers" type="radio" id="generate_purifiers_yes" value="yes"/>
@@ -79,7 +79,7 @@
     </p>
 
     <p>
-        <span>Disable origins</span>
+        <span><b>Disable origins:</b></span>
         <input name="disable_origin_doomsday" type="checkbox" id="disable_origin_doomsday"/>
         <label for="disable_origin_doomsday"><abbr title="Homeworld will explode in 35-45 years">Doomsday</abbr></label>
         <input name="disable_origin_void_dwellers" type="checkbox" id="disable_origin_void_dwellers"/>
@@ -101,6 +101,16 @@
         <label for="disable_origin_slingshot"><abbr title="Starts with a ruined Quantum Catapult">Slingshot</abbr></label>
         <input name="disable_origin_imperial_fiefdom" type="checkbox" id="disable_origin_imperial_fiefdom" checked/>
         <label for="disable_origin_imperial_fiefdom"><abbr title="Starts as a vassal of an advanced AI empire">Imperial Fiefdom</abbr></label>
+    </p>
+
+    <p>
+        <span><b>Disable civics:</b></span>
+        <input name="disable_civic_criminal_heritage" type="checkbox" id="disable_civic_criminal_heritage"/>
+        <label for="disable_civic_criminal_heritage"><abbr title="Builds branch offices to boost crime in other empires">Criminal Heritage</abbr></label>
+        <input name="disable_civic_barbaric_despoilers" type="checkbox" id="disable_civic_barbaric_despoilers"/>
+        <label for="disable_civic_barbaric_despoilers"><abbr title="Raids enemies to gain extra pops">Barbaric Despoilers</abbr></label>
+        <input name="disable_civic_inwards_perfection" type="checkbox" id="disable_civic_inwards_perfection"/>
+        <label for="disable_civic_inwards_perfection"><abbr title="Doesn't interact with other empires">Inwards Perfection</abbr></label>
     </p>
 
     <br>
@@ -158,6 +168,7 @@
                 generate_type     : $('input[name="generate_type"]:checked').val(),
                 generate_purifiers: $('input[name="generate_purifiers"]:checked').val(),
                 disabled_origins  : [],
+                disabled_civics   : [],
             };
 
             let disabled_origins = {
@@ -178,13 +189,24 @@
                 }
             }
 
+            let disabled_civics = {
+                civic_criminal_heritage  : $('#disable_civic_criminal_heritage').is(':checked'),
+                civic_barbaric_despoilers: $('#disable_civic_barbaric_despoilers').is(':checked'),
+                civic_inwards_perfection : $('#disable_civic_inwards_perfection').is(':checked'),
+            };
+            for (let key of Object.keys(disabled_civics)) {
+                if (disabled_civics[key] === true) {
+                    options.disabled_civics.push(key);
+                }
+            }
+
             log(options);
 
             for (let k = 0; k < empiresNum; k++) {
                 let empire = new Empire(options);
                 results += empire.clausewitzify();
             }
-            $('#result').html('<pre style="width:600px; height: 800px; overflow-y:scroll;">' + results + '</pre>');
+            $('#result').html('<pre>' + results + '</pre>');
         });
 
         $('#generate').click();

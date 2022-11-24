@@ -43,7 +43,15 @@ class SecondarySpecies {
     trait_picks_left  = 0;
     trait_points_left = 0;
 
-    constructor(starting_traits, disabled_traits, trait_picks_left, trait_points_left, disabled_portrait) {
+    /**
+     * @param {array} starting_traits
+     * @param {array} disabled_traits
+     * @param {int} trait_picks_left
+     * @param {int} trait_points_left
+     * @param {string} disabled_portrait
+     * @param {boolean} force_pick_negative_trait_first
+     */
+    constructor(starting_traits, disabled_traits, trait_picks_left, trait_points_left, disabled_portrait, force_pick_negative_trait_first) {
         this.traits = starting_traits;
 
         this.disabled_traits   = disabled_traits;
@@ -51,7 +59,7 @@ class SecondarySpecies {
         this.trait_points_left = trait_points_left;
 
         this.set_species(disabled_portrait);
-        this.set_traits();
+        this.set_traits(force_pick_negative_trait_first);
         this.set_name();
 
         // Unique property name required for secondary species to avoid conflicts with primary species when formatting for clausewitz
@@ -63,6 +71,9 @@ class SecondarySpecies {
         delete this.trait_points_left;
     }
 
+    /**
+     * @param {string} disabled_portrait
+     */
     set_species(disabled_portrait) {
         let random_species = species.random();
         this.class         = random_species[0];
@@ -75,7 +86,10 @@ class SecondarySpecies {
         }
     }
 
-    set_traits() {
+    /**
+     * @param {boolean} force_pick_negative_trait_first
+     */
+    set_traits(force_pick_negative_trait_first) {
         let traits_list = traits;
 
         // Plants and Fungoids have access to extra traits
@@ -96,11 +110,18 @@ class SecondarySpecies {
             traits_list = lithoid_traits;
         }
 
+        // Create deep copy of traits_list so elements can be deleted without affecting the original list of traits
+        traits_list = $.extend(true, {}, traits_list);
+        // Delete disabled traits from traits_list to speed up the process by preventing selection of trait that is disabled anyway and so require less iterations
+        for (let i = 0; i < this.disabled_traits.length; i++) {
+            delete traits_list[this.disabled_traits[i]];
+        }
+
         // chance to pick negative trait
-        if (random_percentage_check(50)) {
+        if (random_percentage_check(50) || force_pick_negative_trait_first) {
             // Picking negatives first reduces the chance of some positives appearing due to being opposites
             // To crank up the chance a bit, chance to pick positive trait before negative
-            if (random_percentage_check(50)) {
+            if (random_percentage_check(50) && !force_pick_negative_trait_first) {
                 log('Picking first positive trait');
                 this.pick_trait(traits_list, false);
             }
@@ -115,79 +136,85 @@ class SecondarySpecies {
             }
         }
 
-        while (this.trait_points_left > 0 && this.trait_picks_left > 0) {
-            log('Picking loop positive trait');
-            this.pick_trait(traits_list, false);
+        let i = 0;
+        while (this.trait_points_left > 0 && this.trait_picks_left > 0 && i < 100) {
+            // Max 100 attempts to find an acceptable trait, prevent theoretical infinite loop
+            i++;
+
+            let picked_trait = this.pick_trait(traits_list, false);
+            delete traits_list[picked_trait];
         }
     }
 
+    /**
+     * @param {object} traits_list
+     * @param {boolean} negative_trait
+     */
     pick_trait(traits_list, negative_trait) {
-        let i = 0;
-        // Max 100 attempts to find an acceptable trait, prevent theoretical infinite loop
-        while (i < 100) {
-            i++;
-            let random_trait = traits_list.random();
-            let trait_name   = random_trait[0];
-            let trait_cost   = random_trait[1].cost;
-            let trait_no     = random_trait[1].no;
+        log(' - Picking trait for secondary species');
+        let random_trait = traits_list.random();
+        let trait_name   = random_trait[0];
+        let trait_cost   = random_trait[1].cost;
+        let trait_no     = random_trait[1].no;
 
-            log('Checking: ' + trait_name);
+        log('Checking: ' + trait_name);
 
-            if ($.inArray(trait_name, this.traits) > -1) {
-                continue;
-            }
-
-            if ($.inArray(trait_name, this.disabled_traits) > -1) {
-                continue;
-            }
-
-            // Want positive trait
-            if (trait_cost < 0 && negative_trait === false) {
-                log(' - Trait cost below 0, but looking for positive trait');
-                continue;
-            }
-
-            // Want negative trait
-            if (trait_cost > 0 && negative_trait === true) {
-                log(' - Trait cost above 0, but looking for negative trait');
-                continue;
-            }
-
-            // No money
-            if (trait_cost > this.trait_points_left) {
-                log(' - Not enough trait points left (' + this.trait_points_left + ' points left, ' + trait_cost + ' required)');
-                continue;
-            }
-
-            // Attempt to spend as much points as possible
-            if (
-                (this.trait_picks_left === 1 && this.trait_points_left > 1) ||
-                (this.trait_picks_left === 2 && this.trait_points_left > 3) ||
-                (this.trait_picks_left === 3 && this.trait_points_left > 5)
-            ) {
-                if (trait_cost < 2) {
-                    log(' - Picking this trait would leave us with leftover trait points');
-                    continue;
-                }
-            }
-
-            if (no_requirement_checker(trait_no, this.disabled_traits, 'Trait', 'Traits', 'Disabled traits') === false) {
-                continue;
-            }
-
-            if (no_requirement_checker(trait_no, this.traits, 'Trait', 'Traits', 'Selected traits') === false) {
-                continue;
-            }
-
-            log('Selected trait ' + trait_name + ' cost ' + trait_cost);
-
-            this.traits.push(trait_name);
-            this.disabled_traits.push(trait_name);
-            this.trait_picks_left--;
-            this.trait_points_left -= trait_cost;
-
+        if ($.inArray(trait_name, this.traits) > -1) {
+            log(' - Trait already picked');
             return;
         }
+
+        if ($.inArray(trait_name, this.disabled_traits) > -1) {
+            log(' - Trait is disabled');
+            return;
+        }
+
+        // Want positive trait
+        if (trait_cost < 0 && negative_trait === false) {
+            log(' - Trait cost below 0, but looking for positive trait');
+            return;
+        }
+
+        // Want negative trait
+        if (trait_cost > 0 && negative_trait === true) {
+            log(' - Trait cost above 0, but looking for negative trait');
+            return;
+        }
+
+        // No money
+        if (trait_cost > this.trait_points_left) {
+            log(' - Not enough trait points left (' + this.trait_points_left + ' points left, ' + trait_cost + ' required)');
+            return;
+        }
+
+        // Attempt to spend as much points as possible
+        if (
+            (this.trait_picks_left === 1 && this.trait_points_left > 1) ||
+            (this.trait_picks_left === 2 && this.trait_points_left > 3) ||
+            (this.trait_picks_left === 3 && this.trait_points_left > 5)
+        ) {
+            if (trait_cost < 2) {
+                log(' - Picking this trait would leave us with leftover trait points');
+                return;
+            }
+        }
+
+        if (no_requirement_checker(trait_no, this.disabled_traits, 'Trait', 'Traits', 'Disabled traits') === false) {
+            return;
+        }
+
+        if (no_requirement_checker(trait_no, this.traits, 'Trait', 'Traits', 'Selected traits') === false) {
+            return;
+        }
+
+        log('Selected trait ' + trait_name + ' cost ' + trait_cost);
+
+        this.traits.push(trait_name);
+        this.disabled_traits.push(trait_name);
+        this.trait_picks_left--;
+        this.trait_points_left -= trait_cost;
+
+        return trait_name;
     }
 
     set_name() {
@@ -444,6 +471,11 @@ class Empire {
             log('Checking: ' + civic_name);
             log(civic_yes.ethics);
 
+            // Can't pick a disabled civic :)
+            if ($.inArray(civic_name, this.options.disabled_civics) > -1) {
+                continue;
+            }
+
             // Can't pick a civic twice :(
             if ($.inArray(civic_name, this.civics) > -1) {
                 continue;
@@ -480,9 +512,9 @@ class Empire {
             this.civics.push(civic_name);
 
             if (civic_name === 'civic_machine_servitor') {
-                this.secondary_species = new SecondarySpecies([], [], 5, 2);
+                this.secondary_species = new SecondarySpecies([], [], 5, 2, '', false);
             } else if (civic_name === 'civic_machine_assimilator') {
-                this.secondary_species = new SecondarySpecies(['trait_cybernetic'], [], 5, 2);
+                this.secondary_species = new SecondarySpecies(['trait_cybernetic'], [], 5, 2, '', false);
             } else if (civic_name === 'civic_anglers' || civic_name === 'civic_corporate_anglers') {
                 this.species.traits.push('trait_aquatic');
                 this.trait_picks_left--;
@@ -607,12 +639,12 @@ class Empire {
             if (origin_name === 'origin_necrophage') {
                 this.species.traits.push('trait_necrophage');
                 this.disabled_traits.push('trait_plantoid_budding');
-                this.secondary_species = new SecondarySpecies([], [], 5, 2, this.species.portrait);
+                this.secondary_species = new SecondarySpecies([], [], 5, 2, this.species.portrait, false);
                 return;
             }
 
             if (origin_name === 'origin_syncretic_evolution') {
-                this.secondary_species = new SecondarySpecies(['trait_syncretic_proles'], ['trait_natural_engineers', 'trait_natural_physicists', 'trait_natural_sociologists', 'trait_intelligent'], 4, 1, this.species.portrait);
+                this.secondary_species = new SecondarySpecies(['trait_syncretic_proles'], syncretic_disabled_traits, 4, 1, this.species.portrait, true);
                 return;
             }
 
@@ -709,6 +741,13 @@ class Empire {
             this.disabled_traits.push('trait_wasteful');
         }
 
+        // Create deep copy of traits_list so elements can be deleted without affecting the original list of traits
+        traits_list = $.extend(true, {}, traits_list);
+        // Delete disabled traits from traits_list to speed up the process by preventing selection of trait that is disabled anyway and so require less iterations
+        for (let i = 0; i < this.disabled_traits.length; i++) {
+            delete traits_list[this.disabled_traits[i]];
+        }
+
         // chance to pick negative trait
         if (random_percentage_check(50) && picked_negative_trait_for_overtuned === false) {
             // Picking negatives first reduces the chance of some positives appearing due to being opposites
@@ -730,7 +769,8 @@ class Empire {
 
         while (this.trait_points_left > 0 && this.trait_picks_left > 0) {
             log('Picking loop positive trait');
-            this.pick_trait(traits_list, false, false);
+            let picked_trait = this.pick_trait(traits_list, false, false);
+            delete traits_list[picked_trait];
         }
     }
 
@@ -747,10 +787,12 @@ class Empire {
             log('Checking: ' + trait_name);
 
             if ($.inArray(trait_name, this.species.traits) > -1) {
+                log(' - Trait already picked');
                 continue;
             }
 
             if ($.inArray(trait_name, this.disabled_traits) > -1) {
+                log(' - Trait is disabled');
                 continue;
             }
 
@@ -799,7 +841,7 @@ class Empire {
             this.trait_picks_left--;
             this.trait_points_left -= trait_cost;
 
-            return;
+            return trait_name;
         }
     }
 
