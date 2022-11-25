@@ -1,7 +1,6 @@
 body {
     background: #000;
     margin: 0;
-    overflow: hidden;
     color: azure;
 }
 
@@ -9,7 +8,6 @@ body {
     z-index: 999;
     position: sticky;
     overflow: hidden;
-
     margin: 2%;
     font-family: system-ui, sans-serif;
 }
@@ -204,4 +202,4 @@ label {
 @media (min-width:320px) { .background1-moving {display:none} }
 @media (min-width:481px) { .background1-moving {display:none} }
 @media (min-width:641px) { .background1-moving {display:none} }
-@media (min-width:961px) { .background1-moving {display:none} }
+@media (min-width:961px) { body {overflow: hidden;} }
