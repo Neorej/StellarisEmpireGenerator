@@ -153,7 +153,6 @@ label {
     animation: background2-move3 63s normal infinite;
 }
 
-
 @keyframes background2-move {
     0% {
         transform: translateY(-11%);
@@ -190,7 +189,6 @@ label {
     }
 }
 
-
 @keyframes background2-lightning {
     0% {
         filter: brightness(0.90);
@@ -202,3 +200,8 @@ label {
         filter: brightness(0.90);
     }
 }
+
+@media (min-width:320px) { .background1-moving {display:none} }
+@media (min-width:481px) { .background1-moving {display:none} }
+@media (min-width:641px) { .background1-moving {display:none} }
+@media (min-width:961px) { .background1-moving {display:none} }
