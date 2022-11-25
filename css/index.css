@@ -202,4 +202,4 @@ label {
 @media (min-width:320px) { .background1-moving {display:none} }
 @media (min-width:481px) { .background1-moving {display:none} }
 @media (min-width:641px) { .background1-moving {display:none} }
-@media (min-width:961px) { body {overflow: hidden;} }
+@media (min-width:961px) { body {overflow: hidden; } .background1-moving {display:block} }
