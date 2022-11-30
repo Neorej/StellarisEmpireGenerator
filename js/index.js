@@ -518,8 +518,8 @@ class Empire {
             } else if (civic_name === 'civic_anglers' || civic_name === 'civic_corporate_anglers') {
                 this.species.traits.push('trait_aquatic');
                 this.trait_picks_left--;
-                this.trait_points_left--;
-                this.planet_class = 'pc_ocean';
+                this.trait_points_left = this.trait_points_left - 2;
+                this.planet_class      = 'pc_ocean';
 
                 // Cannot select origins which require a non-ocean planet when we have already picked an ocean planet
                 this.disabled_origins.push('origin_shattered_ring');
@@ -653,7 +653,7 @@ class Empire {
                 if (!this.species.traits.includes('trait_aquatic')) {
                     this.species.traits.push('trait_aquatic');
                     this.trait_picks_left--;
-                    this.trait_points_left--;
+                    this.trait_points_left = this.trait_points_left - 2;
                     return;
                 }
             }
@@ -674,7 +674,7 @@ class Empire {
             return;
         }
 
-        let traits_list = traits;
+        let traits_list                         = traits;
         let picked_negative_trait_for_overtuned = false;
 
         // Aquatic trait for ocean worlds
@@ -706,6 +706,18 @@ class Empire {
             traits_list = lithoid_traits;
         }
 
+        if (this.authority === 'auth_hive_mind') {
+            // Hives have the hive trait
+            this.species.traits.push('trait_hive_mind');
+
+            // Hives do not have their own traits, but have incompatibilities
+            this.disabled_traits.push('trait_thrifty');
+            this.disabled_traits.push('trait_conformists');
+            this.disabled_traits.push('trait_deviants');
+            this.disabled_traits.push('trait_decadent');
+            this.disabled_traits.push('trait_conservational');
+            this.disabled_traits.push('trait_wasteful');
+        }
 
         if (this.origin === 'origin_overtuned') {
             let overtuned_traits_list = overtuned_traits;
@@ -718,27 +730,27 @@ class Empire {
             // Always pick at least one overtuned trait when generating overtuned
             // Allow going negative on trait points; some overtuned traits cost 3
             this.pick_trait(overtuned_traits_list, false, true);
+            // Prevent picking extra negative traits later on
+            picked_negative_trait_for_overtuned = true;
+
+            // Pick negative trait to balance possible 3-cost trait picked earlier
             if (this.trait_points_left < 0) {
-                // Pick negative to balance 3-cost trait picked earlier
-                this.pick_trait(traits_list, true, false);
-                // Prevent picking 2nd negative trait later on
-                picked_negative_trait_for_overtuned = true;
+                // Going negative is still allowed at this point; no negative traits cost -3
+                this.pick_trait(traits_list, true, true);
+
+                // Still negative? Make sure we break even or go back to positive
+                if (this.trait_points_left < 0) {
+                    this.pick_trait(traits_list, true, false);
+                }
             }
+
             // Give chance to pick more overtuned traits
             traits_list = {...traits_list, ...overtuned_traits_list};
         }
 
-        if (this.authority === 'auth_hive_mind') {
-            // Hives have the hive trait
-            this.species.traits.push('trait_hive_mind');
-
-            // Hives do not have their own traits, but have incompatibilities
-            this.disabled_traits.push('trait_thrifty');
-            this.disabled_traits.push('trait_conformists');
-            this.disabled_traits.push('trait_deviants');
-            this.disabled_traits.push('trait_decadent');
-            this.disabled_traits.push('trait_conservational');
-            this.disabled_traits.push('trait_wasteful');
+        // No point in continuing if we can't pick traits anyway
+        if (this.trait_picks_left === 0) {
+            return;
         }
 
         // Create deep copy of traits_list so elements can be deleted without affecting the original list of traits

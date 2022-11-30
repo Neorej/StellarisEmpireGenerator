@@ -79,6 +79,7 @@ traits = {
         no  : [
             'trait_slow_breeders',
             'trait_fertile',
+            'trait_plantoid_budding',
             'trait_rapid_breeders_lithoid', // ??
         ],
     },
@@ -87,6 +88,7 @@ traits = {
         no  : [
             'trait_rapid_breeders',
             'trait_fertile',
+            'trait_plantoid_budding',
             'trait_rapid_breeders_lithoid', // ??
         ],
     },
@@ -616,7 +618,7 @@ plant_traits = {
 
 ocean_traits = {
     'trait_aquatic': {
-        cost: 1,
+        cost: 2,
         no  : [
             'trait_cave_dweller',
         ],

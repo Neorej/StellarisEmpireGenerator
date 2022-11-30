@@ -615,6 +615,33 @@ civics = {
             'ethics'     : [],
         },
     },
+    'civic_scavengers'             : {
+        yes: {
+            'authorities': [],
+            'civics'     : [],
+            'ethics'     : [],
+        },
+        no : {
+            'authorities': ['auth_corporate'],
+            'civics'     : [],
+            'ethics'     : ['ethic_gestalt_consciousness'],
+        },
+    },
+    'civic_ascensionists'          : {
+        yes: {
+            'authorities': [],
+            'civics'     : [],
+            'ethics'     : [
+                'ethic_spiritualist',
+                'ethic_fanatic_spiritualist',
+            ],
+        },
+        no : {
+            'authorities': ['auth_corporate'],
+            'civics'     : [],
+            'ethics'     : ['ethic_gestalt_consciousness'],
+        },
+    },
 };
 
 hive_civics = {
@@ -766,6 +793,42 @@ hive_civics = {
         },
     },
     'civic_hive_idyllic_bloom'         : {
+        yes: {
+            'authorities': ['auth_hive_mind'],
+            'civics'     : [],
+            'ethics'     : [],
+        },
+        no : {
+            'authorities': [],
+            'civics'     : [],
+            'ethics'     : [],
+        },
+    },
+    'civic_hive_toxic_baths'           : {
+        yes: {
+            'authorities': ['auth_hive_mind'],
+            'civics'     : [],
+            'ethics'     : [],
+        },
+        no : {
+            'authorities': [],
+            'civics'     : [],
+            'ethics'     : [],
+        },
+    },
+    'civic_hive_ascensionists'         : {
+        yes: {
+            'authorities': ['auth_hive_mind'],
+            'civics'     : [],
+            'ethics'     : [],
+        },
+        no : {
+            'authorities': [],
+            'civics'     : [],
+            'ethics'     : [],
+        },
+    },
+    'civic_hive_cordyceptic_drones'    : {
         yes: {
             'authorities': ['auth_hive_mind'],
             'civics'     : [],
@@ -990,6 +1053,30 @@ machine_civics = {
         },
     },
     'civic_machine_catalytic_processing' : {
+        yes: {
+            'authorities': ['auth_machine_intelligence'],
+            'civics'     : [],
+            'ethics'     : [],
+        },
+        no : {
+            'authorities': [],
+            'civics'     : [],
+            'ethics'     : [],
+        },
+    },
+    'civic_machine_toxic_baths'          : {
+        yes: {
+            'authorities': ['auth_machine_intelligence'],
+            'civics'     : [],
+            'ethics'     : [],
+        },
+        no : {
+            'authorities': [],
+            'civics'     : [],
+            'ethics'     : [],
+        },
+    },
+    'civic_machine_ascensionists'        : {
         yes: {
             'authorities': ['auth_machine_intelligence'],
             'civics'     : [],
@@ -1291,18 +1378,31 @@ corporate_civics = {
             ],
         },
     },
-    'civic_scavengers'                    : {
+    'civic_corporate_scavengers'          : {
         yes: {
-            'authorities': [],
+            'authorities': ['auth_corporate'],
             'civics'     : [],
             'ethics'     : [],
         },
         no : {
+            'authorities': [],
+            'civics'     : [],
+            'ethics'     : [],
+        },
+    },
+    'civic_corporate_ascensionists'       : {
+        yes: {
             'authorities': ['auth_corporate'],
             'civics'     : [],
             'ethics'     : [
-                'ethic_gestalt_consciousness',
+                'ethic_spiritualist',
+                'ethic_fanatic_spiritualist',
             ],
+        },
+        no : {
+            'authorities': [],
+            'civics'     : [],
+            'ethics'     : [],
         },
     },
 };

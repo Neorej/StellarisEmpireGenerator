@@ -50,6 +50,8 @@ origins = {
             'authorities': ['auth_machine_intelligence'],
             'civics'     : [
                 'civic_toxic_baths',
+                'civic_hive_toxic_baths',
+                'civic_machine_toxic_baths',
                 'civic_relentless_industrialists',
             ],
             'ethics'     : [],
