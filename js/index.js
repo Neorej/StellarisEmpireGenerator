@@ -665,10 +665,16 @@ class Empire {
         if (this.options.generate_purifiers === 'metal') {
             this.species.traits.push('trait_strong');
             this.species.traits.push('trait_industrious');
+            this.species.traits.push(random_percentage_check(50) ? 'trait_deviants' : 'trait_solitary');
+
+            // Aquatic trait costs 2, add an extra negative trait to balance the cost
             if (this.species.traits.includes('trait_aquatic')) {
                 this.species.traits.push(random_percentage_check(50) ? 'trait_unruly' : 'trait_repugnant');
-            } else {
-                this.species.traits.push(random_percentage_check(50) ? 'trait_deviants' : 'trait_solitary');
+            }
+
+            if (this.species.class === 'LITHOID') {
+                // Lithoids have the lithoid trait, even if they are metalheads
+                this.species.traits.push('trait_lithoid');
             }
 
             return;
