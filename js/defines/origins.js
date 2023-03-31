@@ -405,7 +405,7 @@ origins = {
             'ethics'     : [],
         },
     },
-    'origin_overtuned'             : {
+    'origin_overtuned'              : {
         yes: {
             'authorities': [],
             'civics'     : [],
@@ -417,7 +417,7 @@ origins = {
             'ethics'     : [],
         },
     },
-    'origin_toxic_knights'             : {
+    'origin_toxic_knights'          : {
         yes: {
             'authorities': [],
             'civics'     : [],
@@ -426,6 +426,64 @@ origins = {
         no : {
             'authorities': [],
             'civics'     : ['civic_fanatic_purifiers'],
+            'ethics'     : ['ethic_gestalt_consciousness'],
+        },
+    },
+    'origin_payback'                : {
+        yes: {
+            'authorities': [],
+            'civics'     : [],
+            'ethics'     : [],
+        },
+        no : {
+            'authorities': [],
+            'civics'     : [
+                'civic_fanatic_purifiers',
+                'civic_pompous_purists',
+                'civic_slaver_guilds',
+                'civic_indentured_assets',
+                'civic_eager_explorers',
+                'civic_privatized_exploration',
+            ],
+            'ethics'     : ['ethic_gestalt_consciousness'],
+        },
+    },
+    'origin_broken_shackles'        : {
+        yes: {
+            'authorities': [],
+            'civics'     : [],
+            'ethics'     : [],
+        },
+        no : {
+            'authorities': [],
+            'civics'     : [
+                'civic_fanatic_purifiers',
+                'civic_eager_explorers',
+                'civic_privatized_exploration',
+            ],
+            'ethics'     : [
+                'ethic_gestalt_consciousness',
+                'ethic_authoritarian',
+                'ethic_fanatic_authoritarian',
+                'ethic_xenophobe',
+                'ethic_fanatic_xenophobe',
+            ],
+        },
+    },
+    'origin_fear_of_the_dark'       : {
+        yes: {
+            'authorities': [],
+            'civics'     : [],
+            'ethics'     : [],
+        },
+        no : {
+            'authorities': [],
+            'civics'     : [
+                'civic_inwards_perfection',
+                'civic_fanatic_purifiers',
+                'civic_eager_explorers',
+                'civic_privatized_exploration',
+            ],
             'ethics'     : ['ethic_gestalt_consciousness'],
         },
     },

@@ -22,7 +22,7 @@ name_lists = [
     'HUMAN1',
     'HUMAN2',
     'HUMAN3',
-    'HIVE',
+    'HIVE1',
     'HIVE2',
     'LITHOID1',
     'LITHOID2',

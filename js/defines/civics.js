@@ -216,7 +216,10 @@ civics = {
         },
         no : {
             'authorities': [],
-            'civics'     : ['civic_pompous_purists'],
+            'civics'     : [
+                'civic_pompous_purists',
+                'civic_eager_explorers ',
+            ],
             'ethics'     : [],
         },
     },
@@ -428,6 +431,7 @@ civics = {
             'civics'     : [
                 'civic_barbaric_despoilers',
                 'civic_pompous_purists',
+                'civic_diplomatic_corps',
             ],
             'ethics'     : [],
         },
@@ -642,6 +646,18 @@ civics = {
             'ethics'     : ['ethic_gestalt_consciousness'],
         },
     },
+    'civic_eager_explorers'        : {
+        yes: {
+            'authorities': [],
+            'civics'     : [],
+            'ethics'     : [],
+        },
+        no : {
+            'authorities': ['auth_corporate'],
+            'civics'     : ['civic_inwards_perfection'],
+            'ethics'     : ['ethic_gestalt_consciousness'],
+        },
+    },
 };
 
 hive_civics = {
@@ -840,6 +856,18 @@ hive_civics = {
             'ethics'     : [],
         },
     },
+    'civic_hive_stargazers'            : {
+        yes: {
+            'authorities': ['auth_hive_mind'],
+            'civics'     : [],
+            'ethics'     : [],
+        },
+        no : {
+            'authorities': [],
+            'civics'     : [],
+            'ethics'     : [],
+        },
+    },
 };
 
 machine_civics = {
@@ -870,6 +898,7 @@ machine_civics = {
                 'civic_machine_servitor',
                 'civic_machine_assimilator',
                 'civic_machine_memorialist',
+                'civic_machine_exploration_protocol',
             ],
             'ethics'     : [],
         },
@@ -886,6 +915,7 @@ machine_civics = {
                 'civic_machine_servitor',
                 'civic_machine_terminator',
                 'civic_machine_memorialist',
+                'civic_machine_exploration_protocol',
             ],
             'ethics'     : [],
         },
@@ -1085,6 +1115,21 @@ machine_civics = {
         no : {
             'authorities': [],
             'civics'     : [],
+            'ethics'     : [],
+        },
+    },
+    'civic_machine_exploration_protocol' : {
+        yes: {
+            'authorities': ['auth_machine_intelligence'],
+            'civics'     : [],
+            'ethics'     : [],
+        },
+        no : {
+            'authorities': [],
+            'civics'     : [
+                'civic_machine_terminator',
+                'civic_machine_assimilator',
+            ],
             'ethics'     : [],
         },
     },
@@ -1403,6 +1448,18 @@ corporate_civics = {
             'authorities': [],
             'civics'     : [],
             'ethics'     : [],
+        },
+    },
+    'civic_privatized_exploration'        : {
+        yes: {
+            'authorities': ['auth_corporate'],
+            'civics'     : [],
+            'ethics'     : [],
+        },
+        no : {
+            'authorities': [],
+            'civics'     : [],
+            'ethics'     : ['ethic_gestalt_consciousness'],
         },
     },
 };
