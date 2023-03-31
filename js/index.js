@@ -1080,7 +1080,7 @@ class Empire {
         // Ruler gender, spawn_as_fallen, ignore_portrait_duplication and spawn_enabled do not use quote despite being strings (??)
         string = string.replace(/gender="female"/g, 'gender=female');
         string = string.replace(/gender="male"/g, 'gender=male');
-        string = string.replace(/gender="not_set"/, 'gender=not_set');
+        string = string.replace(/gender="not_set"/g, 'gender=not_set');
         string = string.replace(/spawn_as_fallen="yes"/, 'spawn_as_fallen=yes');
         string = string.replace(/spawn_as_fallen="no"/, 'spawn_as_fallen=no');
         string = string.replace(/ignore_portrait_duplication="no"/, 'ignore_portrait_duplication=no');
