@@ -112,6 +112,10 @@ class SecondarySpecies {
 
         // Create deep copy of traits_list so elements can be deleted without affecting the original list of traits
         traits_list = $.extend(true, {}, traits_list);
+        // Object prototypes (at start of file) will get copied as attributes; remove them again as they are not valid traits
+        delete traits_list['random'];
+        delete traits_list['randomkey'];
+
         // Delete disabled traits from traits_list to speed up the process by preventing selection of trait that is disabled anyway and so require less iterations
         for (let i = 0; i < this.disabled_traits.length; i++) {
             delete traits_list[this.disabled_traits[i]];
@@ -308,9 +312,9 @@ class Empire {
         this.set_traits();
         this.set_empire_flag();
         this.set_ruler();
-        this.set_name();
         this.set_planet_name();
         this.set_system_name();
+        this.set_name();
     }
 
     set_ethics() {
@@ -761,6 +765,9 @@ class Empire {
 
         // Create deep copy of traits_list so elements can be deleted without affecting the original list of traits
         traits_list = $.extend(true, {}, traits_list);
+        delete traits_list['random'];
+        delete traits_list['randomkey'];
+
         // Delete disabled traits from traits_list to speed up the process by preventing selection of trait that is disabled anyway and so require less iterations
         for (let i = 0; i < this.disabled_traits.length; i++) {
             delete traits_list[this.disabled_traits[i]];
@@ -912,7 +919,7 @@ class Empire {
                 empire_name += (random_percentage_check(50) ? prefix.random() + ' ' : '')
                                + modifier.random() + ' '
                                + suffix.random()
-                               + ' of ' + name;
+                               + ' of ' + (random_percentage_check(50) ? this.planet_name : this.system_name);
 
                 continue;
             }
