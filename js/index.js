@@ -281,7 +281,8 @@ class Empire {
         texture     : 0,
         hair        : 0,
         clothes     : 0,
-        leader_class: 'ruler',
+        ruler_traits: [],
+        leader_class: leader_classes.random(),
     };
     spawn_as_fallen             = 'yes';
     ignore_portrait_duplication = 'no';
@@ -758,6 +759,18 @@ class Empire {
             traits_list = {...traits_list, ...overtuned_traits_list};
         }
 
+        // Legendary leaders always their own trait
+        if (this.origin === 'origin_legendary_leader') {
+            this.species.traits.push('trait_perfected_genes');
+            this.trait_points_left--;
+            this.trait_picks_left--;
+        }
+
+        // Stargazers get to be stargazers
+        if (this.civics.includes('civic_hive_stargazers')) {
+            this.species.traits.push('trait_stargazer');
+        }
+
         // No point in continuing if we can't pick traits anyway
         if (this.trait_picks_left === 0) {
             return;
@@ -896,6 +909,48 @@ class Empire {
         this.ruler.texture  = 0;
         this.ruler.hair     = 0;
         this.ruler.clothes  = 0;
+
+        // Paragon leaders cannot pick normal ruler traits, and normal rulers cannot pick paragon traits
+        if (this.origin === 'origin_legendary_leader') {
+            // Pick negative trait sometimes
+            if (random_percentage_check(75)) {
+                this.pick_ruler_trait(bad_paragon_traits);
+                this.pick_ruler_trait(paragon_traits);
+            }
+            this.pick_ruler_trait(paragon_traits);
+        } else {
+            this.pick_ruler_trait(leader_traits);
+        }
+    }
+
+    pick_ruler_trait(traits_list) {
+        let i = 0;
+        // Max 100 attempts to find an acceptable trait, prevent theoretical infinite loop
+        while (i < 100) {
+            i++;
+            let random_trait = traits_list.random();
+            let trait_name   = random_trait[0];
+            let trait_yes    = random_trait[1].yes;
+
+            log('Checking: ' + trait_name);
+
+            if (trait_yes.class.includes(this.ruler.leader_class) === false) {
+                log(' - Ruler is not of right type');
+                continue;
+            }
+
+            if (this.ruler.ruler_traits.includes(trait_name)) {
+                log(' - Trait already picked');
+                continue;
+            }
+
+            if (yes_requirement_checker(trait_yes.ethics, this.ethics, 'Ethic', 'Ethics', 'Ruler trait') === false) {
+                continue;
+            }
+
+            this.ruler.ruler_traits.push(trait_name);
+            return;
+        }
     }
 
     set_name() {
@@ -1007,7 +1062,6 @@ class Empire {
         }
         // Remove the last newline
         traits_string = traits_string.substring(0, traits_string.length - 2);
-
         this.species.traits = '';
 
         let secondary_species_traits_string = '';
@@ -1017,9 +1071,16 @@ class Empire {
             }
             // Remove the last newline
             secondary_species_traits_string = secondary_species_traits_string.substring(0, secondary_species_traits_string.length - 2);
-
             this.secondary_species.secondary_species_traits = '';
         }
+
+        let ruler_traits_string = '';
+        for (let i = 0; i < this.ruler.ruler_traits.length; i++) {
+            ruler_traits_string += 'trait="' + this.ruler.ruler_traits[i] + '"\r\n';
+        }
+        // Remove the last newline
+        ruler_traits_string = ruler_traits_string.substring(0, ruler_traits_string.length - 2);
+        this.ruler.ruler_traits = '';
 
         let ethics_string = '';
         for (let i = 0; i < this.ethics.length; i++) {
@@ -1074,6 +1135,8 @@ class Empire {
         if (typeof this.secondary_species !== 'undefined') {
             string = string.replace(/secondary_species_traits=""/, secondary_species_traits_string);
         }
+
+        string = string.replace(/ruler_traits=""/, ruler_traits_string);
 
         // Mix the ethics back in
         string = string.replace(/ethics=""/, ethics_string);

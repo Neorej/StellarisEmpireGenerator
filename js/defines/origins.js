@@ -487,4 +487,16 @@ origins = {
             'ethics'     : ['ethic_gestalt_consciousness'],
         },
     },
+    'origin_legendary_leader'       : {
+        yes: {
+            'authorities': ['auth_dictatorial'],
+            'civics'     : [],
+            'ethics'     : [],
+        },
+        no : {
+            'authorities': [],
+            'civics'     : [],
+            'ethics'     : [],
+        },
+    },
 };
