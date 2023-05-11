@@ -438,6 +438,7 @@ origins = {
         no : {
             'authorities': [],
             'civics'     : [
+                'civic_dystopian_society',
                 'civic_fanatic_purifiers',
                 'civic_pompous_purists',
                 'civic_slaver_guilds',
