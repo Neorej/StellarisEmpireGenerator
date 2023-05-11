@@ -2,15 +2,21 @@ Array.prototype.random = function () {
     return this[Math.floor((Math.random() * this.length))];
 };
 
-Object.prototype.random = function () {
-    let key = this.randomkey();
-    return [key, this[key]];
-};
+Object.defineProperty(Object.prototype, 'random', {
+    value     : function () {
+        let key = this.randomkey();
+        return [key, this[key]];
+    },
+    enumerable: false,
+});
 
-Object.prototype.randomkey = function () {
-    var keys = Object.keys(this);
-    return keys[keys.length * Math.random() << 0];
-};
+Object.defineProperty(Object.prototype, 'randomkey', {
+    value     : function () {
+        let keys = Object.keys(this);
+        return keys[keys.length * Math.random() << 0];
+    },
+    enumerable: false,
+});
 
 Object.defineProperty(String.prototype, 'capitalize', {
     value     : function () {
@@ -1061,7 +1067,7 @@ class Empire {
             traits_string += 'trait="' + this.species.traits[i] + '"\r\n';
         }
         // Remove the last newline
-        traits_string = traits_string.substring(0, traits_string.length - 2);
+        traits_string       = traits_string.substring(0, traits_string.length - 2);
         this.species.traits = '';
 
         let secondary_species_traits_string = '';
@@ -1070,7 +1076,7 @@ class Empire {
                 secondary_species_traits_string += 'trait="' + this.secondary_species.secondary_species_traits[i] + '"\r\n';
             }
             // Remove the last newline
-            secondary_species_traits_string = secondary_species_traits_string.substring(0, secondary_species_traits_string.length - 2);
+            secondary_species_traits_string                 = secondary_species_traits_string.substring(0, secondary_species_traits_string.length - 2);
             this.secondary_species.secondary_species_traits = '';
         }
 
@@ -1079,7 +1085,7 @@ class Empire {
             ruler_traits_string += 'trait="' + this.ruler.ruler_traits[i] + '"\r\n';
         }
         // Remove the last newline
-        ruler_traits_string = ruler_traits_string.substring(0, ruler_traits_string.length - 2);
+        ruler_traits_string     = ruler_traits_string.substring(0, ruler_traits_string.length - 2);
         this.ruler.ruler_traits = '';
 
         let ethics_string = '';

@@ -40,7 +40,10 @@ civics = {
         },
         no : {
             'authorities': [],
-            'civics'     : ['civic_brand_loyalty'],
+            'civics'     : [
+                'civic_brand_loyalty',
+                'civic_crusader_spirit',
+            ],
             'ethics'     : [
                 'ethic_xenophobe',
                 'ethic_fanatic_xenophobe',
@@ -184,7 +187,10 @@ civics = {
         },
         no : {
             'authorities': [],
-            'civics'     : ['civic_relentless_industrialists'],
+            'civics'     : [
+                'civic_relentless_industrialists',
+                'civic_dystopian_society',
+            ],
             'ethics'     : [],
         },
     },
@@ -432,6 +438,8 @@ civics = {
                 'civic_barbaric_despoilers',
                 'civic_pompous_purists',
                 'civic_diplomatic_corps',
+                'civic_crusader_spirit',
+                'civic_beacon_of_liberty',
             ],
             'ethics'     : [],
         },
@@ -646,6 +654,43 @@ civics = {
             'ethics'     : ['ethic_gestalt_consciousness'],
         },
     },
+    'civic_memory_vault'           : {
+        yes: {
+            'authorities': [],
+            'civics'     : [],
+            'ethics'     : [],
+        },
+        no : {
+            'authorities': [],
+            'civics'     : [],
+            'ethics'     : [],
+        },
+    },
+    'civic_crusader_spirit'        : {
+        yes: {
+            'authorities': [],
+            'civics'     : [],
+            'ethics'     : [
+                'ethic_militarist',
+                'ethic_fanatic_militarist',
+                'ethic_authoritarian',
+                'ethic_fanatic_authoritarian',
+                'ethic_spiritualist',
+                'ethic_fanatic_spiritualist',
+            ],
+        },
+        no : {
+            'authorities': [],
+            'civics'     : [
+                'civic_fanatic_purifiers',
+                'civic_beacon_of_liberty',
+            ],
+            'ethics'     : [
+                'ethic_pacifist',
+                'ethic_fanatic_pacifist',
+            ],
+        },
+    },
     'civic_eager_explorers'        : {
         yes: {
             'authorities': [],
@@ -655,6 +700,36 @@ civics = {
         no : {
             'authorities': ['auth_corporate'],
             'civics'     : ['civic_inwards_perfection'],
+            'ethics'     : ['ethic_gestalt_consciousness'],
+        },
+    },
+    'civic_heroic_tales'           : {
+        yes: {
+            'authorities': [],
+            'civics'     : [],
+            'ethics'     : [],
+        },
+        no : {
+            'authorities': ['auth_corporate'],
+            'civics'     : [],
+            'ethics'     : ['ethic_gestalt_consciousness'],
+        },
+    },
+    'civic_dystopian_society'      : {
+        yes: {
+            'authorities': [],
+            'civics'     : [],
+            'ethics'     : ['ethic_fanatic_authoritarian'],
+        },
+        no : {
+            'authorities': ['auth_corporate'],
+            'civics'     : [
+                'civic_pleasure_seekers',
+                'civic_free_haven',
+                'civic_warrior_culture',
+                'civic_agrarian_idyll',
+                'civic_environmentalist',
+            ],
             'ethics'     : ['ethic_gestalt_consciousness'],
         },
     },
@@ -857,6 +932,30 @@ hive_civics = {
         },
     },
     'civic_hive_stargazers'            : {
+        yes: {
+            'authorities': ['auth_hive_mind'],
+            'civics'     : [],
+            'ethics'     : [],
+        },
+        no : {
+            'authorities': [],
+            'civics'     : [],
+            'ethics'     : [],
+        },
+    },
+    'civic_memory_vault_hive'          : {
+        yes: {
+            'authorities': ['auth_hive_mind'],
+            'civics'     : [],
+            'ethics'     : [],
+        },
+        no : {
+            'authorities': [],
+            'civics'     : [],
+            'ethics'     : [],
+        },
+    },
+    'civic_hive_upkeep_twister'        : {
         yes: {
             'authorities': ['auth_hive_mind'],
             'civics'     : [],
@@ -1133,6 +1232,30 @@ machine_civics = {
             'ethics'     : [],
         },
     },
+    'civic_memory_vault_machine'         : {
+        yes: {
+            'authorities': ['auth_machine_intelligence'],
+            'civics'     : [],
+            'ethics'     : [],
+        },
+        no : {
+            'authorities': [],
+            'civics'     : [],
+            'ethics'     : [],
+        },
+    },
+    'civic_machine_upkeep_twister'       : {
+        yes: {
+            'authorities': ['auth_machine_intelligence'],
+            'civics'     : [],
+            'ethics'     : [],
+        },
+        no : {
+            'authorities': [],
+            'civics'     : [],
+            'ethics'     : [],
+        },
+    },
 };
 
 corporate_civics = {
@@ -1399,9 +1522,7 @@ corporate_civics = {
         no : {
             'authorities': ['auth_corporate'],
             'civics'     : [],
-            'ethics'     : [
-                'ethic_gestalt_consciousness',
-            ],
+            'ethics'     : [],
         },
     },
     'civic_relentless_industrialists'     : {
@@ -1418,9 +1539,7 @@ corporate_civics = {
                 'civic_idyllic_bloom',
                 'civic_memorialist',
             ],
-            'ethics'     : [
-                'ethic_gestalt_consciousness',
-            ],
+            'ethics'     : [],
         },
     },
     'civic_corporate_scavengers'          : {
@@ -1459,7 +1578,63 @@ corporate_civics = {
         no : {
             'authorities': [],
             'civics'     : [],
-            'ethics'     : ['ethic_gestalt_consciousness'],
+            'ethics'     : [],
+        },
+    },
+    'civic_crusader_spirit_corporate'     : {
+        yes: {
+            'authorities': ['auth_corporate'],
+            'civics'     : [],
+            'ethics'     : [
+                'ethic_militarist',
+                'ethic_fanatic_militarist',
+                'ethic_authoritarian',
+                'ethic_fanatic_authoritarian',
+            ],
+        },
+        no : {
+            'authorities': [],
+            'civics'     : [],
+            'ethics'     : [
+                'ethic_pacifist',
+                'ethic_fanatic_pacifist',
+            ],
+        },
+    },
+    'civic_task_delegation_corporate'     : {
+        yes: {
+            'authorities': ['auth_corporate'],
+            'civics'     : [],
+            'ethics'     : [],
+        },
+        no : {
+            'authorities': [],
+            'civics'     : [],
+            'ethics'     : [],
+        },
+    },
+    'civic_private_healthcare_corporate'  : {
+        yes: {
+            'authorities': ['auth_corporate'],
+            'civics'     : [],
+            'ethics'     : [],
+        },
+        no : {
+            'authorities': [],
+            'civics'     : [],
+            'ethics'     : [],
+        },
+    },
+    'civic_memory_vault_corporate'        : {
+        yes: {
+            'authorities': ['auth_corporate'],
+            'civics'     : [],
+            'ethics'     : [],
+        },
+        no : {
+            'authorities': [],
+            'civics'     : [],
+            'ethics'     : [],
         },
     },
 };
