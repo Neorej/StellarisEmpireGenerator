@@ -51,6 +51,74 @@
         <label for="empire_amount"><b>Empires to generate: </b></label>
         <input type="number" value="100" id="empire_amount"/>
     </p>
+
+    <p>
+        <span><b>Generate <abbr title="Fanatic Purifiers, Devouring Swarm, Determined Exterminators">purifiers:</abbr></b></span>
+        <input name="generate_purifiers" type="radio" id="generate_purifiers_mix" value="mix" checked/>
+        <label for="generate_purifiers_mix">Mixed</label>
+        <input name="generate_purifiers" type="radio" id="generate_purifiers_yes" value="always"/>
+        <label for="generate_purifiers_yes">Only purifiers</label>
+        <input name="generate_purifiers" type="radio" id="generate_purifiers_no" value="never"/>
+        <label for="generate_purifiers_no">No purifiers</label>
+        <input name="generate_purifiers" type="radio" id="generate_purifiers_metal" value="metal"/>
+        <label for="generate_purifiers_metal"><abbr title="Not purifiers per se, but aggressive to the point of suicide. This option ignores any disabled authorities.">Metalheads</abbr></label>
+    </p>
+
+    <p id="disabled_authorities">
+        <span><b>Disable authorities:</b></span>
+
+        <input name="auth_hive_mind" type="checkbox" id="auth_hive_mind"/>
+        <label for="auth_hive_mind">Hiveminds</label>
+        <input name="auth_machine_intelligence" type="checkbox" id="auth_machine_intelligence"/>
+        <label for="auth_machine_intelligence">Machine intelligence</label>
+        <input name="auth_corporate" type="checkbox" id="auth_corporate"/>
+        <label for="auth_corporate">Corporate</label>
+        <br>
+        <input name="auth_democratic" type="checkbox" id="auth_democratic"/>
+        <label for="auth_democratic">Democratic</label>
+        <input name="auth_oligarchic" type="checkbox" id="auth_oligarchic"/>
+        <label for="auth_oligarchic">Oligarchic</label>
+        <input name="auth_dictatorial" type="checkbox" id="auth_dictatorial"/>
+        <label for="auth_dictatorial">Dictatorial</label>
+        <input name="auth_imperial" type="checkbox" id="auth_imperial"/>
+        <label for="auth_imperial">Imperial</label>
+    </p>
+
+    <p id="disabled_origins">
+        <span><b>Disable origins:</b></span>
+        <input name="origin_doomsday" type="checkbox" id="origin_doomsday"/>
+        <label for="origin_doomsday"><abbr title="Homeworld will explode in 35-45 years">Doomsday</abbr></label>
+        <input name="origin_void_dwellers" type="checkbox" id="origin_void_dwellers"/>
+        <label for="origin_void_dwellers"><abbr title="Starts with 3 orbital habitats instead of a planet">Void Dwellers</abbr></label>
+        <input name="disable_shattered_ring" type="checkbox" id="disable_shattered_ring"/>
+        <label for="disable_shattered_ring"><abbr title="Starts with a shattered Ring World">Shattered Ring</abbr></label>
+        <input name="origin_scion" type="checkbox" id="origin_scion"/>
+        <label for="origin_scion"><abbr title="Starts as a vassal of a Fallen Empire">Scion</abbr></label>
+        <input name="origin_lost_colony" type="checkbox" id="origin_lost_colony" checked/>
+        <label for="origin_lost_colony"><abbr title="An Advanced Empire of this species spawns somewhere in the galaxy">Lost Colony</abbr></label>
+        <br>
+        <input name="origin_hegemon" type="checkbox" id="origin_hegemon"/>
+        <label for="origin_hegemon"><abbr title="Starts as the leader of a Hegemon federation with 2 additional members">Hegemon</abbr></label>
+        <input name="origin_common_ground" type="checkbox" id="origin_common_ground"/>
+        <label for="origin_common_ground"><abbr title="Starts as the leader of a Galactic Union federation with 2 additional members">Common Ground</abbr></label>
+        <input name="origin_here_be_dragons" type="checkbox" id="origin_here_be_dragons"/>
+        <label for="origin_here_be_dragons"><abbr title="Starts with a Space Dragon in their home system">Here Be Dragons</abbr></label>
+        <input name="origin_slingshot" type="checkbox" id="origin_slingshot"/>
+        <label for="origin_slingshot"><abbr title="Starts with a ruined Quantum Catapult">Slingshot</abbr></label>
+        <input name="origin_imperial_fiefdom" type="checkbox" id="origin_imperial_fiefdom" checked/>
+        <label for="origin_imperial_fiefdom"><abbr title="Starts as a vassal of an advanced AI empire">Imperial Fiefdom</abbr></label>
+    </p>
+
+    <p id="disabled_civics">
+        <span><b>Disable civics:</b></span>
+        <input name="civic_criminal_heritage" type="checkbox" id="civic_criminal_heritage"/>
+        <label for="civic_criminal_heritage"><abbr title="Builds branch offices to boost crime in other empires">Criminal Heritage</abbr></label>
+        <input name="civic_barbaric_despoilers" type="checkbox" id="civic_barbaric_despoilers"/>
+        <label for="civic_barbaric_despoilers"><abbr title="Raids enemies to gain extra pops">Barbaric Despoilers</abbr></label>
+        <input name="civic_inwards_perfection" type="checkbox" id="civic_inwards_perfection"/>
+        <label for="civic_inwards_perfection"><abbr title="Doesn't interact with other empires">Inwards Perfection</abbr></label>
+    </p>
+
     <p>
         <span><b>Spawn enabled:</b></span>
         <input name="spawn_enabled" type="radio" id="spawn_always" value="always" checked/>
@@ -59,65 +127,6 @@
         <label for="spawn_yes">Yes</label>
         <input name="spawn_enabled" type="radio" id="spawn_no" value="no"/>
         <label for="spawn_no">No</label>
-    </p>
-
-    <p>
-        <span><b>Generate empire types:</b></span>
-        <input name="generate_type" type="radio" id="generate_type_mix" value="mix" checked/>
-        <label for="generate_type_mix">Everything</label>
-        <input name="generate_type" type="radio" id="generate_type_no_gestalts" value="no_gestalts"/>
-        <label for="generate_type_no_gestalts">No gestalts</label>
-        <input name="generate_type" type="radio" id="generate_type_hiveminds" value="hiveminds"/>
-        <label for="generate_type_hiveminds">Only Hiveminds</label>
-        <input name="generate_type" type="radio" id="generate_type_machines" value="machines"/>
-        <label for="generate_type_machines">Only Machines</label>
-    </p>
-
-    <p>
-        <span><b>Generate <abbr title="Fanatic Purifiers, Devouring Swarm, Determined Exterminators">purifiers:</abbr></b></span>
-        <input name="generate_purifiers" type="radio" id="generate_purifiers_mix" value="mix" checked/>
-        <label for="generate_purifiers_mix">Both purifiers and non-purifiers</label>
-        <input name="generate_purifiers" type="radio" id="generate_purifiers_yes" value="yes"/>
-        <label for="generate_purifiers_yes">Only purifiers</label>
-        <input name="generate_purifiers" type="radio" id="generate_purifiers_metal" value="metal"/>
-        <label for="generate_purifiers_metal"><abbr title="Not purifiers per se, but aggressive to the point of suicide">Metalheads</abbr></label>
-        <input name="generate_purifiers" type="radio" id="generate_purifiers_no" value="no"/>
-        <label for="generate_purifiers_no">No purifiers</label>
-    </p>
-
-    <p>
-        <span><b>Disable origins:</b></span>
-        <input name="disable_origin_doomsday" type="checkbox" id="disable_origin_doomsday"/>
-        <label for="disable_origin_doomsday"><abbr title="Homeworld will explode in 35-45 years">Doomsday</abbr></label>
-        <input name="disable_origin_void_dwellers" type="checkbox" id="disable_origin_void_dwellers"/>
-        <label for="disable_origin_void_dwellers"><abbr title="Starts with 3 orbital habitats instead of a planet">Void Dwellers</abbr></label>
-        <input name="disable_shattered_ring" type="checkbox" id="disable_shattered_ring"/>
-        <label for="disable_shattered_ring"><abbr title="Starts with a shattered Ring World">Shattered Ring</abbr></label>
-        <input name="disable_origin_scion" type="checkbox" id="disable_origin_scion"/>
-        <label for="disable_origin_scion"><abbr title="Starts as a vassal of a Fallen Empire">Scion</abbr></label>
-        <input name="disable_origin_lost_colony" type="checkbox" id="disable_origin_lost_colony" checked/>
-        <label for="disable_origin_lost_colony"><abbr title="An Advanced Empire of this species spawns somewhere in the galaxy">Lost Colony</abbr></label>
-        <br>
-        <input name="disable_origin_hegemon" type="checkbox" id="disable_origin_hegemon"/>
-        <label for="disable_origin_hegemon"><abbr title="Starts as the leader of a Hegemon federation with 2 additional members">Hegemon</abbr></label>
-        <input name="disable_origin_common_ground" type="checkbox" id="disable_origin_common_ground"/>
-        <label for="disable_origin_common_ground"><abbr title="Starts as the leader of a Galactic Union federation with 2 additional members">Common Ground</abbr></label>
-        <input name="disable_origin_here_be_dragons" type="checkbox" id="disable_origin_here_be_dragons"/>
-        <label for="disable_origin_here_be_dragons"><abbr title="Starts with a Space Dragon in their home system">Here Be Dragons</abbr></label>
-        <input name="disable_origin_slingshot" type="checkbox" id="disable_origin_slingshot"/>
-        <label for="disable_origin_slingshot"><abbr title="Starts with a ruined Quantum Catapult">Slingshot</abbr></label>
-        <input name="disable_origin_imperial_fiefdom" type="checkbox" id="disable_origin_imperial_fiefdom" checked/>
-        <label for="disable_origin_imperial_fiefdom"><abbr title="Starts as a vassal of an advanced AI empire">Imperial Fiefdom</abbr></label>
-    </p>
-
-    <p>
-        <span><b>Disable civics:</b></span>
-        <input name="disable_civic_criminal_heritage" type="checkbox" id="disable_civic_criminal_heritage"/>
-        <label for="disable_civic_criminal_heritage"><abbr title="Builds branch offices to boost crime in other empires">Criminal Heritage</abbr></label>
-        <input name="disable_civic_barbaric_despoilers" type="checkbox" id="disable_civic_barbaric_despoilers"/>
-        <label for="disable_civic_barbaric_despoilers"><abbr title="Raids enemies to gain extra pops">Barbaric Despoilers</abbr></label>
-        <input name="disable_civic_inwards_perfection" type="checkbox" id="disable_civic_inwards_perfection"/>
-        <label for="disable_civic_inwards_perfection"><abbr title="Doesn't interact with other empires">Inwards Perfection</abbr></label>
     </p>
 
     <br>
@@ -174,46 +183,20 @@
             log('Generating ' + empiresNum + ' empires');
 
             let options = {
-                spawn_enabled     : $('input[name="spawn_enabled"]:checked').val(),
-                generate_type     : $('input[name="generate_type"]:checked').val(),
-                generate_purifiers: $('input[name="generate_purifiers"]:checked').val(),
-                disabled_origins  : [],
-                disabled_civics   : [],
+                spawn_enabled       : $('input[name="spawn_enabled"]:checked').val(),
+                generate_purifiers  : $('input[name="generate_purifiers"]:checked').val(),
+                disabled_authorities: [...document.querySelectorAll('#disabled_authorities input:checked')].map(element => element.name),
+                disabled_origins    : [...document.querySelectorAll('#disabled_origins input:checked')].map(element => element.name),
+                disabled_civics     : [...document.querySelectorAll('#disabled_civics input:checked')].map(element => element.name),
             };
-
-            let disabled_origins = {
-                origin_doomsday       : $('#disable_origin_doomsday').is(':checked'),
-                origin_void_dwellers  : $('#disable_origin_void_dwellers').is(':checked'),
-                origin_shattered_ring : $('#disable_shattered_ring').is(':checked'),
-                origin_star_slingshot : $('#disable_origin_slingshot').is(':checked'),
-                origin_lost_colony    : $('#disable_origin_lost_colony').is(':checked'),
-                origin_hegemon        : $('#disable_origin_hegemon').is(':checked'),
-                origin_common_ground  : $('#disable_origin_common_ground').is(':checked'),
-                origin_here_be_dragons: $('#disable_origin_here_be_dragons').is(':checked'),
-                origin_imperial_vassal: $('#disable_origin_imperial_fiefdom').is(':checked'),
-                origin_scion          : $('#disable_origin_scion').is(':checked'),
-            };
-            for (let key of Object.keys(disabled_origins)) {
-                if (disabled_origins[key] === true) {
-                    options.disabled_origins.push(key);
-                }
-            }
-
-            let disabled_civics = {
-                civic_criminal_heritage  : $('#disable_civic_criminal_heritage').is(':checked'),
-                civic_barbaric_despoilers: $('#disable_civic_barbaric_despoilers').is(':checked'),
-                civic_inwards_perfection : $('#disable_civic_inwards_perfection').is(':checked'),
-            };
-            for (let key of Object.keys(disabled_civics)) {
-                if (disabled_civics[key] === true) {
-                    options.disabled_civics.push(key);
-                }
-            }
 
             log(options);
 
             for (let k = 0; k < empiresNum; k++) {
                 let empire = new Empire(options);
+                if (empire.authority.length === 0) {
+                    return;
+                }
                 results += empire.clausewitzify();
             }
             $('#result').html('<pre>' + results + '</pre>');
