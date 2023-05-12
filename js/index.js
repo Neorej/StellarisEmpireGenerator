@@ -301,18 +301,23 @@ class Empire {
     disabled_traits             = [];
     trait_picks_left            = 5;
     trait_points_left           = 2;
+    civic_points_left           = 2;
 
     constructor(options) {
         this.options          = options;
         this.spawn_enabled    = this.options.spawn_enabled;
         this.disabled_origins = this.disabled_origins.concat(this.options.disabled_origins);
 
-        if (this.options.generate_purifiers === 'metal') {
-            this.options.generate_type = 'no_gestalts';
+        // Clone authorities array so element can be safely deleted
+        let authorities_list = [...authorities];
+        authorities_list     = authorities_list.filter(element => !this.options.disabled_authorities.includes(element))
+        if (authorities_list.length === 0) {
+            alert('Creating an empire without any authority?\nIs such a thing even possible?\n\nNo it isn\'t! Try enabling at least one authority.');
+            return;
         }
 
+        this.set_authority(authorities_list);
         this.set_ethics();
-        this.set_authority();
         this.set_civics();
         this.set_species();
         this.set_origin();
@@ -324,10 +329,22 @@ class Empire {
         this.set_name();
     }
 
-    set_ethics() {
-        let ethics_points = 3;
-        let ethics_no     = [];
+    set_authority(authorities_list) {
+        log('Selecting authority');
+        // Metalheads has priority over disabled authorities
+        if (this.options.generate_purifiers === 'metal') {
+            this.authority = random_percentage_check(50) ? 'auth_dictatorial' : 'auth_imperial';
+            return;
+        }
 
+        let random_authority = authorities_list.random();
+        log('Selected authority ' + random_authority);
+
+        this.authority = random_authority;
+    }
+
+    set_ethics() {
+        // Metalheads require a fixed set of ethics
         if (this.options.generate_purifiers === 'metal') {
             this.ethics.push('ethic_militarist');
             this.ethics.push('ethic_xenophobe');
@@ -335,145 +352,93 @@ class Empire {
             return;
         }
 
-        if (this.options.generate_type === 'hiveminds' || this.options.generate_type === 'machines' || (this.options.generate_type !== 'no_gestalts' && this.options.generate_purifiers === 'yes' && random_percentage_check(50))) {
+        // Hive minds and machines are always gestalts
+        if (this.authority === 'auth_hive_mind' || this.authority === 'auth_machine_intelligence') {
             this.ethics.push('ethic_gestalt_consciousness');
             return;
         }
 
         // Fanatic Purifiers have very strict requirements and as such are very rare. Improve their chances by force-picking their required ethics.
         // Even with this they are still much less likely to spawn (~4%?) than Devouring Swarm or Determined Exterminators (10-15%?)
-        if (random_percentage_check(5) || this.options.generate_purifiers === 'yes') {
+        if (random_percentage_check(5) || this.options.generate_purifiers === 'always') {
             this.ethics.push('ethic_fanatic_xenophobe');
             this.ethics.push(random_percentage_check(50) ? 'ethic_militarist' : 'ethic_spiritualist');
             return;
         }
 
+        let ethics_points = 3;
+        let ethics_no     = [];
+        let ethics_list   = deep_clone(ethics);
+
         while (ethics_points > 0) {
-            let random_ethic = ethics.random();
+            let random_ethic       = ethics_list.random();
+            let ethic_name         = random_ethic[0];
+            let ethic_requirements = random_ethic[1];
 
-            if (this.options.generate_type === 'no_gestalts') {
-                while (random_ethic[0] === 'ethic_gestalt_consciousness') {
-                    random_ethic = ethics.random();
-                }
+            if (!ethic_requirements.required_authorities.includes(this.authority)) {
+                log('Ethic ' + ethic_name + ' is incompatible with chosen authority ' + this.authority);
+                delete ethics_list[ethic_name];
+                continue;
             }
 
-            let ethic_name = random_ethic[0];
-            let ethic_cost = random_ethic[1].cost;
-            let ethic_no   = random_ethic[1].no;
-
-            if ($.inArray(ethic_name, ethics_no) > -1) {
+            if (ethic_requirements.incompatible_ethics.includes(ethic_name)) {
                 log('Ethic ' + ethic_name + ' is incompatible with existing ethics');
-                log(ethics_no);
+                delete ethics_list[ethic_name];
                 continue;
             }
 
-            if (ethic_cost > ethics_points) {
-                log('Ethic cost ' + ethic_cost + ' too high, ' + ethics_points + ' points left');
+            if (ethic_requirements.cost > ethics_points) {
+                log(ethic_name + ' cost ' + ethic_requirements.cost + ' too high, ' + ethics_points + ' points left');
+                delete ethics_list[ethic_name];
                 continue;
             }
 
-            ethics_points = ethics_points - ethic_cost;
-            ethics_no     = ethics_no.concat(ethic_no);
-            ethics_no     = ethics_no.concat(ethic_name);
+            // Make sure we don't pick this ethic again
+            ethics_no = ethics_no.concat(ethic_requirements.incompatible_ethics);
+            ethics_no = ethics_no.concat(ethic_name);
 
             log('Selected ethic ' + ethic_name);
+            ethics_points = ethics_points - ethic_requirements.cost;
             this.ethics.push(ethic_name);
         }
     }
 
-    set_authority() {
-        log('Selected ethics');
-        log(this.ethics);
-
-        if (this.options.generate_purifiers === 'metal') {
-            this.authority = random_percentage_check(50) ? 'auth_dictatorial' : 'auth_imperial';
-            return;
-        }
-
-        if (this.options.generate_type === 'hiveminds') {
-            this.authority = 'auth_hive_mind';
-            return;
-        }
-
-        if (this.options.generate_type === 'machines') {
-            this.species.name_list = machine_name_lists.random();
-            this.authority         = 'auth_machine_intelligence';
-            return;
-        }
-
-        if ($.inArray('ethic_fanatic_egalitarian', this.ethics) > -1) {
-            log('I love democracy');
-            this.authority = 'auth_democratic';
-            return;
-        }
-
-        while (this.authority === '') {
-            let random_authority = authorities.random();
-            let authority_name   = random_authority[0];
-            let authority_yes    = random_authority[1].yes;
-            let authority_no     = random_authority[1].no;
-            let requirements_met = false;
-
-            log('Attempt to select authority ' + authority_name);
-
-            // Corporate cannot be purifier
-            if (authority_name === 'auth_corporate' && this.options.generate_purifiers === 'yes') {
-                continue;
-            }
-
-            if (authority_yes.length === 0) {
-                requirements_met = true;
-            }
-
-            for (let j = 0; j < authority_yes.length; j++) {
-                if ($.inArray(authority_yes[j], this.ethics) > -1) {
-                    log('Forbidden ethic ' + authority_yes[j] + ' is in list of chosen ethics');
-                    requirements_met = true;
-                }
-            }
-
-            for (let j = 0; j < authority_no.length; j++) {
-                if ($.inArray(authority_no[j], this.ethics) > -1) {
-                    log('Forbidden ethic ' + authority_no[j] + ' is in list of chosen ethics');
-                    requirements_met = false;
-                }
-            }
-
-            if (requirements_met === true) {
-                log('Selected authority ' + authority_name);
-                this.authority = authority_name;
-            }
-        }
-    }
-
     set_civics() {
-        let civic_picks_left = 2;
-        let civics_list      = civics;
+        let civics_list = deep_clone(civics);
         if (this.authority === 'auth_hive_mind') {
-            civics_list = hive_civics;
-            if (this.options.generate_purifiers === 'yes') {
-                civic_picks_left--;
-                this.civics.push('civic_hive_devouring_swarm');
+            civics_list = deep_clone(hive_civics);
+            if (this.options.generate_purifiers === 'always') {
+                this.pick_civic('civic_hive_devouring_swarm', civics_list);
             }
         } else if (this.authority === 'auth_machine_intelligence') {
-            civics_list = machine_civics;
-            if (this.options.generate_purifiers === 'yes') {
-                civic_picks_left--;
-                this.civics.push('civic_machine_terminator');
+            civics_list = deep_clone(machine_civics);
+            if (this.options.generate_purifiers === 'always') {
+                this.pick_civic('civic_machine_terminator', civics_list);
             }
         } else if (this.authority === 'auth_corporate') {
-            civics_list = corporate_civics;
+            civics_list = deep_clone(corporate_civics);
         } else {
             // If specific ethics required by Fanatic Purifiers have been picked, increase chance of picking Fanatic Purifiers
             if (this.ethics.includes('ethic_fanatic_xenophobe') && (this.ethics.includes('ethic_militarist') || this.ethics.includes('ethic_spiritualist'))) {
-                if ((random_percentage_check(75) && this.options.generate_purifiers !== 'no') || this.options.generate_purifiers === 'yes') {
-                    civic_picks_left--;
-                    this.civics.push('civic_fanatic_purifiers');
+                if ((random_percentage_check(75) && this.options.generate_purifiers !== 'never') || this.options.generate_purifiers === 'always') {
+                    this.pick_civic('civic_fanatic_purifiers', civics_list);
                 }
             }
         }
 
-        while (civic_picks_left > 0) {
+        // Delete disabled traits from traits_list to speed up the process by preventing selection of trait that is disabled anyway and so require less iterations
+        for (let i = 0; i < this.options.disabled_civics.length; i++) {
+            delete civics_list[this.options.disabled_civics[i]];
+        }
+
+        // Delete purifier civics if no purifiers are being generated
+        if (this.options.generate_purifiers === 'never') {
+            delete civics_list['civic_hive_devouring_swarm'];
+            delete civics_list['civic_machine_terminator'];
+            delete civics_list['civic_fanatic_purifiers'];
+        }
+
+        while (this.civic_points_left > 0) {
             let random_civic = civics_list.random();
             let civic_name   = random_civic[0];
             let civic_yes    = random_civic[1].yes;
@@ -482,45 +447,19 @@ class Empire {
             log('Checking: ' + civic_name);
             log(civic_yes.ethics);
 
-            // Can't pick a disabled civic :)
-            if ($.inArray(civic_name, this.options.disabled_civics) > -1) {
+            if (
+                yes_requirement_checker(civic_yes.authorities, this.authority, 'Authority', 'Authorities', 'Civics') === false
+                || yes_requirement_checker(civic_yes.ethics, this.ethics, 'Ethic', 'Ethics', 'Civics') === false
+                || yes_requirement_checker(civic_yes.civics, this.civics, 'Civic', 'Civics', 'Civics') === false
+                || no_requirement_checker(civic_no.authorities, this.authority, 'Authority', 'Authorities', 'Civics') === false
+                || no_requirement_checker(civic_no.ethics, this.ethics, 'Ethic', 'Ethics', 'Civics') === false
+                || no_requirement_checker(civic_no.civics, this.civics, 'Civic', 'Civics', 'Civics') === false
+            ) {
+                delete civics_list[civic_name];
                 continue;
             }
 
-            // Can't pick a civic twice :(
-            if ($.inArray(civic_name, this.civics) > -1) {
-                continue;
-            }
-
-            if (this.options.generate_purifiers === 'no') {
-                if (civic_name === 'civic_hive_devouring_swarm' || civic_name === 'civic_machine_terminator' || civic_name === 'civic_fanatic_purifiers') {
-                    continue;
-                }
-            }
-
-            if (yes_requirement_checker(civic_yes.authorities, this.authority, 'Authority', 'Authorities', 'Civics') === false) {
-                continue;
-            }
-            if (yes_requirement_checker(civic_yes.ethics, this.ethics, 'Ethic', 'Ethics', 'Civics') === false) {
-                continue;
-            }
-            if (yes_requirement_checker(civic_yes.civics, this.civics, 'Civic', 'Civics', 'Civics') === false) {
-                continue;
-            }
-
-            if (no_requirement_checker(civic_no.authorities, this.authority, 'Authority', 'Authorities', 'Civics') === false) {
-                continue;
-            }
-            if (no_requirement_checker(civic_no.ethics, this.ethics, 'Ethic', 'Ethics', 'Civics') === false) {
-                continue;
-            }
-            if (no_requirement_checker(civic_no.civics, this.civics, 'Civic', 'Civics', 'Civics') === false) {
-                continue;
-            }
-
-            log('Selected civic ' + civic_name);
-            civic_picks_left--;
-            this.civics.push(civic_name);
+            this.pick_civic(civic_name, civics_list);
 
             if (civic_name === 'civic_machine_servitor') {
                 this.secondary_species = new SecondarySpecies([], [], 5, 2, '', false);
@@ -541,6 +480,12 @@ class Empire {
                 // this.disabled_origins.push('origin_remnants'); // Remnants forces a Relic World, but is somehow still compatible with Anglers
             }
         }
+    }
+
+    pick_civic(civic_name, civics_list) {
+        this.civic_points_left--;
+        this.civics.push(civic_name);
+        delete civics_list[civic_name];
     }
 
     set_species() {
@@ -580,7 +525,7 @@ class Empire {
             let origin_yes    = random_origin[1].yes;
             let origin_no     = random_origin[1].no;
 
-            if ($.inArray(origin_name, this.disabled_origins) > -1) {
+            if (this.disabled_origins.includes(origin_name)) {
                 log(origin_name + ' is disabled');
                 continue;
             }
@@ -782,11 +727,7 @@ class Empire {
             return;
         }
 
-        // Create deep copy of traits_list so elements can be deleted without affecting the original list of traits
-        traits_list = $.extend(true, {}, traits_list);
-        delete traits_list['random'];
-        delete traits_list['randomkey'];
-
+        traits_list = deep_clone(traits_list);
         // Delete disabled traits from traits_list to speed up the process by preventing selection of trait that is disabled anyway and so require less iterations
         for (let i = 0; i < this.disabled_traits.length; i++) {
             delete traits_list[this.disabled_traits[i]];
@@ -830,12 +771,12 @@ class Empire {
 
             log('Checking: ' + trait_name);
 
-            if ($.inArray(trait_name, this.species.traits) > -1) {
+            if (this.species.traits.includes(trait_name)) {
                 log(' - Trait already picked');
                 continue;
             }
 
-            if ($.inArray(trait_name, this.disabled_traits) > -1) {
+            if (this.disabled_traits.includes(trait_name)) {
                 log(' - Trait is disabled');
                 continue;
             }
@@ -1115,6 +1056,7 @@ class Empire {
         delete this.disabled_traits;
         delete this.trait_picks_left;
         delete this.trait_points_left;
+        delete this.civic_points_left;
         delete this.options;
 
         // Convert empire to JSON
@@ -1236,4 +1178,18 @@ function no_requirement_checker(requirements, current_values, singular, plural, 
     }
     log(check_type + ': ' + plural + ' no_requirements met');
     return true;
+}
+
+/**
+ * Create deep clone of object so elements can be deleted without affecting the original object
+ * @param object_to_copy
+ */
+function deep_clone(object_to_copy) {
+    let deep_clone = $.extend(true, {}, object_to_copy);
+
+    // Cleanup object prototypes to prevent them from being selected when calling .random(), etc
+    delete deep_clone['random'];
+    delete deep_clone['randomkey'];
+
+    return deep_clone;
 }

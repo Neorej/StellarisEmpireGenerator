@@ -153,7 +153,10 @@ traits = {
     },
     'trait_sedentary'           : {
         cost: -1,
-        no  : ['trait_nomadic'],
+        no  : [
+            'trait_nomadic',
+            'trait_stargazer',
+        ],
     },
     'trait_communal'            : {
         cost: 1,
@@ -338,7 +341,10 @@ lithoid_traits = {
     },
     'trait_sedentary'                  : {
         cost: -1,
-        no  : ['trait_nomadic'],
+        no  : [
+            'trait_nomadic',
+            'trait_stargazer'
+        ],
     },
     'trait_communal'                   : {
         cost: 1,
