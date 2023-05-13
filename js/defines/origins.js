@@ -425,7 +425,10 @@ origins = {
         },
         no : {
             'authorities': [],
-            'civics'     : ['civic_fanatic_purifiers'],
+            'civics'     : [
+                'civic_fanatic_purifiers',
+                'civic_dystopian_society',
+            ],
             'ethics'     : ['ethic_gestalt_consciousness'],
         },
     },

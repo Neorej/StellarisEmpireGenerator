@@ -145,6 +145,7 @@ traits = {
         no  : [
             'trait_strong',
             'trait_very_strong',
+            'trait_perfected_genes',
         ],
     },
     'trait_nomadic'             : {
@@ -203,7 +204,8 @@ traits = {
         no  : [
             'trait_venerable',
             'trait_enduring',
-            'trait_fleeting_lithoid', // ?
+            'trait_fleeting_lithoid', // ?\
+            'trait_perfected_genes',
         ],
     },
     'trait_decadent'            : {
@@ -333,6 +335,7 @@ lithoid_traits = {
         no  : [
             'trait_strong',
             'trait_very_strong',
+            'trait_perfected_genes',
         ],
     },
     'trait_nomadic'                    : {

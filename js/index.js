@@ -302,15 +302,20 @@ class Empire {
     trait_picks_left            = 5;
     trait_points_left           = 2;
     civic_points_left           = 2;
+    ethics_points_left          = 3;
 
     constructor(options) {
         this.options          = options;
         this.spawn_enabled    = this.options.spawn_enabled;
         this.disabled_origins = this.disabled_origins.concat(this.options.disabled_origins);
 
-        // Clone authorities array so element can be safely deleted
+        // Clone authorities array so elements can be safely deleted
         let authorities_list = [...authorities];
-        authorities_list     = authorities_list.filter(element => !this.options.disabled_authorities.includes(element))
+        authorities_list     = authorities_list.filter(element => !this.options.disabled_authorities.includes(element));
+        // Corporates cannot be genocidal, remove them
+        if (this.options.generate_genocidal === 'always' && authorities_list.includes('auth_corporate')) {
+            authorities_list = authorities_list.filter(authority => authority !== 'auth_corporate');
+        }
         if (authorities_list.length === 0) {
             alert('Creating an empire without any authority?\nIs such a thing even possible?\n\nNo it isn\'t! Try enabling at least one authority.');
             return;
@@ -331,10 +336,45 @@ class Empire {
 
     set_authority(authorities_list) {
         log('Selecting authority');
-        // Metalheads has priority over disabled authorities
-        if (this.options.generate_purifiers === 'metal') {
+        // Metalheads has ignores disabled authorities
+        if (this.options.generate_genocidal === 'metal') {
             this.authority = random_percentage_check(50) ? 'auth_dictatorial' : 'auth_imperial';
             return;
+        }
+
+        // Only mess with ethics chances when not asking for purifiers, as those use different ethics
+        if (this.options.generate_genocidal === 'mixed' || this.options.generate_genocidal === 'never') {
+            // Egalitarians have stricter requirements which reduces their chance of being generated, give them a boost to make them as likely to appear as other ethics
+            if (this.options.boost_egalitarians) {
+                if (random_percentage_check(7) && authorities_list.includes('auth_democratic') && authorities_list.includes('auth_oligarchic') && authorities_list.includes('auth_corporate')) {
+                    this.authority = ['auth_democratic', 'auth_oligarchic', 'auth_corporate'].random();
+                    this.ethics.push('ethic_egalitarian');
+                    this.ethics_points_left--;
+                    return;
+                }
+                if (random_percentage_check(5) && authorities_list.includes('auth_democratic')) {
+                    this.authority = 'auth_democratic';
+                    this.ethics.push('ethic_fanatic_egalitarian');
+                    this.ethics_points_left = this.ethics_points_left - 2;
+                    return;
+                }
+            }
+
+            // Authoritarians have stricter requirements which reduces their chance of being generated, give them a boost to make them as likely to appear as other ethics
+            if (this.options.boost_authoritarians) {
+                if (random_percentage_check(4) && authorities_list.includes('auth_dictatorial') && authorities_list.includes('auth_imperial') && authorities_list.includes('auth_oligarchic') && authorities_list.includes('auth_corporate')) {
+                    this.authority = ['auth_dictatorial', 'auth_imperial', 'auth_oligarchic', 'auth_corporate'].random();
+                    this.ethics.push('ethic_authoritarian');
+                    this.ethics_points_left--;
+                    return;
+                }
+                if (random_percentage_check(4) && authorities_list.includes('auth_dictatorial') && authorities_list.includes('auth_imperial')) {
+                    this.authority = ['auth_dictatorial', 'auth_imperial'].random();
+                    this.ethics.push('ethic_fanatic_authoritarian');
+                    this.ethics_points_left = this.ethics_points_left - 2;
+                    return;
+                }
+            }
         }
 
         let random_authority = authorities_list.random();
@@ -345,7 +385,7 @@ class Empire {
 
     set_ethics() {
         // Metalheads require a fixed set of ethics
-        if (this.options.generate_purifiers === 'metal') {
+        if (this.options.generate_genocidal === 'metal') {
             this.ethics.push('ethic_militarist');
             this.ethics.push('ethic_xenophobe');
             this.ethics.push('ethic_materialist');
@@ -358,19 +398,19 @@ class Empire {
             return;
         }
 
-        // Fanatic Purifiers have very strict requirements and as such are very rare. Improve their chances by force-picking their required ethics.
-        // Even with this they are still much less likely to spawn (~4%?) than Devouring Swarm or Determined Exterminators (10-15%?)
-        if (random_percentage_check(5) || this.options.generate_purifiers === 'always') {
+        // Fanatic Purifiers are always xenophobes and either militarist or spiritualist
+        // Fanatic Purifiers are rare by default, so increase their chance by a percentage
+        if (this.options.generate_genocidal === 'always' || (this.options.generate_genocidal === 'mixed' && random_percentage_check(3) && this.ethics_points_left === 3)) {
             this.ethics.push('ethic_fanatic_xenophobe');
             this.ethics.push(random_percentage_check(50) ? 'ethic_militarist' : 'ethic_spiritualist');
             return;
         }
 
-        let ethics_points = 3;
-        let ethics_no     = [];
-        let ethics_list   = deep_clone(ethics);
+        let ethics_list = deep_clone(ethics);
 
-        while (ethics_points > 0) {
+        while (this.ethics_points_left > 0) {
+            log('Points left ' + this.ethics_points_left);
+
             let random_ethic       = ethics_list.random();
             let ethic_name         = random_ethic[0];
             let ethic_requirements = random_ethic[1];
@@ -381,24 +421,26 @@ class Empire {
                 continue;
             }
 
-            if (ethic_requirements.incompatible_ethics.includes(ethic_name)) {
+            if (this.ethics.includes(ethic_name)) {
+                log('Ethic ' + ethic_name + ' is already picked');
+                delete ethics_list[ethic_name];
+                continue;
+            }
+
+            if (this.ethics.some(picked_ethic => ethic_requirements.incompatible_ethics.includes(picked_ethic))) {
                 log('Ethic ' + ethic_name + ' is incompatible with existing ethics');
                 delete ethics_list[ethic_name];
                 continue;
             }
 
-            if (ethic_requirements.cost > ethics_points) {
-                log(ethic_name + ' cost ' + ethic_requirements.cost + ' too high, ' + ethics_points + ' points left');
+            if (ethic_requirements.cost > this.ethics_points_left) {
+                log(ethic_name + ' cost ' + ethic_requirements.cost + ' too high, ' + this.ethics_points_left + ' points left');
                 delete ethics_list[ethic_name];
                 continue;
             }
 
-            // Make sure we don't pick this ethic again
-            ethics_no = ethics_no.concat(ethic_requirements.incompatible_ethics);
-            ethics_no = ethics_no.concat(ethic_name);
-
             log('Selected ethic ' + ethic_name);
-            ethics_points = ethics_points - ethic_requirements.cost;
+            this.ethics_points_left = this.ethics_points_left - ethic_requirements.cost;
             this.ethics.push(ethic_name);
         }
     }
@@ -407,12 +449,14 @@ class Empire {
         let civics_list = deep_clone(civics);
         if (this.authority === 'auth_hive_mind') {
             civics_list = deep_clone(hive_civics);
-            if (this.options.generate_purifiers === 'always') {
+            // Increase chance of picking genocidal hive, as it's quite rare by default
+            if (this.options.generate_genocidal === 'always' || (this.options.generate_genocidal === 'mixed' && random_percentage_check(5))) {
                 this.pick_civic('civic_hive_devouring_swarm', civics_list);
             }
         } else if (this.authority === 'auth_machine_intelligence') {
             civics_list = deep_clone(machine_civics);
-            if (this.options.generate_purifiers === 'always') {
+            // Increase chance of picking genocidal machines, as it's quite rare by default
+            if (this.options.generate_genocidal === 'always' || (this.options.generate_genocidal === 'mixed' && random_percentage_check(5))) {
                 this.pick_civic('civic_machine_terminator', civics_list);
             }
         } else if (this.authority === 'auth_corporate') {
@@ -420,7 +464,7 @@ class Empire {
         } else {
             // If specific ethics required by Fanatic Purifiers have been picked, increase chance of picking Fanatic Purifiers
             if (this.ethics.includes('ethic_fanatic_xenophobe') && (this.ethics.includes('ethic_militarist') || this.ethics.includes('ethic_spiritualist'))) {
-                if ((random_percentage_check(75) && this.options.generate_purifiers !== 'never') || this.options.generate_purifiers === 'always') {
+                if (this.options.generate_genocidal === 'always' || (random_percentage_check(75) && this.options.generate_genocidal !== 'never')) {
                     this.pick_civic('civic_fanatic_purifiers', civics_list);
                 }
             }
@@ -431,8 +475,8 @@ class Empire {
             delete civics_list[this.options.disabled_civics[i]];
         }
 
-        // Delete purifier civics if no purifiers are being generated
-        if (this.options.generate_purifiers === 'never') {
+        // Delete genocidal civics if no genocidal empires are being generated
+        if (this.options.generate_genocidal === 'never') {
             delete civics_list['civic_hive_devouring_swarm'];
             delete civics_list['civic_machine_terminator'];
             delete civics_list['civic_fanatic_purifiers'];
@@ -618,7 +662,7 @@ class Empire {
 
     set_traits() {
         // Generate metalheads
-        if (this.options.generate_purifiers === 'metal') {
+        if (this.options.generate_genocidal === 'metal') {
             this.species.traits.push('trait_strong');
             this.species.traits.push('trait_industrious');
             this.species.traits.push(random_percentage_check(50) ? 'trait_deviants' : 'trait_solitary');
@@ -731,6 +775,12 @@ class Empire {
         // Delete disabled traits from traits_list to speed up the process by preventing selection of trait that is disabled anyway and so require less iterations
         for (let i = 0; i < this.disabled_traits.length; i++) {
             delete traits_list[this.disabled_traits[i]];
+        }
+
+        // If we ended up negative somehow (Perfected Genes + Aquatic for example), pick a negative trait to get back to 0
+        if (this.trait_points_left < 0) {
+            this.pick_trait(traits_list, true, false);
+            return;
         }
 
         // chance to pick negative trait
@@ -1057,6 +1107,7 @@ class Empire {
         delete this.trait_picks_left;
         delete this.trait_points_left;
         delete this.civic_points_left;
+        delete this.ethics_points_left;
         delete this.options;
 
         // Convert empire to JSON
