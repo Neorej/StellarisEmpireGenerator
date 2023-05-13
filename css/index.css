@@ -203,3 +203,29 @@ label {
 @media (min-width:481px) { .background1-moving {display:none} }
 @media (min-width:641px) { .background1-moving {display:none} }
 @media (min-width:961px) { body {overflow: hidden; } .background1-moving {display:block} }
+
+
+#toggleChart{
+    float: right;
+    cursor: pointer;
+    width: 32px;
+    height: 32px;
+    display:none;
+    margin-right: 32px;
+}
+@media (min-width:1700px) {
+    #toggleChart{
+        display:block;
+    }
+}
+#charts {
+    width: 750px;
+    right: 50px;
+    float: right;
+    position: relative;
+    display:none;
+}
+
+#charts h2{
+    text-align: center;
+}

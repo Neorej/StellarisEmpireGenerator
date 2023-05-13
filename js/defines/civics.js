@@ -581,6 +581,7 @@ civics = {
                 'civic_warrior_culture',
                 'civic_shared_burden',
                 'civic_slaver_guilds', // would enslave hedonists
+                'civic_dystopian_society',
             ],
             'ethics'     : [],
         },
@@ -729,6 +730,7 @@ civics = {
                 'civic_warrior_culture',
                 'civic_agrarian_idyll',
                 'civic_environmentalist',
+                'civic_pleasure_seekers',
             ],
             'ethics'     : ['ethic_gestalt_consciousness'],
         },
