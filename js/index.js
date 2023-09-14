@@ -564,7 +564,14 @@ class Empire {
 
     set_origin() {
         while (this.origin === '') {
-            let random_origin = origins.random();
+            let origins_list = deep_clone(origins);
+
+            // Plants get an extra origin
+            if (this.species.class === 'FUN' || this.species.class === 'PLANT') {
+                origins_list = {...origins_list, ...plant_origins};
+            }
+
+            let random_origin = origins_list.random();
             let origin_name   = random_origin[0];
             let origin_yes    = random_origin[1].yes;
             let origin_no     = random_origin[1].no;
@@ -802,16 +809,19 @@ class Empire {
             }
         }
 
-        while (this.trait_points_left > 0 && this.trait_picks_left > 0) {
+        // Max 100 attempts to find an acceptable traits, prevent infinite loop if no valid option can ever be picked
+        let i = 0;
+        while (this.trait_points_left > 0 && this.trait_picks_left > 0 && i < 100) {
             log('Picking loop positive trait');
+            i++;
             let picked_trait = this.pick_trait(traits_list, false, false);
             delete traits_list[picked_trait];
         }
     }
 
     pick_trait(traits_list, negative_trait, allow_negative) {
+        // Max 100 attempts to find an acceptable trait, prevent infinite loop if no valid option can ever be picked
         let i = 0;
-        // Max 100 attempts to find an acceptable trait, prevent theoretical infinite loop
         while (i < 100) {
             i++;
             let random_trait = traits_list.random();
@@ -822,11 +832,13 @@ class Empire {
             log('Checking: ' + trait_name);
 
             if (this.species.traits.includes(trait_name)) {
+                delete traits_list[trait_name];
                 log(' - Trait already picked');
                 continue;
             }
 
             if (this.disabled_traits.includes(trait_name)) {
+                delete traits_list[trait_name];
                 log(' - Trait is disabled');
                 continue;
             }

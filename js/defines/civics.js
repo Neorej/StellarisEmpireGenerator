@@ -225,6 +225,7 @@ civics = {
             'civics'     : [
                 'civic_pompous_purists',
                 'civic_eager_explorers ',
+                'civic_diplomatic_corps',
             ],
             'ethics'     : [],
         },
@@ -300,6 +301,7 @@ civics = {
             'civics'     : [
                 'civic_anglers',
                 'civic_relentless_industrialists',
+                'civic_dystopian_society',
             ],
             'ethics'     : [],
         },
@@ -731,8 +733,25 @@ civics = {
                 'civic_agrarian_idyll',
                 'civic_environmentalist',
                 'civic_pleasure_seekers',
+                'civic_agrarian_idyll',
             ],
             'ethics'     : ['ethic_gestalt_consciousness'],
+        },
+    },
+    'civic_selective_kinship'      : {
+        yes: {
+            'authorities': [],
+            'civics'     : [],
+            'ethics'     : [],
+        },
+        no : {
+            'authorities': [],
+            'civics'     : ['civic_fanatic_purifiers'],
+            'ethics'     : [
+                'ethic_xenophile',
+                'ethic_fanatic_xenophile',
+                'ethic_fanatic_egalitarian',
+            ],
         },
     },
 };
@@ -958,6 +977,18 @@ hive_civics = {
         },
     },
     'civic_hive_upkeep_twister'        : {
+        yes: {
+            'authorities': ['auth_hive_mind'],
+            'civics'     : [],
+            'ethics'     : [],
+        },
+        no : {
+            'authorities': [],
+            'civics'     : [],
+            'ethics'     : [],
+        },
+    },
+    'civic_void_hive'        : {
         yes: {
             'authorities': ['auth_hive_mind'],
             'civics'     : [],

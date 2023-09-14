@@ -17,6 +17,8 @@ species = {
             'humanoid_hp_11',
             'humanoid_hp_12',
             'humanoid_hp_13',
+            'humanoid_hp_14',
+            'humanoid_elf',
         ],
     },
     'MAM'    : {
@@ -105,7 +107,7 @@ species = {
             'art15',
             'art19',
             'art18',
-            // 'art16', // "Arachnoid Portrait Pack" required?
+            // 'art16', // 'Arachnoid Portrait Pack' required?
             'art20',
             'art17',
         ],
@@ -171,6 +173,7 @@ species = {
             'pla8',
             'pla12',
             'pla16_baol',
+            'pla17',
         ],
     },
     'LITHOID': {
@@ -191,6 +194,7 @@ species = {
             'lith13',
             'lith14',
             'lith15',
+            'lith_human',
         ],
     },
     'AQUATIC': {
@@ -210,9 +214,10 @@ species = {
             'aqu12',
             'aqu13',
             'aqu14',
+            'aqu15',
         ],
     },
-    'TOX': {
+    'TOX'    : {
         secondary: true,
         portraits: [
             'tox1',
@@ -232,6 +237,26 @@ species = {
             'tox15',
         ],
     },
+    'NECROID': {
+        secondary: true,
+        portraits: [
+            'nec1',
+            'nec2',
+            'nec3',
+            'nec4',
+            'nec5',
+            'nec6',
+            'nec7',
+            'nec8',
+            'nec9',
+            'nec10',
+            'nec11',
+            'nec12',
+            'nec13',
+            'nec14',
+            'nec15',
+        ],
+    },
 };
 
 species_machine = {
@@ -247,6 +272,9 @@ species_machine = {
             'sd_fun_robot',
             'sd_pla_robot',
             'lith_machine',
+            'nec_machine',
+            'aqu_machine',
+            'tox_machine',
             'default_robot',
         ],
     },

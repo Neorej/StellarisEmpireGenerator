@@ -1,71 +1,80 @@
 traits = {
-    'trait_agrarian'            : {
+    'trait_agrarian'                          : {
         cost: 2,
-        no  : [],
+        no  : ['trait_invasive'],
     },
-    'trait_ingenious'           : {
+    'trait_ingenious'                         : {
         cost: 2,
-        no  : [],
+        no  : ['trait_invasive'],
     },
-    'trait_industrious'         : {
+    'trait_industrious'                       : {
         cost: 2,
-        no  : [],
+        no  : ['trait_invasive'],
     },
-    'trait_intelligent'         : {
+    'trait_intelligent'                       : {
         cost: 2,
         no  : [
             'trait_nerve_stapled',
             'trait_erudite',
             'trait_enigmatic_intelligence_poor',
+            'trait_invasive',
         ],
     },
-    'trait_thrifty'             : {
+    'trait_thrifty'                           : {
         cost: 2,
-        no  : ['trait_hive_mind'],
+        no  : [
+            'trait_hive_mind',
+            'trait_invasive',
+        ],
     },
-    'trait_natural_engineers'   : {
+    'trait_natural_engineers'                 : {
         cost: 1,
         no  : [
             'trait_natural_physicists',
             'trait_natural_sociologists',
             'trait_nerve_stapled',
+            'trait_invasive',
         ],
     },
-    'trait_natural_physicists'  : {
+    'trait_natural_physicists'                : {
         cost: 1,
         no  : [
             'trait_natural_engineers',
             'trait_natural_sociologists',
             'trait_nerve_stapled',
+            'trait_invasive',
         ],
     },
-    'trait_natural_sociologists': {
+    'trait_natural_sociologists'              : {
         cost: 1,
         no  : [
             'trait_natural_physicists',
             'trait_natural_engineers',
             'trait_nerve_stapled',
+            'trait_invasive',
         ],
     },
-    'trait_extremely_adaptive'  : {
+    'trait_extremely_adaptive'                : {
         cost: 4,
         no  : [
             'trait_nonadaptive',
             'trait_adaptive',
             'trait_robust',
             'trait_adaptive_lithoid', // ??
+            'trait_invasive',
         ],
     },
-    'trait_adaptive'            : {
+    'trait_adaptive'                          : {
         cost: 2,
         no  : [
             'trait_nonadaptive',
             'trait_extremely_adaptive',
             'trait_robust',
             'trait_adaptive_lithoid', // ??
+            'trait_invasive',
         ],
     },
-    'trait_nonadaptive'         : {
+    'trait_nonadaptive'                       : {
         cost: -1,
         no  : [
             'trait_adaptive',
@@ -74,73 +83,97 @@ traits = {
             'trait_adaptive_lithoid', // ??
         ],
     },
-    'trait_rapid_breeders'      : {
+    'trait_rapid_breeders'                    : {
         cost: 2,
         no  : [
             'trait_slow_breeders',
             'trait_fertile',
             'trait_plantoid_budding',
-            'trait_rapid_breeders_lithoid', // ??
+            'trait_rapid_breeders_lithoid',
+            'trait_lithoid_budding',
+            'trait_vat_grown',
+            'trait_tiyanki',
+            'trait_humanoid_existential_iteroparity',
+            'trait_invasive',
         ],
     },
-    'trait_slow_breeders'       : {
+    'trait_slow_breeders'                     : {
         cost: -2,
         no  : [
             'trait_rapid_breeders',
             'trait_fertile',
             'trait_plantoid_budding',
-            'trait_rapid_breeders_lithoid', // ??
+            'trait_rapid_breeders_lithoid',
+            'trait_plantoid_budding',
+            'trait_lithoid_budding',
+            'trait_vat_grown',
+            'trait_tiyanki',
+            'trait_humanoid_psychological_infertility',
+            'trait_humanoid_existential_iteroparity',
         ],
     },
-    'trait_talented'            : {
+    'trait_talented'                          : {
         cost: 1,
-        no  : ['trait_nerve_stapled'],
+        no  : [
+            'trait_nerve_stapled',
+            'trait_humanoid_jinxed',
+            'trait_invasive',
+        ],
     },
-    'trait_quick_learners'      : {
+    'trait_quick_learners'                    : {
         cost: 1,
         no  : [
             'trait_slow_learners',
             'trait_syncretic_proles',
+            'trait_invasive',
         ],
     },
-    'trait_slow_learners'       : {
+    'trait_slow_learners'                     : {
         cost: -1,
         no  : [
             'trait_quick_learners',
             'trait_enigmatic_intelligence',
         ],
     },
-    'trait_traditional'         : {
+    'trait_traditional'                       : {
         cost: 1,
-        no  : ['trait_quarrelsome'],
+        no  : [
+            'trait_quarrelsome',
+            'trait_invasive',
+        ],
     },
-    'trait_quarrelsome'         : {
+    'trait_quarrelsome'                       : {
         cost: -1,
         no  : ['trait_traditional'],
     },
-    'trait_docile'              : {
+    'trait_docile'                            : {
         cost: 2,
-        no  : ['trait_unruly'],
+        no  : [
+            'trait_unruly',
+            'trait_invasive',
+        ],
     },
-    'trait_unruly'              : {
+    'trait_unruly'                            : {
         cost: -2,
         no  : ['trait_docile'],
     },
-    'trait_very_strong'         : {
+    'trait_very_strong'                       : {
         cost: 3,
         no  : [
             'trait_weak',
             'trait_strong',
+            'trait_invasive',
         ],
     },
-    'trait_strong'              : {
+    'trait_strong'                            : {
         cost: 1,
         no  : [
             'trait_weak',
             'trait_very_strong',
+            'trait_invasive',
         ],
     },
-    'trait_weak'                : {
+    'trait_weak'                              : {
         cost: -1,
         no  : [
             'trait_strong',
@@ -148,105 +181,152 @@ traits = {
             'trait_perfected_genes',
         ],
     },
-    'trait_nomadic'             : {
+    'trait_nomadic'                           : {
         cost: 1,
-        no  : ['trait_sedentary'],
+        no  : [
+            'trait_sedentary',
+            'trait_invasive',
+        ],
     },
-    'trait_sedentary'           : {
+    'trait_sedentary'                         : {
         cost: -1,
         no  : [
             'trait_nomadic',
             'trait_stargazer',
         ],
     },
-    'trait_communal'            : {
+    'trait_communal'                          : {
         cost: 1,
-        no  : ['trait_solitary'],
+        no  : [
+            'trait_solitary',
+            'trait_invasive',
+        ],
     },
-    'trait_solitary'            : {
+    'trait_solitary'                          : {
         cost: -1,
         no  : ['trait_communal'],
     },
-    'trait_charismatic'         : {
+    'trait_charismatic'                       : {
         cost: 2,
-        no  : ['trait_repugnant'],
+        no  : [
+            'trait_repugnant',
+            'trait_invasive',
+        ],
     },
-    'trait_repugnant'           : {
+    'trait_repugnant'                         : {
         cost: -2,
         no  : ['trait_charismatic'],
     },
-    'trait_conformists'         : {
+    'trait_conformists'                       : {
         cost: 2,
-        no  : ['trait_deviants'],
+        no  : [
+            'trait_deviants',
+            'trait_invasive',
+        ],
     },
-    'trait_deviants'            : {
+    'trait_deviants'                          : {
         cost: -1,
         no  : ['trait_conformists'],
     },
-    'trait_venerable'           : {
+    'trait_venerable'                         : {
         cost: 4,
         no  : [
             'trait_enduring',
             'trait_fleeting',
             'trait_fleeting_lithoid',
+            'trait_invasive',
         ],
     },
-    'trait_enduring'            : {
+    'trait_enduring'                          : {
         cost: 1,
         no  : [
             'trait_venerable',
             'trait_fleeting',
             'trait_fleeting_lithoid',
+            'trait_invasive',
         ],
     },
-    'trait_fleeting'            : {
+    'trait_fleeting'                          : {
         cost: -1,
         no  : [
             'trait_venerable',
             'trait_enduring',
-            'trait_fleeting_lithoid', // ?\
+            'trait_fleeting_lithoid',
             'trait_perfected_genes',
         ],
     },
-    'trait_decadent'            : {
+    'trait_decadent'                          : {
         cost: -1,
         no  : [
             'trait_hive_mind',
             'trait_syncretic_proles,',
         ],
     },
-    'trait_resilient'           : {
+    'trait_resilient'                         : {
         cost: 1,
-        no  : [],
+        no  : ['trait_invasive',],
     },
-    'trait_conservational'      : {
+    'trait_conservational'                    : {
         cost: 1,
-        no  : ['trait_wasteful'],
+        no  : [
+            'trait_wasteful',
+            'trait_invasive',
+        ],
     },
-    'trait_wasteful'            : {
+    'trait_wasteful'                          : {
         cost: -1,
         no  : ['trait_conservational'],
     },
-    'trait_inorganic_breath'    : {
+    'trait_inorganic_breath'                  : {
         cost: 3,
-        no  : [],
+        no  : ['trait_invasive',],
     },
-    'trait_noxious'             : {
+    'trait_noxious'                           : {
         cost: 1,
-        no  : [],
+        no  : ['trait_invasive',],
+    },
+    'trait_humanoid_existential_iteroparity'  : {
+        cost: 2,
+        no  : [
+            'trait_humanoid_psychological_infertility',
+            'trait_rapid_breeders',
+            'trait_fertile',
+            'trait_rapid_breeders_lithoid',
+            'trait_plantoid_budding',
+            'trait_lithoid_budding',
+            'trait_vat_grown',
+            'trait_tiyanki',
+            'trait_slow_breeders',
+            'trait_invasive',
+        ],
+    },
+    'trait_humanoid_psychological_infertility': {
+        cost: -2,
+        no  : [
+            'trait_humanoid_existential_iteroparity',
+            'trait_slow_breeders',
+            'trait_vat_grown',
+        ],
+    },
+    'trait_humanoid_jinxed'                   : {
+        cost: -1,
+        no  : [
+            'trait_talented',
+            'trait_humanoid_jinxed',
+        ],
     },
 };
 
 lithoid_traits = {
-    'trait_ingenious'                  : {
+    'trait_ingenious'                         : {
         cost: 2,
         no  : [],
     },
-    'trait_industrious'                : {
+    'trait_industrious'                       : {
         cost: 2,
         no  : [],
     },
-    'trait_intelligent'                : {
+    'trait_intelligent'                       : {
         cost: 2,
         no  : [
             'trait_nerve_stapled',
@@ -254,11 +334,11 @@ lithoid_traits = {
             'trait_enigmatic_intelligence_poor',
         ],
     },
-    'trait_thrifty'                    : {
+    'trait_thrifty'                           : {
         cost: 2,
         no  : ['trait_hive_mind'],
     },
-    'trait_natural_engineers'          : {
+    'trait_natural_engineers'                 : {
         cost: 1,
         no  : [
             'trait_natural_physicists',
@@ -266,7 +346,7 @@ lithoid_traits = {
             'trait_nerve_stapled',
         ],
     },
-    'trait_natural_physicists'         : {
+    'trait_natural_physicists'                : {
         cost: 1,
         no  : [
             'trait_natural_engineers',
@@ -274,7 +354,7 @@ lithoid_traits = {
             'trait_nerve_stapled',
         ],
     },
-    'trait_natural_sociologists'       : {
+    'trait_natural_sociologists'              : {
         cost: 1,
         no  : [
             'trait_natural_physicists',
@@ -282,55 +362,58 @@ lithoid_traits = {
             'trait_nerve_stapled',
         ],
     },
-    'trait_talented'                   : {
+    'trait_talented'                          : {
         cost: 1,
-        no  : ['trait_nerve_stapled'],
+        no  : [
+            'trait_nerve_stapled',
+            'trait_humanoid_jinxed',
+        ],
     },
-    'trait_quick_learners'             : {
+    'trait_quick_learners'                    : {
         cost: 1,
         no  : [
             'trait_slow_learners',
             'trait_syncretic_proles',
         ],
     },
-    'trait_slow_learners'              : {
+    'trait_slow_learners'                     : {
         cost: -1,
         no  : [
             'trait_quick_learners',
             'trait_enigmatic_intelligence',
         ],
     },
-    'trait_traditional'                : {
+    'trait_traditional'                       : {
         cost: 1,
         no  : ['trait_quarrelsome'],
     },
-    'trait_quarrelsome'                : {
+    'trait_quarrelsome'                       : {
         cost: -1,
         no  : ['trait_traditional'],
     },
-    'trait_docile'                     : {
+    'trait_docile'                            : {
         cost: 2,
         no  : ['trait_unruly'],
     },
-    'trait_unruly'                     : {
+    'trait_unruly'                            : {
         cost: -2,
         no  : ['trait_docile'],
     },
-    'trait_very_strong'                : {
+    'trait_very_strong'                       : {
         cost: 3,
         no  : [
             'trait_weak',
             'trait_strong',
         ],
     },
-    'trait_strong'                     : {
+    'trait_strong'                            : {
         cost: 1,
         no  : [
             'trait_weak',
             'trait_very_strong',
         ],
     },
-    'trait_weak'                       : {
+    'trait_weak'                              : {
         cost: -1,
         no  : [
             'trait_strong',
@@ -338,42 +421,42 @@ lithoid_traits = {
             'trait_perfected_genes',
         ],
     },
-    'trait_nomadic'                    : {
+    'trait_nomadic'                           : {
         cost: 1,
         no  : ['trait_sedentary'],
     },
-    'trait_sedentary'                  : {
+    'trait_sedentary'                         : {
         cost: -1,
         no  : [
             'trait_nomadic',
-            'trait_stargazer'
+            'trait_stargazer',
         ],
     },
-    'trait_communal'                   : {
+    'trait_communal'                          : {
         cost: 1,
         no  : ['trait_solitary'],
     },
-    'trait_solitary'                   : {
+    'trait_solitary'                          : {
         cost: -1,
         no  : ['trait_communal'],
     },
-    'trait_charismatic'                : {
+    'trait_charismatic'                       : {
         cost: 2,
         no  : ['trait_repugnant'],
     },
-    'trait_repugnant'                  : {
+    'trait_repugnant'                         : {
         cost: -2,
         no  : ['trait_charismatic'],
     },
-    'trait_conformists'                : {
+    'trait_conformists'                       : {
         cost: 2,
         no  : ['trait_deviants'],
     },
-    'trait_deviants'                   : {
+    'trait_deviants'                          : {
         cost: -1,
         no  : ['trait_conformists'],
     },
-    'trait_venerable'                  : {
+    'trait_venerable'                         : {
         cost: 4,
         no  : [
             'trait_enduring',
@@ -381,7 +464,7 @@ lithoid_traits = {
             'trait_fleeting_lithoid',
         ],
     },
-    'trait_enduring'                   : {
+    'trait_enduring'                          : {
         cost: 1,
         no  : [
             'trait_venerable',
@@ -389,7 +472,7 @@ lithoid_traits = {
             'trait_fleeting_lithoid',
         ],
     },
-    'trait_fleeting_lithoid'           : {
+    'trait_fleeting_lithoid'                  : {
         cost: -1,
         no  : [
             'trait_venerable',
@@ -397,41 +480,68 @@ lithoid_traits = {
             'trait_fleeting', // ?
         ],
     },
-    'trait_decadent'                   : {
+    'trait_decadent'                          : {
         cost: -1,
         no  : ['trait_syncretic_proles'],
     },
-    'trait_resilient'                  : {
+    'trait_resilient'                         : {
         cost: 1,
         no  : [],
     },
-    'trait_conservational'             : {
+    'trait_conservational'                    : {
         cost: 1,
         no  : ['trait_wasteful'],
     },
-    'trait_wasteful'                   : {
+    'trait_wasteful'                          : {
         cost: -1,
         no  : ['trait_conservational'],
     },
-    'trait_lithoid_scintillating'      : {
+    'trait_lithoid_scintillating'             : {
         cost: 2,
         no  : [
             'trait_lithoid_volatile_excretions',
             'trait_lithoid_gaseous_byproducts',
         ],
     },
-    'trait_lithoid_gaseous_byproducts' : {
+    'trait_lithoid_gaseous_byproducts'        : {
         cost: 2,
         no  : [
             'trait_lithoid_volatile_excretions',
             'trait_lithoid_scintillating',
         ],
     },
-    'trait_lithoid_volatile_excretions': {
+    'trait_lithoid_volatile_excretions'       : {
         cost: 2,
         no  : [
             'trait_lithoid_gaseous_byproducts',
             'trait_lithoid_scintillating',
+        ],
+    },
+    'trait_humanoid_existential_iteroparity'  : {
+        cost: 2,
+        no  : [
+            'trait_humanoid_psychological_infertility',
+            'trait_rapid_breeders',
+            'trait_fertile',
+            'trait_rapid_breeders_lithoid',
+            'trait_plantoid_budding',
+            'trait_lithoid_budding',
+            'trait_vat_grown',
+            'trait_tiyanki',
+        ],
+    },
+    'trait_humanoid_psychological_infertility': {
+        cost: -2,
+        no  : [
+            'trait_humanoid_existential_iteroparity',
+            'trait_slow_breeders',
+            'trait_vat_grown',
+        ],
+    },
+    'trait_humanoid_jinxed'                   : {
+        cost: -1,
+        no  : [
+            'trait_talented',
         ],
     },
 };
@@ -623,6 +733,55 @@ plant_traits = {
             'trait_clone_soldier_infertile_full_potential',
         ],
     },
+    'trait_invasive'             : {
+        cost: 2,
+        no  : [
+            'trait_agrarian',
+            'trait_ingenious',
+            'trait_industrious',
+            'trait_intelligent',
+            'trait_thrifty',
+            'trait_natural_engineers',
+            'trait_natural_physicists',
+            'trait_natural_sociologists',
+            'trait_extremely_adaptive',
+            'trait_adaptive',
+            'trait_rapid_breeders',
+            'trait_talented',
+            'trait_quick_learners',
+            'trait_traditional',
+            'trait_docile',
+            'trait_very_strong',
+            'trait_strong',
+            'trait_nomadic',
+            'trait_communal',
+            'trait_charismatic',
+            'trait_conformists',
+            'trait_venerable',
+            'trait_enduring',
+            'trait_resilient',
+            'trait_conservational',
+            'trait_noxious',
+            'trait_inorganic_breath',
+            'trait_humanoid_existential_iteroparity',
+            'trait_incubator',
+            'trait_delicious',
+            'trait_nerve_stapled',
+            'trait_fertile',
+            'trait_robust',
+            'trait_erudite',
+            'trait_vat_grown',
+            'trait_felsic',
+            'trait_natural_machinist',
+            'trait_drake_scaled',
+            'trait_voidling',
+            'trait_tiyanki',
+            'trait_advanced_scintillating',
+            'trait_advanced_gaseous_byproducts',
+            'trait_advanced_volatile_excretions',
+            'trait_exotic_metabolism',
+        ],
+    },
 };
 
 ocean_traits = {
@@ -684,6 +843,7 @@ overtuned_traits = {
             'trait_fertile',
             'trait_plantoid_budding',
             'trait_lithoid_budding',
+            'trait_invasive',
         ],
     },
 };
@@ -703,7 +863,7 @@ biological_overtuned_traits = {
     },
 };
 
-// Traits that are incompatible with syncretic species (through the forced "Serviles" trait, trait_syncretic_proles)
+// Traits that are incompatible with syncretic species (through the forced 'Serviles' trait, trait_syncretic_proles)
 syncretic_disabled_traits = [
     'trait_natural_engineers',
     'trait_natural_physicists',
@@ -887,42 +1047,42 @@ paragon_traits = {
 };
 
 bad_paragon_traits = {
-    'leader_trait_legendary_unfriendly': {
+    'leader_trait_legendary_unfriendly'     : {
         cost: -1,
         yes : {
             'class' : ['scientist', 'governor', 'admiral', 'general'],
             'ethics': ['ethic_xenophobe', 'ethic_fanatic_xenophobe'],
         },
     },
-    'leader_trait_legendary_warmonger' : {
+    'leader_trait_legendary_warmonger'      : {
         cost: -1,
         yes : {
             'class' : ['scientist', 'governor', 'admiral', 'general'],
             'ethics': ['ethic_militarist', 'ethic_fanatic_militarist'],
         },
     },
-    'leader_trait_legendary_dreamlike': {
+    'leader_trait_legendary_dreamlike'      : {
         cost: -1,
         yes : {
             'class' : ['scientist', 'governor', 'admiral', 'general'],
             'ethics': ['ethic_spiritualist', 'ethic_fanatic_spiritualist'],
         },
     },
-    'leader_trait_legendary_harsh_ruler': {
+    'leader_trait_legendary_harsh_ruler'    : {
         cost: -1,
         yes : {
             'class' : ['scientist', 'governor', 'admiral', 'general'],
             'ethics': ['ethic_authoritarian', 'ethic_fanatic_authoritarian'],
         },
     },
-    'leader_trait_legendary_too_open': {
+    'leader_trait_legendary_too_open'       : {
         cost: -1,
         yes : {
             'class' : ['scientist', 'governor', 'admiral', 'general'],
             'ethics': ['ethic_xenophile', 'ethic_fanatic_xenophile'],
         },
     },
-    'leader_trait_legendary_hoplofobia': {
+    'leader_trait_legendary_hoplofobia'     : {
         cost: -1,
         yes : {
             'class' : ['scientist', 'governor', 'admiral', 'general'],
