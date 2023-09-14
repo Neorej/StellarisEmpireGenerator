@@ -463,7 +463,10 @@ origins = {
             'civics'     : [
                 'civic_fanatic_purifiers',
                 'civic_eager_explorers',
+                'civic_dystopian_society',
                 'civic_privatized_exploration',
+                'civic_selective_kinship',
+                'civic_private_healthcare_corporate',
             ],
             'ethics'     : [
                 'ethic_gestalt_consciousness',
@@ -500,6 +503,29 @@ origins = {
         no : {
             'authorities': [],
             'civics'     : [],
+            'ethics'     : [],
+        },
+    },
+};
+
+plant_origins = {
+    'origin_fruitful'       : {
+        yes: {
+            'authorities': [],
+            'civics'     : [],
+            'ethics'     : [
+                'ethic_xenophile',
+                'ethic_fanatic_xenophile',
+                'ethic_pacifist',
+                'ethic_fanatic_pacifist',
+                'ethic_gestalt_consciousness',
+            ],
+        },
+        no : {
+            'authorities': [],
+            'civics'     : [
+                'civic_hive_devouring_swarm'
+            ],
             'ethics'     : [],
         },
     },
