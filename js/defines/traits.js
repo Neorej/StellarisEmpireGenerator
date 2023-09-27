@@ -1,4 +1,4 @@
-traits = {
+basegame_traits = {
     'trait_agrarian'                          : {
         cost: 2,
         no  : ['trait_invasive'],
@@ -317,7 +317,7 @@ traits = {
     },
 };
 
-lithoid_traits = {
+basegame_lithoid_traits = {
     'trait_ingenious'                         : {
         cost: 2,
         no  : [],
@@ -546,7 +546,7 @@ lithoid_traits = {
     },
 };
 
-machine_traits = {
+basegame_machine_traits = {
     'trait_robot_power_drills'         : {
         cost: 2,
         no  : [],
@@ -625,7 +625,7 @@ machine_traits = {
     },
 };
 
-robot_traits = {
+basegame_robot_traits = {
     'trait_robot_power_drills'         : {
         cost: 2,
         no  : [],
@@ -708,7 +708,7 @@ robot_traits = {
     },
 };
 
-plant_traits = {
+basegame_plant_traits = {
     'trait_plantoid_phototrophic': {
         cost: 1,
         no  : [
@@ -793,7 +793,7 @@ ocean_traits = {
     },
 };
 
-overtuned_traits = {
+basegame_overtuned_traits = {
     'trait_crack_miner'            : {
         cost: 1,
         no  : [],
@@ -848,7 +848,7 @@ overtuned_traits = {
     },
 };
 
-biological_overtuned_traits = {
+basegame_biological_overtuned_traits = {
     'trait_spliced_adaptability': {
         cost: 1,
         no  : [],
@@ -872,7 +872,7 @@ syncretic_disabled_traits = [
     'trait_talented',
 ];
 
-leader_traits = {
+basegame_leader_traits = {
     'leader_trait_principled'           : {
         cost: 1,
         yes : {
@@ -945,7 +945,7 @@ leader_traits = {
     },
 };
 
-paragon_traits = {
+basegame_paragon_traits = {
     'leader_trait_legendary_military_knowledge'  : {
         cost: 1,
         yes : {
@@ -1046,7 +1046,7 @@ paragon_traits = {
     },
 };
 
-bad_paragon_traits = {
+basegame_bad_paragon_traits = {
     'leader_trait_legendary_unfriendly'     : {
         cost: -1,
         yes : {

@@ -1,4 +1,4 @@
-origins = {
+basegame_origins = {
     'origin_default'                : { // Prosperous Unification
         yes: {
             'authorities': [],
@@ -508,7 +508,7 @@ origins = {
     },
 };
 
-plant_origins = {
+basegame_plant_origins = {
     'origin_fruitful'       : {
         yes: {
             'authorities': [],
