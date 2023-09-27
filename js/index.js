@@ -406,7 +406,7 @@ class Empire {
             return;
         }
 
-        let ethics_list = deep_clone(ethics);
+        let ethics_list = structuredClone(ethics);
 
         while (this.ethics_points_left > 0) {
             log('Points left ' + this.ethics_points_left);
@@ -446,21 +446,21 @@ class Empire {
     }
 
     set_civics() {
-        let civics_list = deep_clone(civics);
+        let civics_list = structuredClone(civics);
         if (this.authority === 'auth_hive_mind') {
-            civics_list = deep_clone(hive_civics);
+            civics_list = structuredClone(hive_civics);
             // Increase chance of picking genocidal hive, as it's quite rare by default
             if (this.options.generate_genocidal === 'always' || (this.options.generate_genocidal === 'mixed' && random_percentage_check(5))) {
                 this.pick_civic('civic_hive_devouring_swarm', civics_list);
             }
         } else if (this.authority === 'auth_machine_intelligence') {
-            civics_list = deep_clone(machine_civics);
+            civics_list = structuredClone(machine_civics);
             // Increase chance of picking genocidal machines, as it's quite rare by default
             if (this.options.generate_genocidal === 'always' || (this.options.generate_genocidal === 'mixed' && random_percentage_check(5))) {
                 this.pick_civic('civic_machine_terminator', civics_list);
             }
         } else if (this.authority === 'auth_corporate') {
-            civics_list = deep_clone(corporate_civics);
+            civics_list = structuredClone(corporate_civics);
         } else {
             // If specific ethics required by Fanatic Purifiers have been picked, increase chance of picking Fanatic Purifiers
             if (this.ethics.includes('ethic_fanatic_xenophobe') && (this.ethics.includes('ethic_militarist') || this.ethics.includes('ethic_spiritualist'))) {
@@ -564,7 +564,7 @@ class Empire {
 
     set_origin() {
         while (this.origin === '') {
-            let origins_list = deep_clone(origins);
+            let origins_list = structuredClone(origins);
 
             // Plants get an extra origin
             if (this.species.class === 'FUN' || this.species.class === 'PLANT') {
@@ -778,7 +778,7 @@ class Empire {
             return;
         }
 
-        traits_list = deep_clone(traits_list);
+        traits_list = structuredClone(traits_list);
         // Delete disabled traits from traits_list to speed up the process by preventing selection of trait that is disabled anyway and so require less iterations
         for (let i = 0; i < this.disabled_traits.length; i++) {
             delete traits_list[this.disabled_traits[i]];
@@ -1241,18 +1241,4 @@ function no_requirement_checker(requirements, current_values, singular, plural, 
     }
     log(check_type + ': ' + plural + ' no_requirements met');
     return true;
-}
-
-/**
- * Create deep clone of object so elements can be deleted without affecting the original object
- * @param object_to_copy
- */
-function deep_clone(object_to_copy) {
-    let deep_clone = $.extend(true, {}, object_to_copy);
-
-    // Cleanup object prototypes to prevent them from being selected when calling .random(), etc
-    delete deep_clone['random'];
-    delete deep_clone['randomkey'];
-
-    return deep_clone;
 }

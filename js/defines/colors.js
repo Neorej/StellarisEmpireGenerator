@@ -1,4 +1,4 @@
-colors = [
+basegame_colors = [
     'beige',
     'black',
     'blue',

@@ -1,4 +1,4 @@
-civics = {
+basegame_civics = {
     'civic_corvee_system'          : {
         yes: {
             'authorities': [],

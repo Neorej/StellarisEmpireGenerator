@@ -1,4 +1,4 @@
-rooms = [
+basegame_rooms = [
     'aquatics_room',
     'crystalline_room',
     'default_room',

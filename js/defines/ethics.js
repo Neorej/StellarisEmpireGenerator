@@ -1,4 +1,4 @@
-ethics = {
+basegame_ethics = {
     'ethic_fanatic_authoritarian': {
         cost                : 2,
         incompatible_ethics : [

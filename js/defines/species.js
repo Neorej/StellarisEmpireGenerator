@@ -1,4 +1,4 @@
-species = {
+basegame_species = {
     'HUM'    : {
         secondary: true,
         portraits: [
@@ -259,7 +259,7 @@ species = {
     },
 };
 
-species_machine = {
+basegame_species_machine = {
     'MACHINE': {
         secondary: false,
         portraits: [

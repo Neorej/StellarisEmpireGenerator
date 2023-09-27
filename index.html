@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="Random empire generator for Stellaris; generates game-ready empires. Updated for Stellaris 3.8 (Gemini)">
+    <meta name="description" content="Random empire generator for Stellaris; generates game-ready empires. Updated for Stellaris 3.9 (Caelum)">
     <title>Stellaris Empire Generator</title>
 
     <link rel="stylesheet" href="css/index.css">
@@ -29,6 +29,7 @@
     <script src="js/defines/rooms.js"></script>
     <script src="js/defines/species.js"></script>
     <script src="js/defines/traits.js"></script>
+    <script src="js/defines/mods.js"></script>
 
     <script src="js/index.js"></script>
 
@@ -162,6 +163,12 @@ They only work if the required authorities are not disabled.">
         <label for="spawn_no">No</label>
     </p>
 
+    <p id="mods">
+        <span><b>Mod support:</b></span>
+        <input name="planetary_diversity" type="checkbox" id="planetary_diversity"/>
+        <label for="planetary_diversity"><abbr title="Adds support for 63 new planet classes">Planetary Diversity</abbr></label>
+    </p>
+
     <br>
     <button type="button" id="generate">Generate empires</button>
     <button type="button" onClick="CopyToClipboard('result')">Copy results to clipboard</button>
@@ -226,6 +233,45 @@ They only work if the required authorities are not disabled.">
                 boost_authoritarians: $('input[name="boost_authoritarians"]:checked').val(),
             };
 
+            // Make deepclone of basegame data so mods can add data (and the data can be removed when mod is turned off)
+            civics                      = structuredClone(basegame_civics);
+            colors                      = structuredClone(basegame_colors);
+            cultures                    = structuredClone(basegame_cultures);
+            ethics                      = structuredClone(basegame_ethics);
+            flags                       = structuredClone(basegame_flags);
+            backgrounds                 = structuredClone(basegame_backgrounds);
+            origins                     = structuredClone(basegame_origins);
+            plant_origins               = structuredClone(basegame_plant_origins);
+            rooms                       = structuredClone(basegame_rooms);
+            species                     = structuredClone(basegame_species);
+            species_machine             = structuredClone(basegame_species_machine);
+            traits                      = structuredClone(basegame_traits);
+            lithoid_traits              = structuredClone(basegame_lithoid_traits);
+            machine_traits              = structuredClone(basegame_machine_traits);
+            robot_traits                = structuredClone(basegame_robot_traits);
+            plant_traits                = structuredClone(basegame_plant_traits);
+            overtuned_traits            = structuredClone(basegame_overtuned_traits);
+            biological_overtuned_traits = structuredClone(basegame_biological_overtuned_traits);
+            leader_traits               = structuredClone(basegame_leader_traits);
+            paragon_traits              = structuredClone(basegame_paragon_traits);
+            bad_paragon_traits          = structuredClone(basegame_bad_paragon_traits);
+            planets                     = structuredClone(basegame_planets);
+
+            // Load mod data
+            let selectedMods = [...document.querySelectorAll('#mods input:checked')].map(element => element.name);
+            for (let i = 0; i < selectedMods.length; i++) {
+                let modData = mods[selectedMods[i]];
+                for (const [key, value] of Object.entries(modData)) {
+                    let type = window[key].constructor.name;
+                    if (type === 'Array') {
+                        window[key] = window[key].concat(value);
+                    } else if (type === 'Object') {
+                        window[key] = {...window[key], ...value};
+                    }
+                }
+            }
+
+            // Actually generate the empires
             for (let k = 0; k < empiresNum; k++) {
                 let empire = new Empire(options);
                 if (empire.authority.length === 0) {

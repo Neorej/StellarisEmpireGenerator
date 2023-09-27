@@ -1,4 +1,4 @@
-flags = {
+basegame_flags = {
     'aquatic'   : [
         'aquatic_01.dds',
         'aquatic_02.dds',
@@ -297,7 +297,7 @@ flags = {
     ],
 };
 
-backgrounds = [
+basegame_backgrounds = [
     '00_solid.dds',
     'circle.dds',
     'diagonal.dds',

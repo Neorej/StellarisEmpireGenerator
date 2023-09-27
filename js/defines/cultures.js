@@ -1,4 +1,4 @@
-cultures = [
+basegame_cultures = [
     'humanoid_01',
     'plantoid_01',
     'mammalian_01',
