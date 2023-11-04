@@ -539,7 +539,7 @@ class Empire {
             return;
         }
 
-        this.species.gender = genders.random();
+        this.species.gender = this.options.species_gender === 'random' ? genders.random() : this.options.species_gender;
 
         // Idyllic Bloom requires FUN or PLANT
         if (this.civics.includes('civic_idyllic_bloom') || this.civics.includes('civic_hive_idyllic_bloom')) {

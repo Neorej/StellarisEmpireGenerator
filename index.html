@@ -154,6 +154,20 @@ They only work if the required authorities are not disabled.">
     </p>
 
     <p>
+        <span><b>Species gender:</b></span>
+        <input name="species_gender" type="radio" id="species_gender_random" value="random" checked/>
+        <label for="species_gender_random">Random</label>
+        <input name="species_gender" type="radio" id="species_gender_male" value="male"/>
+        <label for="species_gender_male">Male</label>
+        <input name="species_gender" type="radio" id="species_gender_female" value="female"/>
+        <label for="species_gender_female">Female</label>
+        <input name="species_gender" type="radio" id="species_gender_not_set" value="not_set"/>
+        <label for="species_gender_not_set">Not set</label>
+        <input name="species_gender" type="radio" id="species_gender_indeterminable" value="indeterminable"/>
+        <label for="species_gender_indeterminable">Indeterminable</label>
+    </p>
+
+    <p>
         <span><b>Spawn enabled:</b></span>
         <input name="spawn_enabled" type="radio" id="spawn_always" value="always" checked/>
         <label for="spawn_always">Spawn always</label>
@@ -225,6 +239,7 @@ They only work if the required authorities are not disabled.">
             let empiresNum = $('#empire_amount').val();
             let options    = {
                 spawn_enabled       : $('input[name="spawn_enabled"]:checked').val(),
+                species_gender      : $('input[name="species_gender"]:checked').val(),
                 generate_genocidal  : $('input[name="generate_genocidal"]:checked').val(),
                 disabled_authorities: [...document.querySelectorAll('#disabled_authorities input:checked')].map(element => element.name),
                 disabled_origins    : [...document.querySelectorAll('#disabled_origins input:checked')].map(element => element.name),
