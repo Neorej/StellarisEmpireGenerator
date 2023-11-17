@@ -876,21 +876,21 @@ basegame_leader_traits = {
     'leader_trait_principled'           : {
         cost: 1,
         yes : {
-            'class' : ['governor'],
+            'class' : ['official'],
             'ethics': [],
         },
     },
     'leader_trait_fleet_organizer'      : {
         cost: 1,
         yes : {
-            'class' : ['admiral'],
+            'class' : ['commander'],
             'ethics': [],
         },
     },
     'leader_trait_spycraft'             : {
         cost: 1,
         yes : {
-            'class' : ['general'],
+            'class' : ['official'],
             'ethics': [],
         },
     },
@@ -904,42 +904,42 @@ basegame_leader_traits = {
     'trait_ruler_industrialist'         : {
         cost: 1,
         yes : {
-            'class' : ['governor', 'scientist'],
+            'class' : ['official', 'scientist'],
             'ethics': [],
         },
     },
     'trait_ruler_warlike'               : {
         cost: 1,
         yes : {
-            'class' : ['admiral', 'general'],
+            'class' : ['commander'],
             'ethics': [],
         },
     },
     'trait_ruler_charismatic'           : {
         cost: 1,
         yes : {
-            'class' : ['scientist', 'governor', 'admiral', 'general'],
+            'class' : ['scientist', 'official', 'commander'],
             'ethics': [],
         },
     },
     'trait_ruler_logistic_understanding': {
         cost: 1,
         yes : {
-            'class' : ['scientist', 'governor', 'admiral', 'general'],
+            'class' : ['scientist', 'official', 'commander'],
             'ethics': [],
         },
     },
     'trait_ruler_eye_for_talent'        : {
         cost: 1,
         yes : {
-            'class' : ['scientist', 'governor', 'admiral', 'general'],
+            'class' : ['scientist', 'official', 'commander'],
             'ethics': [],
         },
     },
     'trait_ruler_feedback_loop'         : {
         cost: 1,
         yes : {
-            'class' : ['scientist', 'governor', 'admiral', 'general'],
+            'class' : ['scientist', 'official', 'commander'],
             'ethics': ['ethic_gestalt_consciousness'],
         },
     },
@@ -949,98 +949,98 @@ basegame_paragon_traits = {
     'leader_trait_legendary_military_knowledge'  : {
         cost: 1,
         yes : {
-            'class' : ['scientist', 'governor', 'admiral', 'general'],
+            'class' : ['scientist', 'official', 'commander'],
             'ethics': ['ethic_militarist', 'ethic_fanatic_militarist'],
         },
     },
     'leader_trait_legendary_foe_hammer'          : {
         cost: 1,
         yes : {
-            'class' : ['scientist', 'governor', 'admiral', 'general'],
+            'class' : ['scientist', 'official', 'commander'],
             'ethics': ['ethic_militarist', 'ethic_fanatic_militarist'],
         },
     },
     'leader_trait_legendary_great_teacher'       : {
         cost: 1,
         yes : {
-            'class' : ['scientist', 'governor', 'admiral', 'general'],
+            'class' : ['scientist', 'official', 'commander'],
             'ethics': ['ethic_spiritualist', 'ethic_fanatic_spiritualist'],
         },
     },
     'leader_trait_legendary_pious_ascet'         : {
         cost: 1,
         yes : {
-            'class' : ['scientist', 'governor', 'admiral', 'general'],
+            'class' : ['scientist', 'official', 'commander'],
             'ethics': ['ethic_spiritualist', 'ethic_fanatic_spiritualist'],
         },
     },
     'leader_trait_legendary_commanding_presence' : {
         cost: 1,
         yes : {
-            'class' : ['scientist', 'governor', 'admiral', 'general'],
+            'class' : ['scientist', 'official', 'commander'],
             'ethics': ['ethic_authoritarian', 'ethic_fanatic_authoritarian'],
         },
     },
     'leader_trait_legendary_high_king'           : {
         cost: 1,
         yes : {
-            'class' : ['scientist', 'governor', 'admiral', 'general'],
+            'class' : ['scientist', 'official', 'commander'],
             'ethics': ['ethic_authoritarian', 'ethic_fanatic_authoritarian'],
         },
     },
     'leader_trait_legendary_gunboat_diplomacy'   : {
         cost: 1,
         yes : {
-            'class' : ['scientist', 'governor', 'admiral', 'general'],
+            'class' : ['scientist', 'official', 'commander'],
             'ethics': ['ethic_xenophile', 'ethic_fanatic_xenophile'],
         },
     },
     'leader_trait_legendary_scientific_diplomacy': {
         cost: 1,
         yes : {
-            'class' : ['scientist', 'governor', 'admiral', 'general'],
+            'class' : ['scientist', 'official', 'commander'],
             'ethics': ['ethic_xenophile', 'ethic_fanatic_xenophile'],
         },
     },
     'leader_trait_legendary_autarky'             : {
         cost: 1,
         yes : {
-            'class' : ['scientist', 'governor', 'admiral', 'general'],
+            'class' : ['scientist', 'official', 'commander'],
             'ethics': ['ethic_pacifist', 'ethic_fanatic_pacifist'],
         },
     },
     'leader_trait_legendary_natural_ruler'       : {
         cost: 1,
         yes : {
-            'class' : ['scientist', 'governor', 'admiral', 'general'],
+            'class' : ['scientist', 'official', 'commander'],
             'ethics': ['ethic_pacifist', 'ethic_fanatic_pacifist'],
         },
     },
     'leader_trait_legendary_industry_titan'      : {
         cost: 1,
         yes : {
-            'class' : ['scientist', 'governor', 'admiral', 'general'],
+            'class' : ['scientist', 'official', 'commander'],
             'ethics': ['ethic_materialist', 'ethic_fanatic_materialist'],
         },
     },
     'leader_trait_legendary_great_inventor'      : {
         cost: 1,
         yes : {
-            'class' : ['scientist', 'governor', 'admiral', 'general'],
+            'class' : ['scientist', 'official', 'commander'],
             'ethics': ['ethic_materialist', 'ethic_fanatic_materialist'],
         },
     },
     'leader_trait_legendary_genetic_purist'      : {
         cost: 1,
         yes : {
-            'class' : ['scientist', 'governor', 'admiral', 'general'],
+            'class' : ['scientist', 'official', 'commander'],
             'ethics': ['ethic_xenophobe', 'ethic_fanatic_xenophobe'],
         },
     },
     'leader_trait_legendary_evervigilant'        : {
         cost: 1,
         yes : {
-            'class' : ['scientist', 'governor', 'admiral', 'general'],
+            'class' : ['scientist', 'official', 'commander'],
             'ethics': ['ethic_xenophobe', 'ethic_fanatic_xenophobe'],
         },
     },
@@ -1050,49 +1050,49 @@ basegame_bad_paragon_traits = {
     'leader_trait_legendary_unfriendly'     : {
         cost: -1,
         yes : {
-            'class' : ['scientist', 'governor', 'admiral', 'general'],
+            'class' : ['scientist', 'official', 'commander'],
             'ethics': ['ethic_xenophobe', 'ethic_fanatic_xenophobe'],
         },
     },
     'leader_trait_legendary_warmonger'      : {
         cost: -1,
         yes : {
-            'class' : ['scientist', 'governor', 'admiral', 'general'],
+            'class' : ['scientist', 'official', 'commander'],
             'ethics': ['ethic_militarist', 'ethic_fanatic_militarist'],
         },
     },
     'leader_trait_legendary_dreamlike'      : {
         cost: -1,
         yes : {
-            'class' : ['scientist', 'governor', 'admiral', 'general'],
+            'class' : ['scientist', 'official', 'commander'],
             'ethics': ['ethic_spiritualist', 'ethic_fanatic_spiritualist'],
         },
     },
     'leader_trait_legendary_harsh_ruler'    : {
         cost: -1,
         yes : {
-            'class' : ['scientist', 'governor', 'admiral', 'general'],
+            'class' : ['scientist', 'official', 'commander'],
             'ethics': ['ethic_authoritarian', 'ethic_fanatic_authoritarian'],
         },
     },
     'leader_trait_legendary_too_open'       : {
         cost: -1,
         yes : {
-            'class' : ['scientist', 'governor', 'admiral', 'general'],
+            'class' : ['scientist', 'official', 'commander'],
             'ethics': ['ethic_xenophile', 'ethic_fanatic_xenophile'],
         },
     },
     'leader_trait_legendary_hoplofobia'     : {
         cost: -1,
         yes : {
-            'class' : ['scientist', 'governor', 'admiral', 'general'],
+            'class' : ['scientist', 'official', 'commander'],
             'ethics': ['ethic_pacifist', 'ethic_fanatic_pacifist'],
         },
     },
     'leader_trait_legendary_bad_meritocracy': {
         cost: -1,
         yes : {
-            'class' : ['scientist', 'governor', 'admiral', 'general'],
+            'class' : ['scientist', 'official', 'commander'],
             'ethics': ['ethic_materialist', 'ethic_fanatic_materialist'],
         },
     },

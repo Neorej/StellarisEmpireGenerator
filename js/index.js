@@ -346,7 +346,7 @@ class Empire {
         if (this.options.generate_genocidal === 'mixed' || this.options.generate_genocidal === 'never') {
             // Egalitarians have stricter requirements which reduces their chance of being generated, give them a boost to make them as likely to appear as other ethics
             if (this.options.boost_egalitarians) {
-                if (random_percentage_check(7) && authorities_list.includes('auth_democratic') && authorities_list.includes('auth_oligarchic') && authorities_list.includes('auth_corporate')) {
+                if (random_percentage_check(5) && authorities_list.includes('auth_democratic') && authorities_list.includes('auth_oligarchic') && authorities_list.includes('auth_corporate')) {
                     this.authority = ['auth_democratic', 'auth_oligarchic', 'auth_corporate'].random();
                     this.ethics.push('ethic_egalitarian');
                     this.ethics_points_left--;

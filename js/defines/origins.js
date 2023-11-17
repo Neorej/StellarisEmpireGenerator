@@ -448,6 +448,8 @@ basegame_origins = {
                 'civic_indentured_assets',
                 'civic_eager_explorers',
                 'civic_privatized_exploration',
+                'civic_sovereign_guardianship',
+                'civic_corporate_sovereign_guardianship',
             ],
             'ethics'     : ['ethic_gestalt_consciousness'],
         },
@@ -467,6 +469,8 @@ basegame_origins = {
                 'civic_privatized_exploration',
                 'civic_selective_kinship',
                 'civic_private_healthcare_corporate',
+                'civic_sovereign_guardianship',
+                'civic_corporate_sovereign_guardianship',
             ],
             'ethics'     : [
                 'ethic_gestalt_consciousness',
@@ -490,6 +494,8 @@ basegame_origins = {
                 'civic_fanatic_purifiers',
                 'civic_eager_explorers',
                 'civic_privatized_exploration',
+                'civic_sovereign_guardianship',
+                'civic_corporate_sovereign_guardianship',
             ],
             'ethics'     : ['ethic_gestalt_consciousness'],
         },
@@ -497,6 +503,18 @@ basegame_origins = {
     'origin_legendary_leader'       : {
         yes: {
             'authorities': ['auth_dictatorial'],
+            'civics'     : [],
+            'ethics'     : [],
+        },
+        no : {
+            'authorities': [],
+            'civics'     : [],
+            'ethics'     : [],
+        },
+    },
+    'origin_riftworld': {
+        yes: {
+            'authorities': [],
             'civics'     : [],
             'ethics'     : [],
         },
