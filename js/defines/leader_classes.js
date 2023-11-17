@@ -1,6 +1,5 @@
 leader_classes = [
-    'admiral',
-    'general',
+    'commander',
     'scientist',
-    'governor',
+    'official',
 ];
