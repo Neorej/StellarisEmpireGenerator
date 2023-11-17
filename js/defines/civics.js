@@ -927,6 +927,7 @@ hive_civics = {
             'civics'     : [
                 'civic_hive_empath',
                 'civic_hive_memorialist',
+                'civic_hive_sovereign_guardianship',
             ],
             'ethics'     : [],
         },
@@ -1023,7 +1024,7 @@ hive_civics = {
         },
         no : {
             'authorities': [],
-            'civics'     : [],
+            'civics'     : ['civic_hive_hyperspace_specialty'],
             'ethics'     : [],
         },
     },
@@ -1060,6 +1061,30 @@ hive_civics = {
         no : {
             'authorities': [],
             'civics'     : [],
+            'ethics'     : [],
+        },
+    },
+    'civic_hive_hyperspace_specialty'                  : {
+        yes: {
+            'authorities': ['auth_hive_mind'],
+            'civics'     : [],
+            'ethics'     : [],
+        },
+        no : {
+            'authorities': [],
+            'civics'     : ['civic_hive_stargazers'],
+            'ethics'     : [],
+        },
+    },
+    'civic_hive_sovereign_guardianship'                  : {
+        yes: {
+            'authorities': ['auth_hive_mind'],
+            'civics'     : [],
+            'ethics'     : [],
+        },
+        no : {
+            'authorities': [],
+            'civics'     : ['civic_hive_devouring_swarm'],
             'ethics'     : [],
         },
     },
