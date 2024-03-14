@@ -1591,6 +1591,7 @@ corporate_civics = {
                 'civic_pleasure_seekers',
                 'civic_indentured_assets',
                 'civic_slaver_guilds',
+                'civic_worker_coop',
             ],
             'ethics'     : [],
         },

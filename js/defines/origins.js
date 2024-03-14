@@ -450,6 +450,7 @@ basegame_origins = {
                 'civic_privatized_exploration',
                 'civic_sovereign_guardianship',
                 'civic_corporate_sovereign_guardianship',
+                'civic_private_healthcare_corporate',
             ],
             'ethics'     : ['ethic_gestalt_consciousness'],
         },
