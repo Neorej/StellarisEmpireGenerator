@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="Random empire generator for Stellaris; generates game-ready empires. Updated for Stellaris 3.11 (Eridanus)">
+    <meta name="description" content="Random empire generator for Stellaris; generates game-ready empires. Updated for Stellaris 3.12 (Andromeda)">
     <title>Stellaris Empire Generator</title>
 
     <link rel="stylesheet" href="css/index.css">
@@ -63,8 +63,8 @@
     </div>
     <h1>Stellaris Empire Generator</h1>
     <p>
-        Tool for generating random empires for Stellaris, updated for 3.11 (Eridanus) <br>
-        Assumes all DLC is installed, with exception of Galaxy Edition Upgrade Pack. <br>
+        Tool for generating random empires for Stellaris, updated for 3.12 (Andromeda) <br>
+        Assumes all DLC is installed. <br>
         <br>
         Put the generated empires in <i>%UserProfile%\Documents\Paradox Interactive\Stellaris\user_empire_designs_v3.4.txt</i>
     </p>
@@ -183,11 +183,15 @@ They only work if the required authorities are not disabled.">
         <label for="planetary_diversity"><abbr title="Adds support for 63 new planet classes">Planetary Diversity</abbr></label>
     </p>
 
-    <br>
-    <button type="button" id="generate">Generate empires</button>
-    <button type="button" onClick="CopyToClipboard('result')">Copy results to clipboard</button>
-    <span id="copyFeedback" style="display:none;">✔</span>
+    <p>
+        <button type="button" id="generate">Generate empires</button>
+        <button type="button" onClick="CopyToClipboard('result')">Copy results to clipboard</button>
+        <span id="copyFeedback" style="display:none;">✔</span>
+    </p>
 
+    <br>
+
+    <h3>Generated empires</h3>
     <div id="result"></div>
 
 </div>
@@ -196,15 +200,6 @@ They only work if the required authorities are not disabled.">
     <div class="background1-moving"></div>
 </div>
 
-<div class="background" style="display:none">
-    <div class="background2-static"></div>
-    <div class="background2-lightning"></div>
-    <div class="background2-moving1"></div>
-    <div class="background2-moving2"></div>
-    <div class="background2-moving3"></div>
-</div>
-
-<div id="background-switcher">></div>
 <script>
     function CopyToClipboard(containerid) {
         // Create a new textarea element and give it id='temp_element'
@@ -248,7 +243,7 @@ They only work if the required authorities are not disabled.">
                 boost_authoritarians: $('input[name="boost_authoritarians"]:checked').val(),
             };
 
-            // Make deepclone of basegame data so mods can add data (and the data can be removed when mod is turned off)
+            // Make deep clone of basegame data so mods can add data (and the data can be removed when mod is turned off)
             civics                      = structuredClone(basegame_civics);
             colors                      = structuredClone(basegame_colors);
             cultures                    = structuredClone(basegame_cultures);
@@ -256,14 +251,13 @@ They only work if the required authorities are not disabled.">
             flags                       = structuredClone(basegame_flags);
             backgrounds                 = structuredClone(basegame_backgrounds);
             origins                     = structuredClone(basegame_origins);
-            plant_origins               = structuredClone(basegame_plant_origins);
             rooms                       = structuredClone(basegame_rooms);
             species                     = structuredClone(basegame_species);
             species_machine             = structuredClone(basegame_species_machine);
             traits                      = structuredClone(basegame_traits);
             lithoid_traits              = structuredClone(basegame_lithoid_traits);
             machine_traits              = structuredClone(basegame_machine_traits);
-            robot_traits                = structuredClone(basegame_robot_traits);
+            machine_background_traits   = structuredClone(basegame_machine_background_traits);
             plant_traits                = structuredClone(basegame_plant_traits);
             overtuned_traits            = structuredClone(basegame_overtuned_traits);
             biological_overtuned_traits = structuredClone(basegame_biological_overtuned_traits);
@@ -305,10 +299,6 @@ They only work if the required authorities are not disabled.">
         });
 
         $('#generate').click();
-
-        $('#background-switcher').on('click tap', function () {
-            $('.background').toggle();
-        });
 
         $('#toggleChart').on('click tap', function () {
             $('#charts').toggle();

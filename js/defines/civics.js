@@ -506,11 +506,33 @@ basegame_civics = {
         },
         no : {
             'authorities': [],
-            'civics'     : ['civic_citizen_service'],
+            'civics'     : [
+                'civic_citizen_service',
+                'civic_sovereign_guardianship',
+            ],
             'ethics'     : [
                 'ethic_pacifist',
                 'ethic_fanatic_pacifist',
                 'civic_sovereign_guardianship',
+            ],
+        },
+    },
+    'civic_selective_kinship'      : {
+        yes: {
+            'authorities': [],
+            'civics'     : [],
+            'ethics'     : [],
+        },
+        no : {
+            'authorities': ['auth_corporate'],
+            'civics'     : [
+                'civic_fanatic_purifiers',
+            ],
+            'ethics'     : [
+                'ethic_gestalt_consciousness',
+                'ethic_xenophile',
+                'ethic_fanatic_xenophile',
+                'ethic_fanatic_egalitarian',
             ],
         },
     },
@@ -544,6 +566,7 @@ basegame_civics = {
                 'civic_fanatic_purifiers',
                 'civic_inwards_perfection',
                 'civic_ancient_preservers', // This one does not even exist =_=
+                'civic_dimensional_worship',
             ],
             'ethics'     : [],
         },
@@ -748,7 +771,7 @@ basegame_civics = {
                 'civic_death_cult',
                 'civic_death_cult_corporate',
             ],
-            'ethics'     : ['ethic_gestalt_consciousness',],
+            'ethics'     : ['ethic_gestalt_consciousness'],
         },
     },
     'civic_heroic_tales'           : {
@@ -1064,7 +1087,7 @@ hive_civics = {
             'ethics'     : [],
         },
     },
-    'civic_hive_hyperspace_specialty'                  : {
+    'civic_hive_hyperspace_specialty'  : {
         yes: {
             'authorities': ['auth_hive_mind'],
             'civics'     : [],
@@ -1076,7 +1099,7 @@ hive_civics = {
             'ethics'     : [],
         },
     },
-    'civic_hive_sovereign_guardianship'                  : {
+    'civic_hive_sovereign_guardianship': {
         yes: {
             'authorities': ['auth_hive_mind'],
             'civics'     : [],
@@ -1091,7 +1114,7 @@ hive_civics = {
 };
 
 machine_civics = {
-    'civic_machine_servitor'             : {
+    'civic_machine_servitor'                      : {
         yes: {
             'authorities': ['auth_machine_intelligence'],
             'civics'     : [],
@@ -1106,7 +1129,7 @@ machine_civics = {
             'ethics'     : [],
         },
     },
-    'civic_machine_terminator'           : {
+    'civic_machine_terminator'                    : {
         yes: {
             'authorities': ['auth_machine_intelligence'],
             'civics'     : [],
@@ -1119,11 +1142,15 @@ machine_civics = {
                 'civic_machine_assimilator',
                 'civic_machine_memorialist',
                 'civic_machine_exploration_protocol',
+                'civic_machine_sovereign_guardianship',
+                'civic_machine_diplomatic_protocols',
+                'civic_machine_tactical_algorithms',
+                'civic_machine_guided_sapience',
             ],
             'ethics'     : [],
         },
     },
-    'civic_machine_assimilator'          : {
+    'civic_machine_assimilator'                   : {
         yes: {
             'authorities': ['auth_machine_intelligence'],
             'civics'     : [],
@@ -1140,7 +1167,7 @@ machine_civics = {
             'ethics'     : [],
         },
     },
-    'civic_machine_builder'              : {
+    'civic_machine_builder'                       : {
         yes: {
             'authorities': ['auth_machine_intelligence'],
             'civics'     : [],
@@ -1152,7 +1179,7 @@ machine_civics = {
             'ethics'     : [],
         },
     },
-    'civic_machine_factory_overclock'    : {
+    'civic_machine_factory_overclock'             : {
         yes: {
             'authorities': ['auth_machine_intelligence'],
             'civics'     : [],
@@ -1164,7 +1191,7 @@ machine_civics = {
             'ethics'     : [],
         },
     },
-    'civic_machine_unitary_cohesion'     : {
+    'civic_machine_unitary_cohesion'              : {
         yes: {
             'authorities': ['auth_machine_intelligence'],
             'civics'     : [],
@@ -1176,56 +1203,7 @@ machine_civics = {
             'ethics'     : [],
         },
     },
-    'civic_machine_rockbreakers'         : {
-        yes: {
-            'authorities': ['auth_machine_intelligence'],
-            'civics'     : [],
-            'ethics'     : [],
-
-        },
-        no : {
-            'authorities': [],
-            'civics'     : [],
-            'ethics'     : [],
-        },
-    },
-    'civic_machine_zero_waste_protocols' : {
-        yes: {
-            'authorities': ['auth_machine_intelligence'],
-            'civics'     : [],
-            'ethics'     : [],
-        },
-        no : {
-            'authorities': [],
-            'civics'     : [],
-            'ethics'     : [],
-        },
-    },
-    'civic_machine_ota_updates'          : {
-        yes: {
-            'authorities': ['auth_machine_intelligence'],
-            'civics'     : [],
-            'ethics'     : [],
-        },
-        no : {
-            'authorities': [],
-            'civics'     : [],
-            'ethics'     : [],
-        },
-    },
-    'civic_machine_warbots'              : {
-        yes: {
-            'authorities': ['auth_machine_intelligence'],
-            'civics'     : [],
-            'ethics'     : [],
-        },
-        no : {
-            'authorities': [],
-            'civics'     : [],
-            'ethics'     : [],
-        },
-    },
-    'civic_machine_introspective'        : {
+    'civic_machine_rockbreakers'                  : {
         yes: {
             'authorities': ['auth_machine_intelligence'],
             'civics'     : [],
@@ -1238,7 +1216,7 @@ machine_civics = {
             'ethics'     : [],
         },
     },
-    'civic_machine_delegated_functions'  : {
+    'civic_machine_zero_waste_protocols'          : {
         yes: {
             'authorities': ['auth_machine_intelligence'],
             'civics'     : [],
@@ -1250,7 +1228,33 @@ machine_civics = {
             'ethics'     : [],
         },
     },
-    'civic_machine_predictive_analysis'  : {
+    'civic_machine_ota_updates'                   : {
+        yes: {
+            'authorities': ['auth_machine_intelligence'],
+            'civics'     : [],
+            'ethics'     : [],
+        },
+        no : {
+            'authorities': [],
+            'civics'     : [],
+            'ethics'     : [],
+        },
+    },
+    'civic_machine_warbots'                       : {
+        yes: {
+            'authorities': ['auth_machine_intelligence'],
+            'civics'     : [],
+            'ethics'     : [],
+        },
+        no : {
+            'authorities': [],
+            'civics'     : [
+                'civic_machine_obsessional_directive',
+            ],
+            'ethics'     : [],
+        },
+    },
+    'civic_machine_introspective'                 : {
         yes: {
             'authorities': ['auth_machine_intelligence'],
             'civics'     : [],
@@ -1263,7 +1267,7 @@ machine_civics = {
             'ethics'     : [],
         },
     },
-    'civic_machine_replication'          : {
+    'civic_machine_delegated_functions'           : {
         yes: {
             'authorities': ['auth_machine_intelligence'],
             'civics'     : [],
@@ -1275,7 +1279,20 @@ machine_civics = {
             'ethics'     : [],
         },
     },
-    'civic_machine_maintenance_protocols': {
+    'civic_machine_predictive_analysis'           : {
+        yes: {
+            'authorities': ['auth_machine_intelligence'],
+            'civics'     : [],
+            'ethics'     : [],
+
+        },
+        no : {
+            'authorities': [],
+            'civics'     : [],
+            'ethics'     : [],
+        },
+    },
+    'civic_machine_replication'                   : {
         yes: {
             'authorities': ['auth_machine_intelligence'],
             'civics'     : [],
@@ -1287,7 +1304,19 @@ machine_civics = {
             'ethics'     : [],
         },
     },
-    'civic_machine_memorialist'          : {
+    'civic_machine_maintenance_protocols'         : {
+        yes: {
+            'authorities': ['auth_machine_intelligence'],
+            'civics'     : [],
+            'ethics'     : [],
+        },
+        no : {
+            'authorities': [],
+            'civics'     : [],
+            'ethics'     : [],
+        },
+    },
+    'civic_machine_memorialist'                   : {
         yes: {
             'authorities': ['auth_machine_intelligence'],
             'civics'     : [],
@@ -1302,7 +1331,7 @@ machine_civics = {
             'ethics'     : [],
         },
     },
-    'civic_machine_catalytic_processing' : {
+    'civic_machine_catalytic_processing'          : {
         yes: {
             'authorities': ['auth_machine_intelligence'],
             'civics'     : [],
@@ -1314,7 +1343,7 @@ machine_civics = {
             'ethics'     : [],
         },
     },
-    'civic_machine_toxic_baths'          : {
+    'civic_machine_toxic_baths'                   : {
         yes: {
             'authorities': ['auth_machine_intelligence'],
             'civics'     : [],
@@ -1326,7 +1355,7 @@ machine_civics = {
             'ethics'     : [],
         },
     },
-    'civic_machine_ascensionists'        : {
+    'civic_machine_ascensionists'                 : {
         yes: {
             'authorities': ['auth_machine_intelligence'],
             'civics'     : [],
@@ -1338,7 +1367,7 @@ machine_civics = {
             'ethics'     : [],
         },
     },
-    'civic_machine_exploration_protocol' : {
+    'civic_machine_exploration_protocol'          : {
         yes: {
             'authorities': ['auth_machine_intelligence'],
             'civics'     : [],
@@ -1349,11 +1378,12 @@ machine_civics = {
             'civics'     : [
                 'civic_machine_terminator',
                 'civic_machine_assimilator',
+                'civic_machine_guided_sapience',
             ],
             'ethics'     : [],
         },
     },
-    'civic_memory_vault_machine'         : {
+    'civic_memory_vault_machine'                  : {
         yes: {
             'authorities': ['auth_machine_intelligence'],
             'civics'     : [],
@@ -1365,7 +1395,7 @@ machine_civics = {
             'ethics'     : [],
         },
     },
-    'civic_machine_upkeep_twister'       : {
+    'civic_machine_upkeep_twister'                : {
         yes: {
             'authorities': ['auth_machine_intelligence'],
             'civics'     : [],
@@ -1375,12 +1405,155 @@ machine_civics = {
             'authorities': [],
             'civics'     : [],
             'ethics'     : [],
+        },
+    },
+    'civic_machine_sovereign_guardianship'        : {
+        yes: {
+            'authorities': ['auth_machine_intelligence'],
+            'civics'     : [],
+            'ethics'     : [],
+        },
+        no : {
+            'authorities': [],
+            'civics'     : [
+                'civic_machine_terminator',
+            ],
+            'ethics'     : [],
+        },
+    },
+    'civic_machine_obsessional_directive'         : {
+        yes: {
+            'authorities': ['auth_machine_intelligence'],
+            'civics'     : [],
+            'ethics'     : [],
+        },
+        no : {
+            'authorities': [],
+            'civics'     : [
+                'civic_machine_warbots',
+            ],
+            'ethics'     : [],
+        },
+    },
+    'civic_machine_diplomatic_protocols'          : {
+        yes: {
+            'authorities': ['auth_machine_intelligence'],
+            'civics'     : [],
+            'ethics'     : [],
+        },
+        no : {
+            'authorities': [],
+            'civics'     : [
+                'civic_machine_terminator',
+            ],
+            'ethics'     : [],
+        },
+    },
+    'civic_machine_tactical_algorithms'           : {
+        yes: {
+            'authorities': ['auth_machine_intelligence'],
+            'civics'     : [],
+            'ethics'     : [],
+        },
+        no : {
+            'authorities': [],
+            'civics'     : [
+                'civic_machine_terminator',
+            ],
+            'ethics'     : [],
+        },
+    },
+    'civic_machine_guided_sapience'               : {
+        yes: {
+            'authorities': ['auth_machine_intelligence'],
+            'civics'     : [],
+            'ethics'     : ['ethic_gestalt_consciousness'],
+        },
+        no : {
+            'authorities': [],
+            'civics'     : [
+                'civic_machine_terminator',
+                'civic_machine_exploration_protocol',
+            ],
+            'ethics'     : [],
+        },
+    },
+    'civic_machine_spybots'                       : {
+        yes: {
+            'authorities': ['auth_machine_intelligence'],
+            'civics'     : [],
+            'ethics'     : [],
+        },
+        no : {
+            'authorities': [],
+            'civics'     : [],
+            'ethics'     : [],
+        },
+    },
+    'civic_machine_astromining_drones'            : {
+        yes: {
+            'authorities': ['auth_machine_intelligence'],
+            'civics'     : [],
+            'ethics'     : [],
+        },
+        no : {
+            'authorities': [],
+            'civics'     : [],
+            'ethics'     : [],
+        },
+    },
+    'civic_toxic_baths_individual_machine'        : {
+        yes: {
+            'authorities': [],
+            'civics'     : [],
+            'ethics'     : [],
+        },
+        no : {
+            'authorities': ['auth_corporate'],
+            'civics'     : ['civic_corporate_toxic_baths_individual_machine'],
+            'ethics'     : ['ethic_gestalt_consciousness'],
+        },
+    },
+    'civic_individual_machine_replication'        : {
+        yes: {
+            'authorities': [],
+            'civics'     : [],
+            'ethics'     : [],
+        },
+        no : {
+            'authorities': ['auth_corporate'],
+            'civics'     : [],
+            'ethics'     : ['ethic_gestalt_consciousness'],
+        },
+    },
+    'civic_individual_machine_predictive_analysis': {
+        yes: {
+            'authorities': [],
+            'civics'     : [],
+            'ethics'     : [],
+        },
+        no : {
+            'authorities': ['auth_corporate'],
+            'civics'     : [],
+            'ethics'     : ['ethic_gestalt_consciousness'],
+        },
+    },
+    'civic_individual_machine_warbots'            : {
+        yes: {
+            'authorities': [],
+            'civics'     : [],
+            'ethics'     : [],
+        },
+        no : {
+            'authorities': ['auth_corporate'],
+            'civics'     : ['civic_machine_obsessional_directive'],
+            'ethics'     : ['ethic_gestalt_consciousness'],
         },
     },
 };
 
 corporate_civics = {
-    'civic_franchising'                   : {
+    'civic_franchising'                             : {
         yes: {
             'authorities': ['auth_corporate'],
             'civics'     : [],
@@ -1392,7 +1565,7 @@ corporate_civics = {
             'ethics'     : [],
         },
     },
-    'civic_trading_posts'                 : {
+    'civic_trading_posts'                           : {
         yes: {
             'authorities': ['auth_corporate'],
             'civics'     : [],
@@ -1404,7 +1577,7 @@ corporate_civics = {
             'ethics'     : [],
         },
     },
-    'civic_media_conglomerate'            : {
+    'civic_media_conglomerate'                      : {
         yes: {
             'authorities': ['auth_corporate'],
             'civics'     : [],
@@ -1416,7 +1589,7 @@ corporate_civics = {
             'ethics'     : [],
         },
     },
-    'civic_naval_contractors'             : {
+    'civic_naval_contractors'                       : {
         yes: {
             'authorities': ['auth_corporate'],
             'civics'     : [],
@@ -1431,7 +1604,7 @@ corporate_civics = {
             'ethics'     : [],
         },
     },
-    'civic_free_traders'                  : {
+    'civic_free_traders'                            : {
         yes: {
             'authorities': ['auth_corporate'],
             'civics'     : [],
@@ -1443,7 +1616,7 @@ corporate_civics = {
             'ethics'     : [],
         },
     },
-    'civic_private_prospectors'           : {
+    'civic_private_prospectors'                     : {
         yes: {
             'authorities': ['auth_corporate'],
             'civics'     : [],
@@ -1451,11 +1624,13 @@ corporate_civics = {
         },
         no : {
             'authorities': [],
-            'civics'     : [],
+            'civics'     : [
+                'civic_corporate_guided_sapience',
+            ],
             'ethics'     : [],
         },
     },
-    'civic_gospel_of_the_masses'          : {
+    'civic_gospel_of_the_masses'                    : {
         yes: {
             'authorities': ['auth_corporate'],
             'civics'     : [],
@@ -1470,7 +1645,7 @@ corporate_civics = {
             'ethics'     : [],
         },
     },
-    'civic_ruthless_competition'          : {
+    'civic_ruthless_competition'                    : {
         yes: {
             'authorities': ['auth_corporate'],
             'civics'     : [],
@@ -1482,7 +1657,7 @@ corporate_civics = {
             'ethics'     : [],
         },
     },
-    'civic_criminal_heritage'             : {
+    'civic_criminal_heritage'                       : {
         yes: {
             'authorities': ['auth_corporate'],
             'civics'     : [],
@@ -1494,7 +1669,7 @@ corporate_civics = {
             'ethics'     : [],
         },
     },
-    'civic_private_military_companies'    : {
+    'civic_private_military_companies'              : {
         yes: {
             'authorities': ['auth_corporate'],
             'civics'     : [],
@@ -1509,7 +1684,7 @@ corporate_civics = {
             'ethics'     : [],
         },
     },
-    'civic_indentured_assets'             : {
+    'civic_indentured_assets'                       : {
         yes: {
             'authorities': ['auth_corporate'],
             'civics'     : [],
@@ -1524,7 +1699,7 @@ corporate_civics = {
             'ethics'     : [],
         },
     },
-    'civic_brand_loyalty'                 : {
+    'civic_brand_loyalty'                           : {
         yes: {
             'authorities': ['auth_corporate'],
             'civics'     : [],
@@ -1536,7 +1711,7 @@ corporate_civics = {
             'ethics'     : [],
         },
     },
-    'civic_public_relations_specialists'  : {
+    'civic_public_relations_specialists'            : {
         yes: {
             'authorities': ['auth_corporate'],
             'civics'     : [],
@@ -1548,7 +1723,7 @@ corporate_civics = {
             'ethics'     : [],
         },
     },
-    'civic_death_cult_corporate'          : {
+    'civic_death_cult_corporate'                    : {
         yes: {
             'authorities': ['auth_corporate'],
             'civics'     : [],
@@ -1567,7 +1742,7 @@ corporate_civics = {
             'ethics'     : [],
         },
     },
-    'civic_corporate_catalytic_processing': {
+    'civic_corporate_catalytic_processing'          : {
         yes: {
             'authorities': ['auth_corporate'],
             'civics'     : [],
@@ -1579,7 +1754,7 @@ corporate_civics = {
             'ethics'     : [],
         },
     },
-    'civic_corporate_hedonism'            : {
+    'civic_corporate_hedonism'                      : {
         yes: {
             'authorities': ['auth_corporate'],
             'civics'     : [],
@@ -1596,7 +1771,7 @@ corporate_civics = {
             'ethics'     : [],
         },
     },
-    'civic_corporate_anglers'             : {
+    'civic_corporate_anglers'                       : {
         yes: {
             'authorities': ['auth_corporate'],
             'civics'     : [],
@@ -1608,7 +1783,7 @@ corporate_civics = {
             'ethics'     : [],
         },
     },
-    'civic_corporate_crafters'            : {
+    'civic_corporate_crafters'                      : {
         yes: {
             'authorities': ['auth_corporate'],
             'civics'     : [],
@@ -1620,7 +1795,7 @@ corporate_civics = {
             'ethics'     : [],
         },
     },
-    'civic_permanent_employment'          : {
+    'civic_permanent_employment'                    : {
         yes: {
             'authorities': ['auth_corporate'],
             'civics'     : [],
@@ -1635,7 +1810,7 @@ corporate_civics = {
             ],
         },
     },
-    'civic_toxic_baths'                   : { // Mutagenic Spas
+    'civic_toxic_baths'                             : { // Mutagenic Spas
         yes: {
             'authorities': [],
             'civics'     : [],
@@ -1647,7 +1822,7 @@ corporate_civics = {
             'ethics'     : [],
         },
     },
-    'civic_relentless_industrialists'     : {
+    'civic_relentless_industrialists'               : {
         yes: {
             'authorities': [],
             'civics'     : [],
@@ -1664,7 +1839,7 @@ corporate_civics = {
             'ethics'     : [],
         },
     },
-    'civic_corporate_scavengers'          : {
+    'civic_corporate_scavengers'                    : {
         yes: {
             'authorities': ['auth_corporate'],
             'civics'     : [],
@@ -1676,7 +1851,7 @@ corporate_civics = {
             'ethics'     : [],
         },
     },
-    'civic_corporate_ascensionists'       : {
+    'civic_corporate_ascensionists'                 : {
         yes: {
             'authorities': ['auth_corporate'],
             'civics'     : [],
@@ -1691,7 +1866,7 @@ corporate_civics = {
             'ethics'     : [],
         },
     },
-    'civic_privatized_exploration'        : {
+    'civic_privatized_exploration'                  : {
         yes: {
             'authorities': ['auth_corporate'],
             'civics'     : [],
@@ -1708,7 +1883,7 @@ corporate_civics = {
             'ethics'     : [],
         },
     },
-    'civic_corporate_hyperspace_specialty'        : {
+    'civic_corporate_hyperspace_specialty'          : {
         yes: {
             'authorities': ['auth_corporate'],
             'civics'     : [],
@@ -1723,13 +1898,13 @@ corporate_civics = {
             'ethics'     : [],
         },
     },
-    'civic_corporate_dimensional_worship'        : {
+    'civic_corporate_dimensional_worship'           : {
         yes: {
             'authorities': ['auth_corporate'],
             'civics'     : [],
             'ethics'     : [
                 'ethic_spiritualist',
-                'ethic_fanatic_spiritualist'
+                'ethic_fanatic_spiritualist',
             ],
         },
         no : {
@@ -1741,7 +1916,7 @@ corporate_civics = {
             'ethics'     : [],
         },
     },
-    'civic_crusader_spirit_corporate'     : {
+    'civic_crusader_spirit_corporate'               : {
         yes: {
             'authorities': ['auth_corporate'],
             'civics'     : [],
@@ -1761,7 +1936,7 @@ corporate_civics = {
             ],
         },
     },
-    'civic_task_delegation_corporate'     : {
+    'civic_task_delegation_corporate'               : {
         yes: {
             'authorities': ['auth_corporate'],
             'civics'     : [],
@@ -1773,7 +1948,7 @@ corporate_civics = {
             'ethics'     : [],
         },
     },
-    'civic_private_healthcare_corporate'  : {
+    'civic_private_healthcare_corporate'            : {
         yes: {
             'authorities': ['auth_corporate'],
             'civics'     : [],
@@ -1785,7 +1960,7 @@ corporate_civics = {
             'ethics'     : [],
         },
     },
-    'civic_memory_vault_corporate'        : {
+    'civic_memory_vault_corporate'                  : {
         yes: {
             'authorities': ['auth_corporate'],
             'civics'     : [],
@@ -1797,7 +1972,7 @@ corporate_civics = {
             'ethics'     : [],
         },
     },
-    'civic_worker_coop'        : {
+    'civic_worker_coop'                             : {
         yes: {
             'authorities': ['auth_corporate'],
             'civics'     : [],
@@ -1818,11 +1993,11 @@ corporate_civics = {
             ],
             'ethics'     : [
                 'ethic_xenophobe',
-                'ethic_fanatic_xenophobe'
+                'ethic_fanatic_xenophobe',
             ],
         },
     },
-    'civic_corporate_dark_consortium'        : {
+    'civic_corporate_dark_consortium'               : {
         yes: {
             'authorities': ['auth_corporate'],
             'civics'     : [],
@@ -1834,13 +2009,25 @@ corporate_civics = {
             'ethics'     : [],
         },
     },
+    'civic_augmentation_bazaars'                    : {
+        yes: {
+            'authorities': ['auth_corporate'],
+            'civics'     : [],
+            'ethics'     : [],
+        },
+        no : {
+            'authorities': [],
+            'civics'     : [],
+            'ethics'     : ['ethic_gestalt_consciousness'],
+        },
+    },
     'civic_corporate_sovereign_guardianship'        : {
         yes: {
             'authorities': ['auth_corporate'],
             'civics'     : [],
             'ethics'     : [
                 'ethic_militarist',
-                'ethic_fanatic_militarist'
+                'ethic_fanatic_militarist',
             ],
         },
         no : {
@@ -1855,4 +2042,36 @@ corporate_civics = {
             'ethics'     : [],
         },
     },
+    'civic_corporate_guided_sapience'               : {
+        yes: {
+            'authorities': ['auth_corporate'],
+            'civics'     : [],
+            'ethics'     : [],
+        },
+        no : {
+            'authorities': [],
+            'civics'     : [
+                'civic_private_prospectors',
+                'civic_eager_explorers',
+                'civic_privatized_exploration',
+                'civic_hive_stargazers',
+                'civic_machine_exploration_protocol',
+            ],
+            'ethics'     : [
+                'ethic_xenophobe',
+                'ethic_fanatic_xenophobe',
+            ],
+        },
+    },
 };
+
+// If any of these civics is picked, non-gestalt machine cannot be picked as species
+machine_disabled_civics = [
+    'civic_anglers',
+    'civic_corporate_anglers',
+    'civic_selective_kinship',
+    'civic_reanimated_armies',
+    'civic_permanent_employment',
+    'civic_augmentation_bazaars',
+    'civic_private_healthcare_corporate',
+];

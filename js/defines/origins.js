@@ -1,5 +1,5 @@
 basegame_origins = {
-    'origin_default'                : { // Prosperous Unification
+    'origin_default'                  : { // Prosperous Unification
         yes: {
             'authorities': [],
             'civics'     : [],
@@ -13,7 +13,7 @@ basegame_origins = {
 
         },
     },
-    'origin_mechanists'             : {
+    'origin_mechanists'               : {
         yes: {
             'authorities': [],
             'civics'     : [],
@@ -26,9 +26,12 @@ basegame_origins = {
             'authorities': [],
             'civics'     : ['civic_permanent_employment'],
             'ethics'     : ['ethic_gestalt_consciousness'],
+            'species'    : [
+                'MACHINE',
+            ],
         },
     },
-    'origin_syncretic_evolution'    : {
+    'origin_syncretic_evolution'      : {
         yes: {
             'authorities': [],
             'civics'     : [],
@@ -36,11 +39,14 @@ basegame_origins = {
         },
         no : {
             'authorities': [],
-            'civics'     : ['civic_fanatic_purifiers'],
+            'civics'     : [
+                'civic_fanatic_purifiers',
+                'civic_corporate_guided_sapience',
+            ],
             'ethics'     : ['ethic_gestalt_consciousness'],
         },
     },
-    'origin_life_seeded'            : {
+    'origin_life_seeded'              : {
         yes: {
             'authorities': [],
             'civics'     : [],
@@ -53,41 +59,14 @@ basegame_origins = {
                 'civic_hive_toxic_baths',
                 'civic_machine_toxic_baths',
                 'civic_relentless_industrialists',
+                'civic_machine_guided_sapience',
+                'civic_toxic_baths_individual_machine',
+                'civic_corporate_toxic_baths_individual_machine',
             ],
             'ethics'     : [],
         },
     },
-    'origin_post_apocalyptic'       : {
-        yes: {
-            'authorities': [],
-            'civics'     : [],
-            'ethics'     : [],
-        },
-        no : {
-            'authorities': ['auth_machine_intelligence'],
-            'civics'     : [
-                'civic_agrarian_idyll',
-                'civic_anglers',
-                'civic_corporate_anglers',
-            ],
-            'ethics'     : [],
-        },
-    },
-    'origin_remnants'               : {
-        yes: {
-            'authorities': [],
-            'civics'     : [],
-            'ethics'     : [],
-        },
-        no : {
-            'authorities': [],
-            'civics'     : [
-                'civic_agrarian_idyll',
-            ],
-            'ethics'     : [],
-        },
-    },
-    'origin_shattered_ring'         : {
+    'origin_post_apocalyptic'         : {
         yes: {
             'authorities': [],
             'civics'     : [],
@@ -101,9 +80,61 @@ basegame_origins = {
                 'civic_corporate_anglers',
             ],
             'ethics'     : [],
+            'species'    : [
+                'MACHINE',
+            ],
         },
     },
-    'origin_void_dwellers'          : {
+    'origin_post_apocalyptic_machines': {
+        yes: {
+            'authorities': [],
+            'civics'     : [],
+            'ethics'     : [],
+            'species'    : [
+                'MACHINE',
+            ],
+        },
+        no : {
+            'authorities': [],
+            'civics'     : [
+                'civic_agrarian_idyll',
+                'civic_anglers',
+                'civic_corporate_anglers',
+            ],
+            'ethics'     : [],
+        },
+    },
+    'origin_remnants'                 : {
+        yes: {
+            'authorities': [],
+            'civics'     : [],
+            'ethics'     : [],
+        },
+        no : {
+            'authorities': [],
+            'civics'     : [
+                'civic_agrarian_idyll',
+            ],
+            'ethics'     : [],
+        },
+    },
+    'origin_shattered_ring'           : {
+        yes: {
+            'authorities': [],
+            'civics'     : [],
+            'ethics'     : [],
+        },
+        no : {
+            'authorities': [],
+            'civics'     : [
+                'civic_agrarian_idyll',
+                'civic_anglers',
+                'civic_corporate_anglers',
+            ],
+            'ethics'     : [],
+        },
+    },
+    'origin_void_dwellers'            : {
         yes: {
             'authorities': [],
             'civics'     : [],
@@ -119,9 +150,34 @@ basegame_origins = {
                 'civic_corporate_anglers',
             ],
             'ethics'     : ['ethic_gestalt_consciousness'],
+            'species'    : [
+                'MACHINE',
+            ],
         },
     },
-    'origin_scion'                  : {
+    'origin_void_machines'            : {
+        yes: {
+            'authorities': [],
+            'civics'     : [],
+            'ethics'     : [],
+            'species'    : [
+                'MACHINE',
+            ],
+        },
+        no : {
+            'authorities': [],
+            'civics'     : [
+                'civic_agrarian_idyll',
+                'civic_idyllic_bloom',
+                'civic_hive_idyllic_bloom',
+                'civic_anglers',
+                'civic_corporate_anglers',
+            ],
+            'ethics'     : [],
+            'species'    : [],
+        },
+    },
+    'origin_scion'                    : {
         yes: {
             'authorities': [],
             'civics'     : [],
@@ -134,9 +190,12 @@ basegame_origins = {
                 'ethic_gestalt_consciousness',
                 'ethic_fanatic_xenophobe',
             ],
+            'species'    : [
+                'MACHINE',
+            ],
         },
     },
-    'origin_galactic_doorstep'      : {
+    'origin_galactic_doorstep'        : {
         yes: {
             'authorities': [],
             'civics'     : [],
@@ -148,7 +207,7 @@ basegame_origins = {
             'ethics'     : [],
         },
     },
-    'origin_tree_of_life'           : {
+    'origin_tree_of_life'             : {
         yes: {
             'authorities': ['auth_hive_mind'],
             'civics'     : [],
@@ -160,7 +219,7 @@ basegame_origins = {
             'ethics'     : [],
         },
     },
-    'origin_shoulders_of_giants'    : {
+    'origin_shoulders_of_giants'      : {
         yes: {
             'authorities': [],
             'civics'     : [],
@@ -170,9 +229,12 @@ basegame_origins = {
             'authorities': [],
             'civics'     : [],
             'ethics'     : ['ethic_gestalt_consciousness'],
+            'species'    : [
+                'MACHINE',
+            ],
         },
     },
-    'origin_lithoid'                : {
+    'origin_lithoid'                  : {
         yes: {
             'authorities': [],
             'civics'     : [],
@@ -188,7 +250,7 @@ basegame_origins = {
             'ethics'     : [],
         },
     },
-    'origin_machine'                : {
+    'origin_machine'                  : {
         yes: {
             'authorities': ['auth_machine_intelligence'],
             'civics'     : [],
@@ -199,11 +261,12 @@ basegame_origins = {
             'civics'     : [
                 'civic_machine_servitor',
                 'civic_machine_catalytic_processing',
+                'civic_machine_guided_sapience',
             ],
             'ethics'     : [],
         },
     },
-    'origin_common_ground'          : {
+    'origin_common_ground'            : {
         yes: {
             'authorities': [],
             'civics'     : [],
@@ -225,7 +288,7 @@ basegame_origins = {
             ],
         },
     },
-    'origin_hegemon'                : {
+    'origin_hegemon'                  : {
         yes: {
             'authorities': [],
             'civics'     : [],
@@ -248,7 +311,7 @@ basegame_origins = {
             ],
         },
     },
-    'origin_doomsday'               : {
+    'origin_doomsday'                 : {
         yes: {
             'authorities': [],
             'civics'     : [],
@@ -260,7 +323,7 @@ basegame_origins = {
             'ethics'     : [],
         },
     },
-    'origin_lost_colony'            : {
+    'origin_lost_colony'              : {
         yes: {
             'authorities': [],
             'civics'     : [],
@@ -272,14 +335,14 @@ basegame_origins = {
             'ethics'     : ['ethic_gestalt_consciousness'],
         },
     },
-    'origin_necrophage'             : {
+    'origin_necrophage'               : {
         yes: {
             'authorities': [],
             'civics'     : [],
             'ethics'     : [],
         },
         no : {
-            'authorities': ['auth_machine_intelligence'],
+            'authorities': [],
             'civics'     : [
                 'civic_death_cult',
                 'civic_death_cult_corporate',
@@ -291,9 +354,12 @@ basegame_origins = {
                 'ethic_fanatic_xenophile',
                 'ethic_fanatic_egalitarian',
             ],
+            'species'    : [
+                'MACHINE',
+            ],
         },
     },
-    'origin_clone_army'             : {
+    'origin_clone_army'               : {
         yes: {
             'authorities': [],
             'civics'     : [],
@@ -303,9 +369,12 @@ basegame_origins = {
             'authorities': [],
             'civics'     : ['civic_permanent_employment'],
             'ethics'     : ['ethic_gestalt_consciousness'],
+            'species'    : [
+                'MACHINE',
+            ],
         },
     },
-    'origin_here_be_dragons'        : {
+    'origin_here_be_dragons'          : {
         yes: {
             'authorities': [],
             'civics'     : [],
@@ -321,19 +390,37 @@ basegame_origins = {
             'ethics'     : [],
         },
     },
-    'origin_ocean_paradise'         : {
+    'origin_ocean_paradise'           : {
         yes: {
             'authorities': [],
             'civics'     : [],
             'ethics'     : [],
         },
         no : {
-            'authorities': ['auth_machine_intelligence'],
+            'authorities': [],
+            'civics'     : [],
+            'ethics'     : [],
+            'species'    : [
+                'MACHINE',
+            ],
+        },
+    },
+    'origin_ocean_machines'           : {
+        yes: {
+            'authorities': [],
+            'civics'     : [],
+            'ethics'     : [],
+            'species'    : [
+                'MACHINE',
+            ],
+        },
+        no : {
+            'authorities': [],
             'civics'     : [],
             'ethics'     : [],
         },
     },
-    'origin_progenitor_hive'        : {
+    'origin_progenitor_hive'          : {
         yes: {
             'authorities': ['auth_hive_mind'],
             'civics'     : [],
@@ -345,22 +432,43 @@ basegame_origins = {
             'ethics'     : [],
         },
     },
-    'origin_subterranean'           : {
+    'origin_subterranean'             : {
         yes: {
             'authorities': [],
             'civics'     : [],
             'ethics'     : [],
         },
         no : {
-            'authorities': ['auth_machine_intelligence'],
+            'authorities': [],
             'civics'     : [
                 'civic_anglers',
                 'civic_corporate_anglers',
             ],
             'ethics'     : [],
+            'species'    : [
+                'MACHINE',
+            ],
         },
     },
-    'origin_star_slingshot'         : {
+    'origin_subterranean_machines'    : {
+        yes: {
+            'authorities': [],
+            'civics'     : [],
+            'ethics'     : [],
+            'species'    : [
+                'MACHINE',
+            ],
+        },
+        no : {
+            'authorities': [],
+            'civics'     : [
+                'civic_machine_anglers',
+                'civic_corporate_machine_anglers',
+            ],
+            'ethics'     : [],
+        },
+    },
+    'origin_star_slingshot'           : {
         yes: {
             'authorities': [],
             'civics'     : [],
@@ -372,7 +480,7 @@ basegame_origins = {
             'ethics'     : [],
         },
     },
-    'origin_shroudwalker_apprentice': {
+    'origin_shroudwalker_apprentice'  : {
         yes: {
             'authorities': [],
             'civics'     : [],
@@ -382,12 +490,18 @@ basegame_origins = {
             ],
         },
         no : {
-            'authorities': ['auth_machine_intelligence'], // Not directly incompatible, but machines cannot select trait_latent_psionic trait which comes with this origin
-            'civics'     : ['civic_fanatic_purifiers'],
+            'authorities': [],
+            'civics'     : [
+                'civic_fanatic_purifiers',
+                'civic_augmentation_bazaars',
+            ],
             'ethics'     : [],
+            'species'    : [
+                'MACHINE',
+            ],
         },
     },
-    'origin_imperial_vassal'        : {
+    'origin_imperial_vassal'          : {
         yes: {
             'authorities': [],
             'civics'     : [],
@@ -405,7 +519,7 @@ basegame_origins = {
             'ethics'     : [],
         },
     },
-    'origin_overtuned'              : {
+    'origin_overtuned'                : {
         yes: {
             'authorities': [],
             'civics'     : [],
@@ -415,9 +529,12 @@ basegame_origins = {
             'authorities': ['auth_machine_intelligence'],
             'civics'     : [],
             'ethics'     : [],
+            'species'    : [
+                'MACHINE',
+            ],
         },
     },
-    'origin_toxic_knights'          : {
+    'origin_toxic_knights'            : {
         yes: {
             'authorities': [],
             'civics'     : [],
@@ -430,9 +547,12 @@ basegame_origins = {
                 'civic_dystopian_society',
             ],
             'ethics'     : ['ethic_gestalt_consciousness'],
+            'species'    : [
+                'MACHINE',
+            ],
         },
     },
-    'origin_payback'                : {
+    'origin_payback'                  : {
         yes: {
             'authorities': [],
             'civics'     : [],
@@ -453,9 +573,12 @@ basegame_origins = {
                 'civic_private_healthcare_corporate',
             ],
             'ethics'     : ['ethic_gestalt_consciousness'],
+            'species'    : [
+                'MACHINE',
+            ],
         },
     },
-    'origin_broken_shackles'        : {
+    'origin_broken_shackles'          : {
         yes: {
             'authorities': [],
             'civics'     : [],
@@ -480,9 +603,12 @@ basegame_origins = {
                 'ethic_xenophobe',
                 'ethic_fanatic_xenophobe',
             ],
+            'species'    : [
+                'MACHINE',
+            ],
         },
     },
-    'origin_fear_of_the_dark'       : {
+    'origin_fear_of_the_dark'         : {
         yes: {
             'authorities': [],
             'civics'     : [],
@@ -499,9 +625,13 @@ basegame_origins = {
                 'civic_corporate_sovereign_guardianship',
             ],
             'ethics'     : ['ethic_gestalt_consciousness'],
+            'species'    : [
+                'MACHINE',
+            ],
+
         },
     },
-    'origin_legendary_leader'       : {
+    'origin_legendary_leader'         : {
         yes: {
             'authorities': ['auth_dictatorial'],
             'civics'     : [],
@@ -511,24 +641,12 @@ basegame_origins = {
             'authorities': [],
             'civics'     : [],
             'ethics'     : [],
+            'species'    : [
+                'MACHINE',
+            ],
         },
     },
-    'origin_riftworld': {
-        yes: {
-            'authorities': [],
-            'civics'     : [],
-            'ethics'     : [],
-        },
-        no : {
-            'authorities': [],
-            'civics'     : [],
-            'ethics'     : [],
-        },
-    },
-};
-
-basegame_plant_origins = {
-    'origin_fruitful'       : {
+    'origin_fruitful'                 : {
         yes: {
             'authorities': [],
             'civics'     : [],
@@ -539,12 +657,101 @@ basegame_plant_origins = {
                 'ethic_fanatic_pacifist',
                 'ethic_gestalt_consciousness',
             ],
+            'species'    : [
+                'FUN',
+                'PLANT',
+            ],
         },
         no : {
             'authorities': [],
             'civics'     : [
-                'civic_hive_devouring_swarm'
+                'civic_hive_devouring_swarm',
             ],
+            'ethics'     : [],
+        },
+    },
+    'origin_riftworld'                : {
+        yes: {
+            'authorities': [],
+            'civics'     : [],
+            'ethics'     : [],
+        },
+        no : {
+            'authorities': [],
+            'civics'     : [],
+            'ethics'     : [],
+        },
+    },
+    'origin_cybernetic_creed'         : {
+        yes: {
+            'authorities': [],
+            'civics'     : [],
+            'ethics'     : [
+                'ethic_spiritualist',
+                'ethic_fanatic_spiritualist',
+            ],
+        },
+        no : {
+            'authorities': [],
+            'civics'     : [
+                'civic_death_cult',
+                'civic_death_cult_corporate',
+                'civic_permanent_employment',
+                'civic_natural_design',
+            ],
+            'ethics'     : [
+                'ethic_egalitarian',
+                'ethic_fanatic_egalitarian',
+            ],
+            'species'    : [
+                'MACHINE',
+            ],
+        },
+    },
+    'origin_synthetic_fertility'      : {
+        yes: {
+            'authorities': [],
+            'civics'     : [],
+            'ethics'     : [],
+        },
+        no : {
+            'authorities': [],
+            'civics'     : [
+                'civic_permanent_employment',
+                'civic_reanimated_armies',
+                'civic_natural_design',
+                'civic_augmentation_bazaars',
+                'civic_toxic_baths',
+                'civic_toxic_baths_individual_machine',
+                'civic_corporate_toxic_baths',
+                'civic_corporate_toxic_baths_individual_machine',
+                'civic_hive_toxic_baths',
+                'civic_machine_toxic_baths',
+                'civic_eager_explorers',
+                'civic_privatized_exploration',
+                'civic_hive_stargazers',
+                'civic_machine_exploration_protocol',
+            ],
+            'ethics'     : [
+                'ethic_gestalt_consciousness',
+                'ethic_spiritualist',
+                'ethic_fanatic_spiritualist',
+            ],
+            'species'    : [
+                'MACHINE',
+            ],
+        },
+    },
+    'origin_arc_welders'              : {
+        yes: {
+            'authorities': [],
+            'civics'     : [],
+            'ethics'     : [],
+            'species'    : ['MACHINE'],
+        },
+        no : {
+            'authorities': [],
+            'civics'     : [],
             'ethics'     : [],
         },
     },

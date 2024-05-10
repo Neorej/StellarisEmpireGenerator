@@ -3,6 +3,7 @@ basegame_species = {
         secondary: true,
         portraits: [
             'human',
+            'human_legacy',
             'humanoid_02',
             'humanoid_03',
             'humanoid_04',
@@ -19,6 +20,11 @@ basegame_species = {
             'humanoid_hp_13',
             'humanoid_hp_14',
             'humanoid_elf',
+            'humanoid_hp_16',
+            'cyb8',
+            'cyb12',
+            'synth04',
+            'synth07',
         ],
     },
     'MAM'    : {
@@ -42,6 +48,11 @@ basegame_species = {
             'mam16',
             'mam_rat',
             'mam17',
+            'cyb1',
+            'cyb2',
+            'cyb3',
+            'cyb6',
+            'cyb7',
         ],
     },
     'REP'    : {
@@ -64,6 +75,9 @@ basegame_species = {
             'rep5',
             'rep16',
             'rep17',
+            'cyb4',
+            'cyb10',
+            'cyb11',
         ],
     },
     'AVI'    : {
@@ -87,6 +101,8 @@ basegame_species = {
             //'avi16',  // logged_in_to_pdx_account required?
             'avi17',
             'avi18',
+            'cyb5',
+            'synth01'
         ],
     },
     'ART'    : {
@@ -107,9 +123,13 @@ basegame_species = {
             'art15',
             'art19',
             'art18',
-            // 'art16', // 'Arachnoid Portrait Pack' required?
+            'art16',
             'art20',
             'art17',
+            'cyb9',
+            'synth02',
+            'synth08',
+            'synth09',
         ],
     },
     'MOL'    : {
@@ -131,6 +151,8 @@ basegame_species = {
             'mol16',
             'mol17',
             'mol18',
+            'synth03',
+            'synth05',
         ],
     },
     'FUN'    : {
@@ -152,6 +174,7 @@ basegame_species = {
             'fun10',
             'fun16',
             'fun17',
+            'cyb13',
         ],
     },
     'PLANT'  : {
@@ -215,6 +238,7 @@ basegame_species = {
             'aqu13',
             'aqu14',
             'aqu15',
+            'synth06',
         ],
     },
     'TOX'    : {
@@ -276,6 +300,16 @@ basegame_species_machine = {
             'aqu_machine',
             'tox_machine',
             'default_robot',
+            'synth_machine_01',
+            'synth_machine_02',
+            'synth_machine_03',
+            'synth_machine_04',
+            'synth_machine_05',
+            'synth_machine_06',
+            'synth_machine_07',
+            'synth_machine_08',
+            'synth_machine_09',
+            'cyb_machine',
         ],
     },
 };

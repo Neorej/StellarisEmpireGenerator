@@ -11,4 +11,6 @@ basegame_cultures = [
     'nemesis_01',
     'aquatic_01',
     'toxoid_01',
+    'cybernetics_01',
+    'synthetics_01',
 ];

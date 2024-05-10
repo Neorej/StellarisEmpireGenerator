@@ -16,8 +16,9 @@ body {
     scrollbar-width: none;
 }
 
-#result pre::-webkit-scrollbar {
-    display: none
+#main-content pre:hover {
+    scrollbar-width: auto;
+    scrollbar-color: azure rgba(25, 25, 25, 0.4);
 }
 
 #result pre {
@@ -38,6 +39,21 @@ label {
 
 #empire_amount {
     width: 55px;
+}
+
+button {
+    background: url(images/button.png) no-repeat;
+    background-size: 100%;
+    font-size: 20px;
+    height: 36px;
+    width: 300px;
+    border: none;
+    color: azure;
+}
+
+button:hover {
+    background: url(images/button-hover.png) no-repeat;
+    background-size: 100%;
 }
 
 .background {
@@ -82,7 +98,6 @@ label {
     animation: background-move 1000s linear infinite;
 }
 
-
 @keyframes background-move {
     0% {
         transform: translateX(20%) rotate(2deg);
@@ -95,137 +110,58 @@ label {
     }
 }
 
-.background2-static, .background2-lightning {
-    background: url(images/background2.png) no-repeat;
-    background-size: cover;
-    width: 100%;
-    height: 100%;
-    top: 0;
-    z-index: 1;
-    display: block;
-    position: absolute;
-    overflow: hidden;
-    filter: brightness(0.90);
-}
-
-.background2-lightning {
-    background: url(images/background2-lightning.png) no-repeat;
-    background-size: cover;
-    z-index: 2;
-    animation: background2-lightning 6s linear infinite;
-}
-
-.background2-moving1, .background2-moving2, .background2-moving3 {
-    width: 100%;
-    top: 0;
-    display: block;
-    position: absolute;
-    overflow: hidden;
-}
-
-.background2-moving1 {
-    height: 120%;
-    z-index: 3;
-    background: url(images/background2-rocks-1.png) no-repeat;
-    background-size: cover;
-    animation: background2-move 120s linear infinite;
-}
-
-.background2-moving2 {
-    height: 100%;
-    right: 100px;
-    z-index: 4;
-    background: url(images/background2-rocks-2.png) no-repeat;
-    background-size: cover;
-    animation: background2-move2 80s normal infinite;
-}
-
-.background2-moving3 {
-    height: 100%;
-    width: 95%;
-    right: 0;
-    z-index: 2;
-    bottom: 100px;
-    background: url(images/background2-rocks-3.png) no-repeat;
-    background-size: cover;
-    animation: background2-move3 63s normal infinite;
-}
-
-@keyframes background2-move {
-    0% {
-        transform: translateY(-11%);
-    }
-    50% {
-        transform: translateY(-15%);
-    }
-    100% {
-        transform: translateY(-11%);
+@media (min-width: 320px) {
+    .background1-moving {
+        display: none
     }
 }
 
-@keyframes background2-move2 {
-    0% {
-        transform: translateY(0%);
-    }
-    50% {
-        transform: translateY(5%);
-    }
-    100% {
-        transform: translateY(0%);
+@media (min-width: 481px) {
+    .background1-moving {
+        display: none
     }
 }
 
-@keyframes background2-move3 {
-    0% {
-        transform: translateY(2%);
-    }
-    50% {
-        transform: translateY(4%);
-    }
-    100% {
-        transform: translateY(2%);
+@media (min-width: 641px) {
+    .background1-moving {
+        display: none
     }
 }
 
-@keyframes background2-lightning {
-    0% {
-        filter: brightness(0.90);
+@media (min-width: 961px) {
+    body {
+        overflow: hidden;
     }
-    50% {
-        filter: brightness(1);
-    }
-    100% {
-        filter: brightness(0.90);
+
+    .background1-moving {
+        display: block
     }
 }
 
-@media (min-width:320px) { .background1-moving {display:none} }
-@media (min-width:481px) { .background1-moving {display:none} }
-@media (min-width:641px) { .background1-moving {display:none} }
-@media (min-width:961px) { body {overflow: hidden; } .background1-moving {display:block} }
 
-
-#toggleChart{
+#toggleChart {
     float: right;
     cursor: pointer;
     width: 32px;
     height: 32px;
-    display:none;
+    display: none;
     margin-right: 32px;
 }
-@media (min-width:1700px) {
-    #toggleChart{
-        display:block;
+
+@media (min-width: 1700px) {
+    #toggleChart {
+        display: block;
     }
 }
+
 #charts {
     width: 750px;
     right: 50px;
     float: right;
     position: relative;
-    display:none;
+    display: none;
 }
 
-#charts h2{
+#charts h2 {
     text-align: center;
 }
