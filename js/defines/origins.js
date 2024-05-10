@@ -39,7 +39,10 @@ basegame_origins = {
         },
         no : {
             'authorities': [],
-            'civics'     : ['civic_fanatic_purifiers'],
+            'civics'     : [
+                'civic_fanatic_purifiers',
+                'civic_corporate_guided_sapience',
+            ],
             'ethics'     : ['ethic_gestalt_consciousness'],
         },
     },
@@ -57,6 +60,8 @@ basegame_origins = {
                 'civic_machine_toxic_baths',
                 'civic_relentless_industrialists',
                 'civic_machine_guided_sapience',
+                'civic_toxic_baths_individual_machine',
+                'civic_corporate_toxic_baths_individual_machine',
             ],
             'ethics'     : [],
         },
@@ -486,7 +491,10 @@ basegame_origins = {
         },
         no : {
             'authorities': [],
-            'civics'     : ['civic_fanatic_purifiers'],
+            'civics'     : [
+                'civic_fanatic_purifiers',
+                'civic_augmentation_bazaars',
+            ],
             'ethics'     : [],
             'species'    : [
                 'MACHINE',

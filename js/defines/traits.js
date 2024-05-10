@@ -579,10 +579,6 @@ basegame_machine_traits = {
         cost: 2,
         no  : [],
     },
-    'trait_robot_domestic_protocols'     : {
-        cost: 2,
-        no  : [],
-    },
     'trait_robot_double_jointed'         : {
         cost: 1,
         no  : ['trait_robot_bulky'],
