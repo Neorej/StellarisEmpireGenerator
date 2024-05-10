@@ -265,7 +265,7 @@ class Empire {
     planet_name                 = '';
     planet_class                = planets.random();
     system_name                 = '';
-    initializer                 = ''; // Always empty
+    initializer                 = ''; // Always keep this empty ( = random). Some origins require specific values, keeping it empty allows the game to set the proper value.
     graphical_culture           = cultures.random(); // Ship graphics
     city_graphical_culture      = cultures.random(); // City graphics
     empire_flag                 = {
@@ -292,7 +292,7 @@ class Empire {
     };
     spawn_as_fallen             = 'yes';
     ignore_portrait_duplication = 'no';
-    room                        = rooms.random()
+    room                        = rooms.random();
     spawn_enabled               = 'yes';
     ethics                      = [];
     civics                      = [];
@@ -377,9 +377,15 @@ class Empire {
             }
         }
 
+        // Pick authority
         let random_authority = authorities_list.random();
-        log('Selected authority ' + random_authority);
 
+        // If egalitarians are boosted democracies become much more common. Rebalance this somewhat
+        if (this.options.boost_egalitarians && random_authority === 'auth_democratic' && random_percentage_check(25)) {
+            random_authority = authorities_list.random();
+        }
+
+        log('Selected authority ' + random_authority);
         this.authority = random_authority;
     }
 
@@ -392,9 +398,12 @@ class Empire {
             return;
         }
 
-        // Hive minds and machines are always gestalts
+        // Hive minds and machines intelligences are always gestalts
         if (this.authority === 'auth_hive_mind' || this.authority === 'auth_machine_intelligence') {
             this.ethics.push('ethic_gestalt_consciousness');
+
+            // Some machine traits are not available for gestalt machines
+            this.disabled_traits.push(...machine_gestalt_disabled_traits);
             return;
         }
 
@@ -506,9 +515,9 @@ class Empire {
             this.pick_civic(civic_name, civics_list);
 
             if (civic_name === 'civic_machine_servitor') {
-                this.secondary_species = new SecondarySpecies([], [], 5, 2, '', false);
+                this.secondary_species = new SecondarySpecies([], ['trait_thrifty'], 5, 2, '', false);
             } else if (civic_name === 'civic_machine_assimilator') {
-                this.secondary_species = new SecondarySpecies(['trait_cybernetic'], [], 5, 2, '', false);
+                this.secondary_species = new SecondarySpecies(['trait_cybernetic'], ['trait_thrifty'], 5, 2, '', false);
             } else if (civic_name === 'civic_anglers' || civic_name === 'civic_corporate_anglers') {
                 this.species.traits.push('trait_aquatic');
                 this.trait_picks_left--;
@@ -521,7 +530,19 @@ class Empire {
                 this.disabled_origins.push('origin_void_dwellers');
                 this.disabled_origins.push('origin_post_apocalyptic');
                 this.disabled_origins.push('origin_subterranean');
-                // this.disabled_origins.push('origin_remnants'); // Remnants forces a Relic World, but is somehow still compatible with Anglers
+                this.disabled_origins.push('origin_riftworld');
+            } else if (civic_name === 'civic_machine_anglers' || civic_name === 'civic_corporate_machine_anglers') {
+                this.species.traits.push('trait_robot_aquatic');
+                this.trait_picks_left--;
+                this.trait_points_left = this.trait_points_left - 2;
+                this.planet_class      = 'pc_ocean';
+
+                // Cannot select origins which require a non-ocean planet when we have already picked an ocean planet
+                this.disabled_origins.push('origin_shattered_ring');
+                this.disabled_origins.push('origin_void_machines');
+                this.disabled_origins.push('origin_post_apocalyptic_machines');
+                this.disabled_origins.push('origin_subterranean_machines');
+                this.disabled_origins.push('origin_riftworld');
             }
         }
     }
@@ -533,6 +554,7 @@ class Empire {
     }
 
     set_species() {
+        // Machine intelligences are always machines
         if (this.authority === 'auth_machine_intelligence') {
             this.species.class    = 'MACHINE';
             this.species.portrait = species_machine.MACHINE.portraits.random();
@@ -551,7 +573,16 @@ class Empire {
                 this.species.portrait = species.PLANT.portraits.random();
             }
         } else {
-            let random_species    = species.random();
+            let random_species = species.random();
+
+            // Non-hive minds may also be machines
+            if (this.authority !== 'auth_hive_mind') {
+                // Except if they have certain civics
+                if (!this.civics.some(civic => machine_disabled_civics.includes(civic))) {
+                    random_species = {...species, ...species_machine}.random();
+                }
+            }
+
             this.species.class    = random_species[0];
             this.species.portrait = random_species[1].portraits.random();
         }
@@ -564,13 +595,7 @@ class Empire {
 
     set_origin() {
         while (this.origin === '') {
-            let origins_list = structuredClone(origins);
-
-            // Plants get an extra origin
-            if (this.species.class === 'FUN' || this.species.class === 'PLANT') {
-                origins_list = {...origins_list, ...plant_origins};
-            }
-
+            let origins_list  = structuredClone(origins);
             let random_origin = origins_list.random();
             let origin_name   = random_origin[0];
             let origin_yes    = random_origin[1].yes;
@@ -594,6 +619,9 @@ class Empire {
             if (yes_requirement_checker(origin_yes.civics, this.civics, 'Civic', 'Civics', 'Origins') === false) {
                 continue;
             }
+            if (yes_requirement_checker(origin_yes.species ?? [], this.species.class, 'Species', 'Species', 'Species') === false) {
+                continue;
+            }
 
             if (no_requirement_checker(origin_no.authorities, [this.authority], 'Authority', 'Authorities', 'Origins') === false) {
                 continue;
@@ -604,6 +632,10 @@ class Empire {
             if (no_requirement_checker(origin_no.civics, this.civics, 'Civic', 'Civics', 'Origins') === false) {
                 continue;
             }
+            if (no_requirement_checker(origin_no.species ?? [], this.species.class, 'Species', 'Species', 'Species') === false) {
+                continue;
+            }
+
 
             log('Selected origin ' + origin_name);
             this.origin = origin_name;
@@ -619,9 +651,19 @@ class Empire {
                 return;
             }
 
+            if (origin_name === 'origin_post_apocalyptic_machines') {
+                this.species.traits.push('trait_robot_survivor');
+                return;
+            }
+
             if (origin_name === 'origin_void_dwellers') {
                 this.disabled_traits.push('trait_aquatic');
                 this.species.traits.push('trait_void_dweller_1');
+                return;
+            }
+
+            if (origin_name === 'origin_void_machines') {
+                this.species.traits.push('trait_void_dweller_2');
                 return;
             }
 
@@ -638,6 +680,12 @@ class Empire {
                 return;
             }
 
+            if (origin_name === 'origin_subterranean_machines') {
+                this.disabled_traits.push('trait_robot_aquatic');
+                this.species.traits.push('trait_robot_cave_dweller');
+                return;
+            }
+
             if (origin_name === 'origin_shroudwalker_apprentice') {
                 this.species.traits.push('trait_latent_psionic');
                 return;
@@ -646,6 +694,7 @@ class Empire {
             if (origin_name === 'origin_necrophage') {
                 this.species.traits.push('trait_necrophage');
                 this.disabled_traits.push('trait_plantoid_budding');
+                this.disabled_traits.push('trait_humanoid_psychological_infertility');
                 this.secondary_species = new SecondarySpecies([], [], 5, 2, this.species.portrait, false);
                 return;
             }
@@ -664,6 +713,24 @@ class Empire {
                     return;
                 }
             }
+
+            if (origin_name === 'origin_ocean_machines') {
+                // Aquatic could've been added already by angler civic
+                if (!this.species.traits.includes('trait_robot_aquatic')) {
+                    this.species.traits.push('trait_robot_aquatic');
+                    this.trait_picks_left--;
+                    this.trait_points_left = this.trait_points_left - 2;
+                    return;
+                }
+            }
+
+            if (origin_name === 'origin_synthetic_fertility') {
+                this.species.traits.push('trait_pathogenic_genes');
+                this.disabled_traits.push('trait_plantoid_budding');
+                this.trait_picks_left--;
+                this.trait_points_left++;
+                return;
+            }
         }
     }
 
@@ -675,7 +742,7 @@ class Empire {
             this.species.traits.push(random_percentage_check(50) ? 'trait_deviants' : 'trait_solitary');
 
             // Aquatic trait costs 2, add an extra negative trait to balance the cost
-            if (this.species.traits.includes('trait_aquatic')) {
+            if (this.species.traits.includes('trait_aquatic') || this.species.traits.includes('trait_robot_aquatic')) {
                 this.species.traits.push(random_percentage_check(50) ? 'trait_unruly' : 'trait_repugnant');
             }
 
@@ -707,6 +774,9 @@ class Empire {
             // Machines have the machine trait
             this.species.traits.push('trait_machine_unit');
 
+            // Machines get a free background trait
+            this.species.traits.push(machine_background_traits.random());
+
             // Machines have their own traits
             traits_list = machine_traits;
         }
@@ -724,7 +794,6 @@ class Empire {
             this.species.traits.push('trait_hive_mind');
 
             // Hives do not have their own traits, but have incompatibilities
-            this.disabled_traits.push('trait_thrifty');
             this.disabled_traits.push('trait_conformists');
             this.disabled_traits.push('trait_deviants');
             this.disabled_traits.push('trait_decadent');
@@ -771,6 +840,11 @@ class Empire {
         // Stargazers get to be stargazers
         if (this.civics.includes('civic_hive_stargazers')) {
             this.species.traits.push('trait_stargazer');
+        }
+
+        // Gestalts cannot be thrifty
+        if (this.ethics.includes('ethic_gestalt_consciousness')) {
+            this.disabled_traits.push('trait_thrifty');
         }
 
         // No point in continuing if we can't pick traits anyway

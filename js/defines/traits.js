@@ -62,6 +62,7 @@ basegame_traits = {
             'trait_robust',
             'trait_adaptive_lithoid', // ??
             'trait_invasive',
+            'trait_pathogenic_genes',
         ],
     },
     'trait_adaptive'                          : {
@@ -72,6 +73,7 @@ basegame_traits = {
             'trait_robust',
             'trait_adaptive_lithoid', // ??
             'trait_invasive',
+            'trait_pathogenic_genes',
         ],
     },
     'trait_nonadaptive'                       : {
@@ -81,6 +83,7 @@ basegame_traits = {
             'trait_extremely_adaptive',
             'trait_robust',
             'trait_adaptive_lithoid', // ??
+            'trait_pathogenic_genes',
         ],
     },
     'trait_rapid_breeders'                    : {
@@ -95,6 +98,7 @@ basegame_traits = {
             'trait_tiyanki',
             'trait_humanoid_existential_iteroparity',
             'trait_invasive',
+            'trait_pathogenic_genes',
         ],
     },
     'trait_slow_breeders'                     : {
@@ -110,6 +114,7 @@ basegame_traits = {
             'trait_tiyanki',
             'trait_humanoid_psychological_infertility',
             'trait_humanoid_existential_iteroparity',
+            'trait_pathogenic_genes',
         ],
     },
     'trait_talented'                          : {
@@ -186,6 +191,7 @@ basegame_traits = {
         no  : [
             'trait_sedentary',
             'trait_invasive',
+            'trait_pathogenic_genes',
         ],
     },
     'trait_sedentary'                         : {
@@ -193,6 +199,7 @@ basegame_traits = {
         no  : [
             'trait_nomadic',
             'trait_stargazer',
+            'trait_pathogenic_genes',
         ],
     },
     'trait_communal'                          : {
@@ -264,7 +271,7 @@ basegame_traits = {
     },
     'trait_resilient'                         : {
         cost: 1,
-        no  : ['trait_invasive',],
+        no  : ['trait_invasive'],
     },
     'trait_conservational'                    : {
         cost: 1,
@@ -279,11 +286,11 @@ basegame_traits = {
     },
     'trait_inorganic_breath'                  : {
         cost: 3,
-        no  : ['trait_invasive',],
+        no  : ['trait_invasive'],
     },
     'trait_noxious'                           : {
         cost: 1,
-        no  : ['trait_invasive',],
+        no  : ['trait_invasive'],
     },
     'trait_humanoid_existential_iteroparity'  : {
         cost: 2,
@@ -298,6 +305,7 @@ basegame_traits = {
             'trait_tiyanki',
             'trait_slow_breeders',
             'trait_invasive',
+            'trait_pathogenic_genes',
         ],
     },
     'trait_humanoid_psychological_infertility': {
@@ -306,6 +314,9 @@ basegame_traits = {
             'trait_humanoid_existential_iteroparity',
             'trait_slow_breeders',
             'trait_vat_grown',
+            'trait_lithoid',
+            'trait_pathogenic_genes',
+            'trait_necrophage',
         ],
     },
     'trait_humanoid_jinxed'                   : {
@@ -318,15 +329,15 @@ basegame_traits = {
 };
 
 basegame_lithoid_traits = {
-    'trait_ingenious'                         : {
+    'trait_ingenious'                       : {
         cost: 2,
         no  : [],
     },
-    'trait_industrious'                       : {
+    'trait_industrious'                     : {
         cost: 2,
         no  : [],
     },
-    'trait_intelligent'                       : {
+    'trait_intelligent'                     : {
         cost: 2,
         no  : [
             'trait_nerve_stapled',
@@ -334,11 +345,11 @@ basegame_lithoid_traits = {
             'trait_enigmatic_intelligence_poor',
         ],
     },
-    'trait_thrifty'                           : {
+    'trait_thrifty'                         : {
         cost: 2,
         no  : ['trait_hive_mind'],
     },
-    'trait_natural_engineers'                 : {
+    'trait_natural_engineers'               : {
         cost: 1,
         no  : [
             'trait_natural_physicists',
@@ -346,7 +357,7 @@ basegame_lithoid_traits = {
             'trait_nerve_stapled',
         ],
     },
-    'trait_natural_physicists'                : {
+    'trait_natural_physicists'              : {
         cost: 1,
         no  : [
             'trait_natural_engineers',
@@ -354,7 +365,7 @@ basegame_lithoid_traits = {
             'trait_nerve_stapled',
         ],
     },
-    'trait_natural_sociologists'              : {
+    'trait_natural_sociologists'            : {
         cost: 1,
         no  : [
             'trait_natural_physicists',
@@ -362,58 +373,58 @@ basegame_lithoid_traits = {
             'trait_nerve_stapled',
         ],
     },
-    'trait_talented'                          : {
+    'trait_talented'                        : {
         cost: 1,
         no  : [
             'trait_nerve_stapled',
             'trait_humanoid_jinxed',
         ],
     },
-    'trait_quick_learners'                    : {
+    'trait_quick_learners'                  : {
         cost: 1,
         no  : [
             'trait_slow_learners',
             'trait_syncretic_proles',
         ],
     },
-    'trait_slow_learners'                     : {
+    'trait_slow_learners'                   : {
         cost: -1,
         no  : [
             'trait_quick_learners',
             'trait_enigmatic_intelligence',
         ],
     },
-    'trait_traditional'                       : {
+    'trait_traditional'                     : {
         cost: 1,
         no  : ['trait_quarrelsome'],
     },
-    'trait_quarrelsome'                       : {
+    'trait_quarrelsome'                     : {
         cost: -1,
         no  : ['trait_traditional'],
     },
-    'trait_docile'                            : {
+    'trait_docile'                          : {
         cost: 2,
         no  : ['trait_unruly'],
     },
-    'trait_unruly'                            : {
+    'trait_unruly'                          : {
         cost: -2,
         no  : ['trait_docile'],
     },
-    'trait_very_strong'                       : {
+    'trait_very_strong'                     : {
         cost: 3,
         no  : [
             'trait_weak',
             'trait_strong',
         ],
     },
-    'trait_strong'                            : {
+    'trait_strong'                          : {
         cost: 1,
         no  : [
             'trait_weak',
             'trait_very_strong',
         ],
     },
-    'trait_weak'                              : {
+    'trait_weak'                            : {
         cost: -1,
         no  : [
             'trait_strong',
@@ -421,42 +432,42 @@ basegame_lithoid_traits = {
             'trait_perfected_genes',
         ],
     },
-    'trait_nomadic'                           : {
+    'trait_nomadic'                         : {
         cost: 1,
         no  : ['trait_sedentary'],
     },
-    'trait_sedentary'                         : {
+    'trait_sedentary'                       : {
         cost: -1,
         no  : [
             'trait_nomadic',
             'trait_stargazer',
         ],
     },
-    'trait_communal'                          : {
+    'trait_communal'                        : {
         cost: 1,
         no  : ['trait_solitary'],
     },
-    'trait_solitary'                          : {
+    'trait_solitary'                        : {
         cost: -1,
         no  : ['trait_communal'],
     },
-    'trait_charismatic'                       : {
+    'trait_charismatic'                     : {
         cost: 2,
         no  : ['trait_repugnant'],
     },
-    'trait_repugnant'                         : {
+    'trait_repugnant'                       : {
         cost: -2,
         no  : ['trait_charismatic'],
     },
-    'trait_conformists'                       : {
+    'trait_conformists'                     : {
         cost: 2,
         no  : ['trait_deviants'],
     },
-    'trait_deviants'                          : {
+    'trait_deviants'                        : {
         cost: -1,
         no  : ['trait_conformists'],
     },
-    'trait_venerable'                         : {
+    'trait_venerable'                       : {
         cost: 4,
         no  : [
             'trait_enduring',
@@ -464,7 +475,7 @@ basegame_lithoid_traits = {
             'trait_fleeting_lithoid',
         ],
     },
-    'trait_enduring'                          : {
+    'trait_enduring'                        : {
         cost: 1,
         no  : [
             'trait_venerable',
@@ -472,7 +483,7 @@ basegame_lithoid_traits = {
             'trait_fleeting_lithoid',
         ],
     },
-    'trait_fleeting_lithoid'                  : {
+    'trait_fleeting_lithoid'                : {
         cost: -1,
         no  : [
             'trait_venerable',
@@ -480,44 +491,44 @@ basegame_lithoid_traits = {
             'trait_fleeting', // ?
         ],
     },
-    'trait_decadent'                          : {
+    'trait_decadent'                        : {
         cost: -1,
         no  : ['trait_syncretic_proles'],
     },
-    'trait_resilient'                         : {
+    'trait_resilient'                       : {
         cost: 1,
         no  : [],
     },
-    'trait_conservational'                    : {
+    'trait_conservational'                  : {
         cost: 1,
         no  : ['trait_wasteful'],
     },
-    'trait_wasteful'                          : {
+    'trait_wasteful'                        : {
         cost: -1,
         no  : ['trait_conservational'],
     },
-    'trait_lithoid_scintillating'             : {
+    'trait_lithoid_scintillating'           : {
         cost: 2,
         no  : [
             'trait_lithoid_volatile_excretions',
             'trait_lithoid_gaseous_byproducts',
         ],
     },
-    'trait_lithoid_gaseous_byproducts'        : {
+    'trait_lithoid_gaseous_byproducts'      : {
         cost: 2,
         no  : [
             'trait_lithoid_volatile_excretions',
             'trait_lithoid_scintillating',
         ],
     },
-    'trait_lithoid_volatile_excretions'       : {
+    'trait_lithoid_volatile_excretions'     : {
         cost: 2,
         no  : [
             'trait_lithoid_gaseous_byproducts',
             'trait_lithoid_scintillating',
         ],
     },
-    'trait_humanoid_existential_iteroparity'  : {
+    'trait_humanoid_existential_iteroparity': {
         cost: 2,
         no  : [
             'trait_humanoid_psychological_infertility',
@@ -528,17 +539,10 @@ basegame_lithoid_traits = {
             'trait_lithoid_budding',
             'trait_vat_grown',
             'trait_tiyanki',
+            'trait_pathogenic_genes',
         ],
     },
-    'trait_humanoid_psychological_infertility': {
-        cost: -2,
-        no  : [
-            'trait_humanoid_existential_iteroparity',
-            'trait_slow_breeders',
-            'trait_vat_grown',
-        ],
-    },
-    'trait_humanoid_jinxed'                   : {
+    'trait_humanoid_jinxed'                 : {
         cost: -1,
         no  : [
             'trait_talented',
@@ -547,166 +551,186 @@ basegame_lithoid_traits = {
 };
 
 basegame_machine_traits = {
-    'trait_robot_power_drills'         : {
-        cost: 2,
-        no  : [],
-    },
-    'trait_robot_superconductive'      : {
-        cost: 2,
-        no  : [],
-    },
-    'trait_robot_efficient_processors' : {
+    'trait_auto_mod_robotic'             : {
         cost: 3,
         no  : [],
     },
-    'trait_robot_logic_engines'        : {
+    'trait_robot_power_drills'           : {
         cost: 2,
         no  : [],
     },
-    'trait_robot_double_jointed'       : {
+    'trait_robot_harvesters'             : {
+        cost: 2,
+        no  : [],
+    },
+    'trait_robot_superconductive'        : {
+        cost: 2,
+        no  : [],
+    },
+    'trait_robot_efficient_processors'   : {
+        cost: 3,
+        no  : [],
+    },
+    'trait_robot_logic_engines'          : {
+        cost: 2,
+        no  : [],
+    },
+    'trait_robot_loyalty_circuits'       : {
+        cost: 2,
+        no  : [],
+    },
+    'trait_robot_domestic_protocols'     : {
+        cost: 2,
+        no  : [],
+    },
+    'trait_robot_double_jointed'         : {
         cost: 1,
         no  : ['trait_robot_bulky'],
     },
-    'trait_robot_bulky'                : {
+    'trait_robot_bulky'                  : {
         cost: -1,
         no  : ['trait_robot_double_jointed'],
     },
-    'trait_robot_enhanced_memory'      : {
+    'trait_robot_enhanced_memory'        : {
         cost: 2,
         no  : [],
     },
-    'trait_robot_emotion_emulators'    : {
+    'trait_robot_emotion_emulators'      : {
         cost: 1,
         no  : ['trait_robot_uncanny'],
     },
-    'trait_robot_uncanny'              : {
+    'trait_robot_uncanny'                : {
         cost: -1,
         no  : ['trait_robot_emotion_emulators'],
     },
-    'trait_robot_durable'              : {
+    'trait_robot_durable'                : {
         cost: 1,
         no  : ['trait_robot_high_maintenance'],
     },
-    'trait_robot_high_maintenance'     : {
+    'trait_robot_high_maintenance'       : {
         cost: -1,
         no  : ['trait_robot_durable'],
     },
-    'trait_robot_learning_algorithms'  : {
+    'trait_robot_learning_algorithms'    : {
         cost: 1,
         no  : ['trait_robot_repurposed_hardware'],
     },
-    'trait_robot_repurposed_hardware'  : {
+    'trait_robot_repurposed_hardware'    : {
         cost: -1,
         no  : ['trait_robot_learning_algorithms'],
     },
-    'trait_robot_mass_produced'        : {
+    'trait_robot_mass_produced'          : {
         cost: 1,
         no  : ['trait_robot_custom_made'],
     },
-    'trait_robot_custom_made'          : {
+    'trait_robot_custom_made'            : {
         cost: -1,
         no  : ['trait_robot_mass_produced'],
     },
-    'trait_robot_recycled'             : {
+    'trait_robot_recycled'               : {
         cost: 2,
         no  : ['trait_robot_luxurious'],
     },
-    'trait_robot_luxurious'            : {
+    'trait_robot_luxurious'              : {
         cost: -2,
         no  : ['trait_robot_recycled'],
     },
-    'trait_robot_streamlined_protocols': {
+    'trait_robot_propaganda_machines'    : {
+        cost: 1,
+        no  : ['trait_robot_quarrelsome'],
+    },
+    'trait_robot_streamlined_protocols'  : {
         cost: 2,
         no  : ['trait_robot_high_bandwidth'],
     },
-    'trait_robot_high_bandwidth'       : {
+    'trait_robot_high_bandwidth'         : {
         cost: -2,
         no  : ['trait_robot_streamlined_protocols'],
+    },
+    'trait_robot_trading_algorithms'     : {
+        cost: 2,
+        no  : ['trait_robot_scarcity_algorithms'],
+    },
+    'trait_robot_quarrelsome'            : {
+        cost: -1,
+        no  : ['trait_robot_scarcity_algorithms'],
+    },
+    'trait_robot_deviants'               : {
+        cost: -1,
+        no  : [],
+    },
+    'trait_robot_decadent'               : {
+        cost: -1,
+        no  : [],
+    },
+    'trait_robot_wasteful'               : {
+        cost: -1,
+        no  : [],
+    },
+    'trait_robot_artificial_engineers'   : {
+        cost: 1,
+        no  : [
+            'trait_robot_artificial_sociologists',
+            'trait_robot_artificial_physicists',
+        ],
+    },
+    'trait_robot_artificial_physicists'  : {
+        cost: 1,
+        no  : [
+            'trait_robot_artificial_sociologists',
+            'trait_robot_artificial_engineers',
+        ],
+    },
+    'trait_robot_artificial_sociologists': {
+        cost: 1,
+        no  : [
+            'trait_robot_artificial_physicists',
+            'trait_robot_artificial_engineers',
+        ],
+    },
+    'trait_robot_integrated_weaponry'    : {
+        cost: 2,
+        no  : ['trait_robot_delicate_frames'],
+    },
+    'trait_robot_delicate_frames'        : {
+        cost: -1,
+        no  : ['trait_robot_integrated_weaponry'],
+    },
+    'trait_robot_scarcity_algorithms'    : {
+        cost: -1,
+        no  : [
+            'trait_robot_trading_algorithms',
+            'trait_robot_matrix_trading',
+        ],
+    },
+    'trait_robot_immortality'            : {
+        cost: 4,
+        no  : [],
     },
 };
 
-basegame_robot_traits = {
-    'trait_robot_power_drills'         : {
-        cost: 2,
-        no  : [],
-    },
-    'trait_robot_harvesters'           : {
-        cost: 2,
-        no  : [],
-    },
-    'trait_robot_superconductive'      : {
-        cost: 2,
-        no  : [],
-    },
-    'trait_robot_efficient_processors' : {
-        cost: 3,
-        no  : [],
-    },
-    'trait_robot_logic_engines'        : {
-        cost: 2,
-        no  : [],
-    },
-    'trait_robot_loyalty_circuits'     : {
-        cost: 2,
-        no  : [],
-    },
-    'trait_robot_double_jointed'       : {
-        cost: 1,
-        no  : ['trait_robot_bulky'],
-    },
-    'trait_robot_bulky'                : {
-        cost: -1,
-        no  : ['trait_robot_double_jointed'],
-    },
-    'trait_robot_enhanced_memory'      : {
-        cost: 2,
-        no  : [],
-    },
-    'trait_robot_durable'              : {
-        cost: 1,
-        no  : ['trait_robot_high_maintenance'],
-    },
-    'trait_robot_high_maintenance'     : {
-        cost: -1,
-        no  : ['trait_robot_durable'],
-    },
-    'trait_robot_learning_algorithms'  : {
-        cost: 1,
-        no  : ['trait_robot_repurposed_hardware'],
-    },
-    'trait_robot_repurposed_hardware'  : {
-        cost: -1,
-        no  : ['trait_robot_learning_algorithms'],
-    },
-    'trait_robot_mass_produced'        : {
-        cost: 1,
-        no  : ['trait_robot_custom_made'],
-    },
-    'trait_robot_custom_made'          : {
-        cost: -1,
-        no  : ['trait_robot_mass_produced'],
-    },
-    'trait_robot_recycled'             : {
-        cost: 2,
-        no  : ['trait_robot_luxurious'],
-    },
-    'trait_robot_luxurious'            : {
-        cost: -2,
-        no  : ['trait_robot_recycled'],
-    },
-    'trait_robot_propaganda_machines'  : {
-        cost: 1,
-        no  : [],
-    },
-    'trait_robot_streamlined_protocols': {
-        cost: 2,
-        no  : ['trait_robot_high_bandwidth'],
-    },
-    'trait_robot_high_bandwidth'       : {
-        cost: -2,
-        no  : ['trait_robot_streamlined_protocols'],
-    },
-};
+// Some robots traits are not available gestalt consciousness robots (since 3.12)
+machine_gestalt_disabled_traits = [
+    'trait_robot_loyalty_circuits',
+    'trait_robot_domestic_protocols',
+    'trait_robot_trading_algorithms',
+    'trait_robot_quarrelsome',
+    'trait_robot_deviants',
+    'trait_robot_decadent',
+    'trait_robot_wasteful',
+    'trait_robot_scarcity_algorithms',
+    'trait_robot_matrix_trading',
+];
+
+// Machines get a single free trait
+basegame_machine_background_traits = [
+    'trait_robot_history_warbot',
+    'trait_robot_history_artbot',
+    'trait_robot_history_explorebot',
+    'trait_robot_history_researchbot',
+    'trait_robot_history_resourcebot',
+    'trait_robot_history_chatbot',
+];
 
 basegame_plant_traits = {
     'trait_plantoid_phototrophic': {
@@ -731,6 +755,8 @@ basegame_plant_traits = {
             'trait_necrophage',
             'trait_clone_soldier_infertile',
             'trait_clone_soldier_infertile_full_potential',
+            'trait_humanoid_existential_iteroparity',
+            'trait_pathogenic_genes',
         ],
     },
     'trait_invasive'             : {
@@ -844,6 +870,7 @@ basegame_overtuned_traits = {
             'trait_plantoid_budding',
             'trait_lithoid_budding',
             'trait_invasive',
+            'trait_pathogenic_genes',
         ],
     },
 };

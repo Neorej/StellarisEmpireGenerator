@@ -48,6 +48,9 @@ name_lists = [
     'REP2',
     'REP3',
     'REP4',
+    'MACHINE_AGE1',
+    'MACHINE_AGE2',
+    'MACHINE_AGE2',
 ];
 
 machine_name_lists = [
@@ -63,4 +66,6 @@ machine_name_lists = [
     'NECROID2',
     'NECROID3',
     'NECROID4',
+    'MACHINE_AGE2',
+    'MACHINE_AGE2',
 ];
