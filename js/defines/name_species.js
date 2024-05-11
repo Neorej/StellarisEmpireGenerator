@@ -5202,7 +5202,7 @@ species_names = [
     'Macha',
     'Macuahuitl',
     'Madeemju',
-    'MAdesynora',
+    'Msdesynora',
     'Madmedha',
     'Madoc',
     'Madoka',
