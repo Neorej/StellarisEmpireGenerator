@@ -62,6 +62,7 @@ basegame_origins = {
                 'civic_machine_guided_sapience',
                 'civic_toxic_baths_individual_machine',
                 'civic_corporate_toxic_baths_individual_machine',
+                'civic_corporate_guided_sapience',
             ],
             'ethics'     : [],
         },
