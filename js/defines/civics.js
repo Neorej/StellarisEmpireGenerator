@@ -224,7 +224,7 @@ basegame_civics = {
             'authorities': [],
             'civics'     : [
                 'civic_pompous_purists',
-                'civic_eager_explorers ',
+                'civic_eager_explorers',
                 'civic_diplomatic_corps',
                 'civic_sovereign_guardianship',
             ],
@@ -330,9 +330,9 @@ basegame_civics = {
             'ethics'     : [],
         },
         no : {
-            'authorities': [],
+            'authorities': ['auth_corporate'],
             'civics'     : [],
-            'ethics'     : [],
+            'ethics'     : ['ethic_gestalt_consciousness'],
         },
     },
     'civic_parliamentary_system'   : {
@@ -354,9 +354,9 @@ basegame_civics = {
             'ethics'     : [],
         },
         no : {
-            'authorities': [],
+            'authorities': ['auth_corporate'],
             'civics'     : [],
-            'ethics'     : [],
+            'ethics'     : ['ethic_gestalt_consciousness'],
         },
     },
     'civic_nationalistic_zeal'     : {
@@ -381,9 +381,9 @@ basegame_civics = {
             'ethics'     : [],
         },
         no : {
-            'authorities': [],
+            'authorities': ['auth_corporate'],
             'civics'     : [],
-            'ethics'     : [],
+            'ethics'     : ['ethic_gestalt_consciousness'],
         },
     },
     'civic_aristocratic_elite'     : {
@@ -445,6 +445,12 @@ basegame_civics = {
                 'civic_beacon_of_liberty',
                 'civic_sovereign_guardianship',
                 'civic_corporate_sovereign_guardianship',
+                'civic_hive_sovereign_guardianship',
+                'civic_machine_sovereign_guardianship',
+                'civic_guided_sapience',
+                'civic_corporate_guided_sapience',
+                'civic_hive_guided_sapience',
+                'civic_machine_guided_sapience'
             ],
             'ethics'     : [],
         },
@@ -459,11 +465,13 @@ basegame_civics = {
             ],
         },
         no : {
-            'authorities': [],
+            'authorities': ['auth_corporate'],
             'civics'     : ['civic_fanatic_purifiers'],
             'ethics'     : [
                 'ethic_xenophile',
                 'ethic_fanatic_xenophile',
+                'ethic_gestalt_consciousness',
+
             ],
         },
     },
@@ -505,15 +513,23 @@ basegame_civics = {
             'ethics'     : [],
         },
         no : {
-            'authorities': [],
+            'authorities': [''],
             'civics'     : [
                 'civic_citizen_service',
                 'civic_sovereign_guardianship',
+                'civic_corporate_sovereign_guardianship',
+                'civic_hive_sovereign_guardianship',
+                'civic_machine_sovereign_guardianship',
+                // These require species MACHINE which is incompatible
+                'civic_toxic_baths_individual_machine',
+                'civic_individual_machine_replication',
+                'civic_individual_machine_predictive_analysis',
+                'civic_individual_machine_warbots',
             ],
             'ethics'     : [
                 'ethic_pacifist',
                 'ethic_fanatic_pacifist',
-                'civic_sovereign_guardianship',
+                'ethic_gestalt_consciousness',
             ],
         },
     },
@@ -527,6 +543,11 @@ basegame_civics = {
             'authorities': ['auth_corporate'],
             'civics'     : [
                 'civic_fanatic_purifiers',
+                // These require species MACHINE which is incompatible
+                'civic_toxic_baths_individual_machine',
+                'civic_individual_machine_replication',
+                'civic_individual_machine_predictive_analysis',
+                'civic_individual_machine_warbots',
             ],
             'ethics'     : [
                 'ethic_gestalt_consciousness',
@@ -565,8 +586,9 @@ basegame_civics = {
             'civics'     : [
                 'civic_fanatic_purifiers',
                 'civic_inwards_perfection',
-                'civic_ancient_preservers', // This one does not even exist =_=
                 'civic_dimensional_worship',
+                'civic_corporate_dimensional_worship',
+                'civic_death_cult_corporate',
             ],
             'ethics'     : [],
         },
@@ -623,7 +645,14 @@ basegame_civics = {
         },
         no : {
             'authorities': [],
-            'civics'     : ['civic_relentless_industrialists'],
+            'civics'     : [
+                'civic_relentless_industrialists',
+                // These require species MACHINE which is incompatible
+                'civic_toxic_baths_individual_machine',
+                'civic_individual_machine_replication',
+                'civic_individual_machine_predictive_analysis',
+                'civic_individual_machine_warbots',
+            ],
             'ethics'     : [],
         },
     },
@@ -635,7 +664,13 @@ basegame_civics = {
         },
         no : {
             'authorities': [],
-            'civics'     : ['civic_agrarian_idyll'],
+            'civics'     : [
+                'civic_agrarian_idyll',
+                'civic_toxic_baths_individual_machine',
+                'civic_individual_machine_replication',
+                'civic_individual_machine_predictive_analysis',
+                'civic_individual_machine_warbots',
+            ],
             'ethics'     : [],
         },
     },
@@ -735,6 +770,11 @@ basegame_civics = {
                 'civic_corporate_hyperspace_specialty',
                 'civic_sovereign_guardianship',
                 'civic_corporate_sovereign_guardianship',
+                'civic_privatized_exploration',
+                'civic_inwards_perfection',
+                'civic_guided_sapience',
+                'civic_corporate_guided_sapience',
+                'civic_beastmasters',
             ],
             'ethics'     : ['ethic_gestalt_consciousness'],
         },
@@ -818,6 +858,25 @@ basegame_civics = {
             'ethics'     : ['ethic_gestalt_consciousness'],
         },
     },
+    'civic_natural_design'        : {
+        yes: {
+            'authorities': [],
+            'civics'     : [],
+            'ethics'     : [],
+        },
+        no : {
+            'authorities': ['auth_corporate'],
+            'civics'     : [
+                'civic_guided_sapience',
+                // These require species MACHINE which is incompatible with civic_natural_design
+                'civic_toxic_baths_individual_machine',
+                'civic_individual_machine_replication',
+                'civic_individual_machine_predictive_analysis',
+                'civic_individual_machine_warbots',
+            ],
+            'ethics'     : ['ethic_gestalt_consciousness'],
+        },
+    },
     'civic_sovereign_guardianship' : {
         yes: {
             'authorities': [],
@@ -838,6 +897,206 @@ basegame_civics = {
                 'civic_fanatic_purifiers',
             ],
             'ethics'     : ['ethic_gestalt_consciousness'],
+        },
+    },
+    'civic_guided_sapience'        : {
+        yes: {
+            'authorities': [],
+            'civics'     : [],
+            'ethics'     : [],
+        },
+        no : {
+            'authorities': ['auth_corporate'],
+            'civics'     : [
+                'civic_natural_design',
+                'civic_eager_explorers',
+                'civic_privatized_exploration',
+                'civic_hive_stargazers',
+                'civic_machine_exploration_protocol',
+            ],
+            'ethics'     : [
+                'ethic_gestalt_consciousness',
+                'ethic_xenophobe',
+                'ethic_fanatic_xenophobe',
+            ],
+        },
+    },
+    'civic_toxic_baths_individual_machine'        : {
+        yes: {
+            'authorities': [],
+            'civics'     : [],
+            'ethics'     : [],
+        },
+        no : {
+            'authorities': ['auth_corporate'],
+            'civics'     : [
+                'civic_corporate_toxic_baths_individual_machine',
+                'civic_idyllic_bloom',
+                'civic_environmental_architects',
+                // Incompatible with machines
+                'civic_anglers',
+                'civic_corporate_anglers',
+                'civic_selective_kinship',
+                'civic_reanimated_armies',
+                'civic_permanent_employment',
+                'civic_augmentation_bazaars',
+                'civic_private_healthcare_corporate',
+                'civic_toxic_baths',
+                'civic_corporate_toxic_baths',
+                'civic_natural_design',
+            ],
+            'ethics'     : ['ethic_gestalt_consciousness'],
+        },
+    },
+    'civic_individual_machine_replication'        : {
+        yes: {
+            'authorities': [],
+            'civics'     : [],
+            'ethics'     : [],
+        },
+        no : {
+            'authorities': ['auth_corporate'],
+            'civics'     : [
+                'civic_idyllic_bloom',
+                // Incompatible with machines
+                'civic_anglers',
+                'civic_corporate_anglers',
+                'civic_selective_kinship',
+                'civic_reanimated_armies',
+                'civic_permanent_employment',
+                'civic_augmentation_bazaars',
+                'civic_private_healthcare_corporate',
+                'civic_toxic_baths',
+                'civic_corporate_toxic_baths',
+                'civic_natural_design',
+            ],
+            'ethics'     : ['ethic_gestalt_consciousness'],
+        },
+    },
+    'civic_individual_machine_predictive_analysis': {
+        yes: {
+            'authorities': [],
+            'civics'     : [],
+            'ethics'     : [],
+        },
+        no : {
+            'authorities': ['auth_corporate'],
+            'civics'     : [
+                'civic_idyllic_bloom',
+                // Incompatible with machines
+                'civic_anglers',
+                'civic_corporate_anglers',
+                'civic_selective_kinship',
+                'civic_reanimated_armies',
+                'civic_permanent_employment',
+                'civic_augmentation_bazaars',
+                'civic_private_healthcare_corporate',
+                'civic_toxic_baths',
+                'civic_corporate_toxic_baths',
+                'civic_natural_design',
+            ],
+            'ethics'     : ['ethic_gestalt_consciousness'],
+        },
+    },
+    'civic_individual_machine_warbots'            : {
+        yes: {
+            'authorities': [],
+            'civics'     : [],
+            'ethics'     : [],
+        },
+        no : {
+            'authorities': ['auth_corporate'],
+            'civics'     : [
+                'civic_idyllic_bloom',
+                // Incompatible with machines
+                'civic_anglers',
+                'civic_corporate_anglers',
+                'civic_selective_kinship',
+                'civic_reanimated_armies',
+                'civic_permanent_employment',
+                'civic_augmentation_bazaars',
+                'civic_private_healthcare_corporate',
+                'civic_toxic_baths',
+                'civic_corporate_toxic_baths',
+                'civic_natural_design',
+            ],
+            'ethics'     : ['ethic_gestalt_consciousness'],
+        },
+    },
+    'civic_astrometeorology': {
+        yes: {
+            authorities: [],
+            civics: [],
+            ethics: [],
+        },
+        no: {
+            authorities: [
+                'auth_corporate',
+            ],
+            civics: [],
+            ethics: ['ethic_gestalt_consciousness'],
+        },
+    },
+    'civic_storm_callers': {
+        yes: {
+            authorities: [],
+            civics: [],
+            ethics: [],
+        },
+        no: {
+            authorities: ['auth_corporate'],
+            civics: [],
+            ethics: ['ethic_gestalt_consciousness'],
+        },
+    },
+    'civic_environmental_architects': {
+        yes: {
+            authorities: [],
+            civics: [],
+            ethics: [],
+        },
+        no: {
+            authorities: ['auth_corporate'],
+            civics: [
+                'civic_environmental_architects_megacorp',
+                'civic_environmentalist',
+                'civic_toxic_baths',
+                'civic_toxic_baths_individual_machine',
+                'civic_corporate_toxic_baths',
+                'civic_corporate_toxic_baths_individual_machine',
+                'civic_hive_toxic_baths',
+                'civic_machine_toxic_baths',
+                'civic_relentless_industrialists',
+                'civic_corporate_relentless_industrialists',
+            ],
+            ethics: ['ethic_gestalt_consciousness'],
+        },
+    },
+    'civic_galactic_curators': {
+        yes: {
+            authorities: [],
+            civics: [],
+            ethics: [],
+        },
+        no: {
+            authorities: ['auth_corporate'],
+            civics: ['civic_corporate_galactic_curators'],
+            ethics: ['ethic_gestalt_consciousness'],
+        },
+    },
+    'civic_beastmasters': {
+        yes: {
+            authorities: [],
+            civics: [],
+            ethics: [],
+        },
+        no: {
+            authorities: ['auth_corporate'],
+            civics: [
+                'civic_corporate_beastmasters',
+                'civic_eager_explorers',
+            ],
+            ethics: ['ethic_gestalt_consciousness'],
         },
     },
 };
@@ -951,6 +1210,7 @@ hive_civics = {
                 'civic_hive_empath',
                 'civic_hive_memorialist',
                 'civic_hive_sovereign_guardianship',
+                'civic_hive_guided_sapience',
             ],
             'ethics'     : [],
         },
@@ -1011,7 +1271,10 @@ hive_civics = {
         },
         no : {
             'authorities': [],
-            'civics'     : [],
+            'civics'     : [
+                'civic_hive_toxic_baths',
+                'civic_environmental_architects_hive',
+            ],
             'ethics'     : [],
         },
     },
@@ -1039,16 +1302,20 @@ hive_civics = {
             'ethics'     : [],
         },
     },
-    'civic_hive_stargazers'            : {
+    'civic_hive_stargazers': {
         yes: {
             'authorities': ['auth_hive_mind'],
             'civics'     : [],
             'ethics'     : [],
         },
-        no : {
+        no: {
             'authorities': [],
-            'civics'     : ['civic_hive_hyperspace_specialty'],
-            'ethics'     : [],
+            'civics': [
+                'civic_hive_hyperspace_specialty',
+                'civic_hive_guided_sapience',
+                'civic_hive_beastmasters',
+            ],
+            'ethics': [],
         },
     },
     'civic_memory_vault_hive'          : {
@@ -1111,6 +1378,89 @@ hive_civics = {
             'ethics'     : [],
         },
     },
+    'civic_hive_natural_design': {
+        yes: {
+            'authorities': ['auth_hive_mind'],
+            'civics'     : [],
+            'ethics'     : [],
+        },
+        no: {
+            'authorities': [],
+            'civics': [
+                'civic_hive_guided_sapience',
+            ],
+            'ethics': [],
+        },
+    },
+
+    'civic_hive_guided_sapience': {
+        yes: {
+            'authorities': ['auth_hive_mind'],
+            'civics'     : [],
+            'ethics'     : [],
+        },
+        no : {
+            'authorities': [],
+            'civics'     : [
+                'civic_hive_devouring_swarm',
+                'civic_hive_natural_design',
+                'civic_hive_stargazers',
+            ],
+            'ethics'     : [],
+        },
+    },
+    'civic_hive_beastmasters': {
+        yes: {
+            'authorities': ['auth_hive_mind'],
+            'civics': [],
+            'ethics': [],
+        },
+        no: {
+            'authorities': [],
+            'civics': [
+                'civic_hive_stargazers',
+            ],
+            'ethics': [],
+        },
+    },
+    'civic_astrometeorology_hive': {
+        yes: {
+            'authorities': ['auth_hive_mind'],
+            'civics'     : [],
+            'ethics'     : [],
+        },
+        no : {
+            'authorities': [],
+            'civics'     : [''],
+            'ethics'     : [],
+        },
+    },
+    'civic_environmental_architects_hive': {
+        yes: {
+            'authorities': ['auth_hive_mind'],
+            'civics': [],
+            'ethics': [],
+        },
+        no: {
+            'authorities': [],
+            'civics': [
+                'civic_hive_toxic_baths',
+            ],
+            'ethics': [],
+        },
+    },
+    'civic_hive_galactic_curators': {
+        yes: {
+            'authorities': ['auth_hive_mind'],
+            'civics': [],
+            'ethics': [],
+        },
+        no: {
+            'authorities': [],
+            'civics': [],
+            'ethics': [],
+        },
+    },
 };
 
 machine_civics = {
@@ -1146,6 +1496,7 @@ machine_civics = {
                 'civic_machine_diplomatic_protocols',
                 'civic_machine_tactical_algorithms',
                 'civic_machine_guided_sapience',
+                'civic_machine_beastmasters',
             ],
             'ethics'     : [],
         },
@@ -1351,7 +1702,9 @@ machine_civics = {
         },
         no : {
             'authorities': [],
-            'civics'     : [],
+            'civics'     : [
+                'civic_environmental_architects_machine',
+            ],
             'ethics'     : [],
         },
     },
@@ -1379,6 +1732,7 @@ machine_civics = {
                 'civic_machine_terminator',
                 'civic_machine_assimilator',
                 'civic_machine_guided_sapience',
+                'civic_machine_beastmasters',
             ],
             'ethics'     : [],
         },
@@ -1502,52 +1856,57 @@ machine_civics = {
             'ethics'     : [],
         },
     },
-    'civic_toxic_baths_individual_machine'        : {
+    'civic_machine_beastmasters': {
         yes: {
-            'authorities': [],
-            'civics'     : [],
-            'ethics'     : [],
+            'authorities': ['auth_machine_intelligence'],
+            'civics': [],
+            'ethics': [],
         },
-        no : {
-            'authorities': ['auth_corporate'],
-            'civics'     : ['civic_corporate_toxic_baths_individual_machine'],
-            'ethics'     : ['ethic_gestalt_consciousness'],
+        no: {
+            'authorities': [],
+            'civics': [
+                'civic_machine_terminator',
+                'civic_machine_exploration_protocol',
+            ],
+            'ethics': [],
         },
     },
-    'civic_individual_machine_replication'        : {
+    'civic_astrometeorology_machine': {
         yes: {
-            'authorities': [],
-            'civics'     : [],
-            'ethics'     : [],
+            'authorities': ['auth_machine_intelligence'],
+            'civics': [],
+            'ethics': [],
         },
-        no : {
-            'authorities': ['auth_corporate'],
-            'civics'     : [],
-            'ethics'     : ['ethic_gestalt_consciousness'],
+        no: {
+            'authorities': [],
+            'civics': [],
+            'ethics': [],
         },
     },
-    'civic_individual_machine_predictive_analysis': {
+    'civic_environmental_architects_machine': {
         yes: {
-            'authorities': [],
-            'civics'     : [],
-            'ethics'     : [],
+            'authorities': ['auth_machine_intelligence'],
+            'civics': [],
+            'ethics': [],
         },
-        no : {
-            'authorities': ['auth_corporate'],
-            'civics'     : [],
-            'ethics'     : ['ethic_gestalt_consciousness'],
+        no: {
+            'authorities': [],
+            'civics': [
+                'civic_machine_toxic_baths',
+            ],
+            'ethics': [],
         },
     },
-    'civic_individual_machine_warbots'            : {
+    'civic_machine_galactic_curators': {
         yes: {
-            'authorities': [],
-            'civics'     : [],
-            'ethics'     : [],
+            'authorities': ['auth_machine_intelligence'],
+            'civics': [],
+            'ethics': [],
         },
-        no : {
-            'authorities': ['auth_corporate'],
-            'civics'     : ['civic_machine_obsessional_directive'],
-            'ethics'     : ['ethic_gestalt_consciousness'],
+        no: {
+            'authorities': [],
+            'civics': [],
+            'ethics': [],
         },
     },
 };
@@ -1779,7 +2138,11 @@ corporate_civics = {
         },
         no : {
             'authorities': [],
-            'civics'     : ['civic_agrarian_idyll'],
+            'civics'     : [
+                'civic_agrarian_idyll',
+                // These require species MACHINE which is incompatible
+                'civic_corporate_toxic_baths_individual_machine'
+            ],
             'ethics'     : [],
         },
     },
@@ -1803,7 +2166,13 @@ corporate_civics = {
         },
         no : {
             'authorities': [],
-            'civics'     : [],
+            'civics'     : [
+                // These require species MACHINE which is incompatible
+                'civic_toxic_baths_individual_machine',
+                'civic_individual_machine_replication',
+                'civic_individual_machine_predictive_analysis',
+                'civic_individual_machine_warbots',
+            ],
             'ethics'     : [
                 'ethic_egalitarian',
                 'ethic_fanatic_egalitarian',
@@ -1818,7 +2187,13 @@ corporate_civics = {
         },
         no : {
             'authorities': ['auth_corporate'],
-            'civics'     : [],
+            'civics'     : [
+                // These require species MACHINE which is incompatible
+                'civic_toxic_baths_individual_machine',
+                'civic_individual_machine_replication',
+                'civic_individual_machine_predictive_analysis',
+                'civic_individual_machine_warbots',
+            ],
             'ethics'     : [],
         },
     },
@@ -1879,6 +2254,7 @@ corporate_civics = {
                 'civic_corporate_hyperspace_specialty',
                 'civic_sovereign_guardianship',
                 'civic_corporate_sovereign_guardianship',
+                'civic_corporate_beastmasters',
             ],
             'ethics'     : [],
         },
@@ -1956,7 +2332,7 @@ corporate_civics = {
         },
         no : {
             'authorities': [],
-            'civics'     : [],
+            'civics'     : ['civic_corporate_toxic_baths_individual_machine'],
             'ethics'     : [],
         },
     },
@@ -2017,7 +2393,9 @@ corporate_civics = {
         },
         no : {
             'authorities': [],
-            'civics'     : [],
+            'civics'     : [
+                'civic_corporate_toxic_baths_individual_machine'
+            ],
             'ethics'     : ['ethic_gestalt_consciousness'],
         },
     },
@@ -2063,6 +2441,96 @@ corporate_civics = {
             ],
         },
     },
+    'civic_corporate_toxic_baths_individual_machine': {
+        yes: {
+            'authorities': ['auth_corporate'],
+            'civics'     : [],
+            'ethics'     : [],
+        },
+        no: {
+            'authorities': [],
+            'civics'     : [
+                'civic_toxic_baths_individual_machine',
+                // Requires machines
+                'civic_augmentation_bazaars',
+            ],
+            'ethics'     : [],
+        },
+    },
+    'civic_astrometeorology_megacorp': {
+        yes: {
+            'authorities': ['auth_corporate'],
+            'civics': [],
+            'ethics': [],
+        },
+        no: {
+            'authorities': [],
+            'civics': [],
+            'ethics': [],
+        },
+    },
+    'civic_storm_callers_megacorp': {
+        yes: {
+            'authorities': ['auth_corporate'],
+            'civics': [],
+            'ethics': [],
+        },
+        no: {
+            'authorities': [],
+            'civics': [],
+            'ethics': [],
+        },
+    },
+    'civic_environmental_architects_megacorp': {
+        yes: {
+            'authorities': ['auth_corporate'],
+            'civics': [],
+            'ethics': [],
+        },
+        no: {
+            'authorities': [],
+            'civics': [
+                'civic_environmentalist',
+                'civic_environmental_architects',
+                'civic_toxic_baths',
+                'civic_toxic_baths_individual_machine',
+                'civic_corporate_toxic_baths',
+                'civic_corporate_toxic_baths_individual_machine',
+                'civic_hive_toxic_baths',
+                'civic_machine_toxic_baths',
+                'civic_relentless_industrialists',
+                'civic_corporate_relentless_industrialists',
+            ],
+            'ethics': [],
+        },
+    },
+    'civic_corporate_galactic_curators': {
+        yes: {
+            'authorities': ['auth_corporate'],
+            'civics': [],
+            'ethics': [],
+        },
+        no: {
+            'authorities': [],
+            'civics': ['civic_galactic_curators'],
+            'ethics': [],
+        },
+    },
+    'civic_corporate_beastmasters': {
+        yes: {
+            'authorities': ['auth_corporate'],
+            'civics': [],
+            'ethics': [],
+        },
+        no: {
+            'authorities': [],
+            'civics': [
+                'civic_beastmasters',
+                'civic_privatized_exploration',
+            ],
+            'ethics': [],
+        },
+    },
 };
 
 // If any of these civics is picked, non-gestalt machine cannot be picked as species
@@ -2074,4 +2542,7 @@ machine_disabled_civics = [
     'civic_permanent_employment',
     'civic_augmentation_bazaars',
     'civic_private_healthcare_corporate',
+    'civic_toxic_baths',
+    'civic_corporate_toxic_baths',
+    'civic_natural_design',
 ];

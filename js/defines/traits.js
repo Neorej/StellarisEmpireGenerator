@@ -1120,3 +1120,27 @@ basegame_bad_paragon_traits = {
         },
     },
 };
+
+basegame_treasure_hunter_traits = {
+    'leader_trait_buccaneer'     : {
+        cost: -1,
+        yes : {
+            'class' : ['scientist', 'official', 'commander'],
+            'ethics': [],
+        },
+    },
+    'leader_trait_trailblazer'     : {
+        cost: -1,
+        yes : {
+            'class' : ['scientist', 'official', 'commander'],
+            'ethics': [],
+        },
+    },
+    'leader_trait_treasure_hoarder'     : {
+        cost: -1,
+        yes : {
+            'class' : ['scientist', 'official', 'commander'],
+            'ethics': [],
+        },
+    },
+};
