@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="Random empire generator for Stellaris; generates game-ready empires. Updated for Stellaris 3.12 (Andromeda)">
+    <meta name="description" content="Random empire generator for Stellaris; generates game-ready empires. Updated for Stellaris 3.14 (Circinus)">
     <title>Stellaris Empire Generator</title>
 
     <link rel="stylesheet" href="css/index.css">
@@ -63,7 +63,7 @@
     </div>
     <h1>Stellaris Empire Generator</h1>
     <p>
-        Tool for generating random empires for Stellaris, updated for 3.12 (Andromeda) <br>
+        Tool for generating random empires for Stellaris, updated for 3.14 (Circinus) <br>
         Assumes all DLC is installed. <br>
         <br>
         Put the generated empires in <i>%UserProfile%\Documents\Paradox Interactive\Stellaris\user_empire_designs_v3.4.txt</i>
@@ -264,6 +264,7 @@ They only work if the required authorities are not disabled.">
             leader_traits               = structuredClone(basegame_leader_traits);
             paragon_traits              = structuredClone(basegame_paragon_traits);
             bad_paragon_traits          = structuredClone(basegame_bad_paragon_traits);
+            treasure_hunter_traits      = structuredClone(basegame_treasure_hunter_traits);
             planets                     = structuredClone(basegame_planets);
 
             // Load mod data

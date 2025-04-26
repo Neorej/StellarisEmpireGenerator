@@ -561,6 +561,21 @@ class Empire {
             return;
         }
 
+        // Individual machines are always machines
+        const individualMachineCivics = [
+            'civic_toxic_baths_individual_machine',
+            'civic_individual_machine_replication',
+            'civic_individual_machine_predictive_analysis',
+            'civic_individual_machine_warbots',
+            'civic_corporate_toxic_baths_individual_machine'
+        ];
+
+        if (individualMachineCivics.some(civic => this.civics.includes(civic))) {
+            this.species.class = 'MACHINE';
+            this.species.portrait = species_machine.MACHINE.portraits.random();
+            return;
+        }
+
         this.species.gender = this.options.species_gender === 'random' ? genders.random() : this.options.species_gender;
 
         // Idyllic Bloom requires FUN or PLANT
@@ -695,7 +710,7 @@ class Empire {
                 this.species.traits.push('trait_necrophage');
                 this.disabled_traits.push('trait_plantoid_budding');
                 this.disabled_traits.push('trait_humanoid_psychological_infertility');
-                this.secondary_species = new SecondarySpecies([], [], 5, 2, this.species.portrait, false);
+                this.secondary_species = new SecondarySpecies([], ['trait_thrifty'], 5, 2, this.species.portrait, false);
                 return;
             }
 
@@ -840,6 +855,11 @@ class Empire {
         // Stargazers get to be stargazers
         if (this.civics.includes('civic_hive_stargazers')) {
             this.species.traits.push('trait_stargazer');
+        }
+
+        // Storm callers get to the "Storm Touched" trait
+        if (this.civics.includes('civic_storm_callers') || this.civics.includes('civic_storm_callers_megacorp')) {
+            this.species.traits.push('trait_storm_touched');
         }
 
         // Gestalts cannot be thrifty
@@ -1001,7 +1021,12 @@ class Empire {
                 this.pick_ruler_trait(paragon_traits);
             }
             this.pick_ruler_trait(paragon_traits);
-        } else {
+        }
+        // Treasure hunters have their own ruler traits
+        else if (this.origin === 'origin_treasure_hunters') {
+            this.pick_ruler_trait(treasure_hunter_traits);
+        }
+        else {
             this.pick_ruler_trait(leader_traits);
         }
     }
