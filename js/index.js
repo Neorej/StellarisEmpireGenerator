@@ -752,18 +752,37 @@ class Empire {
     set_traits() {
         // Generate metalheads
         if (this.options.generate_genocidal === 'metal') {
-            this.species.traits.push('trait_strong');
-            this.species.traits.push('trait_industrious');
-            this.species.traits.push(random_percentage_check(50) ? 'trait_deviants' : 'trait_solitary');
+            // Extra traits based on origin
+            this.push_special_traits();
 
-            // Aquatic trait costs 2, add an extra negative trait to balance the cost
-            if (this.species.traits.includes('trait_aquatic') || this.species.traits.includes('trait_robot_aquatic')) {
-                this.species.traits.push(random_percentage_check(50) ? 'trait_unruly' : 'trait_repugnant');
+            if (this.species.class === 'MACHINE') {
+                // Metalhead machines get a separate set of traits
+                this.species.traits.push('trait_machine_unit');
+                this.species.traits.push('trait_robot_history_warbot');
+                this.species.traits.push('trait_robot_power_drills');
+
+                // Aquatic trait costs 2, add an extra negative trait to balance the cost
+                if (this.species.traits.includes('trait_robot_aquatic')) {
+                    this.species.traits.push(random_percentage_check(50) ? 'trait_robot_high_bandwidth' : 'trait_robot_luxurious');
+                }
+
+                // Pick a negative trait to offset power drills cost
+                this.pick_trait(machine_traits, true, false);
             }
+            else {
+                this.species.traits.push('trait_strong');
+                this.species.traits.push('trait_industrious');
+                this.species.traits.push(random_percentage_check(50) ? 'trait_deviants' : 'trait_solitary');
 
-            if (this.species.class === 'LITHOID') {
-                // Lithoids have the lithoid trait, even if they are metalheads
-                this.species.traits.push('trait_lithoid');
+                // Aquatic trait costs 2, add an extra negative trait to balance the cost
+                if (this.species.traits.includes('trait_aquatic')) {
+                    this.species.traits.push(random_percentage_check(50) ? 'trait_unruly' : 'trait_repugnant');
+                }
+
+                if (this.species.class === 'LITHOID') {
+                    // Lithoids have the lithoid trait, even if they are metalheads
+                    this.species.traits.push('trait_lithoid');
+                }
             }
 
             return;
@@ -845,22 +864,8 @@ class Empire {
             traits_list = {...traits_list, ...overtuned_traits_list};
         }
 
-        // Legendary leaders always their own trait
-        if (this.origin === 'origin_legendary_leader') {
-            this.species.traits.push('trait_perfected_genes');
-            this.trait_points_left--;
-            this.trait_picks_left--;
-        }
-
-        // Stargazers get to be stargazers
-        if (this.civics.includes('civic_hive_stargazers')) {
-            this.species.traits.push('trait_stargazer');
-        }
-
-        // Storm callers get to the "Storm Touched" trait
-        if (this.civics.includes('civic_storm_callers') || this.civics.includes('civic_storm_callers_megacorp')) {
-            this.species.traits.push('trait_storm_touched');
-        }
+        // Extra traits based on origin
+        this.push_special_traits();
 
         // Gestalts cannot be thrifty
         if (this.ethics.includes('ethic_gestalt_consciousness')) {
@@ -911,6 +916,26 @@ class Empire {
             let picked_trait = this.pick_trait(traits_list, false, false);
             delete traits_list[picked_trait];
         }
+    }
+
+    push_special_traits() {
+        // Legendary leaders always their own trait
+        if (this.origin === 'origin_legendary_leader') {
+            this.species.traits.push('trait_perfected_genes');
+            this.trait_points_left--;
+            this.trait_picks_left--;
+        }
+
+        // Stargazers get to be stargazers
+        if (this.civics.includes('civic_hive_stargazers')) {
+            this.species.traits.push('trait_stargazer');
+        }
+
+        // Storm callers get to the "Storm Touched" trait
+        if (this.civics.includes('civic_storm_callers') || this.civics.includes('civic_storm_callers_megacorp')) {
+            this.species.traits.push('trait_storm_touched');
+        }
+
     }
 
     pick_trait(traits_list, negative_trait, allow_negative) {
