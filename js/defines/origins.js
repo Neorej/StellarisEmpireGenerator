@@ -4,14 +4,16 @@ basegame_origins = {
       "authorities": [],
       "civics": [],
       "ethics": [],
-      "species": [],
+      "species_class": [],
+      "species_archetype": [],
       "culture": []
     },
     "no": {
       "authorities": [],
       "civics": [],
       "ethics": [],
-      "species": [],
+      "species_class": [],
+      "species_archetype": [],
       "culture": []
     }
   },
@@ -22,7 +24,8 @@ basegame_origins = {
       ],
       "civics": [],
       "ethics": [],
-      "species": [],
+      "species_class": [],
+      "species_archetype": [],
       "culture": []
     },
     "no": {
@@ -34,7 +37,8 @@ basegame_origins = {
         "civic_machine_terminator"
       ],
       "ethics": [],
-      "species": [],
+      "species_class": [],
+      "species_archetype": [],
       "culture": []
     }
   },
@@ -43,7 +47,8 @@ basegame_origins = {
       "authorities": [],
       "civics": [],
       "ethics": [],
-      "species": [],
+      "species_class": [],
+      "species_archetype": [],
       "culture": []
     },
     "no": {
@@ -60,7 +65,8 @@ basegame_origins = {
         "ethic_fanatic_pacifist",
         "ethic_gestalt_consciousness"
       ],
-      "species": [],
+      "species_class": [],
+      "species_archetype": [],
       "culture": []
     }
   },
@@ -69,7 +75,8 @@ basegame_origins = {
       "authorities": [],
       "civics": [],
       "ethics": [],
-      "species": [],
+      "species_class": [],
+      "species_archetype": [],
       "culture": []
     },
     "no": {
@@ -85,7 +92,8 @@ basegame_origins = {
         "ethic_fanatic_pacifist",
         "ethic_gestalt_consciousness"
       ],
-      "species": [
+      "species_class": [],
+      "species_archetype": [
         "MACHINE"
       ],
       "culture": []
@@ -96,7 +104,8 @@ basegame_origins = {
       "authorities": [],
       "civics": [],
       "ethics": [],
-      "species": [],
+      "species_class": [],
+      "species_archetype": [],
       "culture": []
     },
     "no": {
@@ -119,7 +128,8 @@ basegame_origins = {
         "civic_permanent_employment"
       ],
       "ethics": [],
-      "species": [
+      "species_class": [],
+      "species_archetype": [
         "MACHINE"
       ],
       "culture": []
@@ -130,14 +140,16 @@ basegame_origins = {
       "authorities": [],
       "civics": [],
       "ethics": [],
-      "species": [],
+      "species_class": [],
+      "species_archetype": [],
       "culture": []
     },
     "no": {
       "authorities": [],
       "civics": [],
       "ethics": [],
-      "species": [],
+      "species_class": [],
+      "species_archetype": [],
       "culture": [
         "biogenesis_01",
         "biogenesis_02"
@@ -147,13 +159,12 @@ basegame_origins = {
   "origin_wilderness": {
     "yes": {
       "authorities": [
-        [
-          "auth_hive_mind"
-        ]
+        "auth_hive_mind"
       ],
       "civics": [],
       "ethics": [],
-      "species": [],
+      "species_class": [],
+      "species_archetype": [],
       "culture": [
         "biogenesis_01",
         "biogenesis_02"
@@ -175,7 +186,8 @@ basegame_origins = {
         "civic_twisted_experimenters_hive_mind"
       ],
       "ethics": [],
-      "species": [],
+      "species_class": [],
+      "species_archetype": [],
       "culture": []
     }
   },
@@ -184,7 +196,8 @@ basegame_origins = {
       "authorities": [],
       "civics": [],
       "ethics": [],
-      "species": [],
+      "species_class": [],
+      "species_archetype": [],
       "culture": []
     },
     "no": {
@@ -195,7 +208,8 @@ basegame_origins = {
         "civic_machine_terminator"
       ],
       "ethics": [],
-      "species": [],
+      "species_class": [],
+      "species_archetype": [],
       "culture": []
     }
   },
@@ -204,7 +218,8 @@ basegame_origins = {
       "authorities": [],
       "civics": [],
       "ethics": [],
-      "species": [],
+      "species_class": [],
+      "species_archetype": [],
       "culture": []
     },
     "no": {
@@ -214,7 +229,8 @@ basegame_origins = {
         "civic_tankbound_corporate"
       ],
       "ethics": [],
-      "species": [
+      "species_class": [],
+      "species_archetype": [
         "MACHINE"
       ],
       "culture": []
@@ -225,7 +241,8 @@ basegame_origins = {
       "authorities": [],
       "civics": [],
       "ethics": [],
-      "species": [],
+      "species_class": [],
+      "species_archetype": [],
       "culture": []
     },
     "no": {
@@ -236,7 +253,8 @@ basegame_origins = {
         "civic_machine_terminator"
       ],
       "ethics": [],
-      "species": [],
+      "species_class": [],
+      "species_archetype": [],
       "culture": []
     }
   },
@@ -250,7 +268,8 @@ basegame_origins = {
           "ethic_fanatic_spiritualist"
         ]
       ],
-      "species": [],
+      "species_class": [],
+      "species_archetype": [],
       "culture": []
     },
     "no": {
@@ -271,7 +290,8 @@ basegame_origins = {
         "ethic_egalitarian",
         "ethic_fanatic_egalitarian"
       ],
-      "species": [
+      "species_class": [],
+      "species_archetype": [
         "MACHINE"
       ],
       "culture": []
@@ -282,7 +302,8 @@ basegame_origins = {
       "authorities": [],
       "civics": [],
       "ethics": [],
-      "species": [
+      "species_class": [],
+      "species_archetype": [
         [
           "BIOLOGICAL",
           "LITHOID"
@@ -317,7 +338,8 @@ basegame_origins = {
         "ethic_fanatic_spiritualist",
         "ethic_gestalt_consciousness"
       ],
-      "species": [
+      "species_class": [],
+      "species_archetype": [
         "MACHINE"
       ],
       "culture": []
@@ -328,7 +350,8 @@ basegame_origins = {
       "authorities": [],
       "civics": [],
       "ethics": [],
-      "species": [
+      "species_class": [],
+      "species_archetype": [
         "MACHINE"
       ],
       "culture": []
@@ -337,7 +360,8 @@ basegame_origins = {
       "authorities": [],
       "civics": [],
       "ethics": [],
-      "species": [],
+      "species_class": [],
+      "species_archetype": [],
       "culture": []
     }
   },
@@ -346,14 +370,16 @@ basegame_origins = {
       "authorities": [],
       "civics": [],
       "ethics": [],
-      "species": [],
+      "species_class": [],
+      "species_archetype": [],
       "culture": []
     },
     "no": {
       "authorities": [],
       "civics": [],
       "ethics": [],
-      "species": [],
+      "species_class": [],
+      "species_archetype": [],
       "culture": []
     }
   },
@@ -364,7 +390,8 @@ basegame_origins = {
       ],
       "civics": [],
       "ethics": [],
-      "species": [
+      "species_class": [],
+      "species_archetype": [
         [
           "BIOLOGICAL",
           "LITHOID"
@@ -376,7 +403,8 @@ basegame_origins = {
       "authorities": [],
       "civics": [],
       "ethics": [],
-      "species": [
+      "species_class": [],
+      "species_archetype": [
         "MACHINE"
       ],
       "culture": []
@@ -387,7 +415,8 @@ basegame_origins = {
       "authorities": [],
       "civics": [],
       "ethics": [],
-      "species": [
+      "species_class": [],
+      "species_archetype": [
         [
           "BIOLOGICAL",
           "LITHOID"
@@ -399,7 +428,8 @@ basegame_origins = {
       "authorities": [],
       "civics": [],
       "ethics": [],
-      "species": [],
+      "species_class": [],
+      "species_archetype": [],
       "culture": []
     }
   },
@@ -408,7 +438,8 @@ basegame_origins = {
       "authorities": [],
       "civics": [],
       "ethics": [],
-      "species": [
+      "species_class": [],
+      "species_archetype": [
         [
           "BIOLOGICAL",
           "LITHOID"
@@ -420,7 +451,8 @@ basegame_origins = {
       "authorities": [],
       "civics": [],
       "ethics": [],
-      "species": [],
+      "species_class": [],
+      "species_archetype": [],
       "culture": []
     }
   },
@@ -429,7 +461,8 @@ basegame_origins = {
       "authorities": [],
       "civics": [],
       "ethics": [],
-      "species": [
+      "species_class": [],
+      "species_archetype": [
         [
           "BIOLOGICAL",
           "LITHOID"
@@ -441,7 +474,8 @@ basegame_origins = {
       "authorities": [],
       "civics": [],
       "ethics": [],
-      "species": [],
+      "species_class": [],
+      "species_archetype": [],
       "culture": []
     }
   },
@@ -450,7 +484,8 @@ basegame_origins = {
       "authorities": [],
       "civics": [],
       "ethics": [],
-      "species": [],
+      "species_class": [],
+      "species_archetype": [],
       "culture": []
     },
     "no": {
@@ -474,7 +509,8 @@ basegame_origins = {
       "ethics": [
         "ethic_gestalt_consciousness"
       ],
-      "species": [
+      "species_class": [],
+      "species_archetype": [
         "MACHINE"
       ],
       "culture": []
@@ -485,7 +521,8 @@ basegame_origins = {
       "authorities": [],
       "civics": [],
       "ethics": [],
-      "species": [],
+      "species_class": [],
+      "species_archetype": [],
       "culture": []
     },
     "no": {
@@ -513,7 +550,8 @@ basegame_origins = {
         "ethic_fanatic_xenophobe",
         "ethic_gestalt_consciousness"
       ],
-      "species": [
+      "species_class": [],
+      "species_archetype": [
         "MACHINE"
       ],
       "culture": []
@@ -524,7 +562,8 @@ basegame_origins = {
       "authorities": [],
       "civics": [],
       "ethics": [],
-      "species": [],
+      "species_class": [],
+      "species_archetype": [],
       "culture": []
     },
     "no": {
@@ -542,7 +581,8 @@ basegame_origins = {
       "ethics": [
         "ethic_gestalt_consciousness"
       ],
-      "species": [
+      "species_class": [],
+      "species_archetype": [
         "MACHINE"
       ],
       "culture": [
@@ -556,7 +596,8 @@ basegame_origins = {
       "authorities": [],
       "civics": [],
       "ethics": [],
-      "species": [],
+      "species_class": [],
+      "species_archetype": [],
       "culture": []
     },
     "no": {
@@ -571,7 +612,8 @@ basegame_origins = {
         "civic_natural_design"
       ],
       "ethics": [],
-      "species": [
+      "species_class": [],
+      "species_archetype": [
         "MACHINE"
       ],
       "culture": []
@@ -582,7 +624,8 @@ basegame_origins = {
       "authorities": [],
       "civics": [],
       "ethics": [],
-      "species": [],
+      "species_class": [],
+      "species_archetype": [],
       "culture": []
     },
     "no": {
@@ -596,7 +639,8 @@ basegame_origins = {
       "ethics": [
         "ethic_gestalt_consciousness"
       ],
-      "species": [
+      "species_class": [],
+      "species_archetype": [
         "MACHINE"
       ],
       "culture": []
@@ -609,7 +653,8 @@ basegame_origins = {
       ],
       "civics": [],
       "ethics": [],
-      "species": [],
+      "species_class": [],
+      "species_archetype": [],
       "culture": []
     },
     "no": {
@@ -618,7 +663,8 @@ basegame_origins = {
         "civic_hive_beastmasters"
       ],
       "ethics": [],
-      "species": [],
+      "species_class": [],
+      "species_archetype": [],
       "culture": []
     }
   },
@@ -627,7 +673,8 @@ basegame_origins = {
       "authorities": [],
       "civics": [],
       "ethics": [],
-      "species": [
+      "species_class": [],
+      "species_archetype": [
         [
           "BIOLOGICAL",
           "LITHOID"
@@ -639,7 +686,8 @@ basegame_origins = {
       "authorities": [],
       "civics": [],
       "ethics": [],
-      "species": [
+      "species_class": [],
+      "species_archetype": [
         "MACHINE"
       ],
       "culture": []
@@ -650,7 +698,8 @@ basegame_origins = {
       "authorities": [],
       "civics": [],
       "ethics": [],
-      "species": [
+      "species_class": [],
+      "species_archetype": [
         "MACHINE",
         [
           "MACHINE",
@@ -663,7 +712,8 @@ basegame_origins = {
       "authorities": [],
       "civics": [],
       "ethics": [],
-      "species": [],
+      "species_class": [],
+      "species_archetype": [],
       "culture": []
     }
   },
@@ -672,14 +722,16 @@ basegame_origins = {
       "authorities": [],
       "civics": [],
       "ethics": [],
-      "species": [],
+      "species_class": [],
+      "species_archetype": [],
       "culture": []
     },
     "no": {
       "authorities": [],
       "civics": [],
       "ethics": [],
-      "species": [],
+      "species_class": [],
+      "species_archetype": [],
       "culture": []
     }
   },
@@ -693,7 +745,8 @@ basegame_origins = {
           "ethic_fanatic_spiritualist"
         ]
       ],
-      "species": [
+      "species_class": [],
+      "species_archetype": [
         [
           "BIOLOGICAL",
           "LITHOID"
@@ -709,7 +762,8 @@ basegame_origins = {
         "civic_natural_design"
       ],
       "ethics": [],
-      "species": [
+      "species_class": [],
+      "species_archetype": [
         "MACHINE"
       ],
       "culture": []
@@ -720,7 +774,8 @@ basegame_origins = {
       "authorities": [],
       "civics": [],
       "ethics": [],
-      "species": [],
+      "species_class": [],
+      "species_archetype": [],
       "culture": []
     },
     "no": {
@@ -733,7 +788,8 @@ basegame_origins = {
         "civic_machine_terminator"
       ],
       "ethics": [],
-      "species": [],
+      "species_class": [],
+      "species_archetype": [],
       "culture": []
     }
   },
@@ -742,7 +798,8 @@ basegame_origins = {
       "authorities": [],
       "civics": [],
       "ethics": [],
-      "species": [],
+      "species_class": [],
+      "species_archetype": [],
       "culture": []
     },
     "no": {
@@ -753,7 +810,8 @@ basegame_origins = {
         "civic_machine_terminator"
       ],
       "ethics": [],
-      "species": [],
+      "species_class": [],
+      "species_archetype": [],
       "culture": []
     }
   },
@@ -762,7 +820,8 @@ basegame_origins = {
       "authorities": [],
       "civics": [],
       "ethics": [],
-      "species": [
+      "species_class": [],
+      "species_archetype": [
         [
           "BIOLOGICAL",
           "LITHOID"
@@ -774,7 +833,8 @@ basegame_origins = {
       "authorities": [],
       "civics": [],
       "ethics": [],
-      "species": [
+      "species_class": [],
+      "species_archetype": [
         "MACHINE"
       ],
       "culture": []
@@ -785,7 +845,8 @@ basegame_origins = {
       "authorities": [],
       "civics": [],
       "ethics": [],
-      "species": [
+      "species_class": [],
+      "species_archetype": [
         "MACHINE",
         [
           "MACHINE",
@@ -798,7 +859,8 @@ basegame_origins = {
       "authorities": [],
       "civics": [],
       "ethics": [],
-      "species": [],
+      "species_class": [],
+      "species_archetype": [],
       "culture": []
     }
   },
@@ -807,7 +869,8 @@ basegame_origins = {
       "authorities": [],
       "civics": [],
       "ethics": [],
-      "species": [
+      "species_class": [],
+      "species_archetype": [
         [
           "BIOLOGICAL",
           "LITHOID"
@@ -833,7 +896,8 @@ basegame_origins = {
         "ethic_fanatic_xenophile",
         "ethic_fanatic_egalitarian"
       ],
-      "species": [
+      "species_class": [],
+      "species_archetype": [
         "MACHINE"
       ],
       "culture": []
@@ -844,7 +908,8 @@ basegame_origins = {
       "authorities": [],
       "civics": [],
       "ethics": [],
-      "species": [],
+      "species_class": [],
+      "species_archetype": [],
       "culture": []
     },
     "no": {
@@ -857,7 +922,8 @@ basegame_origins = {
         "civic_environmental_architects_megacorp"
       ],
       "ethics": [],
-      "species": [],
+      "species_class": [],
+      "species_archetype": [],
       "culture": []
     }
   },
@@ -866,7 +932,8 @@ basegame_origins = {
       "authorities": [],
       "civics": [],
       "ethics": [],
-      "species": [],
+      "species_class": [],
+      "species_archetype": [],
       "culture": []
     },
     "no": {
@@ -883,7 +950,8 @@ basegame_origins = {
         "civic_machine_anglers"
       ],
       "ethics": [],
-      "species": [],
+      "species_class": [],
+      "species_archetype": [],
       "culture": []
     }
   },
@@ -892,7 +960,8 @@ basegame_origins = {
       "authorities": [],
       "civics": [],
       "ethics": [],
-      "species": [
+      "species_class": [],
+      "species_archetype": [
         [
           "BIOLOGICAL",
           "LITHOID"
@@ -915,7 +984,8 @@ basegame_origins = {
         "civic_machine_anglers"
       ],
       "ethics": [],
-      "species": [
+      "species_class": [],
+      "species_archetype": [
         "MACHINE"
       ],
       "culture": []
@@ -926,7 +996,8 @@ basegame_origins = {
       "authorities": [],
       "civics": [],
       "ethics": [],
-      "species": [
+      "species_class": [],
+      "species_archetype": [
         "MACHINE",
         [
           "MACHINE",
@@ -948,7 +1019,8 @@ basegame_origins = {
         "civic_machine_anglers"
       ],
       "ethics": [],
-      "species": [],
+      "species_class": [],
+      "species_archetype": [],
       "culture": []
     }
   },
@@ -957,7 +1029,8 @@ basegame_origins = {
       "authorities": [],
       "civics": [],
       "ethics": [],
-      "species": [],
+      "species_class": [],
+      "species_archetype": [],
       "culture": []
     },
     "no": {
@@ -969,7 +1042,8 @@ basegame_origins = {
         "ethic_gestalt_consciousness",
         "ethic_fanatic_xenophobe"
       ],
-      "species": [
+      "species_class": [],
+      "species_archetype": [
         "MACHINE"
       ],
       "culture": []
@@ -980,7 +1054,8 @@ basegame_origins = {
       "authorities": [],
       "civics": [],
       "ethics": [],
-      "species": [],
+      "species_class": [],
+      "species_archetype": [],
       "culture": []
     },
     "no": {
@@ -989,7 +1064,8 @@ basegame_origins = {
       "ethics": [
         "ethic_gestalt_consciousness"
       ],
-      "species": [
+      "species_class": [],
+      "species_archetype": [
         "MACHINE"
       ],
       "culture": []
@@ -1000,7 +1076,8 @@ basegame_origins = {
       "authorities": [],
       "civics": [],
       "ethics": [],
-      "species": [],
+      "species_class": [],
+      "species_archetype": [],
       "culture": []
     },
     "no": {
@@ -1016,7 +1093,8 @@ basegame_origins = {
         "ethic_xenophobe",
         "ethic_fanatic_xenophobe"
       ],
-      "species": [],
+      "species_class": [],
+      "species_archetype": [],
       "culture": []
     }
   },
@@ -1025,7 +1103,8 @@ basegame_origins = {
       "authorities": [],
       "civics": [],
       "ethics": [],
-      "species": [],
+      "species_class": [],
+      "species_archetype": [],
       "culture": []
     },
     "no": {
@@ -1040,7 +1119,8 @@ basegame_origins = {
         "ethic_xenophobe",
         "ethic_fanatic_xenophobe"
       ],
-      "species": [],
+      "species_class": [],
+      "species_archetype": [],
       "culture": []
     }
   },
@@ -1049,14 +1129,16 @@ basegame_origins = {
       "authorities": [],
       "civics": [],
       "ethics": [],
-      "species": [],
+      "species_class": [],
+      "species_archetype": [],
       "culture": []
     },
     "no": {
       "authorities": [],
       "civics": [],
       "ethics": [],
-      "species": [],
+      "species_class": [],
+      "species_archetype": [],
       "culture": []
     }
   },
@@ -1065,7 +1147,8 @@ basegame_origins = {
       "authorities": [],
       "civics": [],
       "ethics": [],
-      "species": [
+      "species_class": [],
+      "species_archetype": [
         "LITHOID"
       ],
       "culture": []
@@ -1087,7 +1170,8 @@ basegame_origins = {
         "civic_machine_guided_sapience"
       ],
       "ethics": [],
-      "species": [],
+      "species_class": [],
+      "species_archetype": [],
       "culture": [
         "biogenesis_01",
         "biogenesis_02"
@@ -1099,7 +1183,8 @@ basegame_origins = {
       "authorities": [],
       "civics": [],
       "ethics": [],
-      "species": [],
+      "species_class": [],
+      "species_archetype": [],
       "culture": []
     },
     "no": {
@@ -1119,7 +1204,8 @@ basegame_origins = {
         "civic_toxic_baths_individual_machine"
       ],
       "ethics": [],
-      "species": [],
+      "species_class": [],
+      "species_archetype": [],
       "culture": []
     }
   },
@@ -1128,7 +1214,8 @@ basegame_origins = {
       "authorities": [],
       "civics": [],
       "ethics": [],
-      "species": [
+      "species_class": [],
+      "species_archetype": [
         [
           "BIOLOGICAL",
           "LITHOID"
@@ -1149,7 +1236,8 @@ basegame_origins = {
         "civic_machine_anglers"
       ],
       "ethics": [],
-      "species": [
+      "species_class": [],
+      "species_archetype": [
         "MACHINE"
       ],
       "culture": []
@@ -1160,7 +1248,8 @@ basegame_origins = {
       "authorities": [],
       "civics": [],
       "ethics": [],
-      "species": [
+      "species_class": [],
+      "species_archetype": [
         "MACHINE",
         [
           "MACHINE",
@@ -1181,7 +1270,8 @@ basegame_origins = {
         "civic_machine_anglers"
       ],
       "ethics": [],
-      "species": [],
+      "species_class": [],
+      "species_archetype": [],
       "culture": []
     }
   },
@@ -1190,7 +1280,8 @@ basegame_origins = {
       "authorities": [],
       "civics": [],
       "ethics": [],
-      "species": [
+      "species_class": [],
+      "species_archetype": [
         [
           "BIOLOGICAL",
           "LITHOID"
@@ -1209,7 +1300,8 @@ basegame_origins = {
       "ethics": [
         "ethic_gestalt_consciousness"
       ],
-      "species": [
+      "species_class": [],
+      "species_archetype": [
         "MACHINE"
       ],
       "culture": []
@@ -1222,7 +1314,8 @@ basegame_origins = {
       ],
       "civics": [],
       "ethics": [],
-      "species": [],
+      "species_class": [],
+      "species_archetype": [],
       "culture": []
     },
     "no": {
@@ -1238,7 +1331,8 @@ basegame_origins = {
         "civic_machine_servitor"
       ],
       "ethics": [],
-      "species": [],
+      "species_class": [],
+      "species_archetype": [],
       "culture": []
     }
   },
@@ -1252,7 +1346,8 @@ basegame_origins = {
           "ethic_fanatic_militarist"
         ]
       ],
-      "species": [],
+      "species_class": [],
+      "species_archetype": [],
       "culture": []
     },
     "no": {
@@ -1291,7 +1386,8 @@ basegame_origins = {
         "ethic_fanatic_spiritualist",
         "ethic_fanatic_xenophile"
       ],
-      "species": [
+      "species_class": [],
+      "species_archetype": [
         "MACHINE"
       ],
       "culture": [
@@ -1310,7 +1406,8 @@ basegame_origins = {
           "ethic_fanatic_materialist"
         ]
       ],
-      "species": [],
+      "species_class": [],
+      "species_archetype": [],
       "culture": []
     },
     "no": {
@@ -1321,7 +1418,8 @@ basegame_origins = {
       "ethics": [
         "ethic_gestalt_consciousness"
       ],
-      "species": [
+      "species_class": [],
+      "species_archetype": [
         "MACHINE"
       ],
       "culture": []
@@ -1332,7 +1430,8 @@ basegame_origins = {
       "authorities": [],
       "civics": [],
       "ethics": [],
-      "species": [],
+      "species_class": [],
+      "species_archetype": [],
       "culture": []
     },
     "no": {
@@ -1349,7 +1448,8 @@ basegame_origins = {
       "ethics": [
         "ethic_gestalt_consciousness"
       ],
-      "species": [],
+      "species_class": [],
+      "species_archetype": [],
       "culture": []
     }
   },
@@ -1360,7 +1460,8 @@ basegame_origins = {
       ],
       "civics": [],
       "ethics": [],
-      "species": [],
+      "species_class": [],
+      "species_archetype": [],
       "culture": []
     },
     "no": {
@@ -1369,7 +1470,8 @@ basegame_origins = {
         "civic_hive_devouring_swarm"
       ],
       "ethics": [],
-      "species": [],
+      "species_class": [],
+      "species_archetype": [],
       "culture": []
     }
   },
@@ -1386,12 +1488,13 @@ basegame_origins = {
           "ethic_gestalt_consciousness"
         ]
       ],
-      "species": [
+      "species_class": [
         [
           "FUN",
           "PLANT"
         ]
       ],
+      "species_archetype": [],
       "culture": []
     },
     "no": {
@@ -1402,7 +1505,8 @@ basegame_origins = {
         "civic_hive_devouring_swarm"
       ],
       "ethics": [],
-      "species": [],
+      "species_class": [],
+      "species_archetype": [],
       "culture": []
     }
   },
@@ -1411,14 +1515,16 @@ basegame_origins = {
       "authorities": [],
       "civics": [],
       "ethics": [],
-      "species": [],
+      "species_class": [],
+      "species_archetype": [],
       "culture": []
     },
     "no": {
       "authorities": [],
       "civics": [],
       "ethics": [],
-      "species": [],
+      "species_class": [],
+      "species_archetype": [],
       "culture": []
     }
   },
@@ -1427,14 +1533,16 @@ basegame_origins = {
       "authorities": [],
       "civics": [],
       "ethics": [],
-      "species": [],
+      "species_class": [],
+      "species_archetype": [],
       "culture": []
     },
     "no": {
       "authorities": [],
       "civics": [],
       "ethics": [],
-      "species": [],
+      "species_class": [],
+      "species_archetype": [],
       "culture": []
     }
   }

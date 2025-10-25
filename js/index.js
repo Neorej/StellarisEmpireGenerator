@@ -3,7 +3,7 @@ Array.prototype.random = function () {
 };
 
 Object.defineProperty(Object.prototype, 'random', {
-    value     : function () {
+    value: function () {
         let key = this.randomkey();
         return [key, this[key]];
     },
@@ -11,7 +11,7 @@ Object.defineProperty(Object.prototype, 'random', {
 });
 
 Object.defineProperty(Object.prototype, 'randomkey', {
-    value     : function () {
+    value: function () {
         let keys = Object.keys(this);
         return keys[keys.length * Math.random() << 0];
     },
@@ -19,34 +19,34 @@ Object.defineProperty(Object.prototype, 'randomkey', {
 });
 
 Object.defineProperty(String.prototype, 'capitalize', {
-    value     : function () {
+    value: function () {
         return this.charAt(0).toUpperCase() + this.slice(1);
     },
     enumerable: false,
 });
 
 var logging = false;
-var log     = logging ? console.log.bind(window.console) : function () {
+var log = logging ? console.log.bind(window.console) : function () {
 };
 
 class SecondarySpecies {
-    class             = '';
-    portrait          = '';
-    name_list         = 'ART1';
-    gender            = 'not_set';
-    traits            = [];
-    species_name      = {
+    class = '';
+    portrait = '';
+    name_list = 'ART1';
+    gender = 'not_set';
+    traits = [];
+    species_name = {
         'key': '',
     };
-    species_plural    = {
+    species_plural = {
         'key': '',
     };
     species_adjective = {
         'key': '',
     };
 
-    disabled_traits   = [];
-    trait_picks_left  = 0;
+    disabled_traits = [];
+    trait_picks_left = 0;
     trait_points_left = 0;
 
     /**
@@ -61,8 +61,8 @@ class SecondarySpecies {
     constructor(starting_traits, disabled_traits, trait_picks_left, trait_points_left, disabled_portrait, force_pick_negative_trait_first, disabled_archetypes) {
         this.traits = starting_traits;
 
-        this.disabled_traits   = disabled_traits;
-        this.trait_picks_left  = trait_picks_left;
+        this.disabled_traits = disabled_traits;
+        this.trait_picks_left = trait_picks_left;
         this.trait_points_left = trait_points_left;
 
         this.set_species(disabled_portrait, disabled_archetypes);
@@ -83,9 +83,9 @@ class SecondarySpecies {
      */
     set_species(disabled_portrait, disabled_archetypes) {
         let random_species = species.random();
-        this.class         = random_species[0];
-        this.portrait      = random_species[1].portraits.random();
-        this.gender        = genders.random();
+        this.class = random_species[0];
+        this.portrait = random_species[1].portraits.random();
+        this.gender = genders.random();
 
         // Secondary species cannot have the same portrait as the primary species
         this.ensure_different_portrait(disabled_portrait);
@@ -168,9 +168,9 @@ class SecondarySpecies {
     pick_trait(traits_list, negative_trait) {
         log(' - Picking trait for secondary species');
         let random_trait = traits_list.random();
-        let trait_name   = random_trait[0];
-        let trait_cost   = random_trait[1].cost;
-        let trait_no     = random_trait[1].no;
+        let trait_name = random_trait[0];
+        let trait_cost = random_trait[1].cost;
+        let trait_no = random_trait[1].no;
 
         log('Checking: ' + trait_name);
 
@@ -236,11 +236,11 @@ class SecondarySpecies {
         let name = species_names.random();
         if (name.length > 6 && random_percentage_check(40)) {
             let splitAt = random_percentage_check(50) ? 3 : 4;
-            name        = name.slice(0, splitAt) + " " + name.slice(splitAt).capitalize();
+            name = name.slice(0, splitAt) + " " + name.slice(splitAt).capitalize();
         }
 
-        this.species_name.key      = name;
-        this.species_plural.key    = name + (random_percentage_check(50) ? plurals.random() : '');
+        this.species_name.key = name;
+        this.species_plural.key = name + (random_percentage_check(50) ? plurals.random() : '');
         this.species_adjective.key = name + (random_percentage_check(70) ? adjectives.random() : '');
     }
 
@@ -267,78 +267,78 @@ class SecondarySpecies {
 }
 
 class Empire {
-    key         = '';
+    key = '';
     ship_prefix = '';
-    species     = {
-        gender   : 'not_set',
+    species = {
+        gender: 'not_set',
         adjective: '',
-        class    : '',
+        class: '',
         archetype: '',
-        name     : '',
+        name: '',
         name_list: name_lists.random(),
-        plural   : '',
-        portrait : '',
-        traits   : [],
+        plural: '',
+        portrait: '',
+        traits: [],
     };
-    name        = {
+    name = {
         'key': '',
     };
-    adjective   = {
+    adjective = {
         'key': '',
     };
-    authority   = '';
-    government  = 'gov_hive_mind'; // Game will reset this to proper government on boot
+    authority = '';
+    government = 'gov_hive_mind'; // Game will reset this to proper government on boot
     //advisor_voice_type   = ''; // Leaving this empty will default to "Based on government"
-    planet_name                 = '';
-    planet_class                = planets.random();
-    system_name                 = '';
-    initializer                 = ''; // Always keep this empty ( = random). Some origins require specific values, keeping it empty allows the game to set the proper value.
-    graphical_culture           = cultures.random(); // Ship graphics
-    city_graphical_culture      = cultures.random(); // City graphics
-    empire_flag                 = {
-        icon      : {
+    planet_name = '';
+    planet_class = planets.random();
+    system_name = '';
+    initializer = ''; // Always keep this empty ( = random). Some origins require specific values, keeping it empty allows the game to set the proper value.
+    graphical_culture = cultures.random(); // Ship graphics
+    city_graphical_culture = cultures.random(); // City graphics
+    empire_flag = {
+        icon: {
             category: '',
-            file    : '',
+            file: '',
         },
         background: {
             category: 'backgrounds',
-            file    : '',
+            file: '',
         },
-        colors    : [],
+        colors: [],
 
     };
-    ruler                       = {
-        gender      : '',
-        name        : '',
-        portrait    : '',
-        texture     : 0,
-        hair        : 0,
-        clothes     : 0,
+    ruler = {
+        gender: '',
+        name: '',
+        portrait: '',
+        texture: 0,
+        hair: 0,
+        clothes: 0,
         ruler_traits: [],
         leader_class: leader_classes.random(),
     };
-    spawn_as_fallen             = 'yes';
+    spawn_as_fallen = 'yes';
     ignore_portrait_duplication = 'no';
-    room                        = rooms.random();
-    spawn_enabled               = 'yes';
-    ethics                      = [];
-    civics                      = [];
-    origin                      = '';
-    disabled_origins            = [];
-    disabled_traits             = [];
-    trait_picks_left            = 5;
-    trait_points_left           = 2;
-    civic_points_left           = 2;
-    ethics_points_left          = 3;
+    room = rooms.random();
+    spawn_enabled = 'yes';
+    ethics = [];
+    civics = [];
+    origin = '';
+    disabled_origins = [];
+    disabled_traits = [];
+    trait_picks_left = 5;
+    trait_points_left = 2;
+    civic_points_left = 2;
+    ethics_points_left = 3;
 
     constructor(options) {
-        this.options          = options;
-        this.spawn_enabled    = this.options.spawn_enabled;
+        this.options = options;
+        this.spawn_enabled = this.options.spawn_enabled;
         this.disabled_origins = this.disabled_origins.concat(this.options.disabled_origins);
 
         // Clone authorities array so elements can be safely deleted
         let authorities_list = [...authorities];
-        authorities_list     = authorities_list.filter(element => !this.options.disabled_authorities.includes(element));
+        authorities_list = authorities_list.filter(element => !this.options.disabled_authorities.includes(element));
         // Corporates cannot be genocidal, remove them
         if (this.options.generate_genocidal === 'always' && authorities_list.includes('auth_corporate')) {
             authorities_list = authorities_list.filter(authority => authority !== 'auth_corporate');
@@ -370,41 +370,6 @@ class Empire {
             return;
         }
 
-        // Only mess with ethics chances when not asking for purifiers, as those use different ethics
-        if (this.options.generate_genocidal === 'mixed' || this.options.generate_genocidal === 'never') {
-            // Egalitarians have stricter requirements which reduces their chance of being generated, give them a boost to make them as likely to appear as other ethics
-            if (this.options.boost_egalitarians) {
-                if (random_percentage_check(5) && authorities_list.includes('auth_democratic') && authorities_list.includes('auth_oligarchic') && authorities_list.includes('auth_corporate')) {
-                    this.authority = ['auth_democratic', 'auth_oligarchic', 'auth_corporate'].random();
-                    this.ethics.push('ethic_egalitarian');
-                    this.ethics_points_left--;
-                    return;
-                }
-                if (random_percentage_check(5) && authorities_list.includes('auth_democratic')) {
-                    this.authority = 'auth_democratic';
-                    this.ethics.push('ethic_fanatic_egalitarian');
-                    this.ethics_points_left = this.ethics_points_left - 2;
-                    return;
-                }
-            }
-
-            // Authoritarians have stricter requirements which reduces their chance of being generated, give them a boost to make them as likely to appear as other ethics
-            if (this.options.boost_authoritarians) {
-                if (random_percentage_check(4) && authorities_list.includes('auth_dictatorial') && authorities_list.includes('auth_imperial') && authorities_list.includes('auth_oligarchic') && authorities_list.includes('auth_corporate')) {
-                    this.authority = ['auth_dictatorial', 'auth_imperial', 'auth_oligarchic', 'auth_corporate'].random();
-                    this.ethics.push('ethic_authoritarian');
-                    this.ethics_points_left--;
-                    return;
-                }
-                if (random_percentage_check(4) && authorities_list.includes('auth_dictatorial') && authorities_list.includes('auth_imperial')) {
-                    this.authority = ['auth_dictatorial', 'auth_imperial'].random();
-                    this.ethics.push('ethic_fanatic_authoritarian');
-                    this.ethics_points_left = this.ethics_points_left - 2;
-                    return;
-                }
-            }
-        }
-
         // Pick authority
         let random_authority = authorities_list.random();
 
@@ -415,6 +380,42 @@ class Empire {
 
         log('Selected authority ' + random_authority);
         this.authority = random_authority;
+
+        // Don't mess with ethics chances if hive or machine was picked
+        if (this.authority === 'auth_hive_mind' || this.authority === 'auth_machine_intelligence') {
+            return;
+        }
+
+        // Only mess with ethics chances when not asking for purifiers, as those use different ethics
+        if (this.options.generate_genocidal === 'mixed' || this.options.generate_genocidal === 'never') {
+            // Egalitarians have stricter requirements which reduces their chance of being generated, give them a boost to make them as likely to appear as other ethics
+            if (random_percentage_check(5) && authorities_list.includes('auth_democratic') && authorities_list.includes('auth_oligarchic') && authorities_list.includes('auth_corporate')) {
+                this.authority = ['auth_democratic', 'auth_oligarchic', 'auth_corporate'].random();
+                this.ethics.push('ethic_egalitarian');
+                this.ethics_points_left--;
+                return;
+            }
+            if (random_percentage_check(5) && authorities_list.includes('auth_democratic')) {
+                this.authority = 'auth_democratic';
+                this.ethics.push('ethic_fanatic_egalitarian');
+                this.ethics_points_left = this.ethics_points_left - 2;
+                return;
+            }
+
+            // Authoritarians have stricter requirements which reduces their chance of being generated, give them a boost to make them as likely to appear as other ethics
+            if (random_percentage_check(4) && authorities_list.includes('auth_dictatorial') && authorities_list.includes('auth_imperial') && authorities_list.includes('auth_oligarchic') && authorities_list.includes('auth_corporate')) {
+                this.authority = ['auth_dictatorial', 'auth_imperial', 'auth_oligarchic', 'auth_corporate'].random();
+                this.ethics.push('ethic_authoritarian');
+                this.ethics_points_left--;
+                return;
+            }
+            if (random_percentage_check(4) && authorities_list.includes('auth_dictatorial') && authorities_list.includes('auth_imperial')) {
+                this.authority = ['auth_dictatorial', 'auth_imperial'].random();
+                this.ethics.push('ethic_fanatic_authoritarian');
+                this.ethics_points_left = this.ethics_points_left - 2;
+                return;
+            }
+        }
     }
 
     set_ethics() {
@@ -448,8 +449,8 @@ class Empire {
         while (this.ethics_points_left > 0) {
             log('Points left ' + this.ethics_points_left);
 
-            let random_ethic       = ethics_list.random();
-            let ethic_name         = random_ethic[0];
+            let random_ethic = ethics_list.random();
+            let ethic_name = random_ethic[0];
             let ethic_requirements = random_ethic[1];
 
             if (!ethic_requirements.required_authorities.includes(this.authority)) {
@@ -560,9 +561,9 @@ class Empire {
 
         while (this.civic_points_left > 0) {
             let random_civic = civics_list.random();
-            let civic_name   = random_civic[0];
-            let civic_yes    = random_civic[1].yes;
-            let civic_no     = random_civic[1].no;
+            let civic_name = random_civic[0];
+            let civic_yes = random_civic[1].yes;
+            let civic_no = random_civic[1].no;
 
             log('Checking: ' + civic_name);
             log(civic_yes.ethics);
@@ -593,7 +594,7 @@ class Empire {
                 this.species.traits.push('trait_aquatic');
                 this.trait_picks_left--;
                 this.trait_points_left = this.trait_points_left - 2;
-                this.planet_class      = 'pc_ocean';
+                this.planet_class = 'pc_ocean';
 
                 // Cannot select origins which require a non-ocean planet when we have already picked an ocean planet
                 this.disabled_origins.push('origin_shattered_ring');
@@ -606,7 +607,7 @@ class Empire {
                 this.species.traits.push('trait_robot_aquatic');
                 this.trait_picks_left--;
                 this.trait_points_left = this.trait_points_left - 2;
-                this.planet_class      = 'pc_ocean';
+                this.planet_class = 'pc_ocean';
 
                 // Cannot select origins which require a non-ocean planet when we have already picked an ocean planet
                 this.disabled_origins.push('origin_shattered_ring');
@@ -680,19 +681,16 @@ class Empire {
             if (random_percentage_check(33)) {
                 this.species.class = 'AQUATIC';
                 this.species.portrait = 'psionic_07';
-            }
-            else {
+            } else {
                 if (random_percentage_check(50)) {
                     this.species.class = 'TOX';
                     this.species.portrait = 'tox13';
-                }
-                else{
+                } else {
                     this.species.class = 'NECROID';
                     this.species.portrait = 'nec9';
                 }
             }
-        }
-        else {
+        } else {
             // Filter species by the pre-determined archetype
             let available_species = {};
 
@@ -730,18 +728,14 @@ class Empire {
 
     set_origin() {
         while (this.origin === '') {
-            let origins_list  = structuredClone(origins);
+            let origins_list = structuredClone(origins);
             let random_origin = origins_list.random();
-            let origin_name   = random_origin[0];
-            let origin_yes    = random_origin[1].yes;
-            let origin_no     = random_origin[1].no;
+            let origin_name = random_origin[0];
+            let origin_yes = random_origin[1].yes;
+            let origin_no = random_origin[1].no;
 
             if (this.disabled_origins.includes(origin_name)) {
                 log(origin_name + ' is disabled');
-                continue;
-            }
-
-            if (origin_name === 'origin_lithoid' && this.species.class !== 'LITHOID') {
                 continue;
             }
 
@@ -754,7 +748,10 @@ class Empire {
             if (yes_requirement_checker(origin_yes.civics, this.civics, 'Civic', 'Civics', 'Origins') === false) {
                 continue;
             }
-            if (yes_requirement_checker(origin_yes.species ?? [], this.species.archetype, 'Species', 'Species', 'Species') === false) {
+            if (yes_requirement_checker(origin_yes.species_archetype, [this.species.archetype], 'Species archetype', 'Species archetypes', 'Species') === false) {
+                continue;
+            }
+            if (yes_requirement_checker(origin_yes.species_class, [this.species.class], 'Species class', 'Species classes', 'Species') === false) {
                 continue;
             }
 
@@ -767,7 +764,41 @@ class Empire {
             if (no_requirement_checker(origin_no.civics, this.civics, 'Civic', 'Civics', 'Origins') === false) {
                 continue;
             }
-            if (no_requirement_checker(origin_no.species ?? [], this.species.archetype, 'Species', 'Species', 'Species') === false) {
+            if (no_requirement_checker(origin_no.species_archetype, [this.species.archetype], 'Species archetype', 'Species archetypes', 'Species') === false) {
+                continue;
+            }
+            if (no_requirement_checker(origin_no.species_class, [this.species.class], 'Species class', 'Species classes', 'Species') === false) {
+                continue;
+            }
+
+            // Check if origin has very few requirements
+            let has_no_requirements = (
+                origin_yes.authorities.length === 0
+                 && origin_yes.civics.length === 0
+                 && origin_yes.ethics.length === 0
+                 && origin_yes.culture.length === 0
+                 && origin_yes.species_class.length === 0
+                 && origin_name !== 'origin_lithoid'
+            );
+
+            // Select a different origin to avoid generating to many origins with few requirements
+            // Origins with requirements are much more unlikely to be selected
+            // Just an ethics requirement reduces chances by like 90% or more
+            // When selecting an origin with few requirements, add a large chance to try again to balance this out
+            if (has_no_requirements && random_percentage_check(85)) {
+                log('Origin ' + origin_name + ' has few requirements, starting over');
+                continue;
+            }
+
+            // Legendary leader is technically the same origin; reduce chances
+            if (['origin_legendary_leader_death', 'origin_legendary_leader_imperial', 'origin_legendary_leader_dictatorial'].includes(origin_name) && random_percentage_check(50)) {
+                log('Origin ' + origin_name + ' picked, starting over');
+                continue;
+            }
+
+            // AI doesn't handle doomsday well; reduce chances
+            if (origin_name === 'origin_doomsday' && random_percentage_check(66)) {
+                log('Origin ' + origin_name + ' picked, starting over');
                 continue;
             }
 
@@ -812,8 +843,7 @@ class Empire {
 
                 // Pick a negative trait to offset power drills cost
                 this.pick_trait(machine_traits, true, false);
-            }
-            else {
+            } else {
                 this.species.traits.push('trait_strong');
                 this.species.traits.push('trait_industrious');
                 this.species.traits.push(random_percentage_check(50) ? 'trait_deviants' : 'trait_solitary');
@@ -832,7 +862,7 @@ class Empire {
             return;
         }
 
-        let traits_list                         = traits;
+        let traits_list = traits;
         let picked_negative_trait_for_overtuned = false;
 
         // Aquatic trait for ocean worlds
@@ -1060,6 +1090,7 @@ class Empire {
 
         if (this.origin === 'origin_synthetic_fertility') {
             this.species.traits.push('trait_pathogenic_genes');
+            this.disabled_traits.push('trait_humanoid_psychological_infertility');
             this.trait_picks_left--;
             this.trait_points_left++;
 
@@ -1082,9 +1113,9 @@ class Empire {
         while (i < 100) {
             i++;
             let random_trait = traits_list.random();
-            let trait_name   = random_trait[0];
-            let trait_cost   = random_trait[1].cost;
-            let trait_no     = random_trait[1].no;
+            let trait_name = random_trait[0];
+            let trait_cost = random_trait[1].cost;
+            let trait_no = random_trait[1].no;
 
             log('Checking: ' + trait_name);
 
@@ -1167,7 +1198,7 @@ class Empire {
         let flag = flags.random();
 
         this.empire_flag.icon.category = flag[0];
-        this.empire_flag.icon.file     = flag[1].random();
+        this.empire_flag.icon.file = flag[1].random();
 
         this.empire_flag.background.file = backgrounds.random();
 
@@ -1183,11 +1214,11 @@ class Empire {
             this.ruler.gender = random_percentage_check(50) ? 'female' : 'male';
         }
 
-        this.ruler.name     = leader_names[this.ruler.gender].random();
+        this.ruler.name = leader_names[this.ruler.gender].random();
         this.ruler.portrait = this.species.portrait;
-        this.ruler.texture  = 0;
-        this.ruler.hair     = 0;
-        this.ruler.clothes  = 0;
+        this.ruler.texture = 0;
+        this.ruler.hair = 0;
+        this.ruler.clothes = 0;
 
         // Paragon leaders cannot pick normal ruler traits, and normal rulers cannot pick paragon traits
         if (this.origin === 'origin_legendary_leader') {
@@ -1201,8 +1232,7 @@ class Empire {
         // Treasure hunters have their own ruler traits
         else if (this.origin === 'origin_treasure_hunters') {
             this.pick_ruler_trait(treasure_hunter_traits);
-        }
-        else {
+        } else {
             this.pick_ruler_trait(leader_traits);
         }
     }
@@ -1213,8 +1243,8 @@ class Empire {
         while (i < 100) {
             i++;
             let random_trait = traits_list.random();
-            let trait_name   = random_trait[0];
-            let trait_yes    = random_trait[1].yes;
+            let trait_name = random_trait[0];
+            let trait_yes = random_trait[1].yes;
 
             log('Checking: ' + trait_name);
 
@@ -1241,11 +1271,11 @@ class Empire {
         let name = species_names.random();
         if (name.length > 6 && random_percentage_check(40)) {
             let splitAt = random_percentage_check(50) ? 3 : 4;
-            name        = name.slice(0, splitAt) + " " + name.slice(splitAt).capitalize();
+            name = name.slice(0, splitAt) + " " + name.slice(splitAt).capitalize();
         }
-        let plural       = name + (random_percentage_check(50) ? plurals.random() : '');
-        let adjective    = name + (random_percentage_check(70) ? adjectives.random() : '');
-        let empire_name  = '';
+        let plural = name + (random_percentage_check(50) ? plurals.random() : '');
+        let adjective = name + (random_percentage_check(70) ? adjectives.random() : '');
+        let empire_name = '';
         let first_prefix = '';
 
         while (empire_name === '') {
@@ -1306,22 +1336,22 @@ class Empire {
                 + suffix.random();
         }
 
-        this.name.key          = empire_name;
-        this.adjective.key     = adjective;
-        this.species.name      = name;
-        this.species.plural    = plural;
+        this.name.key = empire_name;
+        this.adjective.key = adjective;
+        this.species.name = name;
+        this.species.plural = plural;
         this.species.adjective = adjective;
-        this.key               = empire_name;
+        this.key = empire_name;
 
         log('Empire name ' + empire_name);
     }
 
     set_planet_name() {
         let planet_name = '';
-        let has_prefix  = false;
+        let has_prefix = false;
 
         if (random_percentage_check(10)) {
-            has_prefix  = true;
+            has_prefix = true;
             planet_name = planet_fixes.random() + (random_percentage_check(50) ? '-' : ' ');
         }
 
@@ -1345,10 +1375,8 @@ class Empire {
             traits_string += 'trait="' + this.species.traits[i] + '"\r\n';
         }
         // Remove the last newline
-        traits_string       = traits_string.substring(0, traits_string.length - 2);
+        traits_string = traits_string.substring(0, traits_string.length - 2);
         this.species.traits = '';
-
-        this.species.archetype = '';
 
         let secondary_species_traits_string = '';
         if (typeof this.secondary_species !== 'undefined') {
@@ -1356,7 +1384,7 @@ class Empire {
                 secondary_species_traits_string += 'trait="' + this.secondary_species.secondary_species_traits[i] + '"\r\n';
             }
             // Remove the last newline
-            secondary_species_traits_string                 = secondary_species_traits_string.substring(0, secondary_species_traits_string.length - 2);
+            secondary_species_traits_string = secondary_species_traits_string.substring(0, secondary_species_traits_string.length - 2);
             this.secondary_species.secondary_species_traits = '';
         }
 
@@ -1365,7 +1393,7 @@ class Empire {
             ruler_traits_string += 'trait="' + this.ruler.ruler_traits[i] + '"\r\n';
         }
         // Remove the last newline
-        ruler_traits_string     = ruler_traits_string.substring(0, ruler_traits_string.length - 2);
+        ruler_traits_string = ruler_traits_string.substring(0, ruler_traits_string.length - 2);
         this.ruler.ruler_traits = '';
 
         let ethics_string = '';
@@ -1374,7 +1402,7 @@ class Empire {
         }
         // Remove the last newline
         ethics_string = ethics_string.substring(0, ethics_string.length - 2);
-        this.ethics   = '';
+        this.ethics = '';
 
         // Civics use an array
         let civics_string = '';
@@ -1397,6 +1425,7 @@ class Empire {
         delete this.trait_points_left;
         delete this.civic_points_left;
         delete this.ethics_points_left;
+        delete this.species.archetype;
         delete this.options;
 
         // Convert empire to JSON
@@ -1461,7 +1490,7 @@ function random_percentage_check(percentage) {
 }
 
 function yes_requirement_checker(requirements, current_values, singular, plural, check_type) {
-    let requirements_met   = 0;
+    let requirements_met = 0;
     let requirements_count = requirements.length;
 
     if ($.isArray(requirements[0])) {

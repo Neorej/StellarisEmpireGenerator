@@ -201,3 +201,110 @@ function showGenocidal(contents) {
         },
     });
 }
+
+function showOrigins(contents) {
+    const data = [
+        {origin: 'Prosperous Unification', count: (contents.match(/origin_default/g) || []).length},
+        {origin: 'Galactic Doorstep', count: (contents.match(/origin_galactic_doorstep/g) || []).length},
+        {origin: 'Lost Colony', count: (contents.match(/origin_lost_colony/g) || []).length},
+        {origin: 'Mechanists', count: (contents.match(/origin_mechanists/g) || []).length},
+        {origin: 'Syncretic Evolution', count: (contents.match(/origin_syncretic_evolution/g) || []).length},
+        {origin: 'Life Seeded', count: (contents.match(/origin_life_seeded/g) || []).length},
+        {origin: 'Post-Apocalyptic', count: (contents.match(/origin_post_apocalyptic/g) || []).length},
+        {origin: 'Post-Apocalyptic Machines', count: (contents.match(/origin_post_apocalyptic_machines/g) || []).length},
+        {origin: 'Remnants', count: (contents.match(/origin_remnants/g) || []).length},
+        {origin: 'Shattered Ring', count: (contents.match(/origin_shattered_ring/g) || []).length},
+        {origin: 'Void Dwellers', count: (contents.match(/origin_void_dwellers/g) || []).length},
+        {origin: 'Void Machines', count: (contents.match(/origin_void_machines/g) || []).length},
+        {origin: 'Scion', count: (contents.match(/origin_scion/g) || []).length},
+        {origin: 'Shoulders of Giants', count: (contents.match(/origin_shoulders_of_giants/g) || []).length},
+        {origin: 'Doomsday', count: (contents.match(/origin_doomsday/g) || []).length},
+        {origin: 'Common Ground', count: (contents.match(/origin_common_ground/g) || []).length},
+        {origin: 'Hegemon', count: (contents.match(/origin_hegemon/g) || []).length},
+        {origin: 'Tree of Life', count: (contents.match(/origin_tree_of_life/g) || []).length},
+        {origin: 'Lithoid', count: (contents.match(/origin_lithoid/g) || []).length},
+        {origin: 'Necrophage', count: (contents.match(/origin_necrophage/g) || []).length},
+        {origin: 'Clone Army', count: (contents.match(/origin_clone_army/g) || []).length},
+        {origin: 'Ocean Paradise', count: (contents.match(/origin_ocean_paradise/g) || []).length},
+        {origin: 'Ocean Machines', count: (contents.match(/origin_ocean_machines/g) || []).length},
+        {origin: 'Here Be Dragons', count: (contents.match(/origin_here_be_dragons/g) || []).length},
+        {origin: 'Subterranean', count: (contents.match(/origin_subterranean/g) || []).length},
+        {origin: 'Subterranean Machines', count: (contents.match(/origin_subterranean_machines/g) || []).length},
+        {origin: 'Progenitor Hive', count: (contents.match(/origin_progenitor_hive/g) || []).length},
+        {origin: 'Overtuned', count: (contents.match(/origin_overtuned/g) || []).length},
+        {origin: 'Shroudwalker Apprentice', count: (contents.match(/origin_shroudwalker_apprentice/g) || []).length},
+        {origin: 'Machine', count: (contents.match(/origin_machine/g) || []).length},
+        {origin: 'Fruitful', count: (contents.match(/origin_fruitful/g) || []).length},
+        {origin: 'Imperial Fiefdom', count: (contents.match(/origin_imperial_vassal/g) || []).length},
+        {origin: 'Star Slingshot', count: (contents.match(/origin_star_slingshot/g) || []).length},
+        {origin: 'Broken Shackles', count: (contents.match(/origin_broken_shackles/g) || []).length},
+        {origin: 'Payback', count: (contents.match(/origin_payback/g) || []).length},
+        {origin: 'Fear of the Dark', count: (contents.match(/origin_fear_of_the_dark/g) || []).length},
+        {origin: 'Legendary Leader (total)', count: (contents.match(/origin_legendary_leader/g) || []).length},
+        {origin: 'Legendary Leader Death', count: (contents.match(/origin_legendary_leader_death/g) || []).length},
+        {origin: 'Legendary Leader Imperial', count: (contents.match(/origin_legendary_leader_imperial/g) || []).length},
+        {origin: 'Legendary Leader Dictatorial', count: (contents.match(/origin_legendary_leader_dictatorial/g) || []).length},
+        {origin: 'Riftworld', count: (contents.match(/origin_riftworld/g) || []).length},
+        {origin: 'Toxic Knights', count: (contents.match(/origin_toxic_knights/g) || []).length},
+        {origin: 'Arc Welders', count: (contents.match(/origin_arc_welders/g) || []).length},
+        {origin: 'Synthetic Fertility', count: (contents.match(/origin_synthetic_fertility/g) || []).length},
+        {origin: 'Cybernetic Creed', count: (contents.match(/origin_cybernetic_creed/g) || []).length},
+        {origin: 'Unplugged', count: (contents.match(/origin_unplugged/g) || []).length},
+        {origin: 'Primal Calling', count: (contents.match(/origin_primal_calling/g) || []).length},
+        {origin: 'Storm Chasers', count: (contents.match(/origin_storm_chasers/g) || []).length},
+        {origin: 'Treasure Hunters', count: (contents.match(/origin_treasure_hunters/g) || []).length},
+        {origin: 'Wilderness', count: (contents.match(/origin_wilderness/g) || []).length},
+        {origin: 'Starlit Citadel', count: (contents.match(/origin_starlit_citadel/g) || []).length},
+        {origin: 'Evolutionary Predators', count: (contents.match(/origin_evolutionary_predators/g) || []).length},
+        {origin: 'Endbringers', count: (contents.match(/origin_endbringers/g) || []).length},
+        {origin: 'Mindwardens', count: (contents.match(/origin_mindwardens/g) || []).length},
+        {origin: 'Shroud Forged', count: (contents.match(/origin_shroud_forged/g) || []).length},
+    ];
+
+    // Generate colors dynamically for all origins
+    const colors = [];
+    const borderColors = [];
+    for (let i = 0; i < data.length; i++) {
+        const hue = (i * 360 / data.length) % 360;
+        colors.push(`hsla(${hue}, 70%, 60%, 0.4)`);
+        borderColors.push(`hsl(${hue}, 70%, 60%)`);
+    }
+
+    return new Chart(document.getElementById('chart_origins'), {
+        type   : 'bar',
+        data   : {
+            labels  : data.map(row => row.origin),
+            datasets: [{
+                data           : data.map(row => row.count),
+                backgroundColor: colors,
+                borderColor    : borderColors,
+                borderWidth    : 2,
+            }],
+        },
+        options: {
+            maintainAspectRatio: false,
+            plugins            : {
+                legend: {
+                    display: false,
+                },
+                title : {
+                    display: true,
+                    text   : 'Origins',
+                    color  : '#ffffff',
+                },
+            },
+            scales             : {
+                y: {
+                    ticks: {color: '#ffffff', stepSize: 1},
+                },
+                x: {
+                    ticks: {
+                        color: '#ffffff',
+                        maxRotation: 90,
+                        minRotation: 45
+                    },
+                },
+            },
+        },
+    });
+}
