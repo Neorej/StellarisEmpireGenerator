@@ -27,4 +27,13 @@ basegame_rooms = [
     'personality_xenophobic_isolationists_room',
     'runic_room',
     'scrappy_room',
+    'toxoids_room',
+    'solarpunk_room',
+    'ethic_ai_room',
+    'cybernetics_room',
+    'synthetics_room',
+    'biogenesis_01_room',
+    'biogenesis_02_room',
+    'psionic_room',
+    'wilderness_room',
 ];
