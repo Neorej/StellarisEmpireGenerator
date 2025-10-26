@@ -105,7 +105,12 @@ basegame_origins = {
       "civics": [],
       "ethics": [],
       "species_class": [],
-      "species_archetype": [],
+      "species_archetype": [
+        [
+          "BIOLOGICAL",
+          "LITHOID"
+        ]
+      ],
       "culture": []
     },
     "no": {
@@ -164,7 +169,12 @@ basegame_origins = {
       "civics": [],
       "ethics": [],
       "species_class": [],
-      "species_archetype": [],
+      "species_archetype": [
+        [
+          "BIOLOGICAL",
+          "LITHOID"
+        ]
+      ],
       "culture": [
         "biogenesis_01",
         "biogenesis_02"
