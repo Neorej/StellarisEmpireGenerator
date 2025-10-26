@@ -13,4 +13,7 @@ basegame_cultures = [
     'toxoid_01',
     'cybernetics_01',
     'synthetics_01',
+    'biogenesis_01',
+    'biogenesis_02',
+    'wilderness_01',
 ];

@@ -3,7 +3,7 @@ Array.prototype.random = function () {
 };
 
 Object.defineProperty(Object.prototype, 'random', {
-    value     : function () {
+    value: function () {
         let key = this.randomkey();
         return [key, this[key]];
     },
@@ -11,7 +11,7 @@ Object.defineProperty(Object.prototype, 'random', {
 });
 
 Object.defineProperty(Object.prototype, 'randomkey', {
-    value     : function () {
+    value: function () {
         let keys = Object.keys(this);
         return keys[keys.length * Math.random() << 0];
     },
@@ -19,34 +19,34 @@ Object.defineProperty(Object.prototype, 'randomkey', {
 });
 
 Object.defineProperty(String.prototype, 'capitalize', {
-    value     : function () {
+    value: function () {
         return this.charAt(0).toUpperCase() + this.slice(1);
     },
     enumerable: false,
 });
 
 var logging = false;
-var log     = logging ? console.log.bind(window.console) : function () {
+var log = logging ? console.log.bind(window.console) : function () {
 };
 
 class SecondarySpecies {
-    class             = '';
-    portrait          = '';
-    name_list         = 'ART1';
-    gender            = 'not_set';
-    traits            = [];
-    species_name      = {
+    class = '';
+    portrait = '';
+    name_list = 'ART1';
+    gender = 'not_set';
+    traits = [];
+    species_name = {
         'key': '',
     };
-    species_plural    = {
+    species_plural = {
         'key': '',
     };
     species_adjective = {
         'key': '',
     };
 
-    disabled_traits   = [];
-    trait_picks_left  = 0;
+    disabled_traits = [];
+    trait_picks_left = 0;
     trait_points_left = 0;
 
     /**
@@ -56,15 +56,16 @@ class SecondarySpecies {
      * @param {int} trait_points_left
      * @param {string} disabled_portrait
      * @param {boolean} force_pick_negative_trait_first
+     * @param {array} disabled_archetypes
      */
-    constructor(starting_traits, disabled_traits, trait_picks_left, trait_points_left, disabled_portrait, force_pick_negative_trait_first) {
+    constructor(starting_traits, disabled_traits, trait_picks_left, trait_points_left, disabled_portrait, force_pick_negative_trait_first, disabled_archetypes) {
         this.traits = starting_traits;
 
-        this.disabled_traits   = disabled_traits;
-        this.trait_picks_left  = trait_picks_left;
+        this.disabled_traits = disabled_traits;
+        this.trait_picks_left = trait_picks_left;
         this.trait_points_left = trait_points_left;
 
-        this.set_species(disabled_portrait);
+        this.set_species(disabled_portrait, disabled_archetypes);
         this.set_traits(force_pick_negative_trait_first);
         this.set_name();
 
@@ -80,15 +81,18 @@ class SecondarySpecies {
     /**
      * @param {string} disabled_portrait
      */
-    set_species(disabled_portrait) {
+    set_species(disabled_portrait, disabled_archetypes) {
         let random_species = species.random();
-        this.class         = random_species[0];
-        this.portrait      = random_species[1].portraits.random();
-        this.gender        = genders.random();
+        this.class = random_species[0];
+        this.portrait = random_species[1].portraits.random();
+        this.gender = genders.random();
 
         // Secondary species cannot have the same portrait as the primary species
-        if (this.portrait === disabled_portrait) {
-            this.set_species(disabled_portrait);
+        this.ensure_different_portrait(disabled_portrait);
+
+        // Never pick disabled archetype
+        if (disabled_archetypes.includes(random_species[1].archetype)) {
+            this.set_species(disabled_portrait, disabled_archetypes);
         }
     }
 
@@ -97,11 +101,6 @@ class SecondarySpecies {
      */
     set_traits(force_pick_negative_trait_first) {
         let traits_list = traits;
-
-        // Plants and Fungoids have access to extra traits
-        if (this.class === 'PLANT' || this.class === 'FUN') {
-            traits_list = {...traits_list, ...plant_traits};
-        }
 
         if (this.class === 'MACHINE') {
             // Secondary species cannot be machine
@@ -117,12 +116,13 @@ class SecondarySpecies {
         }
 
         // Create deep copy of traits_list so elements can be deleted without affecting the original list of traits
-        traits_list = $.extend(true, {}, traits_list);
+        traits_list = structuredClone(traits_list);
+
         // Object prototypes (at start of file) will get copied as attributes; remove them again as they are not valid traits
         delete traits_list['random'];
         delete traits_list['randomkey'];
 
-        // Delete disabled traits from traits_list to speed up the process by preventing selection of trait that is disabled anyway and so require less iterations
+        // Delete disabled traits from traits_list to speed up the process by preventing selection of trait that is disabled anyway and so require fewer iterations
         for (let i = 0; i < this.disabled_traits.length; i++) {
             delete traits_list[this.disabled_traits[i]];
         }
@@ -163,9 +163,10 @@ class SecondarySpecies {
     pick_trait(traits_list, negative_trait) {
         log(' - Picking trait for secondary species');
         let random_trait = traits_list.random();
-        let trait_name   = random_trait[0];
-        let trait_cost   = random_trait[1].cost;
-        let trait_no     = random_trait[1].no;
+        let trait_name = random_trait[0];
+        let trait_cost = random_trait[1].cost;
+        let trait_no = random_trait[1].no;
+        let species_class = random_trait[1].species_class ?? [];
 
         log('Checking: ' + trait_name);
 
@@ -197,7 +198,7 @@ class SecondarySpecies {
             return;
         }
 
-        // Attempt to spend as much points as possible
+        // Attempt to spend as many points as possible
         if (
             (this.trait_picks_left === 1 && this.trait_points_left > 1) ||
             (this.trait_picks_left === 2 && this.trait_points_left > 3) ||
@@ -217,6 +218,10 @@ class SecondarySpecies {
             return;
         }
 
+        if (yes_requirement_checker(species_class, this.class, 'Species class', 'Species class', 'Species class') === false) {
+            return;
+        }
+
         log('Selected trait ' + trait_name + ' cost ' + trait_cost);
 
         this.traits.push(trait_name);
@@ -231,87 +236,109 @@ class SecondarySpecies {
         let name = species_names.random();
         if (name.length > 6 && random_percentage_check(40)) {
             let splitAt = random_percentage_check(50) ? 3 : 4;
-            name        = name.slice(0, splitAt) + " " + name.slice(splitAt).capitalize();
+            name = name.slice(0, splitAt) + " " + name.slice(splitAt).capitalize();
         }
 
-        this.species_name.key      = name;
-        this.species_plural.key    = name + (random_percentage_check(50) ? plurals.random() : '');
+        this.species_name.key = name;
+        this.species_plural.key = name + (random_percentage_check(50) ? plurals.random() : '');
         this.species_adjective.key = name + (random_percentage_check(70) ? adjectives.random() : '');
+    }
+
+    /**
+     * Ensure secondary species portrait is different from primary species
+     * @param {string} primary_portrait - The portrait of the primary species
+     */
+    ensure_different_portrait(primary_portrait) {
+        if (this.portrait !== primary_portrait) {
+            return;
+        }
+        // Get the species data for the current class
+        let current_species_data = species[this.class];
+
+        // Get all available portraits for this class
+        let available_portraits = current_species_data.portraits;
+
+        // Filter out the conflicting portrait
+        let valid_portraits = available_portraits.filter(p => p !== primary_portrait);
+
+        // Pick a random valid portrait
+        this.portrait = valid_portraits.random();
     }
 }
 
 class Empire {
-    key         = '';
+    key = '';
     ship_prefix = '';
-    species     = {
-        gender   : 'not_set',
+    species = {
+        gender: 'not_set',
         adjective: '',
-        class    : '',
-        name     : '',
+        class: '',
+        archetype: '',
+        name: '',
         name_list: name_lists.random(),
-        plural   : '',
-        portrait : '',
-        traits   : [],
+        plural: '',
+        portrait: '',
+        traits: [],
     };
-    name        = {
+    name = {
         'key': '',
     };
-    adjective   = {
+    adjective = {
         'key': '',
     };
-    authority   = '';
-    government  = 'gov_hive_mind'; // Game will reset this to proper government on boot
+    authority = '';
+    government = 'gov_hive_mind'; // Game will reset this to proper government on boot
     //advisor_voice_type   = ''; // Leaving this empty will default to "Based on government"
-    planet_name                 = '';
-    planet_class                = planets.random();
-    system_name                 = '';
-    initializer                 = ''; // Always keep this empty ( = random). Some origins require specific values, keeping it empty allows the game to set the proper value.
-    graphical_culture           = cultures.random(); // Ship graphics
-    city_graphical_culture      = cultures.random(); // City graphics
-    empire_flag                 = {
-        icon      : {
+    planet_name = '';
+    planet_class = planets.random();
+    system_name = '';
+    initializer = ''; // Always keep this empty ( = random). Some origins require specific values, keeping it empty allows the game to set the proper value.
+    graphical_culture = cultures.random(); // Ship graphics
+    city_graphical_culture = cultures.random(); // City graphics
+    empire_flag = {
+        icon: {
             category: '',
-            file    : '',
+            file: '',
         },
         background: {
             category: 'backgrounds',
-            file    : '',
+            file: '',
         },
-        colors    : [],
+        colors: [],
 
     };
-    ruler                       = {
-        gender      : '',
-        name        : '',
-        portrait    : '',
-        texture     : 0,
-        hair        : 0,
-        clothes     : 0,
+    ruler = {
+        gender: '',
+        name: '',
+        portrait: '',
+        texture: 0,
+        hair: 0,
+        clothes: 0,
         ruler_traits: [],
         leader_class: leader_classes.random(),
     };
-    spawn_as_fallen             = 'yes';
+    spawn_as_fallen = 'yes';
     ignore_portrait_duplication = 'no';
-    room                        = rooms.random();
-    spawn_enabled               = 'yes';
-    ethics                      = [];
-    civics                      = [];
-    origin                      = '';
-    disabled_origins            = [];
-    disabled_traits             = [];
-    trait_picks_left            = 5;
-    trait_points_left           = 2;
-    civic_points_left           = 2;
-    ethics_points_left          = 3;
+    room = rooms.random();
+    spawn_enabled = 'yes';
+    ethics = [];
+    civics = [];
+    origin = '';
+    disabled_origins = [];
+    disabled_traits = [];
+    trait_picks_left = 5;
+    trait_points_left = 2;
+    civic_points_left = 2;
+    ethics_points_left = 3;
 
     constructor(options) {
-        this.options          = options;
-        this.spawn_enabled    = this.options.spawn_enabled;
+        this.options = options;
+        this.spawn_enabled = this.options.spawn_enabled;
         this.disabled_origins = this.disabled_origins.concat(this.options.disabled_origins);
 
         // Clone authorities array so elements can be safely deleted
         let authorities_list = [...authorities];
-        authorities_list     = authorities_list.filter(element => !this.options.disabled_authorities.includes(element));
+        authorities_list = authorities_list.filter(element => !this.options.disabled_authorities.includes(element));
         // Corporates cannot be genocidal, remove them
         if (this.options.generate_genocidal === 'always' && authorities_list.includes('auth_corporate')) {
             authorities_list = authorities_list.filter(authority => authority !== 'auth_corporate');
@@ -323,6 +350,7 @@ class Empire {
 
         this.set_authority(authorities_list);
         this.set_ethics();
+        this.determine_species_archetype();
         this.set_civics();
         this.set_species();
         this.set_origin();
@@ -342,41 +370,6 @@ class Empire {
             return;
         }
 
-        // Only mess with ethics chances when not asking for purifiers, as those use different ethics
-        if (this.options.generate_genocidal === 'mixed' || this.options.generate_genocidal === 'never') {
-            // Egalitarians have stricter requirements which reduces their chance of being generated, give them a boost to make them as likely to appear as other ethics
-            if (this.options.boost_egalitarians) {
-                if (random_percentage_check(5) && authorities_list.includes('auth_democratic') && authorities_list.includes('auth_oligarchic') && authorities_list.includes('auth_corporate')) {
-                    this.authority = ['auth_democratic', 'auth_oligarchic', 'auth_corporate'].random();
-                    this.ethics.push('ethic_egalitarian');
-                    this.ethics_points_left--;
-                    return;
-                }
-                if (random_percentage_check(5) && authorities_list.includes('auth_democratic')) {
-                    this.authority = 'auth_democratic';
-                    this.ethics.push('ethic_fanatic_egalitarian');
-                    this.ethics_points_left = this.ethics_points_left - 2;
-                    return;
-                }
-            }
-
-            // Authoritarians have stricter requirements which reduces their chance of being generated, give them a boost to make them as likely to appear as other ethics
-            if (this.options.boost_authoritarians) {
-                if (random_percentage_check(4) && authorities_list.includes('auth_dictatorial') && authorities_list.includes('auth_imperial') && authorities_list.includes('auth_oligarchic') && authorities_list.includes('auth_corporate')) {
-                    this.authority = ['auth_dictatorial', 'auth_imperial', 'auth_oligarchic', 'auth_corporate'].random();
-                    this.ethics.push('ethic_authoritarian');
-                    this.ethics_points_left--;
-                    return;
-                }
-                if (random_percentage_check(4) && authorities_list.includes('auth_dictatorial') && authorities_list.includes('auth_imperial')) {
-                    this.authority = ['auth_dictatorial', 'auth_imperial'].random();
-                    this.ethics.push('ethic_fanatic_authoritarian');
-                    this.ethics_points_left = this.ethics_points_left - 2;
-                    return;
-                }
-            }
-        }
-
         // Pick authority
         let random_authority = authorities_list.random();
 
@@ -387,6 +380,42 @@ class Empire {
 
         log('Selected authority ' + random_authority);
         this.authority = random_authority;
+
+        // Don't mess with ethics chances if hive or machine was picked
+        if (this.authority === 'auth_hive_mind' || this.authority === 'auth_machine_intelligence') {
+            return;
+        }
+
+        // Only mess with ethics chances when not asking for purifiers, as those use different ethics
+        if (this.options.generate_genocidal === 'mixed' || this.options.generate_genocidal === 'never') {
+            // Egalitarians have stricter requirements which reduces their chance of being generated, give them a boost to make them as likely to appear as other ethics
+            if (random_percentage_check(5) && authorities_list.includes('auth_democratic') && authorities_list.includes('auth_oligarchic') && authorities_list.includes('auth_corporate')) {
+                this.authority = ['auth_democratic', 'auth_oligarchic', 'auth_corporate'].random();
+                this.ethics.push('ethic_egalitarian');
+                this.ethics_points_left--;
+                return;
+            }
+            if (random_percentage_check(5) && authorities_list.includes('auth_democratic')) {
+                this.authority = 'auth_democratic';
+                this.ethics.push('ethic_fanatic_egalitarian');
+                this.ethics_points_left = this.ethics_points_left - 2;
+                return;
+            }
+
+            // Authoritarians have stricter requirements which reduces their chance of being generated, give them a boost to make them as likely to appear as other ethics
+            if (random_percentage_check(4) && authorities_list.includes('auth_dictatorial') && authorities_list.includes('auth_imperial') && authorities_list.includes('auth_oligarchic') && authorities_list.includes('auth_corporate')) {
+                this.authority = ['auth_dictatorial', 'auth_imperial', 'auth_oligarchic', 'auth_corporate'].random();
+                this.ethics.push('ethic_authoritarian');
+                this.ethics_points_left--;
+                return;
+            }
+            if (random_percentage_check(4) && authorities_list.includes('auth_dictatorial') && authorities_list.includes('auth_imperial')) {
+                this.authority = ['auth_dictatorial', 'auth_imperial'].random();
+                this.ethics.push('ethic_fanatic_authoritarian');
+                this.ethics_points_left = this.ethics_points_left - 2;
+                return;
+            }
+        }
     }
 
     set_ethics() {
@@ -420,8 +449,8 @@ class Empire {
         while (this.ethics_points_left > 0) {
             log('Points left ' + this.ethics_points_left);
 
-            let random_ethic       = ethics_list.random();
-            let ethic_name         = random_ethic[0];
+            let random_ethic = ethics_list.random();
+            let ethic_name = random_ethic[0];
             let ethic_requirements = random_ethic[1];
 
             if (!ethic_requirements.required_authorities.includes(this.authority)) {
@@ -451,6 +480,45 @@ class Empire {
             log('Selected ethic ' + ethic_name);
             this.ethics_points_left = this.ethics_points_left - ethic_requirements.cost;
             this.ethics.push(ethic_name);
+        }
+    }
+
+    determine_species_archetype() {
+        log('Determining species archetype');
+
+        // Machine intelligences are always machines
+        if (this.authority === 'auth_machine_intelligence') {
+            this.species.archetype = 'MACHINE';
+            log('Machine intelligence authority -> MACHINE archetype');
+            return;
+        }
+
+        // Hive minds are always biological (or lithoid, determined later)
+        if (this.authority === 'auth_hive_mind') {
+            // Default to biological, but can be lithoid
+            // We'll determine this randomly with appropriate weighting
+            if (random_percentage_check(15)) {
+                this.species.archetype = 'LITHOID';
+                log('Hive mind -> LITHOID archetype');
+            } else {
+                this.species.archetype = 'BIOLOGICAL';
+                log('Hive mind -> BIOLOGICAL archetype');
+            }
+            return;
+        }
+
+        // For non-gestalt empires, randomly choose archetype
+        // Weight: BIOLOGICAL (70%), LITHOID (15%), MACHINE (15%)
+        let random_value = Math.random() * 100;
+        if (random_value < 70) {
+            this.species.archetype = 'BIOLOGICAL';
+            log('Random selection -> BIOLOGICAL archetype');
+        } else if (random_value < 85) {
+            this.species.archetype = 'LITHOID';
+            log('Random selection -> LITHOID archetype');
+        } else {
+            this.species.archetype = 'MACHINE';
+            log('Random selection -> MACHINE archetype');
         }
     }
 
@@ -493,9 +561,9 @@ class Empire {
 
         while (this.civic_points_left > 0) {
             let random_civic = civics_list.random();
-            let civic_name   = random_civic[0];
-            let civic_yes    = random_civic[1].yes;
-            let civic_no     = random_civic[1].no;
+            let civic_name = random_civic[0];
+            let civic_yes = random_civic[1].yes;
+            let civic_no = random_civic[1].no;
 
             log('Checking: ' + civic_name);
             log(civic_yes.ethics);
@@ -504,9 +572,11 @@ class Empire {
                 yes_requirement_checker(civic_yes.authorities, this.authority, 'Authority', 'Authorities', 'Civics') === false
                 || yes_requirement_checker(civic_yes.ethics, this.ethics, 'Ethic', 'Ethics', 'Civics') === false
                 || yes_requirement_checker(civic_yes.civics, this.civics, 'Civic', 'Civics', 'Civics') === false
+                || yes_requirement_checker(civic_yes.species_archetype, this.species.archetype, 'Species Archetype', 'Species Archetypes', 'Civics') === false
                 || no_requirement_checker(civic_no.authorities, this.authority, 'Authority', 'Authorities', 'Civics') === false
                 || no_requirement_checker(civic_no.ethics, this.ethics, 'Ethic', 'Ethics', 'Civics') === false
                 || no_requirement_checker(civic_no.civics, this.civics, 'Civic', 'Civics', 'Civics') === false
+                || no_requirement_checker(civic_no.species_archetype, this.species.archetype, 'Species Archetype', 'Species Archetypes', 'Civics') === false
             ) {
                 delete civics_list[civic_name];
                 continue;
@@ -515,14 +585,16 @@ class Empire {
             this.pick_civic(civic_name, civics_list);
 
             if (civic_name === 'civic_machine_servitor') {
-                this.secondary_species = new SecondarySpecies([], ['trait_thrifty'], 5, 2, '', false);
+                this.secondary_species = new SecondarySpecies([], ['trait_thrifty'], 5, 2, '', false, []);
             } else if (civic_name === 'civic_machine_assimilator') {
-                this.secondary_species = new SecondarySpecies(['trait_cybernetic'], ['trait_thrifty'], 5, 2, '', false);
+                this.secondary_species = new SecondarySpecies(['trait_cybernetic'], ['trait_thrifty'], 5, 2, '', false, []);
+            } else if (civic_name === 'civic_hive_bodysnatcher') {
+                this.secondary_species = new SecondarySpecies(['trait_organic', 'trait_hive_mind'], ['trait_thrifty'], 5, 2, '', false, ['LITHOID', 'MACHINE']);
             } else if (civic_name === 'civic_anglers' || civic_name === 'civic_corporate_anglers') {
                 this.species.traits.push('trait_aquatic');
                 this.trait_picks_left--;
                 this.trait_points_left = this.trait_points_left - 2;
-                this.planet_class      = 'pc_ocean';
+                this.planet_class = 'pc_ocean';
 
                 // Cannot select origins which require a non-ocean planet when we have already picked an ocean planet
                 this.disabled_origins.push('origin_shattered_ring');
@@ -535,14 +607,34 @@ class Empire {
                 this.species.traits.push('trait_robot_aquatic');
                 this.trait_picks_left--;
                 this.trait_points_left = this.trait_points_left - 2;
-                this.planet_class      = 'pc_ocean';
+                this.planet_class = 'pc_ocean';
 
                 // Cannot select origins which require a non-ocean planet when we have already picked an ocean planet
                 this.disabled_origins.push('origin_shattered_ring');
                 this.disabled_origins.push('origin_void_machines');
+                this.disabled_origins.push('origin_life_seeded');
                 this.disabled_origins.push('origin_post_apocalyptic_machines');
                 this.disabled_origins.push('origin_subterranean_machines');
                 this.disabled_origins.push('origin_riftworld');
+            }
+
+            // Tankbound civics add the tankbound trait and its incompatibilities
+            if (civic_name === 'civic_tankbound' || civic_name === 'civic_tankbound_corporate') {
+                this.species.traits.push('trait_tankbound');
+                this.disabled_traits.push('trait_weak');
+                this.disabled_traits.push('trait_hollow_bones');
+            }
+
+            // Some civics have shipset requirements
+            if (civic_yes.culture.length > 0) {
+                this.graphical_culture = civic_yes.culture.random();
+            }
+
+            // Some civics have shipset incompatibilities
+            if (civic_no.culture.length > 0) {
+                while (civic_no.culture.includes(this.graphical_culture)) {
+                    this.graphical_culture = cultures.random();
+                }
             }
         }
     }
@@ -556,22 +648,16 @@ class Empire {
     set_species() {
         // Machine intelligences are always machines
         if (this.authority === 'auth_machine_intelligence') {
-            this.species.class    = 'MACHINE';
+            this.species.class = 'MACHINE';
+            this.species.archetype = 'MACHINE';
             this.species.portrait = species_machine.MACHINE.portraits.random();
             return;
         }
 
         // Individual machines are always machines
-        const individualMachineCivics = [
-            'civic_toxic_baths_individual_machine',
-            'civic_individual_machine_replication',
-            'civic_individual_machine_predictive_analysis',
-            'civic_individual_machine_warbots',
-            'civic_corporate_toxic_baths_individual_machine'
-        ];
-
-        if (individualMachineCivics.some(civic => this.civics.includes(civic))) {
+        if (individualistic_machines.some(civic => this.civics.includes(civic))) {
             this.species.class = 'MACHINE';
+            this.species.archetype = 'MACHINE';
             this.species.portrait = species_machine.MACHINE.portraits.random();
             return;
         }
@@ -580,48 +666,76 @@ class Empire {
 
         // Idyllic Bloom requires FUN or PLANT
         if (this.civics.includes('civic_idyllic_bloom') || this.civics.includes('civic_hive_idyllic_bloom')) {
+            this.species.archetype = 'BIOLOGICAL';
             if (random_percentage_check(50)) {
-                this.species.class    = 'FUN';
+                this.species.class = 'FUN';
                 this.species.portrait = species.FUN.portraits.random();
             } else {
-                this.species.class    = 'PLANT';
+                this.species.class = 'PLANT';
                 this.species.portrait = species.PLANT.portraits.random();
             }
+        }
+        // Tankbound species require very specific portraits
+        else if (this.civics.includes('civic_tankbound') || this.civics.includes('civic_tankbound_corporate')) {
+            this.species.archetype = 'BIOLOGICAL';
+            if (random_percentage_check(33)) {
+                this.species.class = 'AQUATIC';
+                this.species.portrait = 'psionic_07';
+            } else {
+                if (random_percentage_check(50)) {
+                    this.species.class = 'TOX';
+                    this.species.portrait = 'tox13';
+                } else {
+                    this.species.class = 'NECROID';
+                    this.species.portrait = 'nec9';
+                }
+            }
         } else {
-            let random_species = species.random();
+            // Filter species by the pre-determined archetype
+            let available_species = {};
 
-            // Non-hive minds may also be machines
-            if (this.authority !== 'auth_hive_mind') {
-                // Except if they have certain civics
-                if (!this.civics.some(civic => machine_disabled_civics.includes(civic))) {
-                    random_species = {...species, ...species_machine}.random();
+            if (this.species.archetype === 'MACHINE') {
+                // Use machine species
+                available_species = species_machine;
+            } else if (this.species.archetype === 'LITHOID') {
+                // Filter for lithoid species only
+                for (let [key, value] of Object.entries(species)) {
+                    if (value.archetype === 'LITHOID') {
+                        available_species[key] = value;
+                    }
+                }
+            } else {
+                // BIOLOGICAL - filter for biological species (exclude lithoid)
+                for (let [key, value] of Object.entries(species)) {
+                    if (value.archetype === 'BIOLOGICAL') {
+                        available_species[key] = value;
+                    }
                 }
             }
 
-            this.species.class    = random_species[0];
+            let random_species = available_species.random();
+            this.species.class = random_species[0];
             this.species.portrait = random_species[1].portraits.random();
+            // Archetype was already set in determine_species_archetype(), but we confirm it here
+            this.species.archetype = random_species[1].archetype;
         }
 
         // Secondary species may not use same portrait as primary species
         if (typeof this.secondary_species !== 'undefined') {
-            this.secondary_species.set_species(this.species.portrait);
+            this.secondary_species.ensure_different_portrait(this.species.portrait);
         }
     }
 
     set_origin() {
         while (this.origin === '') {
-            let origins_list  = structuredClone(origins);
+            let origins_list = structuredClone(origins);
             let random_origin = origins_list.random();
-            let origin_name   = random_origin[0];
-            let origin_yes    = random_origin[1].yes;
-            let origin_no     = random_origin[1].no;
+            let origin_name = random_origin[0];
+            let origin_yes = random_origin[1].yes;
+            let origin_no = random_origin[1].no;
 
             if (this.disabled_origins.includes(origin_name)) {
                 log(origin_name + ' is disabled');
-                continue;
-            }
-
-            if (origin_name === 'origin_lithoid' && this.species.class !== 'LITHOID') {
                 continue;
             }
 
@@ -634,7 +748,10 @@ class Empire {
             if (yes_requirement_checker(origin_yes.civics, this.civics, 'Civic', 'Civics', 'Origins') === false) {
                 continue;
             }
-            if (yes_requirement_checker(origin_yes.species ?? [], this.species.class, 'Species', 'Species', 'Species') === false) {
+            if (yes_requirement_checker(origin_yes.species_archetype, [this.species.archetype], 'Species archetype', 'Species archetypes', 'Species') === false) {
+                continue;
+            }
+            if (yes_requirement_checker(origin_yes.species_class, [this.species.class], 'Species class', 'Species classes', 'Species') === false) {
                 continue;
             }
 
@@ -647,104 +764,80 @@ class Empire {
             if (no_requirement_checker(origin_no.civics, this.civics, 'Civic', 'Civics', 'Origins') === false) {
                 continue;
             }
-            if (no_requirement_checker(origin_no.species ?? [], this.species.class, 'Species', 'Species', 'Species') === false) {
+            if (no_requirement_checker(origin_no.species_archetype, [this.species.archetype], 'Species archetype', 'Species archetypes', 'Species') === false) {
+                continue;
+            }
+            if (no_requirement_checker(origin_no.species_class, [this.species.class], 'Species class', 'Species classes', 'Species') === false) {
                 continue;
             }
 
+            // Check if origin has very few requirements
+            let has_no_requirements = (
+                origin_yes.authorities.length === 0
+                 && origin_yes.civics.length === 0
+                 && origin_yes.ethics.length === 0
+                 && origin_yes.culture.length === 0
+                 && origin_yes.species_class.length === 0
+                 && origin_name !== 'origin_lithoid'
+            );
+
+            // Select a different origin to avoid generating to many origins with few requirements
+            // Origins with requirements are much more unlikely to be selected
+            // Just an ethics requirement reduces chances by like 90% or more
+            // When selecting an origin with few requirements, add a large chance to try again to balance this out
+            if (has_no_requirements && random_percentage_check(85)) {
+                log('Origin ' + origin_name + ' has few requirements, starting over');
+                continue;
+            }
+
+            // Legendary leader is technically the same origin; reduce chances
+            if (['origin_legendary_leader_death', 'origin_legendary_leader_imperial', 'origin_legendary_leader_dictatorial'].includes(origin_name) && random_percentage_check(50)) {
+                log('Origin ' + origin_name + ' picked, starting over');
+                continue;
+            }
+
+            // AI doesn't handle doomsday well; reduce chances
+            if (origin_name === 'origin_doomsday' && random_percentage_check(66)) {
+                log('Origin ' + origin_name + ' picked, starting over');
+                continue;
+            }
 
             log('Selected origin ' + origin_name);
             this.origin = origin_name;
 
-            // These origins force their own planet type, but Aquatic requires Ocean planet
-            if (origin_name === 'origin_shattered_ring' || origin_name === 'origin_life_seeded') {
-                this.disabled_traits.push('trait_aquatic');
-            }
-
-            if (origin_name === 'origin_post_apocalyptic') {
-                this.disabled_traits.push('trait_aquatic');
-                this.species.traits.push('trait_survivor');
-                return;
-            }
-
-            if (origin_name === 'origin_post_apocalyptic_machines') {
-                this.species.traits.push('trait_robot_survivor');
-                return;
-            }
-
-            if (origin_name === 'origin_void_dwellers') {
-                this.disabled_traits.push('trait_aquatic');
-                this.species.traits.push('trait_void_dweller_1');
-                return;
-            }
-
-            if (origin_name === 'origin_void_machines') {
-                this.species.traits.push('trait_void_dweller_2');
-                return;
-            }
-
-            if (origin_name === 'origin_clone_army') {
-                this.species.traits.push('trait_clone_soldier_infertile');
-                this.disabled_traits.push('trait_slow_breeders');
-                this.disabled_traits.push('trait_rapid_breeders');
-                return;
-            }
-
-            if (origin_name === 'origin_subterranean') {
-                this.disabled_traits.push('trait_aquatic');
-                this.species.traits.push('trait_cave_dweller');
-                return;
-            }
-
-            if (origin_name === 'origin_subterranean_machines') {
-                this.disabled_traits.push('trait_robot_aquatic');
-                this.species.traits.push('trait_robot_cave_dweller');
-                return;
-            }
-
-            if (origin_name === 'origin_shroudwalker_apprentice') {
-                this.species.traits.push('trait_latent_psionic');
-                return;
-            }
-
-            if (origin_name === 'origin_necrophage') {
-                this.species.traits.push('trait_necrophage');
-                this.disabled_traits.push('trait_plantoid_budding');
-                this.disabled_traits.push('trait_humanoid_psychological_infertility');
-                this.secondary_species = new SecondarySpecies([], ['trait_thrifty'], 5, 2, this.species.portrait, false);
-                return;
-            }
-
-            if (origin_name === 'origin_syncretic_evolution') {
-                this.secondary_species = new SecondarySpecies(['trait_syncretic_proles'], syncretic_disabled_traits, 4, 1, this.species.portrait, true);
-                return;
-            }
-
-            if (origin_name === 'origin_ocean_paradise') {
-                // Aquatic could've been added already by angler civic
-                if (!this.species.traits.includes('trait_aquatic')) {
-                    this.species.traits.push('trait_aquatic');
-                    this.trait_picks_left--;
-                    this.trait_points_left = this.trait_points_left - 2;
-                    return;
+            if (this.origin === 'origin_necrophage') {
+                let necrophage_disabled_traits = ['trait_thrifty'];
+                // Additional traits incompatible with necrophage hive minds
+                if (this.authority === 'auth_hive_mind') {
+                    necrophage_disabled_traits.push(
+                        'trait_conformists',
+                        'trait_deviants',
+                        'trait_decadent',
+                        'trait_conservational',
+                        'trait_wasteful',
+                        'trait_familial'
+                    )
                 }
-            }
 
-            if (origin_name === 'origin_ocean_machines') {
-                // Aquatic could've been added already by angler civic
-                if (!this.species.traits.includes('trait_robot_aquatic')) {
-                    this.species.traits.push('trait_robot_aquatic');
-                    this.trait_picks_left--;
-                    this.trait_points_left = this.trait_points_left - 2;
-                    return;
-                }
-            }
-
-            if (origin_name === 'origin_synthetic_fertility') {
-                this.species.traits.push('trait_pathogenic_genes');
-                this.disabled_traits.push('trait_plantoid_budding');
-                this.trait_picks_left--;
-                this.trait_points_left++;
+                this.secondary_species = new SecondarySpecies([], necrophage_disabled_traits, 5, 2, this.species.portrait, false, ['MACHINE']);
                 return;
+            }
+
+            if (this.origin === 'origin_syncretic_evolution') {
+                this.secondary_species = new SecondarySpecies(['trait_syncretic_proles'], syncretic_disabled_traits, 4, 1, this.species.portrait, true, ['MACHINE']);
+                return;
+            }
+
+            // Some origins have shipset incompatibilities
+            if (origin_yes.culture.length > 0) {
+                this.graphical_culture = origin_yes.culture.random();
+            }
+
+            // Some origins have shipset incompatibilities
+            if (origin_no.culture.length > 0) {
+                while (origin_no.culture.includes(this.graphical_culture)) {
+                    this.graphical_culture = cultures.random();
+                }
             }
         }
     }
@@ -768,8 +861,7 @@ class Empire {
 
                 // Pick a negative trait to offset power drills cost
                 this.pick_trait(machine_traits, true, false);
-            }
-            else {
+            } else {
                 this.species.traits.push('trait_strong');
                 this.species.traits.push('trait_industrious');
                 this.species.traits.push(random_percentage_check(50) ? 'trait_deviants' : 'trait_solitary');
@@ -788,7 +880,7 @@ class Empire {
             return;
         }
 
-        let traits_list                         = traits;
+        let traits_list = traits;
         let picked_negative_trait_for_overtuned = false;
 
         // Aquatic trait for ocean worlds
@@ -796,12 +888,15 @@ class Empire {
             traits_list = {...traits_list, ...ocean_traits};
         }
 
-        // Plants and Fungoids have access to extra traits
-        if (this.species.class === 'PLANT' || this.species.class === 'FUN') {
-            traits_list = {...traits_list, ...plant_traits};
-        }
-
         if (this.species.class === 'MACHINE') {
+            // Machines have their own traits
+            traits_list = machine_traits;
+
+            // Aquatic machines is a possibility
+            if (this.planet_class === 'pc_ocean') {
+                traits_list = {...traits_list, ...machine_ocean_traits};
+            }
+
             // Machines start with one fewer trait point
             this.trait_points_left--;
 
@@ -810,9 +905,6 @@ class Empire {
 
             // Machines get a free background trait
             this.species.traits.push(machine_background_traits.random());
-
-            // Machines have their own traits
-            traits_list = machine_traits;
         }
 
         if (this.species.class === 'LITHOID') {
@@ -833,15 +925,11 @@ class Empire {
             this.disabled_traits.push('trait_decadent');
             this.disabled_traits.push('trait_conservational');
             this.disabled_traits.push('trait_wasteful');
+            this.disabled_traits.push('trait_familial');
         }
 
         if (this.origin === 'origin_overtuned') {
             let overtuned_traits_list = overtuned_traits;
-
-            // Biologicals get extra overtuned traits, machines have already been excluded at this point due to origin
-            if (this.species.class !== 'LITHOID') {
-                overtuned_traits_list = {...overtuned_traits_list, ...biological_overtuned_traits};
-            }
 
             // Always pick at least one overtuned trait when generating overtuned
             // Allow going negative on trait points; some overtuned traits cost 3
@@ -867,11 +955,6 @@ class Empire {
         // Extra traits based on origin
         this.push_special_traits();
 
-        // Gestalts cannot be thrifty
-        if (this.ethics.includes('ethic_gestalt_consciousness')) {
-            this.disabled_traits.push('trait_thrifty');
-        }
-
         // No point in continuing if we can't pick traits anyway
         if (this.trait_picks_left === 0) {
             return;
@@ -883,10 +966,9 @@ class Empire {
             delete traits_list[this.disabled_traits[i]];
         }
 
-        // If we ended up negative somehow (Perfected Genes + Aquatic for example), pick a negative trait to get back to 0
-        if (this.trait_points_left < 0) {
-            this.pick_trait(traits_list, true, false);
-            return;
+        // If we ended up negative somehow (Malleable Genes?), pick negative traits to get back to 0
+        while (this.trait_points_left < 0) {
+            this.pick_trait(traits_list, true, true);
         }
 
         // chance to pick negative trait
@@ -919,13 +1001,6 @@ class Empire {
     }
 
     push_special_traits() {
-        // Legendary leaders always their own trait
-        if (this.origin === 'origin_legendary_leader') {
-            this.species.traits.push('trait_perfected_genes');
-            this.trait_points_left--;
-            this.trait_picks_left--;
-        }
-
         // Stargazers get to be stargazers
         if (this.civics.includes('civic_hive_stargazers')) {
             this.species.traits.push('trait_stargazer');
@@ -936,6 +1011,116 @@ class Empire {
             this.species.traits.push('trait_storm_touched');
         }
 
+        // Legendary leaders always their own trait
+        if (this.origin === 'origin_legendary_leader') {
+            this.species.traits.push('trait_perfected_genes');
+            this.trait_points_left--;
+            this.trait_picks_left--;
+        }
+
+        // These origins force their own planet type, but Aquatic requires Ocean planet
+        if (this.origin === 'origin_shattered_ring' || this.origin === 'origin_life_seeded') {
+            this.disabled_traits.push('trait_aquatic');
+            this.disabled_traits.push('trait_robot_aquatic');
+        }
+
+        if (this.origin === 'origin_post_apocalyptic') {
+            this.disabled_traits.push('trait_aquatic');
+            this.disabled_traits.push('trait_robot_aquatic');
+            this.species.traits.push('trait_survivor');
+            return;
+        }
+
+        if (this.origin === 'origin_post_apocalyptic_machines') {
+            this.disabled_traits.push('trait_robot_aquatic');
+            this.species.traits.push('trait_robot_survivor');
+            return;
+        }
+
+        if (this.origin === 'origin_void_dwellers') {
+            this.disabled_traits.push('trait_aquatic');
+            this.disabled_traits.push('trait_robot_aquatic');
+            this.species.traits.push('trait_void_dweller_1');
+            return;
+        }
+
+        if (this.origin === 'origin_void_machines') {
+            this.disabled_traits.push('trait_robot_aquatic');
+            this.species.traits.push('trait_void_dweller_2');
+            return;
+        }
+
+        if (this.origin === 'origin_clone_army') {
+            this.species.traits.push('trait_clone_soldier_infertile');
+            return;
+        }
+
+        if (this.origin === 'origin_subterranean') {
+            this.disabled_traits.push('trait_aquatic');
+            this.species.traits.push('trait_cave_dweller');
+            return;
+        }
+
+        if (this.origin === 'origin_subterranean_machines') {
+            this.disabled_traits.push('trait_robot_aquatic');
+            this.species.traits.push('trait_robot_cave_dweller');
+            return;
+        }
+
+        if (this.origin === 'origin_shroudwalker_apprentice') {
+            this.species.traits.push('trait_latent_psionic');
+            return;
+        }
+
+        if (this.origin === 'origin_necrophage') {
+            this.species.traits.push('trait_necrophage');
+            this.disabled_traits.push('trait_plantoid_budding');
+            this.disabled_traits.push('trait_humanoid_psychological_infertility');
+            return;
+        }
+
+        if (this.origin === 'origin_ocean_paradise') {
+            // Aquatic could've been added already by angler civic
+            if (!this.species.traits.includes('trait_aquatic')) {
+                this.species.traits.push('trait_aquatic');
+                this.trait_picks_left--;
+                this.trait_points_left = this.trait_points_left - 2;
+                return;
+            }
+        }
+
+        if (this.origin === 'origin_ocean_machines') {
+            // Aquatic could've been added already by angler civic
+            if (!this.species.traits.includes('trait_robot_aquatic')) {
+                this.species.traits.push('trait_robot_aquatic');
+                this.trait_picks_left--;
+                this.trait_points_left = this.trait_points_left - 2;
+                return;
+            }
+        }
+
+        if (this.origin === 'origin_synthetic_fertility') {
+            this.species.traits.push('trait_pathogenic_genes');
+            this.disabled_traits.push('trait_humanoid_psychological_infertility');
+            this.trait_picks_left--;
+            this.trait_points_left++;
+
+            for (let i = 0; i < incompatible_pathogenic; i++) {
+                this.disabled_traits.push(incompatible_pathogenic[i]);
+            }
+            return;
+        }
+
+        if (this.origin === 'origin_evolutionary_predators') {
+            this.species.traits.push('trait_malleable_genes');
+            this.trait_points_left = this.trait_points_left - 6;
+            return;
+        }
+
+        if (this.origin === 'origin_wilderness') {
+            this.species.traits.push('trait_wilderness');
+            return;
+        }
     }
 
     pick_trait(traits_list, negative_trait, allow_negative) {
@@ -944,9 +1129,10 @@ class Empire {
         while (i < 100) {
             i++;
             let random_trait = traits_list.random();
-            let trait_name   = random_trait[0];
-            let trait_cost   = random_trait[1].cost;
-            let trait_no     = random_trait[1].no;
+            let trait_name = random_trait[0];
+            let trait_cost = random_trait[1].cost;
+            let trait_no = random_trait[1].no;
+            let species_class = random_trait[1].species_class ?? [];
 
             log('Checking: ' + trait_name);
 
@@ -980,7 +1166,7 @@ class Empire {
                 continue;
             }
 
-            // Attempt to spend as much points as possible
+            // Attempt to spend as many points as possible
             if (
                 (this.trait_picks_left === 1 && this.trait_points_left > 1) ||
                 (this.trait_picks_left === 2 && this.trait_points_left > 3) ||
@@ -992,12 +1178,41 @@ class Empire {
                 }
             }
 
+            if (negative_trait) {
+                // Massively negative trait points (Malleable Genes most likely), make sure we get to at least 0 by picking expensive negative traits
+                if (
+                    (this.trait_picks_left === 1 && this.trait_points_left < -1) ||
+                    (this.trait_picks_left === 2 && this.trait_points_left < -3) ||
+                    (this.trait_picks_left === 3 && this.trait_points_left < -5) ||
+                    (this.trait_picks_left === 4 && this.trait_points_left < -7)
+                ) {
+                    if (trait_cost > -2) {
+                        continue;
+                    }
+                }
+            }
+
             if (no_requirement_checker(trait_no, this.disabled_traits, 'Trait', 'Traits', 'Disabled traits') === false) {
                 continue;
             }
 
             if (no_requirement_checker(trait_no, this.species.traits, 'Trait', 'Traits', 'Selected traits') === false) {
                 continue;
+            }
+
+            if (yes_requirement_checker(species_class, this.species.class, 'Species class', 'Species class', 'Species class') === false) {
+                return;
+            }
+
+            // Check if trait has modifiers and apply them based on current origin
+            if (random_trait[1].modifiers) {
+                for (let modifier_origin in random_trait[1].modifiers) {
+                    if (modifier_origin === this.origin) {
+                        let modifier_value = random_trait[1].modifiers[modifier_origin];
+                        // Modifiers are (negative) values applied to the trait cost
+                        trait_cost += modifier_value;
+                    }
+                }
             }
 
             log('Selected trait ' + trait_name + ' cost ' + trait_cost);
@@ -1012,11 +1227,10 @@ class Empire {
     }
 
     set_empire_flag() {
-
         let flag = flags.random();
 
         this.empire_flag.icon.category = flag[0];
-        this.empire_flag.icon.file     = flag[1].random();
+        this.empire_flag.icon.file = flag[1].random();
 
         this.empire_flag.background.file = backgrounds.random();
 
@@ -1032,11 +1246,11 @@ class Empire {
             this.ruler.gender = random_percentage_check(50) ? 'female' : 'male';
         }
 
-        this.ruler.name     = leader_names[this.ruler.gender].random();
+        this.ruler.name = leader_names[this.ruler.gender].random();
         this.ruler.portrait = this.species.portrait;
-        this.ruler.texture  = 0;
-        this.ruler.hair     = 0;
-        this.ruler.clothes  = 0;
+        this.ruler.texture = 0;
+        this.ruler.hair = 0;
+        this.ruler.clothes = 0;
 
         // Paragon leaders cannot pick normal ruler traits, and normal rulers cannot pick paragon traits
         if (this.origin === 'origin_legendary_leader') {
@@ -1050,8 +1264,7 @@ class Empire {
         // Treasure hunters have their own ruler traits
         else if (this.origin === 'origin_treasure_hunters') {
             this.pick_ruler_trait(treasure_hunter_traits);
-        }
-        else {
+        } else {
             this.pick_ruler_trait(leader_traits);
         }
     }
@@ -1062,8 +1275,8 @@ class Empire {
         while (i < 100) {
             i++;
             let random_trait = traits_list.random();
-            let trait_name   = random_trait[0];
-            let trait_yes    = random_trait[1].yes;
+            let trait_name = random_trait[0];
+            let trait_yes = random_trait[1].yes;
 
             log('Checking: ' + trait_name);
 
@@ -1090,11 +1303,11 @@ class Empire {
         let name = species_names.random();
         if (name.length > 6 && random_percentage_check(40)) {
             let splitAt = random_percentage_check(50) ? 3 : 4;
-            name        = name.slice(0, splitAt) + " " + name.slice(splitAt).capitalize();
+            name = name.slice(0, splitAt) + " " + name.slice(splitAt).capitalize();
         }
-        let plural       = name + (random_percentage_check(50) ? plurals.random() : '');
-        let adjective    = name + (random_percentage_check(70) ? adjectives.random() : '');
-        let empire_name  = '';
+        let plural = name + (random_percentage_check(50) ? plurals.random() : '');
+        let adjective = name + (random_percentage_check(70) ? adjectives.random() : '');
+        let empire_name = '';
         let first_prefix = '';
 
         while (empire_name === '') {
@@ -1105,9 +1318,9 @@ class Empire {
                 // Interstellar Military Union of Verk
                 // .. etc
                 empire_name += (random_percentage_check(50) ? prefix.random() + ' ' : '')
-                               + modifier.random() + ' '
-                               + suffix.random()
-                               + ' of ' + (random_percentage_check(50) ? this.planet_name : this.system_name);
+                    + modifier.random() + ' '
+                    + suffix.random()
+                    + ' of ' + (random_percentage_check(50) ? this.planet_name : this.system_name);
 
                 continue;
             }
@@ -1130,8 +1343,8 @@ class Empire {
                 }
 
                 empire_name += (random_percentage_check(50) ? name : adjective) + ' '
-                               + (random_percentage_check(10) ? modifier.random() + ' ' : '')
-                               + suffix.random();
+                    + (random_percentage_check(10) ? modifier.random() + ' ' : '')
+                    + suffix.random();
                 continue;
             }
 
@@ -1142,9 +1355,9 @@ class Empire {
                 // Corrupted Fonckian Military Conclave
                 // .. etc
                 empire_name += (random_percentage_check(50) ? prefix.random() + ' ' : '')
-                               + adjective + ' '
-                               + (random_percentage_check(10) ? modifier.random() + ' ' : '')
-                               + suffix.random();
+                    + adjective + ' '
+                    + (random_percentage_check(10) ? modifier.random() + ' ' : '')
+                    + suffix.random();
                 continue;
             }
 
@@ -1152,25 +1365,25 @@ class Empire {
             // Lidcirian Dominions
             // Vezganeth Technocracy
             empire_name += (random_percentage_check(50) ? name : adjective) + ' '
-                           + suffix.random();
+                + suffix.random();
         }
 
-        this.name.key          = empire_name;
-        this.adjective.key     = adjective;
-        this.species.name      = name;
-        this.species.plural    = plural;
+        this.name.key = empire_name;
+        this.adjective.key = adjective;
+        this.species.name = name;
+        this.species.plural = plural;
         this.species.adjective = adjective;
-        this.key               = empire_name;
+        this.key = empire_name;
 
         log('Empire name ' + empire_name);
     }
 
     set_planet_name() {
         let planet_name = '';
-        let has_prefix  = false;
+        let has_prefix = false;
 
         if (random_percentage_check(10)) {
-            has_prefix  = true;
+            has_prefix = true;
             planet_name = planet_fixes.random() + (random_percentage_check(50) ? '-' : ' ');
         }
 
@@ -1194,7 +1407,7 @@ class Empire {
             traits_string += 'trait="' + this.species.traits[i] + '"\r\n';
         }
         // Remove the last newline
-        traits_string       = traits_string.substring(0, traits_string.length - 2);
+        traits_string = traits_string.substring(0, traits_string.length - 2);
         this.species.traits = '';
 
         let secondary_species_traits_string = '';
@@ -1203,7 +1416,7 @@ class Empire {
                 secondary_species_traits_string += 'trait="' + this.secondary_species.secondary_species_traits[i] + '"\r\n';
             }
             // Remove the last newline
-            secondary_species_traits_string                 = secondary_species_traits_string.substring(0, secondary_species_traits_string.length - 2);
+            secondary_species_traits_string = secondary_species_traits_string.substring(0, secondary_species_traits_string.length - 2);
             this.secondary_species.secondary_species_traits = '';
         }
 
@@ -1212,7 +1425,7 @@ class Empire {
             ruler_traits_string += 'trait="' + this.ruler.ruler_traits[i] + '"\r\n';
         }
         // Remove the last newline
-        ruler_traits_string     = ruler_traits_string.substring(0, ruler_traits_string.length - 2);
+        ruler_traits_string = ruler_traits_string.substring(0, ruler_traits_string.length - 2);
         this.ruler.ruler_traits = '';
 
         let ethics_string = '';
@@ -1221,7 +1434,7 @@ class Empire {
         }
         // Remove the last newline
         ethics_string = ethics_string.substring(0, ethics_string.length - 2);
-        this.ethics   = '';
+        this.ethics = '';
 
         // Civics use an array
         let civics_string = '';
@@ -1244,6 +1457,7 @@ class Empire {
         delete this.trait_points_left;
         delete this.civic_points_left;
         delete this.ethics_points_left;
+        delete this.species.archetype;
         delete this.options;
 
         // Convert empire to JSON
@@ -1308,7 +1522,7 @@ function random_percentage_check(percentage) {
 }
 
 function yes_requirement_checker(requirements, current_values, singular, plural, check_type) {
-    let requirements_met   = 0;
+    let requirements_met = 0;
     let requirements_count = requirements.length;
 
     if ($.isArray(requirements[0])) {

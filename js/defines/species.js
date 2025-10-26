@@ -1,5 +1,6 @@
 basegame_species = {
     'HUM'    : {
+        archetype: 'BIOLOGICAL',
         secondary: true,
         portraits: [
             'human',
@@ -25,9 +26,14 @@ basegame_species = {
             'cyb12',
             'synth04',
             'synth07',
+            'psionic_03',
+            'psionic_06',
+            'psionic_09',
+            'psionic_10',
         ],
     },
     'MAM'    : {
+        archetype: 'BIOLOGICAL',
         secondary: true,
         portraits: [
             'mam5',
@@ -48,14 +54,27 @@ basegame_species = {
             'mam16',
             'mam_rat',
             'mam17',
+            'mammalian_ar_01',
+            'mammalian_ar_02',
+            'mammalian_ar_03',
+            'mammalian_ar_04',
+            'mammalian_ar_05',
+            'mammalian_ar_06',
+            'mammalian_ar_07',
+            'mammalian_ar_08',
+            'mammalian_ar_09',
+            'mammalian_ar_10',
             'cyb1',
             'cyb2',
             'cyb3',
             'cyb6',
             'cyb7',
+            'bio10',
+            'psionic_12',
         ],
     },
     'REP'    : {
+        archetype: 'BIOLOGICAL',
         secondary: true,
         portraits: [
             'rep2',
@@ -78,9 +97,12 @@ basegame_species = {
             'cyb4',
             'cyb10',
             'cyb11',
+            'pro2',
+            'bio9',
         ],
     },
     'AVI'    : {
+        archetype: 'BIOLOGICAL',
         secondary: true,
         portraits: [
             'avi1',
@@ -102,10 +124,13 @@ basegame_species = {
             'avi17',
             'avi18',
             'cyb5',
-            'synth01'
+            'synth01',
+            'bio4',
+            'psionic_08',
         ],
     },
     'ART'    : {
+        archetype: 'BIOLOGICAL',
         secondary: true,
         portraits: [
             'art14',
@@ -130,9 +155,12 @@ basegame_species = {
             'synth02',
             'synth08',
             'synth09',
+            'bio7',
+            'psionic_05',
         ],
     },
     'MOL'    : {
+        archetype: 'BIOLOGICAL',
         secondary: true,
         portraits: [
             'mol3',
@@ -153,9 +181,15 @@ basegame_species = {
             'mol18',
             'synth03',
             'synth05',
+            'stargazer_01',
+            'ant1',
+            'bio6',
+            'bio11',
+            'psionic_01',
         ],
     },
     'FUN'    : {
+        archetype: 'BIOLOGICAL',
         secondary: true,
         portraits: [
             'fun2',
@@ -175,9 +209,11 @@ basegame_species = {
             'fun16',
             'fun17',
             'cyb13',
+            'psionic_02',
         ],
     },
     'PLANT'  : {
+        archetype: 'BIOLOGICAL',
         secondary: true,
         portraits: [
             'pla2',
@@ -200,6 +236,7 @@ basegame_species = {
         ],
     },
     'LITHOID': {
+        archetype: 'LITHOID',
         secondary: true,
         portraits: [
             'lith1',
@@ -221,6 +258,7 @@ basegame_species = {
         ],
     },
     'AQUATIC': {
+        archetype: 'BIOLOGICAL',
         secondary: true,
         portraits: [
             'aqu1',
@@ -239,9 +277,14 @@ basegame_species = {
             'aqu14',
             'aqu15',
             'synth06',
+            'pro1',
+            'bio8',
+            'psionic_04',
+            'psionic_07',
         ],
     },
     'TOX'    : {
+        archetype: 'BIOLOGICAL',
         secondary: true,
         portraits: [
             'tox1',
@@ -262,6 +305,7 @@ basegame_species = {
         ],
     },
     'NECROID': {
+        archetype: 'BIOLOGICAL',
         secondary: true,
         portraits: [
             'nec1',
@@ -285,6 +329,7 @@ basegame_species = {
 
 basegame_species_machine = {
     'MACHINE': {
+        archetype: 'MACHINE',
         secondary: false,
         portraits: [
             'sd_hum_robot',
@@ -310,6 +355,8 @@ basegame_species_machine = {
             'synth_machine_08',
             'synth_machine_09',
             'cyb_machine',
+            'bio12',
+            'psionic_11',
         ],
     },
 };

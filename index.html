@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="Random empire generator for Stellaris; generates game-ready empires. Updated for Stellaris 3.14 (Circinus)">
+    <meta name="description" content="Random empire generator for Stellaris; generates game-ready empires. Updated for Stellaris 4.1.6 (Lyra)">
     <title>Stellaris Empire Generator</title>
 
     <link rel="stylesheet" href="css/index.css">
@@ -51,19 +51,22 @@
 
     <div id="charts">
         <h2>Generated empires</h2>
-        <div style="width: 300px; height:319px; float:right;">
+        <div style="width: 300px; height:320px; float:right;">
             <canvas id="chart_genocidal"></canvas>
         </div>
         <div style="width: 450px; height:300px; float:right;">
             <canvas id="chart_authorities"></canvas>
         </div>
-        <div style="width: 807px; height:400px; float:right;">
+        <div style="width: 800px; height:300px; float:right;">
             <canvas id="chart_ethics"></canvas>
+        </div>
+        <div style="width: 1100px; height:300px; float:right;">
+            <canvas id="chart_origins"></canvas>
         </div>
     </div>
     <h1>Stellaris Empire Generator</h1>
     <p>
-        Tool for generating random empires for Stellaris, updated for 3.14 (Circinus) <br>
+        Tool for generating random empires for Stellaris, updated for 4.1.6 (Lyra)<br>
         Assumes all DLC is installed. <br>
         <br>
         Put the generated empires in <i>%UserProfile%\Documents\Paradox Interactive\Stellaris\user_empire_designs_v3.4.txt</i>
@@ -116,7 +119,7 @@
         <label for="disable_shattered_ring"><abbr title="Starts with a shattered Ring World">Shattered Ring</abbr></label>
         <input name="origin_scion" type="checkbox" id="origin_scion"/>
         <label for="origin_scion"><abbr title="Starts as a vassal of a Fallen Empire">Scion</abbr></label>
-        <input name="origin_lost_colony" type="checkbox" id="origin_lost_colony" checked/>
+        <input name="origin_lost_colony" type="checkbox" id="origin_lost_colony"/>
         <label for="origin_lost_colony"><abbr title="An Advanced Empire of this species spawns somewhere in the galaxy">Lost Colony</abbr></label>
         <br>
         <input name="origin_hegemon" type="checkbox" id="origin_hegemon"/>
@@ -125,9 +128,9 @@
         <label for="origin_common_ground"><abbr title="Starts as the leader of a Galactic Union federation with 2 additional members">Common Ground</abbr></label>
         <input name="origin_here_be_dragons" type="checkbox" id="origin_here_be_dragons"/>
         <label for="origin_here_be_dragons"><abbr title="Starts with a Space Dragon in their home system">Here Be Dragons</abbr></label>
-        <input name="origin_slingshot" type="checkbox" id="origin_slingshot"/>
-        <label for="origin_slingshot"><abbr title="Starts with a ruined Quantum Catapult">Slingshot</abbr></label>
-        <input name="origin_imperial_fiefdom" type="checkbox" id="origin_imperial_fiefdom" checked/>
+        <input name="origin_star_slingshot" type="checkbox" id="origin_star_slingshot"/>
+        <label for="origin_star_slingshot"><abbr title="Starts with a ruined Quantum Catapult">Star Slingshot</abbr></label>
+        <input name="origin_imperial_fiefdom" type="checkbox" id="origin_imperial_fiefdom"/>
         <label for="origin_imperial_fiefdom"><abbr title="Starts as a vassal of an advanced AI empire">Imperial Fiefdom</abbr></label>
     </p>
 
@@ -139,18 +142,6 @@
         <label for="civic_barbaric_despoilers"><abbr title="Raids enemies to gain extra pops">Barbaric Despoilers</abbr></label>
         <input name="civic_inwards_perfection" type="checkbox" id="civic_inwards_perfection"/>
         <label for="civic_inwards_perfection"><abbr title="Doesn't interact with other empires">Inwards Perfection</abbr></label>
-    </p>
-
-    <p>
-        <span><b><abbr title="
-Egalitarians and authoritarians have stricter requirements and so appear less often.
-These options increase their chance of appearing to be roughly equal to the other ethics.
-They only work if the required authorities are not disabled.">
-            Boost ethics:</abbr></b></span>
-        <input name="boost_egalitarians" type="checkbox" id="boost_egalitarians" checked/>
-        <label for="boost_egalitarians">Boost egalitarians </label>
-        <input name="boost_authoritarians" type="checkbox" id="boost_authoritarians" checked/>
-        <label for="boost_authoritarians">Boost authoritarians</label>
     </p>
 
     <p>
@@ -225,10 +216,13 @@ They only work if the required authorities are not disabled.">
         let authoritiesChart = showAuthorities('');
         let ethicsChart      = showEthics('');
         let genocidalChart   = showGenocidal('');
+        let originsChart     = showOrigins('');
 
         $('#generate').on('click tap', function () {
+            const startTime = performance.now();
+
             $('#result').html('');
-            console.clear();
+            //console.clear();
 
             let results    = '';
             let empiresNum = $('#empire_amount').val();
@@ -239,8 +233,6 @@ They only work if the required authorities are not disabled.">
                 disabled_authorities: [...document.querySelectorAll('#disabled_authorities input:checked')].map(element => element.name),
                 disabled_origins    : [...document.querySelectorAll('#disabled_origins input:checked')].map(element => element.name),
                 disabled_civics     : [...document.querySelectorAll('#disabled_civics input:checked')].map(element => element.name),
-                boost_egalitarians  : $('input[name="boost_egalitarians"]:checked').val(),
-                boost_authoritarians: $('input[name="boost_authoritarians"]:checked').val(),
             };
 
             // Make deep clone of basegame data so mods can add data (and the data can be removed when mod is turned off)
@@ -258,9 +250,7 @@ They only work if the required authorities are not disabled.">
             lithoid_traits              = structuredClone(basegame_lithoid_traits);
             machine_traits              = structuredClone(basegame_machine_traits);
             machine_background_traits   = structuredClone(basegame_machine_background_traits);
-            plant_traits                = structuredClone(basegame_plant_traits);
             overtuned_traits            = structuredClone(basegame_overtuned_traits);
-            biological_overtuned_traits = structuredClone(basegame_biological_overtuned_traits);
             leader_traits               = structuredClone(basegame_leader_traits);
             paragon_traits              = structuredClone(basegame_paragon_traits);
             bad_paragon_traits          = structuredClone(basegame_bad_paragon_traits);
@@ -297,6 +287,12 @@ They only work if the required authorities are not disabled.">
             ethicsChart = showEthics(results);
             genocidalChart.destroy();
             genocidalChart = showGenocidal(results);
+            originsChart.destroy();
+            originsChart = showOrigins(results);
+
+            const endTime = performance.now();
+            const duration = (endTime - startTime).toFixed(2);
+            console.log(`Empire generation completed in ${duration}ms`);
         });
 
         $('#generate').click();
