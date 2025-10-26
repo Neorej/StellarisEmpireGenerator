@@ -23,6 +23,7 @@ basegame_traits = {
       "trait_nerve_stapled",
       "trait_erudite",
       "trait_enigmatic_intelligence_poor",
+      "trait_syncretic_proles",
       "trait_enigmatic_intelligence_failed",
       "trait_invasive"
     ]
@@ -40,6 +41,7 @@ basegame_traits = {
       "trait_natural_physicists",
       "trait_natural_sociologists",
       "trait_nerve_stapled",
+      "trait_syncretic_proles",
       "trait_invasive"
     ]
   },
@@ -51,6 +53,7 @@ basegame_traits = {
       "trait_nerve_stapled",
       "trait_camouflage",
       "trait_chromalogs",
+      "trait_syncretic_proles",
       "trait_invasive"
     ]
   },
@@ -60,6 +63,7 @@ basegame_traits = {
       "trait_natural_physicists",
       "trait_natural_engineers",
       "trait_nerve_stapled",
+      "trait_syncretic_proles",
       "trait_invasive"
     ]
   },
@@ -71,7 +75,9 @@ basegame_traits = {
       "trait_robust",
       "trait_adaptive_lithoid",
       "trait_shelled",
-      "trait_invasive"
+      "trait_invasive",
+      "trait_pathogenic_genes",
+      "trait_permeable_skin"
     ]
   },
   "trait_adaptive": {
@@ -83,7 +89,8 @@ basegame_traits = {
       "trait_adaptive_lithoid",
       "trait_shelled",
       "trait_permeable_skin",
-      "trait_invasive"
+      "trait_invasive",
+      "trait_pathogenic_genes"
     ]
   },
   "trait_nonadaptive": {
@@ -95,7 +102,8 @@ basegame_traits = {
       "trait_adaptive_lithoid",
       "trait_shelled",
       "trait_permeable_skin",
-      "trait_genetic_memory"
+      "trait_genetic_memory",
+      "trait_pathogenic_genes"
     ]
   },
   "trait_rapid_breeders": {
@@ -110,8 +118,11 @@ basegame_traits = {
       "trait_tiyanki",
       "trait_humanoid_existential_iteroparity",
       "trait_egg_laying",
+      "trait_clone_soldier_infertile",
+      "trait_clone_soldier_infertile_full_potential",
       "trait_invasive",
-      "trait_incubator"
+      "trait_incubator",
+      "trait_pathogenic_genes"
     ]
   },
   "trait_slow_breeders": {
@@ -128,7 +139,10 @@ basegame_traits = {
       "trait_humanoid_existential_iteroparity",
       "trait_egg_laying",
       "trait_nascent_stage",
-      "trait_incubator"
+      "trait_clone_soldier_infertile",
+      "trait_clone_soldier_infertile_full_potential",
+      "trait_incubator",
+      "trait_pathogenic_genes"
     ]
   },
   "trait_talented": {
@@ -205,7 +219,9 @@ basegame_traits = {
     "no": [
       "trait_strong",
       "trait_very_strong",
-      "trait_tankbound"
+      "trait_tankbound",
+      "trait_perfected_genes",
+      "trait_hollow_bones"
     ]
   },
   "trait_nomadic": {
@@ -214,7 +230,8 @@ basegame_traits = {
       "trait_sedentary",
       "trait_rooted",
       "trait_wilderness",
-      "trait_invasive"
+      "trait_invasive",
+      "trait_pathogenic_genes"
     ]
   },
   "trait_sedentary": {
@@ -222,7 +239,9 @@ basegame_traits = {
     "no": [
       "trait_nomadic",
       "trait_rooted",
-      "trait_wilderness"
+      "trait_wilderness",
+      "trait_pathogenic_genes",
+      "trait_stargazer"
     ]
   },
   "trait_communal": {
@@ -295,7 +314,8 @@ basegame_traits = {
       "trait_venerable",
       "trait_enduring",
       "trait_fleeting_lithoid",
-      "trait_syncretic_proles"
+      "trait_syncretic_proles",
+      "trait_perfected_genes"
     ]
   },
   "trait_decadent": {
@@ -316,83 +336,61 @@ basegame_traits = {
     "no": [
       "trait_wasteful",
       "trait_hive_mind",
-      "trait_invasive"
+      "trait_invasive",
+      "trait_seasonal_dormancy"
     ]
   },
   "trait_wasteful": {
     "cost": -1,
     "no": [
       "trait_conservational",
-      "trait_hive_mind"
+      "trait_hive_mind",
+      "trait_seasonal_dormancy"
     ]
   },
-  "trait_humanoid_existential_iteroparity": {
+  "trait_lithoid_scintillating": {
     "cost": 2,
     "no": [
-      "trait_humanoid_psychological_infertility",
-      "trait_rapid_breeders",
-      "trait_fertile",
-      "trait_rapid_breeders_lithoid",
-      "trait_plantoid_budding",
-      "trait_lithoid_budding",
-      "trait_vat_grown",
-      "trait_tiyanki",
-      "trait_egg_laying",
-      "trait_slow_breeders",
-      "trait_invasive",
-      "trait_incubator"
+      "trait_lithoid_volatile_excretions",
+      "trait_lithoid_gaseous_byproducts",
+      "trait_drake_scaled"
+    ],
+    "species_class": [
+      "LITHOID"
     ]
   },
-  "trait_humanoid_psychological_infertility": {
-    "cost": -2,
-    "no": [
-      "trait_humanoid_existential_iteroparity",
-      "trait_slow_breeders",
-      "trait_vat_grown",
-      "trait_necrophage",
-      "trait_lithoid",
-      "trait_nascent_stage"
-    ]
-  },
-  "trait_humanoid_jinxed": {
-    "cost": -1,
-    "no": [
-      "trait_talented",
-      "trait_syncretic_proles"
-    ]
-  },
-  "trait_incubator": {
+  "trait_lithoid_gaseous_byproducts": {
     "cost": 2,
     "no": [
-      "trait_slow_breeders",
-      "trait_rapid_breeders",
-      "trait_fertile",
-      "trait_plantoid_budding",
-      "trait_lithoid_budding",
-      "trait_rapid_breeders_lithoid",
-      "trait_humanoid_existential_iteroparity",
-      "trait_egg_laying",
-      "trait_wilderness",
-      "trait_vat_grown"
+      "trait_lithoid_volatile_excretions",
+      "trait_lithoid_scintillating",
+      "trait_drake_scaled"
+    ],
+    "species_class": [
+      "LITHOID"
     ]
   },
-  "trait_inorganic_breath": {
-    "cost": 3,
-    "no": []
+  "trait_lithoid_volatile_excretions": {
+    "cost": 2,
+    "no": [
+      "trait_lithoid_gaseous_byproducts",
+      "trait_lithoid_scintillating",
+      "trait_drake_scaled"
+    ],
+    "species_class": [
+      "LITHOID"
+    ]
   },
-  "trait_noxious": {
-    "cost": 1,
-    "no": []
-  }
-}
-
-basegame_plant_traits = {
   "trait_plantoid_phototrophic": {
     "cost": 1,
     "no": [
       "trait_plantoid_radiotrophic",
       "trait_voidling",
       "trait_cave_dweller"
+    ],
+    "species_class": [
+      "PLANT",
+      "FUN"
     ]
   },
   "trait_plantoid_radiotrophic": {
@@ -400,6 +398,11 @@ basegame_plant_traits = {
     "no": [
       "trait_plantoid_phototrophic",
       "trait_voidling"
+    ],
+    "species_class": [
+      "PLANT",
+      "FUN",
+      "LITHOID"
     ]
   },
   "trait_plantoid_budding": {
@@ -414,7 +417,13 @@ basegame_plant_traits = {
       "trait_lithoid_budding",
       "trait_tiyanki",
       "trait_egg_laying",
-      "trait_humanoid_existential_iteroparity"
+      "trait_humanoid_existential_iteroparity",
+      "trait_incubator",
+      "trait_pathogenic_genes"
+    ],
+    "species_class": [
+      "PLANT",
+      "FUN"
     ]
   },
   "trait_invasive": {
@@ -468,6 +477,302 @@ basegame_plant_traits = {
       "trait_uncanny_intuition",
       "trait_cranial_hypertrophy",
       "trait_cranial_megatrophy"
+    ],
+    "species_class": [
+      "PLANT",
+      "FUN"
+    ]
+  },
+  "trait_lithoid_budding": {
+    "cost": 2,
+    "no": [
+      "trait_slow_breeders",
+      "trait_rapid_breeders",
+      "trait_rapid_breeders_lithoid",
+      "trait_necrophage",
+      "trait_clone_soldier_infertile",
+      "trait_clone_soldier_infertile_full_potential",
+      "trait_incubator",
+      "trait_plantoid_budding",
+      "trait_tiyanki",
+      "trait_egg_laying",
+      "trait_humanoid_existential_iteroparity",
+      "trait_pathogenic_genes"
+    ],
+    "species_class": [
+      "LITHOID"
+    ]
+  },
+  "trait_humanoid_existential_iteroparity": {
+    "cost": 2,
+    "no": [
+      "trait_humanoid_psychological_infertility",
+      "trait_rapid_breeders",
+      "trait_fertile",
+      "trait_rapid_breeders_lithoid",
+      "trait_plantoid_budding",
+      "trait_lithoid_budding",
+      "trait_vat_grown",
+      "trait_tiyanki",
+      "trait_egg_laying",
+      "trait_clone_soldier_infertile",
+      "trait_clone_soldier_infertile_full_potential",
+      "trait_slow_breeders",
+      "trait_invasive",
+      "trait_incubator",
+      "trait_pathogenic_genes"
+    ]
+  },
+  "trait_humanoid_psychological_infertility": {
+    "cost": -2,
+    "no": [
+      "trait_humanoid_existential_iteroparity",
+      "trait_slow_breeders",
+      "trait_vat_grown",
+      "trait_necrophage",
+      "trait_lithoid",
+      "trait_nascent_stage",
+      "trait_clone_soldier_infertile",
+      "trait_clone_soldier_infertile_full_potential",
+      "trait_pathogenic_genes"
+    ]
+  },
+  "trait_humanoid_jinxed": {
+    "cost": -1,
+    "no": [
+      "trait_talented",
+      "trait_syncretic_proles"
+    ]
+  },
+  "trait_incubator": {
+    "cost": 2,
+    "no": [
+      "trait_slow_breeders",
+      "trait_rapid_breeders",
+      "trait_fertile",
+      "trait_plantoid_budding",
+      "trait_lithoid_budding",
+      "trait_rapid_breeders_lithoid",
+      "trait_humanoid_existential_iteroparity",
+      "trait_egg_laying",
+      "trait_wilderness",
+      "trait_vat_grown",
+      "trait_invasive",
+      "trait_pathogenic_genes"
+    ]
+  },
+  "trait_inorganic_breath": {
+    "cost": 3,
+    "no": [
+      "trait_invasive"
+    ]
+  },
+  "trait_noxious": {
+    "cost": 1,
+    "no": [
+      "trait_invasive"
+    ]
+  },
+  "trait_egg_laying": {
+    "cost": 2,
+    "no": [
+      "trait_slow_breeders",
+      "trait_fertile",
+      "trait_rapid_breeders_lithoid",
+      "trait_plantoid_budding",
+      "trait_lithoid_budding",
+      "trait_vat_grown",
+      "trait_tiyanki",
+      "trait_humanoid_existential_iteroparity",
+      "trait_clone_soldier_infertile",
+      "trait_clone_soldier_infertile_full_potential",
+      "trait_rapid_breeders",
+      "trait_invasive",
+      "trait_incubator",
+      "trait_pathogenic_genes"
+    ],
+    "species_class": [
+      "REP",
+      "AVI",
+      "AQUATIC"
+    ]
+  },
+  "trait_seasonal_dormancy": {
+    "cost": 2,
+    "no": [
+      "trait_wasteful",
+      "trait_conservational",
+      "trait_low_maintenance"
+    ],
+    "species_class": [
+      "MAM",
+      "REP"
+    ]
+  },
+  "trait_hollow_bones": {
+    "cost": -3,
+    "no": [
+      "trait_strong",
+      "trait_very_strong",
+      "trait_weak",
+      "trait_tankbound"
+    ],
+    "species_class": [
+      "TOX",
+      "AVI"
+    ]
+  },
+  "trait_rooted": {
+    "cost": -3,
+    "no": [
+      "trait_sedentary",
+      "trait_nomadic"
+    ],
+    "species_class": [
+      "FUN",
+      "PLANT"
+    ]
+  },
+  "trait_acidic_vascularity": {
+    "cost": 1,
+    "no": [],
+    "species_class": [
+      "NECROID",
+      "TOX"
+    ]
+  },
+  "trait_shelled": {
+    "cost": 3,
+    "no": [
+      "trait_nonadaptive",
+      "trait_adaptive",
+      "trait_extremely_adaptive",
+      "trait_robust",
+      "trait_adaptive_lithoid",
+      "trait_communal",
+      "trait_spatial_mastery",
+      "trait_invasive"
+    ],
+    "species_class": [
+      "MOL",
+      "NECROID"
+    ]
+  },
+  "trait_camouflage": {
+    "cost": 1,
+    "no": [
+      "trait_nerve_stapled",
+      "trait_natural_physicists",
+      "trait_chromalogs",
+      "trait_invasive"
+    ],
+    "species_class": [
+      "AQUATIC",
+      "ART",
+      "REP"
+    ]
+  },
+  "trait_chromalogs": {
+    "cost": 4,
+    "no": [
+      "trait_nerve_stapled",
+      "trait_natural_physicists",
+      "trait_camouflage",
+      "trait_invasive"
+    ],
+    "species_class": [
+      "AQUATIC",
+      "ART",
+      "REP"
+    ]
+  },
+  "trait_brittle": {
+    "cost": -3,
+    "no": [],
+    "species_class": [
+      "LITHOID",
+      "NECROID"
+    ]
+  },
+  "trait_familial": {
+    "cost": 2,
+    "no": [],
+    "species_class": [
+      "HUM",
+      "MAM",
+      "AVI"
+    ]
+  },
+  "trait_permeable_skin": {
+    "cost": -1,
+    "no": [
+      "trait_adaptive",
+      "trait_extremely_adaptive",
+      "trait_nonadaptive"
+    ],
+    "species_class": [
+      "MOL",
+      "AQUATIC"
+    ]
+  },
+  "trait_genetic_memory": {
+    "cost": 3,
+    "no": [
+      "trait_nonadaptive"
+    ],
+    "species_class": [
+      "HUM",
+      "MAM",
+      "NECROID"
+    ]
+  },
+  "trait_nascent_stage": {
+    "cost": -2,
+    "no": [
+      "trait_slow_breeders",
+      "trait_humanoid_psychological_infertility",
+      "trait_unplugged_cybernetic_positives_3",
+      "trait_unplugged_cybernetic_positives_2",
+      "trait_unplugged_cybernetic_positives_1",
+      "trait_pathogenic_genes",
+      "trait_wilderness"
+    ],
+    "species_class": [
+      "HUM",
+      "MAM",
+      "REP",
+      "ART"
+    ]
+  },
+  "trait_flight": {
+    "cost": 2,
+    "no": [
+      "trait_spatial_mastery"
+    ],
+    "species_class": [
+      "AVI",
+      "ART"
+    ]
+  },
+  "trait_spatial_mastery": {
+    "cost": 4,
+    "no": [
+      "trait_communal",
+      "trait_shelled",
+      "trait_flight"
+    ],
+    "species_class": [
+      "AVI",
+      "ART"
+    ]
+  },
+  "trait_spare_organs": {
+    "cost": 2,
+    "no": [],
+    "species_class": [
+      "MOL",
+      "NECROID",
+      "TOX"
     ]
   }
 }
@@ -497,6 +802,7 @@ basegame_lithoid_traits = {
       "trait_nerve_stapled",
       "trait_erudite",
       "trait_enigmatic_intelligence_poor",
+      "trait_syncretic_proles",
       "trait_enigmatic_intelligence_failed",
       "trait_invasive"
     ]
@@ -514,6 +820,7 @@ basegame_lithoid_traits = {
       "trait_natural_physicists",
       "trait_natural_sociologists",
       "trait_nerve_stapled",
+      "trait_syncretic_proles",
       "trait_invasive"
     ]
   },
@@ -525,6 +832,7 @@ basegame_lithoid_traits = {
       "trait_nerve_stapled",
       "trait_camouflage",
       "trait_chromalogs",
+      "trait_syncretic_proles",
       "trait_invasive"
     ]
   },
@@ -534,6 +842,7 @@ basegame_lithoid_traits = {
       "trait_natural_physicists",
       "trait_natural_engineers",
       "trait_nerve_stapled",
+      "trait_syncretic_proles",
       "trait_invasive"
     ]
   },
@@ -611,7 +920,9 @@ basegame_lithoid_traits = {
     "no": [
       "trait_strong",
       "trait_very_strong",
-      "trait_tankbound"
+      "trait_tankbound",
+      "trait_perfected_genes",
+      "trait_hollow_bones"
     ]
   },
   "trait_nomadic": {
@@ -620,7 +931,8 @@ basegame_lithoid_traits = {
       "trait_sedentary",
       "trait_rooted",
       "trait_wilderness",
-      "trait_invasive"
+      "trait_invasive",
+      "trait_pathogenic_genes"
     ]
   },
   "trait_sedentary": {
@@ -628,7 +940,9 @@ basegame_lithoid_traits = {
     "no": [
       "trait_nomadic",
       "trait_rooted",
-      "trait_wilderness"
+      "trait_wilderness",
+      "trait_pathogenic_genes",
+      "trait_stargazer"
     ]
   },
   "trait_communal": {
@@ -722,14 +1036,16 @@ basegame_lithoid_traits = {
     "no": [
       "trait_wasteful",
       "trait_hive_mind",
-      "trait_invasive"
+      "trait_invasive",
+      "trait_seasonal_dormancy"
     ]
   },
   "trait_wasteful": {
     "cost": -1,
     "no": [
       "trait_conservational",
-      "trait_hive_mind"
+      "trait_hive_mind",
+      "trait_seasonal_dormancy"
     ]
   },
   "trait_lithoid_scintillating": {
@@ -738,6 +1054,9 @@ basegame_lithoid_traits = {
       "trait_lithoid_volatile_excretions",
       "trait_lithoid_gaseous_byproducts",
       "trait_drake_scaled"
+    ],
+    "species_class": [
+      "LITHOID"
     ]
   },
   "trait_lithoid_gaseous_byproducts": {
@@ -746,6 +1065,9 @@ basegame_lithoid_traits = {
       "trait_lithoid_volatile_excretions",
       "trait_lithoid_scintillating",
       "trait_drake_scaled"
+    ],
+    "species_class": [
+      "LITHOID"
     ]
   },
   "trait_lithoid_volatile_excretions": {
@@ -754,6 +1076,9 @@ basegame_lithoid_traits = {
       "trait_lithoid_gaseous_byproducts",
       "trait_lithoid_scintillating",
       "trait_drake_scaled"
+    ],
+    "species_class": [
+      "LITHOID"
     ]
   },
   "trait_plantoid_radiotrophic": {
@@ -761,6 +1086,11 @@ basegame_lithoid_traits = {
     "no": [
       "trait_plantoid_phototrophic",
       "trait_voidling"
+    ],
+    "species_class": [
+      "PLANT",
+      "FUN",
+      "LITHOID"
     ]
   },
   "trait_lithoid_budding": {
@@ -776,7 +1106,11 @@ basegame_lithoid_traits = {
       "trait_plantoid_budding",
       "trait_tiyanki",
       "trait_egg_laying",
-      "trait_humanoid_existential_iteroparity"
+      "trait_humanoid_existential_iteroparity",
+      "trait_pathogenic_genes"
+    ],
+    "species_class": [
+      "LITHOID"
     ]
   },
   "trait_humanoid_existential_iteroparity": {
@@ -791,8 +1125,12 @@ basegame_lithoid_traits = {
       "trait_vat_grown",
       "trait_tiyanki",
       "trait_egg_laying",
+      "trait_clone_soldier_infertile",
+      "trait_clone_soldier_infertile_full_potential",
       "trait_slow_breeders",
-      "trait_invasive"
+      "trait_invasive",
+      "trait_incubator",
+      "trait_pathogenic_genes"
     ]
   },
   "trait_humanoid_psychological_infertility": {
@@ -803,7 +1141,10 @@ basegame_lithoid_traits = {
       "trait_vat_grown",
       "trait_necrophage",
       "trait_lithoid",
-      "trait_nascent_stage"
+      "trait_nascent_stage",
+      "trait_clone_soldier_infertile",
+      "trait_clone_soldier_infertile_full_potential",
+      "trait_pathogenic_genes"
     ]
   },
   "trait_humanoid_jinxed": {
@@ -859,7 +1200,9 @@ basegame_overtuned_traits = {
   },
   "trait_low_maintenance": {
     "cost": 1,
-    "no": []
+    "no": [
+      "trait_seasonal_dormancy"
+    ]
   },
   "trait_artificial_intelligence": {
     "cost": 1,
@@ -940,7 +1283,9 @@ basegame_machine_traits = {
   },
   "trait_robot_logic_engines": {
     "cost": 2,
-    "no": []
+    "no": [
+      "trait_robot_suppressed"
+    ]
   },
   "trait_robot_loyalty_circuits": {
     "cost": 2,
@@ -960,7 +1305,9 @@ basegame_machine_traits = {
   },
   "trait_robot_enhanced_memory": {
     "cost": 2,
-    "no": []
+    "no": [
+      "trait_robot_suppressed"
+    ]
   },
   "trait_robot_emotion_emulators": {
     "cost": 1,
@@ -989,7 +1336,8 @@ basegame_machine_traits = {
   "trait_robot_learning_algorithms": {
     "cost": 1,
     "no": [
-      "trait_robot_repurposed_hardware"
+      "trait_robot_repurposed_hardware",
+      "trait_robot_suppressed"
     ]
   },
   "trait_robot_repurposed_hardware": {

@@ -102,11 +102,6 @@ class SecondarySpecies {
     set_traits(force_pick_negative_trait_first) {
         let traits_list = traits;
 
-        // Plants and Fungoids have access to extra traits
-        if (this.class === 'PLANT' || this.class === 'FUN') {
-            traits_list = {...traits_list, ...plant_traits};
-        }
-
         if (this.class === 'MACHINE') {
             // Secondary species cannot be machine
             log('Does not compute');
@@ -171,6 +166,7 @@ class SecondarySpecies {
         let trait_name = random_trait[0];
         let trait_cost = random_trait[1].cost;
         let trait_no = random_trait[1].no;
+        let species_class = random_trait[1].species_class ?? [];
 
         log('Checking: ' + trait_name);
 
@@ -202,7 +198,7 @@ class SecondarySpecies {
             return;
         }
 
-        // Attempt to spend as much points as possible
+        // Attempt to spend as many points as possible
         if (
             (this.trait_picks_left === 1 && this.trait_points_left > 1) ||
             (this.trait_picks_left === 2 && this.trait_points_left > 3) ||
@@ -219,6 +215,10 @@ class SecondarySpecies {
         }
 
         if (no_requirement_checker(trait_no, this.traits, 'Trait', 'Traits', 'Selected traits') === false) {
+            return;
+        }
+
+        if (yes_requirement_checker(species_class, this.class, 'Species class', 'Species class', 'Species class') === false) {
             return;
         }
 
@@ -806,13 +806,31 @@ class Empire {
             this.origin = origin_name;
 
             if (this.origin === 'origin_necrophage') {
-                this.secondary_species = new SecondarySpecies([], ['trait_thrifty'], 5, 2, this.species.portrait, false, ['MACHINE']);
+                let necrophage_disabled_traits = ['trait_thrifty'];
+                // Additional traits incompatible with necrophage hive minds
+                if (this.authority === 'auth_hive_mind') {
+                    necrophage_disabled_traits.push(
+                        'trait_conformists',
+                        'trait_deviants',
+                        'trait_decadent',
+                        'trait_conservational',
+                        'trait_wasteful',
+                        'trait_familial'
+                    )
+                }
+
+                this.secondary_species = new SecondarySpecies([], necrophage_disabled_traits, 5, 2, this.species.portrait, false, ['MACHINE']);
                 return;
             }
 
             if (this.origin === 'origin_syncretic_evolution') {
                 this.secondary_species = new SecondarySpecies(['trait_syncretic_proles'], syncretic_disabled_traits, 4, 1, this.species.portrait, true, ['MACHINE']);
                 return;
+            }
+
+            // Some origins have shipset incompatibilities
+            if (origin_yes.culture.length > 0) {
+                this.graphical_culture = origin_yes.culture.random();
             }
 
             // Some origins have shipset incompatibilities
@@ -870,11 +888,6 @@ class Empire {
             traits_list = {...traits_list, ...ocean_traits};
         }
 
-        // Plants and Fungoids have access to extra traits
-        if (this.species.class === 'PLANT' || this.species.class === 'FUN') {
-            traits_list = {...traits_list, ...plant_traits};
-        }
-
         if (this.species.class === 'MACHINE') {
             // Machines have their own traits
             traits_list = machine_traits;
@@ -912,6 +925,7 @@ class Empire {
             this.disabled_traits.push('trait_decadent');
             this.disabled_traits.push('trait_conservational');
             this.disabled_traits.push('trait_wasteful');
+            this.disabled_traits.push('trait_familial');
         }
 
         if (this.origin === 'origin_overtuned') {
@@ -990,7 +1004,6 @@ class Empire {
         // Stargazers get to be stargazers
         if (this.civics.includes('civic_hive_stargazers')) {
             this.species.traits.push('trait_stargazer');
-            this.disabled_traits.push('trait_sedentary');
         }
 
         // Storm callers get to the "Storm Touched" trait
@@ -1038,8 +1051,6 @@ class Empire {
         }
 
         if (this.origin === 'origin_clone_army') {
-            this.disabled_traits.push('trait_slow_breeders');
-            this.disabled_traits.push('trait_rapid_breeders');
             this.species.traits.push('trait_clone_soldier_infertile');
             return;
         }
@@ -1105,6 +1116,11 @@ class Empire {
             this.trait_points_left = this.trait_points_left - 6;
             return;
         }
+
+        if (this.origin === 'origin_wilderness') {
+            this.species.traits.push('trait_wilderness');
+            return;
+        }
     }
 
     pick_trait(traits_list, negative_trait, allow_negative) {
@@ -1116,6 +1132,7 @@ class Empire {
             let trait_name = random_trait[0];
             let trait_cost = random_trait[1].cost;
             let trait_no = random_trait[1].no;
+            let species_class = random_trait[1].species_class ?? [];
 
             log('Checking: ' + trait_name);
 
@@ -1181,6 +1198,21 @@ class Empire {
 
             if (no_requirement_checker(trait_no, this.species.traits, 'Trait', 'Traits', 'Selected traits') === false) {
                 continue;
+            }
+
+            if (yes_requirement_checker(species_class, this.species.class, 'Species class', 'Species class', 'Species class') === false) {
+                return;
+            }
+
+            // Check if trait has modifiers and apply them based on current origin
+            if (random_trait[1].modifiers) {
+                for (let modifier_origin in random_trait[1].modifiers) {
+                    if (modifier_origin === this.origin) {
+                        let modifier_value = random_trait[1].modifiers[modifier_origin];
+                        // Modifiers are (negative) values applied to the trait cost
+                        trait_cost += modifier_value;
+                    }
+                }
             }
 
             log('Selected trait ' + trait_name + ' cost ' + trait_cost);
