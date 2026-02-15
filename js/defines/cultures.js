@@ -16,4 +16,5 @@ basegame_cultures = [
     'biogenesis_01',
     'biogenesis_02',
     'wilderness_01',
+    'infernal_01',
 ];

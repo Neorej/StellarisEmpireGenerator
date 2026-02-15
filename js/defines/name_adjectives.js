@@ -3,6 +3,8 @@ adjectives = [
     'an',
     'an',
     'an',
+    'di',
+    'ed',
     'en',
     'on',
     'ian',
