@@ -17,6 +17,80 @@ basegame_origins = {
       "culture": []
     }
   },
+  "origin_red_giant": {
+    "yes": {
+      "authorities": [],
+      "civics": [],
+      "ethics": [],
+      "species_class": [],
+      "species_archetype": [],
+      "culture": []
+    },
+    "no": {
+      "authorities": [],
+      "civics": [
+        "civic_agrarian_idyll",
+        "civic_anglers",
+        "civic_catalytic_processing",
+        "civic_corporate_anglers",
+        "civic_corporate_catalytic_processing",
+        "civic_corporate_machine_anglers",
+        "civic_hive_catalytic_processing",
+        "civic_hive_idyllic_bloom",
+        "civic_idyllic_bloom",
+        "civic_machine_anglers",
+        "civic_machine_catalytic_processing"
+      ],
+      "ethics": [],
+      "species_class": [],
+      "species_archetype": [],
+      "culture": [
+        "biogenesis_01",
+        "biogenesis_02"
+      ]
+    }
+  },
+  "origin_cosmic_dawn": {
+    "yes": {
+      "authorities": [],
+      "civics": [],
+      "ethics": [],
+      "species_class": [
+        "INF"
+      ],
+      "species_archetype": [],
+      "culture": []
+    },
+    "no": {
+      "authorities": [
+        "auth_hive_mind"
+      ],
+      "civics": [
+        "civic_agrarian_idyll",
+        "civic_anglers",
+        "civic_beastmasters",
+        "civic_catalytic_processing",
+        "civic_corporate_anglers",
+        "civic_corporate_beastmasters",
+        "civic_corporate_catalytic_processing",
+        "civic_corporate_machine_anglers",
+        "civic_hive_beastmasters",
+        "civic_hive_catalytic_processing",
+        "civic_hive_idyllic_bloom",
+        "civic_idyllic_bloom",
+        "civic_machine_anglers",
+        "civic_machine_beastmasters",
+        "civic_machine_catalytic_processing"
+      ],
+      "ethics": [],
+      "species_class": [],
+      "species_archetype": [],
+      "culture": [
+        "biogenesis_01",
+        "biogenesis_02"
+      ]
+    }
+  },
   "origin_shroud_forged": {
     "yes": {
       "authorities": [
@@ -58,7 +132,9 @@ basegame_origins = {
         "civic_corporate_chosen",
         "civic_entropy_drinkers",
         "civic_entropy_drinkers_corporate",
-        "civic_fanatic_purifiers"
+        "civic_fanatic_purifiers",
+        "civic_hive_scorched_earth",
+        "civic_scorched_earth"
       ],
       "ethics": [
         "ethic_pacifist",
@@ -188,12 +264,17 @@ basegame_origins = {
         "civic_environmental_architects_hive",
         "civic_hive_catalytic_processing",
         "civic_hive_chosen",
+        "civic_hive_galvanic_symbiosis",
         "civic_hive_guided_sapience",
         "civic_hive_memorialist",
+        "civic_hive_scorched_earth",
         "civic_hive_stargazers",
         "civic_hive_superstitious_beliefs",
         "civic_hive_toxic_baths",
-        "civic_twisted_experimenters_hive_mind"
+        "civic_hive_world_forgers",
+        "civic_scorched_earth",
+        "civic_twisted_experimenters_hive_mind",
+        "civic_world_forgers"
       ],
       "ethics": [],
       "species_class": [],
@@ -215,7 +296,9 @@ basegame_origins = {
       "civics": [
         "civic_fanatic_purifiers",
         "civic_hive_devouring_swarm",
-        "civic_machine_terminator"
+        "civic_hive_scorched_earth",
+        "civic_machine_terminator",
+        "civic_scorched_earth"
       ],
       "ethics": [],
       "species_class": [],
@@ -260,7 +343,9 @@ basegame_origins = {
       "civics": [
         "civic_fanatic_purifiers",
         "civic_hive_devouring_swarm",
-        "civic_machine_terminator"
+        "civic_hive_scorched_earth",
+        "civic_machine_terminator",
+        "civic_scorched_earth"
       ],
       "ethics": [],
       "species_class": [],
@@ -292,6 +377,7 @@ basegame_origins = {
         "civic_entropy_drinkers_corporate",
         "civic_natural_design",
         "civic_permanent_employment",
+        "civic_pyrolatry",
         "civic_secret_societies",
         "civic_secret_societies_corporate",
         "civic_superstitious_beliefs"
@@ -327,14 +413,18 @@ basegame_origins = {
         "civic_augmentation_bazaars",
         "civic_chosen",
         "civic_corporate_chosen",
+        "civic_corporate_galvanic_symbiosis",
         "civic_corporate_toxic_baths",
         "civic_corporate_toxic_baths_individual_machine",
         "civic_eager_explorers",
         "civic_entropy_drinkers",
         "civic_entropy_drinkers_corporate",
+        "civic_galvanic_symbiosis",
+        "civic_hive_galvanic_symbiosis",
         "civic_hive_stargazers",
         "civic_hive_toxic_baths",
         "civic_machine_exploration_protocol",
+        "civic_machine_galvanic_symbiosis",
         "civic_machine_toxic_baths",
         "civic_natural_design",
         "civic_permanent_employment",
@@ -542,10 +632,12 @@ basegame_origins = {
         "civic_dystopian_society",
         "civic_eager_explorers",
         "civic_fanatic_purifiers",
+        "civic_hive_scorched_earth",
         "civic_hive_stargazers",
         "civic_machine_exploration_protocol",
         "civic_private_healthcare_corporate",
         "civic_privatized_exploration",
+        "civic_scorched_earth",
         "civic_secret_societies",
         "civic_secret_societies_corporate",
         "civic_selective_kinship",
@@ -582,10 +674,12 @@ basegame_origins = {
         "civic_corporate_sovereign_guardianship",
         "civic_eager_explorers",
         "civic_fanatic_purifiers",
+        "civic_hive_scorched_earth",
         "civic_hive_stargazers",
         "civic_inwards_perfection",
         "civic_machine_exploration_protocol",
         "civic_privatized_exploration",
+        "civic_scorched_earth",
         "civic_sovereign_guardianship"
       ],
       "ethics": [
@@ -643,6 +737,8 @@ basegame_origins = {
       "civics": [
         "civic_dystopian_society",
         "civic_fanatic_purifiers",
+        "civic_hive_scorched_earth",
+        "civic_scorched_earth",
         "civic_tankbound",
         "civic_tankbound_corporate"
       ],
@@ -756,12 +852,7 @@ basegame_origins = {
         ]
       ],
       "species_class": [],
-      "species_archetype": [
-        [
-          "BIOLOGICAL",
-          "LITHOID"
-        ]
-      ],
+      "species_archetype": [],
       "culture": []
     },
     "no": {
@@ -793,9 +884,11 @@ basegame_origins = {
       "civics": [
         "civic_fanatic_purifiers",
         "civic_hive_devouring_swarm",
+        "civic_hive_scorched_earth",
         "civic_inwards_perfection",
         "civic_machine_assimilator",
-        "civic_machine_terminator"
+        "civic_machine_terminator",
+        "civic_scorched_earth"
       ],
       "ethics": [],
       "species_class": [],
@@ -817,7 +910,9 @@ basegame_origins = {
       "civics": [
         "civic_fanatic_purifiers",
         "civic_hive_devouring_swarm",
-        "civic_machine_terminator"
+        "civic_hive_scorched_earth",
+        "civic_machine_terminator",
+        "civic_scorched_earth"
       ],
       "ethics": [],
       "species_class": [],
@@ -841,7 +936,15 @@ basegame_origins = {
     },
     "no": {
       "authorities": [],
-      "civics": [],
+      "civics": [
+        "civic_corporate_world_forgers",
+        "civic_hive_scorched_earth",
+        "civic_hive_world_forgers",
+        "civic_machine_world_forgers",
+        "civic_pyrolatry",
+        "civic_scorched_earth",
+        "civic_world_forgers"
+      ],
       "ethics": [],
       "species_class": [],
       "species_archetype": [
@@ -867,7 +970,10 @@ basegame_origins = {
     },
     "no": {
       "authorities": [],
-      "civics": [],
+      "civics": [
+        "civic_machine_world_forgers",
+        "civic_pyrolatry"
+      ],
       "ethics": [],
       "species_class": [],
       "species_archetype": [],
@@ -1096,8 +1202,10 @@ basegame_origins = {
         "civic_barbaric_despoilers",
         "civic_fanatic_purifiers",
         "civic_hive_devouring_swarm",
+        "civic_hive_scorched_earth",
         "civic_inwards_perfection",
-        "civic_machine_terminator"
+        "civic_machine_terminator",
+        "civic_scorched_earth"
       ],
       "ethics": [
         "ethic_xenophobe",
@@ -1122,12 +1230,16 @@ basegame_origins = {
       "civics": [
         "civic_fanatic_purifiers",
         "civic_hive_devouring_swarm",
+        "civic_hive_scorched_earth",
         "civic_inwards_perfection",
-        "civic_machine_terminator"
+        "civic_machine_terminator",
+        "civic_scorched_earth"
       ],
       "ethics": [
         "ethic_xenophobe",
-        "ethic_fanatic_xenophobe"
+        "ethic_fanatic_xenophobe",
+        "ethic_egalitarian",
+        "ethic_fanatic_egalitarian"
       ],
       "species_class": [],
       "species_archetype": [],
@@ -1204,14 +1316,18 @@ basegame_origins = {
         "civic_corporate_relentless_industrialists",
         "civic_corporate_toxic_baths",
         "civic_corporate_toxic_baths_individual_machine",
+        "civic_corporate_world_forgers",
         "civic_guided_sapience",
         "civic_hive_guided_sapience",
         "civic_hive_toxic_baths",
+        "civic_hive_world_forgers",
         "civic_machine_guided_sapience",
         "civic_machine_toxic_baths",
+        "civic_machine_world_forgers",
         "civic_relentless_industrialists",
         "civic_toxic_baths",
-        "civic_toxic_baths_individual_machine"
+        "civic_toxic_baths_individual_machine",
+        "civic_world_forgers"
       ],
       "ethics": [],
       "species_class": [],
@@ -1390,6 +1506,8 @@ basegame_origins = {
         "civic_secret_societies_corporate",
         "civic_storm_callers",
         "civic_storm_callers_megacorp",
+        "civic_tankbound",
+        "civic_tankbound_corporate",
         "civic_trading_posts"
       ],
       "ethics": [
@@ -1451,7 +1569,9 @@ basegame_origins = {
         "civic_fanatic_purifiers",
         "civic_guided_sapience",
         "civic_hive_guided_sapience",
+        "civic_hive_scorched_earth",
         "civic_machine_guided_sapience",
+        "civic_scorched_earth",
         "civic_tankbound",
         "civic_tankbound_corporate"
       ],
@@ -1477,7 +1597,9 @@ basegame_origins = {
     "no": {
       "authorities": [],
       "civics": [
-        "civic_hive_devouring_swarm"
+        "civic_hive_devouring_swarm",
+        "civic_hive_scorched_earth",
+        "civic_scorched_earth"
       ],
       "ethics": [],
       "species_class": [],

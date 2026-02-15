@@ -325,6 +325,24 @@ basegame_species = {
             'nec15',
         ],
     },
+    'INF': {
+        archetype: 'BIOLOGICAL',
+        secondary: true,
+        portraits: [
+            'inf1',
+            'inf2',
+            'inf3',
+            'inf4',
+            'inf5',
+            'inf6',
+            'inf7',
+            'inf8',
+            'inf9',
+            'inf10',
+            'lith_human_inf',
+            'lith2_inf',
+        ],
+    },
 };
 
 basegame_species_machine = {

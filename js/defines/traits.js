@@ -109,6 +109,7 @@ basegame_traits = {
   "trait_rapid_breeders": {
     "cost": 2,
     "no": [
+      "trait_pyroclastic",
       "trait_slow_breeders",
       "trait_fertile",
       "trait_rapid_breeders_lithoid",
@@ -128,6 +129,7 @@ basegame_traits = {
   "trait_slow_breeders": {
     "cost": -2,
     "no": [
+      "trait_pyroclastic",
       "trait_rapid_breeders",
       "trait_fertile",
       "trait_rapid_breeders_lithoid",
@@ -402,12 +404,14 @@ basegame_traits = {
     "species_class": [
       "PLANT",
       "FUN",
-      "LITHOID"
+      "LITHOID",
+      "INF"
     ]
   },
   "trait_plantoid_budding": {
     "cost": 2,
     "no": [
+      "trait_pyroclastic",
       "trait_slow_breeders",
       "trait_rapid_breeders",
       "trait_rapid_breeders_lithoid",
@@ -476,7 +480,9 @@ basegame_traits = {
       "trait_shelled",
       "trait_uncanny_intuition",
       "trait_cranial_hypertrophy",
-      "trait_cranial_megatrophy"
+      "trait_cranial_megatrophy",
+      "trait_shell_slag",
+      "trait_unbreakable_resolve"
     ],
     "species_class": [
       "PLANT",
@@ -486,6 +492,7 @@ basegame_traits = {
   "trait_lithoid_budding": {
     "cost": 2,
     "no": [
+      "trait_pyroclastic",
       "trait_slow_breeders",
       "trait_rapid_breeders",
       "trait_rapid_breeders_lithoid",
@@ -506,6 +513,7 @@ basegame_traits = {
   "trait_humanoid_existential_iteroparity": {
     "cost": 2,
     "no": [
+      "trait_pyroclastic",
       "trait_humanoid_psychological_infertility",
       "trait_rapid_breeders",
       "trait_fertile",
@@ -547,6 +555,7 @@ basegame_traits = {
   "trait_incubator": {
     "cost": 2,
     "no": [
+      "trait_pyroclastic",
       "trait_slow_breeders",
       "trait_rapid_breeders",
       "trait_fertile",
@@ -573,9 +582,18 @@ basegame_traits = {
       "trait_invasive"
     ]
   },
+  "@overtuned_growth_penalty": {
+    "cost": 0,
+    "no": []
+  },
+  "@overtuned_increased_growth_penalty": {
+    "cost": 0,
+    "no": []
+  },
   "trait_egg_laying": {
     "cost": 2,
     "no": [
+      "trait_pyroclastic",
       "trait_slow_breeders",
       "trait_fertile",
       "trait_rapid_breeders_lithoid",
@@ -1090,12 +1108,14 @@ basegame_lithoid_traits = {
     "species_class": [
       "PLANT",
       "FUN",
-      "LITHOID"
+      "LITHOID",
+      "INF"
     ]
   },
   "trait_lithoid_budding": {
     "cost": 2,
     "no": [
+      "trait_pyroclastic",
       "trait_slow_breeders",
       "trait_rapid_breeders",
       "trait_rapid_breeders_lithoid",
@@ -1116,6 +1136,7 @@ basegame_lithoid_traits = {
   "trait_humanoid_existential_iteroparity": {
     "cost": 2,
     "no": [
+      "trait_pyroclastic",
       "trait_humanoid_psychological_infertility",
       "trait_rapid_breeders",
       "trait_fertile",

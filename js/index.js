@@ -32,7 +32,7 @@ var log = logging ? console.log.bind(window.console) : function () {
 class SecondarySpecies {
     class = '';
     portrait = '';
-    name_list = 'ART1';
+    name_list = name_lists.random();
     gender = 'not_set';
     traits = [];
     species_name = {
@@ -57,9 +57,11 @@ class SecondarySpecies {
      * @param {string} disabled_portrait
      * @param {boolean} force_pick_negative_trait_first
      * @param {array} disabled_archetypes
+     * @param {object} options
      */
-    constructor(starting_traits, disabled_traits, trait_picks_left, trait_points_left, disabled_portrait, force_pick_negative_trait_first, disabled_archetypes) {
+    constructor(starting_traits, disabled_traits, trait_picks_left, trait_points_left, disabled_portrait, force_pick_negative_trait_first, disabled_archetypes, options) {
         this.traits = starting_traits;
+        this.options = options;
 
         this.disabled_traits = disabled_traits;
         this.trait_picks_left = trait_picks_left;
@@ -76,16 +78,19 @@ class SecondarySpecies {
         delete this.disabled_traits;
         delete this.trait_picks_left;
         delete this.trait_points_left;
+        delete this.options;
     }
 
     /**
-     * @param {string} disabled_portrait
+     *
+     * @param disabled_portrait
+     * @param disabled_archetypes
      */
     set_species(disabled_portrait, disabled_archetypes) {
         let random_species = species.random();
         this.class = random_species[0];
         this.portrait = random_species[1].portraits.random();
-        this.gender = genders.random();
+        this.gender = this.options.species_gender === 'random' ? genders.random() : this.options.species_gender;
 
         // Secondary species cannot have the same portrait as the primary species
         this.ensure_different_portrait(disabled_portrait);
@@ -373,11 +378,6 @@ class Empire {
         // Pick authority
         let random_authority = authorities_list.random();
 
-        // If egalitarians are boosted democracies become much more common. Rebalance this somewhat
-        if (this.options.boost_egalitarians && random_authority === 'auth_democratic' && random_percentage_check(25)) {
-            random_authority = authorities_list.random();
-        }
-
         log('Selected authority ' + random_authority);
         this.authority = random_authority;
 
@@ -585,11 +585,11 @@ class Empire {
             this.pick_civic(civic_name, civics_list);
 
             if (civic_name === 'civic_machine_servitor') {
-                this.secondary_species = new SecondarySpecies([], ['trait_thrifty'], 5, 2, '', false, []);
+                this.secondary_species = new SecondarySpecies([], ['trait_thrifty'], 5, 2, '', false, [], this.options);
             } else if (civic_name === 'civic_machine_assimilator') {
-                this.secondary_species = new SecondarySpecies(['trait_cybernetic'], ['trait_thrifty'], 5, 2, '', false, []);
+                this.secondary_species = new SecondarySpecies(['trait_cybernetic'], ['trait_thrifty'], 5, 2, '', false, [], this.options);
             } else if (civic_name === 'civic_hive_bodysnatcher') {
-                this.secondary_species = new SecondarySpecies(['trait_organic', 'trait_hive_mind'], ['trait_thrifty'], 5, 2, '', false, ['LITHOID', 'MACHINE']);
+                this.secondary_species = new SecondarySpecies(['trait_organic', 'trait_hive_mind'], ['trait_thrifty'], 5, 2, '', false, ['LITHOID', 'MACHINE'], this.options);
             } else if (civic_name === 'civic_anglers' || civic_name === 'civic_corporate_anglers') {
                 this.species.traits.push('trait_aquatic');
                 this.trait_picks_left--;
@@ -616,6 +616,13 @@ class Empire {
                 this.disabled_origins.push('origin_post_apocalyptic_machines');
                 this.disabled_origins.push('origin_subterranean_machines');
                 this.disabled_origins.push('origin_riftworld');
+            }
+
+            // World Forgers cannot forge cold worlds; switch to volcanic
+            if (civic_name === 'civic_world_forgers') {
+                if (['pc_arctic', 'pc_alpine', 'pc_tundra'].includes(this.planet_class)) {
+                    this.planet_class = 'pc_volcanic';
+                }
             }
 
             // Tankbound civics add the tankbound trait and its incompatibilities
@@ -819,12 +826,12 @@ class Empire {
                     )
                 }
 
-                this.secondary_species = new SecondarySpecies([], necrophage_disabled_traits, 5, 2, this.species.portrait, false, ['MACHINE']);
+                this.secondary_species = new SecondarySpecies([], necrophage_disabled_traits, 5, 2, this.species.portrait, false, ['MACHINE'], this.options);
                 return;
             }
 
             if (this.origin === 'origin_syncretic_evolution') {
-                this.secondary_species = new SecondarySpecies(['trait_syncretic_proles'], syncretic_disabled_traits, 4, 1, this.species.portrait, true, ['MACHINE']);
+                this.secondary_species = new SecondarySpecies(['trait_syncretic_proles'], syncretic_disabled_traits, 4, 1, this.species.portrait, true, ['MACHINE'], this.options);
                 return;
             }
 

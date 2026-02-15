@@ -743,11 +743,13 @@ basegame_civics = {
         "civic_diplomatic_corps",
         "civic_guided_sapience",
         "civic_hive_guided_sapience",
+        "civic_hive_scorched_earth",
         "civic_hive_sovereign_guardianship",
         "civic_machine_guided_sapience",
         "civic_machine_sovereign_guardianship",
         "civic_memorialist",
         "civic_pompous_purists",
+        "civic_scorched_earth",
         "civic_secret_societies",
         "civic_selective_kinship",
         "civic_sovereign_guardianship"
@@ -783,7 +785,8 @@ basegame_civics = {
         "auth_corporate"
       ],
       "civics": [
-        "civic_fanatic_purifiers"
+        "civic_fanatic_purifiers",
+        "civic_scorched_earth"
       ],
       "ethics": [
         "ethic_gestalt_consciousness",
@@ -879,7 +882,8 @@ basegame_civics = {
       ],
       "civics": [
         "civic_fanatic_purifiers",
-        "civic_inwards_perfection"
+        "civic_inwards_perfection",
+        "civic_scorched_earth"
       ],
       "ethics": [
         "ethic_gestalt_consciousness"
@@ -908,7 +912,9 @@ basegame_civics = {
       "civics": [
         "civic_death_cult_corporate",
         "civic_fanatic_purifiers",
-        "civic_inwards_perfection"
+        "civic_hive_scorched_earth",
+        "civic_inwards_perfection",
+        "civic_scorched_earth"
       ],
       "ethics": [
         "ethic_gestalt_consciousness"
@@ -933,7 +939,8 @@ basegame_civics = {
         "civic_corporate_relentless_industrialists",
         "civic_entropy_drinkers",
         "civic_fanatic_purifiers",
-        "civic_relentless_industrialists"
+        "civic_relentless_industrialists",
+        "civic_scorched_earth"
       ],
       "ethics": [
         "ethic_gestalt_consciousness"
@@ -1031,7 +1038,11 @@ basegame_civics = {
       ],
       "civics": [
         "civic_corporate_relentless_industrialists",
-        "civic_relentless_industrialists"
+        "civic_corporate_world_forgers",
+        "civic_hive_world_forgers",
+        "civic_machine_world_forgers",
+        "civic_relentless_industrialists",
+        "civic_world_forgers"
       ],
       "ethics": [
         "ethic_gestalt_consciousness"
@@ -1105,7 +1116,8 @@ basegame_civics = {
       ],
       "civics": [
         "civic_fanatic_purifiers",
-        "civic_inwards_perfection"
+        "civic_inwards_perfection",
+        "civic_scorched_earth"
       ],
       "ethics": [
         "ethic_gestalt_consciousness"
@@ -1159,10 +1171,14 @@ basegame_civics = {
       "civics": [
         "civic_agrarian_idyll",
         "civic_corporate_relentless_industrialists",
+        "civic_corporate_world_forgers",
         "civic_environmental_architects",
         "civic_environmentalist",
+        "civic_hive_world_forgers",
         "civic_idyllic_bloom",
-        "civic_memorialist"
+        "civic_machine_world_forgers",
+        "civic_memorialist",
+        "civic_world_forgers"
       ],
       "ethics": [
         "ethic_gestalt_consciousness"
@@ -1265,7 +1281,8 @@ basegame_civics = {
       ],
       "civics": [
         "civic_beacon_of_liberty",
-        "civic_fanatic_purifiers"
+        "civic_fanatic_purifiers",
+        "civic_scorched_earth"
       ],
       "ethics": [
         "ethic_gestalt_consciousness",
@@ -1430,7 +1447,8 @@ basegame_civics = {
         "auth_corporate"
       ],
       "civics": [
-        "civic_fanatic_purifiers"
+        "civic_fanatic_purifiers",
+        "civic_scorched_earth"
       ],
       "ethics": [
         "ethic_gestalt_consciousness",
@@ -1520,7 +1538,8 @@ basegame_civics = {
         "civic_inwards_perfection",
         "civic_machine_exploration_protocol",
         "civic_privatized_exploration",
-        "civic_reanimated_armies"
+        "civic_reanimated_armies",
+        "civic_scorched_earth"
       ],
       "ethics": [
         "ethic_gestalt_consciousness"
@@ -1547,7 +1566,8 @@ basegame_civics = {
         "civic_hive_stargazers",
         "civic_machine_exploration_protocol",
         "civic_natural_design",
-        "civic_privatized_exploration"
+        "civic_privatized_exploration",
+        "civic_scorched_earth"
       ],
       "ethics": [
         "ethic_gestalt_consciousness",
@@ -1758,7 +1778,8 @@ basegame_civics = {
       ],
       "civics": [
         "civic_corporate_beastmasters",
-        "civic_eager_explorers"
+        "civic_eager_explorers",
+        "civic_galvanic_symbiosis"
       ],
       "ethics": [
         "ethic_gestalt_consciousness"
@@ -1945,7 +1966,9 @@ basegame_civics = {
       "civics": [
         "civic_crowdsourcing",
         "civic_fanatic_purifiers",
+        "civic_hive_scorched_earth",
         "civic_parliamentary_system",
+        "civic_scorched_earth",
         "civic_secret_societies_corporate"
       ],
       "ethics": [
@@ -1994,7 +2017,8 @@ basegame_civics = {
         [
           "NECROID",
           "TOX",
-          "AQUATIC"
+          "AQUATIC",
+          "INF"
         ]
       ],
       "culture": []
@@ -2010,6 +2034,130 @@ basegame_civics = {
         "civic_mining_guilds",
         "civic_slaver_guilds",
         "civic_tankbound_corporate"
+      ],
+      "ethics": [
+        "ethic_gestalt_consciousness"
+      ],
+      "species_archetype": [],
+      "culture": []
+    }
+  },
+  "civic_scorched_earth": {
+    "yes": {
+      "authorities": [],
+      "civics": [],
+      "ethics": [
+        [
+          "ethic_xenophobe",
+          "ethic_fanatic_xenophobe"
+        ]
+      ],
+      "species_archetype": [
+        "INF"
+      ],
+      "culture": []
+    },
+    "no": {
+      "authorities": [
+        "auth_corporate"
+      ],
+      "civics": [
+        "civic_barbaric_despoilers",
+        "civic_corporate_guided_sapience",
+        "civic_corporate_sovereign_guardianship",
+        "civic_crusader_spirit",
+        "civic_death_cult",
+        "civic_diplomatic_corps",
+        "civic_fanatic_purifiers",
+        "civic_guided_sapience",
+        "civic_hive_guided_sapience",
+        "civic_hive_sovereign_guardianship",
+        "civic_machine_guided_sapience",
+        "civic_machine_sovereign_guardianship",
+        "civic_memorialist",
+        "civic_pompous_purists",
+        "civic_secret_societies",
+        "civic_selective_kinship",
+        "civic_sovereign_guardianship"
+      ],
+      "ethics": [
+        "ethic_gestalt_consciousness",
+        "ethic_pacifist",
+        "ethic_fanatic_pacifist"
+      ],
+      "species_archetype": [],
+      "culture": []
+    }
+  },
+  "civic_world_forgers": {
+    "yes": {
+      "authorities": [],
+      "civics": [],
+      "ethics": [],
+      "species_archetype": [],
+      "culture": []
+    },
+    "no": {
+      "authorities": [
+        "auth_corporate",
+        "auth_machine_intelligence"
+      ],
+      "civics": [
+        "civic_corporate_relentless_industrialists",
+        "civic_idyllic_bloom",
+        "civic_relentless_industrialists"
+      ],
+      "ethics": [
+        "ethic_gestalt_consciousness"
+      ],
+      "species_archetype": [],
+      "culture": [
+        "biogenesis_01",
+        "biogenesis_02"
+      ]
+    }
+  },
+  "civic_pyrolatry": {
+    "yes": {
+      "authorities": [],
+      "civics": [],
+      "ethics": [
+        [
+          "ethic_spiritualist",
+          "ethic_fanatic_spiritualist"
+        ]
+      ],
+      "species_archetype": [],
+      "culture": []
+    },
+    "no": {
+      "authorities": [
+        "auth_corporate"
+      ],
+      "civics": [],
+      "ethics": [
+        "ethic_gestalt_consciousness"
+      ],
+      "species_archetype": [],
+      "culture": []
+    }
+  },
+  "civic_galvanic_symbiosis": {
+    "yes": {
+      "authorities": [],
+      "civics": [],
+      "ethics": [],
+      "species_archetype": [
+        "INF"
+      ],
+      "culture": []
+    },
+    "no": {
+      "authorities": [
+        "auth_corporate"
+      ],
+      "civics": [
+        "civic_beastmasters"
       ],
       "ethics": [
         "ethic_gestalt_consciousness"
@@ -2185,6 +2333,7 @@ hive_civics = {
         "civic_hive_familiar_face",
         "civic_hive_guided_sapience",
         "civic_hive_memorialist",
+        "civic_hive_scorched_earth",
         "civic_hive_sovereign_guardianship",
         "civic_machine_guided_sapience"
       ],
@@ -2206,7 +2355,8 @@ hive_civics = {
     "no": {
       "authorities": [],
       "civics": [
-        "civic_hive_devouring_swarm"
+        "civic_hive_devouring_swarm",
+        "civic_hive_scorched_earth"
       ],
       "ethics": [],
       "species_archetype": [],
@@ -2227,7 +2377,8 @@ hive_civics = {
       "authorities": [],
       "civics": [
         "civic_entropy_drinkers_hive_mind",
-        "civic_hive_devouring_swarm"
+        "civic_hive_devouring_swarm",
+        "civic_hive_scorched_earth"
       ],
       "ethics": [],
       "species_archetype": [],
@@ -2269,7 +2420,9 @@ hive_civics = {
     },
     "no": {
       "authorities": [],
-      "civics": [],
+      "civics": [
+        "civic_hive_world_forgers"
+      ],
       "ethics": [],
       "species_archetype": [],
       "culture": []
@@ -2443,7 +2596,8 @@ hive_civics = {
     "no": {
       "authorities": [],
       "civics": [
-        "civic_hive_devouring_swarm"
+        "civic_hive_devouring_swarm",
+        "civic_hive_scorched_earth"
       ],
       "ethics": [],
       "species_archetype": [],
@@ -2491,6 +2645,7 @@ hive_civics = {
         "civic_hive_bodysnatcher",
         "civic_hive_devouring_swarm",
         "civic_hive_natural_design",
+        "civic_hive_scorched_earth",
         "civic_hive_stargazers"
       ],
       "ethics": [],
@@ -2513,6 +2668,7 @@ hive_civics = {
     "no": {
       "authorities": [],
       "civics": [
+        "civic_hive_galvanic_symbiosis",
         "civic_hive_stargazers"
       ],
       "ethics": [],
@@ -2589,7 +2745,8 @@ hive_civics = {
     "no": {
       "authorities": [],
       "civics": [
-        "civic_hive_devouring_swarm"
+        "civic_hive_devouring_swarm",
+        "civic_hive_scorched_earth"
       ],
       "ethics": [],
       "species_archetype": [],
@@ -2652,7 +2809,8 @@ hive_civics = {
       "authorities": [],
       "civics": [
         "civic_hive_devouring_swarm",
-        "civic_hive_guided_sapience"
+        "civic_hive_guided_sapience",
+        "civic_hive_scorched_earth"
       ],
       "ethics": [],
       "species_archetype": [],
@@ -2732,6 +2890,87 @@ hive_civics = {
       "authorities": [],
       "civics": [
         "civic_hive_natural_design"
+      ],
+      "ethics": [],
+      "species_archetype": [],
+      "culture": []
+    }
+  },
+  "civic_hive_scorched_earth": {
+    "yes": {
+      "authorities": [
+        "auth_hive_mind"
+      ],
+      "civics": [],
+      "ethics": [],
+      "species_archetype": [
+        "INF"
+      ],
+      "culture": []
+    },
+    "no": {
+      "authorities": [],
+      "civics": [
+        "civic_corporate_guided_sapience",
+        "civic_corporate_sovereign_guardianship",
+        "civic_death_cult",
+        "civic_guided_sapience",
+        "civic_hive_bodysnatcher",
+        "civic_hive_devouring_swarm",
+        "civic_hive_empath",
+        "civic_hive_familiar_face",
+        "civic_hive_guided_sapience",
+        "civic_hive_memorialist",
+        "civic_hive_sovereign_guardianship",
+        "civic_machine_guided_sapience",
+        "civic_machine_sovereign_guardianship",
+        "civic_secret_societies",
+        "civic_sovereign_guardianship"
+      ],
+      "ethics": [],
+      "species_archetype": [],
+      "culture": []
+    }
+  },
+  "civic_hive_world_forgers": {
+    "yes": {
+      "authorities": [
+        "auth_hive_mind"
+      ],
+      "civics": [],
+      "ethics": [],
+      "species_archetype": [],
+      "culture": []
+    },
+    "no": {
+      "authorities": [],
+      "civics": [
+        "civic_hive_idyllic_bloom"
+      ],
+      "ethics": [],
+      "species_archetype": [],
+      "culture": [
+        "biogenesis_01",
+        "biogenesis_02"
+      ]
+    }
+  },
+  "civic_hive_galvanic_symbiosis": {
+    "yes": {
+      "authorities": [
+        "auth_hive_mind"
+      ],
+      "civics": [],
+      "ethics": [],
+      "species_archetype": [
+        "INF"
+      ],
+      "culture": []
+    },
+    "no": {
+      "authorities": [],
+      "civics": [
+        "civic_hive_beastmasters"
       ],
       "ethics": [],
       "species_archetype": [],
@@ -3369,6 +3608,7 @@ machine_civics = {
       "authorities": [],
       "civics": [
         "civic_machine_exploration_protocol",
+        "civic_machine_galvanic_symbiosis",
         "civic_machine_terminator"
       ],
       "ethics": [],
@@ -3501,6 +3741,47 @@ machine_civics = {
     "no": {
       "authorities": [],
       "civics": [],
+      "ethics": [],
+      "species_archetype": [],
+      "culture": []
+    }
+  },
+  "civic_machine_world_forgers": {
+    "yes": {
+      "authorities": [
+        "auth_machine_intelligence"
+      ],
+      "civics": [],
+      "ethics": [],
+      "species_archetype": [],
+      "culture": []
+    },
+    "no": {
+      "authorities": [],
+      "civics": [],
+      "ethics": [],
+      "species_archetype": [],
+      "culture": [
+        "biogenesis_01",
+        "biogenesis_02"
+      ]
+    }
+  },
+  "civic_machine_galvanic_symbiosis": {
+    "yes": {
+      "authorities": [
+        "auth_machine_intelligence"
+      ],
+      "civics": [],
+      "ethics": [],
+      "species_archetype": [],
+      "culture": []
+    },
+    "no": {
+      "authorities": [],
+      "civics": [
+        "civic_machine_beastmasters"
+      ],
       "ethics": [],
       "species_archetype": [],
       "culture": []
@@ -3922,11 +4203,15 @@ corporate_civics = {
       "authorities": [],
       "civics": [
         "civic_agrarian_idyll",
+        "civic_corporate_world_forgers",
         "civic_environmental_architects_megacorp",
         "civic_environmentalist",
+        "civic_hive_world_forgers",
         "civic_idyllic_bloom",
+        "civic_machine_world_forgers",
         "civic_memorialist",
-        "civic_relentless_industrialists"
+        "civic_relentless_industrialists",
+        "civic_world_forgers"
       ],
       "ethics": [],
       "species_archetype": [],
@@ -4405,6 +4690,7 @@ corporate_civics = {
       "authorities": [],
       "civics": [
         "civic_beastmasters",
+        "civic_corporate_galvanic_symbiosis",
         "civic_privatized_exploration"
       ],
       "ethics": [],
@@ -4554,7 +4840,9 @@ corporate_civics = {
       "authorities": [],
       "civics": [
         "civic_corporate_crowdsourcing",
+        "civic_hive_scorched_earth",
         "civic_parliamentary_system",
+        "civic_scorched_earth",
         "civic_secret_societies"
       ],
       "ethics": [],
@@ -4597,7 +4885,8 @@ corporate_civics = {
         [
           "NECROID",
           "TOX",
-          "AQUATIC"
+          "AQUATIC",
+          "INF"
         ]
       ],
       "culture": []
@@ -4609,6 +4898,56 @@ corporate_civics = {
         "civic_indentured_assets",
         "civic_private_military_companies",
         "civic_tankbound"
+      ],
+      "ethics": [
+        "ethic_gestalt_consciousness"
+      ],
+      "species_archetype": [],
+      "culture": []
+    }
+  },
+  "civic_corporate_world_forgers": {
+    "yes": {
+      "authorities": [
+        "auth_corporate"
+      ],
+      "civics": [],
+      "ethics": [],
+      "species_archetype": [],
+      "culture": []
+    },
+    "no": {
+      "authorities": [],
+      "civics": [
+        "civic_corporate_relentless_industrialists",
+        "civic_relentless_industrialists"
+      ],
+      "ethics": [
+        "ethic_gestalt_consciousness"
+      ],
+      "species_archetype": [],
+      "culture": [
+        "biogenesis_01",
+        "biogenesis_02"
+      ]
+    }
+  },
+  "civic_corporate_galvanic_symbiosis": {
+    "yes": {
+      "authorities": [
+        "auth_corporate"
+      ],
+      "civics": [],
+      "ethics": [],
+      "species_archetype": [
+        "INF"
+      ],
+      "culture": []
+    },
+    "no": {
+      "authorities": [],
+      "civics": [
+        "civic_corporate_beastmasters"
       ],
       "ethics": [
         "ethic_gestalt_consciousness"
