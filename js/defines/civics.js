@@ -588,7 +588,9 @@ basegame_civics = {
       "civics": [
         "civic_corporate_crowdsourcing",
         "civic_crowdsourcing",
-        "civic_secret_societies"
+        "civic_media_conglomerate",
+        "civic_secret_societies",
+        "civic_secret_societies_corporate"
       ],
       "ethics": [
         "ethic_gestalt_consciousness"
@@ -1826,8 +1828,10 @@ basegame_civics = {
       ],
       "civics": [
         "civic_corporate_crowdsourcing",
+        "civic_media_conglomerate",
         "civic_parliamentary_system",
-        "civic_secret_societies"
+        "civic_secret_societies",
+        "civic_secret_societies_corporate"
       ],
       "ethics": [
         "ethic_gestalt_consciousness",
@@ -1964,9 +1968,11 @@ basegame_civics = {
         "auth_corporate"
       ],
       "civics": [
+        "civic_corporate_crowdsourcing",
         "civic_crowdsourcing",
         "civic_fanatic_purifiers",
         "civic_hive_scorched_earth",
+        "civic_media_conglomerate",
         "civic_parliamentary_system",
         "civic_scorched_earth",
         "civic_secret_societies_corporate"
@@ -3833,7 +3839,12 @@ corporate_civics = {
     "no": {
       "authorities": [],
       "civics": [
-        "civic_idealistic_foundation"
+        "civic_corporate_crowdsourcing",
+        "civic_crowdsourcing",
+        "civic_idealistic_foundation",
+        "civic_parliamentary_system",
+        "civic_secret_societies",
+        "civic_secret_societies_corporate"
       ],
       "ethics": [],
       "species_archetype": [],
@@ -4700,9 +4711,7 @@ corporate_civics = {
   },
   "civic_corporate_genetic_identification": {
     "yes": {
-      "authorities": [
-        "auth_corporate"
-      ],
+      "authorities": [],
       "civics": [],
       "ethics": [],
       "species_archetype": [],
@@ -4724,9 +4733,7 @@ corporate_civics = {
   },
   "civic_corporate_crowdsourcing": {
     "yes": {
-      "authorities": [
-        "auth_corporate"
-      ],
+      "authorities": [],
       "civics": [],
       "ethics": [],
       "species_archetype": [],
@@ -4736,7 +4743,9 @@ corporate_civics = {
       "authorities": [],
       "civics": [
         "civic_crowdsourcing",
+        "civic_media_conglomerate",
         "civic_parliamentary_system",
+        "civic_secret_societies",
         "civic_secret_societies_corporate"
       ],
       "ethics": [
@@ -4840,7 +4849,9 @@ corporate_civics = {
       "authorities": [],
       "civics": [
         "civic_corporate_crowdsourcing",
+        "civic_crowdsourcing",
         "civic_hive_scorched_earth",
+        "civic_media_conglomerate",
         "civic_parliamentary_system",
         "civic_scorched_earth",
         "civic_secret_societies"
@@ -4876,9 +4887,7 @@ corporate_civics = {
   },
   "civic_tankbound_corporate": {
     "yes": {
-      "authorities": [
-        "auth_corporate"
-      ],
+      "authorities": [],
       "civics": [],
       "ethics": [],
       "species_archetype": [
@@ -4908,9 +4917,7 @@ corporate_civics = {
   },
   "civic_corporate_world_forgers": {
     "yes": {
-      "authorities": [
-        "auth_corporate"
-      ],
+      "authorities": [],
       "civics": [],
       "ethics": [],
       "species_archetype": [],
@@ -4934,9 +4941,7 @@ corporate_civics = {
   },
   "civic_corporate_galvanic_symbiosis": {
     "yes": {
-      "authorities": [
-        "auth_corporate"
-      ],
+      "authorities": [],
       "civics": [],
       "ethics": [],
       "species_archetype": [
