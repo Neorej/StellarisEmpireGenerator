@@ -382,10 +382,7 @@ basegame_origins = {
         "civic_secret_societies_corporate",
         "civic_superstitious_beliefs"
       ],
-      "ethics": [
-        "ethic_egalitarian",
-        "ethic_fanatic_egalitarian"
-      ],
+      "ethics": [],
       "species_class": [],
       "species_archetype": [
         "MACHINE"
@@ -1152,7 +1149,8 @@ basegame_origins = {
     "no": {
       "authorities": [],
       "civics": [
-        "civic_pompous_purists"
+        "civic_pompous_purists",
+        "civic_scorched_earth"
       ],
       "ethics": [
         "ethic_gestalt_consciousness",

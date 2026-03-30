@@ -29,6 +29,17 @@ var logging = false;
 var log = logging ? console.log.bind(window.console) : function () {
 };
 
+// Vanilla habitable classes that are not cold worlds (excludes mod-added); volcanic allowed. Used by World Forgers, Cosmic Dawn, etc.
+var non_cold_habitable_planet_classes = [
+    'pc_desert',
+    'pc_arid',
+    'pc_savannah',
+    'pc_ocean',
+    'pc_continental',
+    'pc_tropical',
+    'pc_volcanic'
+];
+
 class SecondarySpecies {
     class = '';
     portrait = '';
@@ -297,7 +308,7 @@ class Empire {
     planet_name = '';
     planet_class = planets.random();
     system_name = '';
-    initializer = ''; // Always keep this empty ( = random). Some origins require specific values, keeping it empty allows the game to set the proper value.
+    initializer = ''; // Always keep this empty ( = random). Some origins require specific values, keeping it empty allows the game to set the proper value. Some origins may require manual setting.
     graphical_culture = cultures.random(); // Ship graphics
     city_graphical_culture = cultures.random(); // City graphics
     empire_flag = {
@@ -359,6 +370,10 @@ class Empire {
         this.set_civics();
         this.set_species();
         this.set_origin();
+        // INF species cannot start on cold homeworlds (volcanic and other warm classes allowed); same whitelist as World Forgers
+        if (this.species.class === 'INF' && non_cold_habitable_planet_classes.includes(this.planet_class) === false) {
+            this.planet_class = non_cold_habitable_planet_classes.random();
+        }
         this.set_traits();
         this.set_empire_flag();
         this.set_ruler();
@@ -559,6 +574,13 @@ class Empire {
             delete civics_list['civic_fanatic_purifiers'];
         }
 
+        const world_forgers_civics = [
+            'civic_world_forgers',
+            'civic_corporate_world_forgers',
+            'civic_machine_world_forgers',
+            'civic_hive_world_forgers'
+        ];
+
         while (this.civic_points_left > 0) {
             let random_civic = civics_list.random();
             let civic_name = random_civic[0];
@@ -618,10 +640,10 @@ class Empire {
                 this.disabled_origins.push('origin_riftworld');
             }
 
-            // World Forgers cannot forge cold worlds; switch to volcanic
-            if (civic_name === 'civic_world_forgers') {
-                if (['pc_arctic', 'pc_alpine', 'pc_tundra'].includes(this.planet_class)) {
-                    this.planet_class = 'pc_volcanic';
+            // World Forgers cannot start on cold; pin to base habitable set (includes volcanic)
+            if (world_forgers_civics.includes(civic_name)) {
+                if (non_cold_habitable_planet_classes.includes(this.planet_class) === false) {
+                    this.planet_class = non_cold_habitable_planet_classes.random();
                 }
             }
 
@@ -734,6 +756,13 @@ class Empire {
     }
 
     set_origin() {
+        const legendary_leader_origins = [
+            'origin_legendary_leader',
+            'origin_legendary_leader_death',
+            'origin_legendary_leader_imperial',
+            'origin_legendary_leader_dictatorial'
+        ];
+
         while (this.origin === '') {
             let origins_list = structuredClone(origins);
             let random_origin = origins_list.random();
@@ -778,6 +807,13 @@ class Empire {
                 continue;
             }
 
+            // Legendary leader is indirectly incompatible with egalitarian ethics in-game (cannot select an Authority that is egalitarian)
+            let has_egalitarian_ethic = this.ethics.includes('ethic_egalitarian') || this.ethics.includes('ethic_fanatic_egalitarian');
+            if (legendary_leader_origins.includes(origin_name) && has_egalitarian_ethic) {
+                log(origin_name + ' is incompatible with egalitarian ethics (game rule)');
+                continue;
+            }
+
             // Check if origin has very few requirements
             let has_no_requirements = (
                 origin_yes.authorities.length === 0
@@ -811,6 +847,18 @@ class Empire {
 
             log('Selected origin ' + origin_name);
             this.origin = origin_name;
+
+            if (this.origin === 'origin_red_giant') {
+                this.planet_class = 'pc_tropical';
+                this.initializer = 'red_giant_start';
+            }
+
+            // Cosmic Dawn cannot start on cold or mod-added worlds (same allowed set as World Forgers)
+            if (this.origin === 'origin_cosmic_dawn') {
+                if (non_cold_habitable_planet_classes.includes(this.planet_class) === false) {
+                    this.planet_class = non_cold_habitable_planet_classes.random();
+                }
+            }
 
             if (this.origin === 'origin_necrophage') {
                 let necrophage_disabled_traits = ['trait_thrifty'];
@@ -1021,6 +1069,7 @@ class Empire {
         // Legendary leaders always their own trait
         if (this.origin === 'origin_legendary_leader') {
             this.species.traits.push('trait_perfected_genes');
+            this.disabled_traits.push('trait_fleeting');
             this.trait_points_left--;
             this.trait_picks_left--;
         }
