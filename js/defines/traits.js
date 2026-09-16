@@ -41,6 +41,7 @@ basegame_traits = {
       "trait_natural_physicists",
       "trait_natural_sociologists",
       "trait_nerve_stapled",
+      "trait_recursive_learners",
       "trait_syncretic_proles",
       "trait_invasive"
     ]
@@ -53,6 +54,7 @@ basegame_traits = {
       "trait_nerve_stapled",
       "trait_camouflage",
       "trait_chromalogs",
+      "trait_recursive_learners",
       "trait_syncretic_proles",
       "trait_invasive"
     ]
@@ -63,6 +65,7 @@ basegame_traits = {
       "trait_natural_physicists",
       "trait_natural_engineers",
       "trait_nerve_stapled",
+      "trait_recursive_learners",
       "trait_syncretic_proles",
       "trait_invasive"
     ]
@@ -75,6 +78,7 @@ basegame_traits = {
       "trait_robust",
       "trait_adaptive_lithoid",
       "trait_shelled",
+      "trait_terraphobic",
       "trait_invasive",
       "trait_pathogenic_genes",
       "trait_permeable_skin"
@@ -89,6 +93,7 @@ basegame_traits = {
       "trait_adaptive_lithoid",
       "trait_shelled",
       "trait_permeable_skin",
+      "trait_terraphobic",
       "trait_invasive",
       "trait_pathogenic_genes"
     ]
@@ -222,6 +227,7 @@ basegame_traits = {
       "trait_strong",
       "trait_very_strong",
       "trait_tankbound",
+      "trait_photoadaptive",
       "trait_perfected_genes",
       "trait_hollow_bones"
     ]
@@ -242,6 +248,7 @@ basegame_traits = {
       "trait_nomadic",
       "trait_rooted",
       "trait_wilderness",
+      "trait_pc_ark_preference",
       "trait_pathogenic_genes",
       "trait_stargazer"
     ]
@@ -265,6 +272,7 @@ basegame_traits = {
     "cost": 2,
     "no": [
       "trait_repugnant",
+      "trait_reavers",
       "trait_invasive"
     ]
   },
@@ -330,6 +338,7 @@ basegame_traits = {
   "trait_resilient": {
     "cost": 1,
     "no": [
+      "trait_pc_ark_preference",
       "trait_invasive"
     ]
   },
@@ -482,7 +491,10 @@ basegame_traits = {
       "trait_cranial_hypertrophy",
       "trait_cranial_megatrophy",
       "trait_shell_slag",
-      "trait_unbreakable_resolve"
+      "trait_unbreakable_resolve",
+      "trait_recursive_learners",
+      "trait_photoadaptive",
+      "trait_reavers"
     ],
     "species_class": [
       "PLANT",
@@ -581,14 +593,6 @@ basegame_traits = {
       "trait_invasive"
     ]
   },
-  "@overtuned_growth_penalty": {
-    "cost": 0,
-    "no": []
-  },
-  "@overtuned_increased_growth_penalty": {
-    "cost": 0,
-    "no": []
-  },
   "trait_egg_laying": {
     "cost": 2,
     "no": [
@@ -632,7 +636,8 @@ basegame_traits = {
       "trait_strong",
       "trait_very_strong",
       "trait_weak",
-      "trait_tankbound"
+      "trait_tankbound",
+      "trait_photoadaptive"
     ],
     "species_class": [
       "TOX",
@@ -730,12 +735,24 @@ basegame_traits = {
     "species_class": [
       "MOL",
       "AQUATIC"
+    ],
+    "allowed_planet_classes": [
+      "pc_tropical",
+      "pc_arid",
+      "pc_continental",
+      "pc_ocean",
+      "pc_tundra",
+      "pc_arctic",
+      "pc_alpine",
+      "pc_savannah",
+      "pc_desert"
     ]
   },
   "trait_genetic_memory": {
     "cost": 3,
     "no": [
-      "trait_nonadaptive"
+      "trait_nonadaptive",
+      "trait_pc_ark_preference"
     ],
     "species_class": [
       "HUM",
@@ -791,6 +808,77 @@ basegame_traits = {
       "NECROID",
       "TOX"
     ]
+  },
+  "trait_unbreakable_resolve": {
+    "cost": 2,
+    "no": [
+      "trait_invasive"
+    ]
+  },
+  "trait_shell_slag": {
+    "cost": 2,
+    "no": [
+      "trait_invasive",
+      "trait_drake_scaled"
+    ],
+    "species_class": [
+      "INF"
+    ]
+  },
+  "trait_pyroclastic": {
+    "cost": 1,
+    "no": [
+      "trait_rapid_breeders",
+      "trait_incubator",
+      "trait_slow_breeders",
+      "trait_fertile",
+      "trait_rapid_breeders_lithoid",
+      "trait_plantoid_budding",
+      "trait_lithoid_budding",
+      "trait_vat_grown",
+      "trait_tiyanki",
+      "trait_humanoid_existential_iteroparity",
+      "trait_egg_laying"
+    ],
+    "species_class": [
+      "INF"
+    ]
+  },
+  "trait_crucible_community": {
+    "cost": 1,
+    "no": [],
+    "species_class": [
+      "INF"
+    ]
+  },
+  "trait_photoadaptive": {
+    "cost": 2,
+    "no": [
+      "trait_weak",
+      "trait_hollow_bones",
+      "trait_tankbound",
+      "trait_invasive"
+    ]
+  },
+  "trait_recursive_learners": {
+    "cost": 1,
+    "no": [
+      "trait_natural_physicists",
+      "trait_natural_sociologists",
+      "trait_natural_engineers",
+      "trait_invasive"
+    ],
+    "allowed_planet_classes": [
+      "pc_ark"
+    ]
+  },
+  "trait_reavers": {
+    "cost": 2,
+    "no": [
+      "trait_charismatic",
+      "trait_terraphobic",
+      "trait_invasive"
+    ]
   }
 }
 
@@ -837,6 +925,7 @@ basegame_lithoid_traits = {
       "trait_natural_physicists",
       "trait_natural_sociologists",
       "trait_nerve_stapled",
+      "trait_recursive_learners",
       "trait_syncretic_proles",
       "trait_invasive"
     ]
@@ -849,6 +938,7 @@ basegame_lithoid_traits = {
       "trait_nerve_stapled",
       "trait_camouflage",
       "trait_chromalogs",
+      "trait_recursive_learners",
       "trait_syncretic_proles",
       "trait_invasive"
     ]
@@ -859,6 +949,7 @@ basegame_lithoid_traits = {
       "trait_natural_physicists",
       "trait_natural_engineers",
       "trait_nerve_stapled",
+      "trait_recursive_learners",
       "trait_syncretic_proles",
       "trait_invasive"
     ]
@@ -938,6 +1029,7 @@ basegame_lithoid_traits = {
       "trait_strong",
       "trait_very_strong",
       "trait_tankbound",
+      "trait_photoadaptive",
       "trait_perfected_genes",
       "trait_hollow_bones"
     ]
@@ -958,6 +1050,7 @@ basegame_lithoid_traits = {
       "trait_nomadic",
       "trait_rooted",
       "trait_wilderness",
+      "trait_pc_ark_preference",
       "trait_pathogenic_genes",
       "trait_stargazer"
     ]
@@ -981,6 +1074,7 @@ basegame_lithoid_traits = {
     "cost": 2,
     "no": [
       "trait_repugnant",
+      "trait_reavers",
       "trait_invasive"
     ]
   },
@@ -1045,6 +1139,7 @@ basegame_lithoid_traits = {
   "trait_resilient": {
     "cost": 1,
     "no": [
+      "trait_pc_ark_preference",
       "trait_invasive"
     ]
   },
@@ -1172,6 +1267,53 @@ basegame_lithoid_traits = {
       "trait_talented",
       "trait_syncretic_proles"
     ]
+  },
+  "trait_unbreakable_resolve": {
+    "cost": 2,
+    "no": [
+      "trait_invasive"
+    ]
+  },
+  "trait_photoadaptive": {
+    "cost": 2,
+    "no": [
+      "trait_weak",
+      "trait_hollow_bones",
+      "trait_tankbound",
+      "trait_invasive"
+    ]
+  },
+  "trait_recursive_learners": {
+    "cost": 1,
+    "no": [
+      "trait_natural_physicists",
+      "trait_natural_sociologists",
+      "trait_natural_engineers",
+      "trait_invasive"
+    ],
+    "allowed_planet_classes": [
+      "pc_ark"
+    ]
+  },
+  "trait_reavers": {
+    "cost": 2,
+    "no": [
+      "trait_charismatic",
+      "trait_terraphobic",
+      "trait_invasive"
+    ]
+  },
+  "trait_terraphobic": {
+    "cost": -1,
+    "no": [
+      "trait_reavers",
+      "trait_adaptive",
+      "trait_extremely_adaptive"
+    ],
+    "allowed_planet_classes": [
+      "pc_ark",
+      "pc_habitat"
+    ]
   }
 }
 
@@ -1180,6 +1322,9 @@ ocean_traits = {
     "cost": 2,
     "no": [
       "trait_cave_dweller"
+    ],
+    "allowed_planet_classes": [
+      "pc_ocean"
     ]
   }
 }
@@ -1187,71 +1332,116 @@ ocean_traits = {
 basegame_overtuned_traits = {
   "trait_auto_mod_overtuned": {
     "cost": 2,
-    "no": []
+    "no": [],
+    "allowed_origins": [
+      "origin_overtuned"
+    ]
   },
   "trait_spliced_adaptability": {
     "cost": 1,
-    "no": []
+    "no": [],
+    "allowed_origins": [
+      "origin_overtuned"
+    ]
   },
   "trait_juiced_power": {
     "cost": 1,
-    "no": []
+    "no": [],
+    "allowed_origins": [
+      "origin_overtuned"
+    ]
   },
   "trait_farm_hands": {
     "cost": 1,
-    "no": []
+    "no": [],
+    "allowed_origins": [
+      "origin_overtuned"
+    ]
   },
   "trait_crack_miner": {
     "cost": 1,
-    "no": []
+    "no": [],
+    "allowed_origins": [
+      "origin_overtuned"
+    ]
   },
   "trait_technical_skill": {
     "cost": 1,
-    "no": []
+    "no": [],
+    "allowed_origins": [
+      "origin_overtuned"
+    ]
   },
   "trait_commercial_genius": {
     "cost": 1,
-    "no": []
+    "no": [],
+    "allowed_origins": [
+      "origin_overtuned"
+    ]
   },
   "trait_crafted_smiles": {
     "cost": 1,
-    "no": []
+    "no": [],
+    "allowed_origins": [
+      "origin_overtuned"
+    ]
   },
   "trait_low_maintenance": {
     "cost": 1,
     "no": [
       "trait_seasonal_dormancy"
+    ],
+    "allowed_origins": [
+      "origin_overtuned"
     ]
   },
   "trait_artificial_intelligence": {
     "cost": 1,
     "no": [
       "trait_syncretic_proles"
+    ],
+    "allowed_origins": [
+      "origin_overtuned"
     ]
   },
   "trait_gene_mentorship": {
     "cost": 1,
     "no": [
       "trait_syncretic_proles"
+    ],
+    "allowed_origins": [
+      "origin_overtuned"
     ]
   },
   "trait_expressed_tradition": {
     "cost": 1,
-    "no": []
+    "no": [],
+    "allowed_origins": [
+      "origin_overtuned"
+    ]
   },
   "trait_elevated_synapses": {
     "cost": 2,
     "no": [
       "trait_syncretic_proles"
+    ],
+    "allowed_origins": [
+      "origin_overtuned"
     ]
   },
   "trait_preplanned_growth": {
     "cost": 2,
-    "no": []
+    "no": [],
+    "allowed_origins": [
+      "origin_overtuned"
+    ]
   },
   "trait_excessive_endurance": {
     "cost": 3,
-    "no": []
+    "no": [],
+    "allowed_origins": [
+      "origin_overtuned"
+    ]
   }
 }
 
@@ -1313,13 +1503,18 @@ basegame_machine_traits = {
   "trait_robot_double_jointed": {
     "cost": 1,
     "no": [
-      "trait_robot_bulky"
+      "trait_robot_bulky",
+      [
+        "trait_interconnected"
+      ],
+      "trait_interconnected"
     ]
   },
   "trait_robot_bulky": {
     "cost": -1,
     "no": [
-      "trait_robot_double_jointed"
+      "trait_robot_double_jointed",
+      "trait_defence_drones"
     ]
   },
   "trait_robot_enhanced_memory": {
@@ -1331,7 +1526,11 @@ basegame_machine_traits = {
   "trait_robot_emotion_emulators": {
     "cost": 1,
     "no": [
-      "trait_robot_uncanny"
+      "trait_robot_uncanny",
+      [
+        "trait_interconnected"
+      ],
+      "trait_interconnected"
     ]
   },
   "trait_robot_uncanny": {
@@ -1435,21 +1634,24 @@ basegame_machine_traits = {
     "cost": 1,
     "no": [
       "trait_robot_artificial_physicists",
-      "trait_robot_artificial_sociologists"
+      "trait_robot_artificial_sociologists",
+      "trait_structural_awareness"
     ]
   },
   "trait_robot_artificial_physicists": {
     "cost": 1,
     "no": [
       "trait_robot_artificial_sociologists",
-      "trait_robot_artificial_engineers"
+      "trait_robot_artificial_engineers",
+      "trait_structural_awareness"
     ]
   },
   "trait_robot_artificial_sociologists": {
     "cost": 1,
     "no": [
       "trait_robot_artificial_physicists",
-      "trait_robot_artificial_engineers"
+      "trait_robot_artificial_engineers",
+      "trait_structural_awareness"
     ]
   },
   "trait_robot_integrated_weaponry": {
@@ -1461,7 +1663,8 @@ basegame_machine_traits = {
   "trait_robot_delicate_frames": {
     "cost": -1,
     "no": [
-      "trait_robot_integrated_weaponry"
+      "trait_robot_integrated_weaponry",
+      "trait_solar_cells"
     ]
   },
   "trait_robot_scarcity_algorithms": {
@@ -1474,6 +1677,69 @@ basegame_machine_traits = {
   "trait_robot_immortality": {
     "cost": 4,
     "no": []
+  },
+  "trait_robot_assembly_slag": {
+    "cost": 2,
+    "no": []
+  },
+  "trait_solar_cells": {
+    "cost": 2,
+    "no": [
+      "trait_robot_delicate_frames"
+    ]
+  },
+  "trait_structural_awareness": {
+    "cost": 1,
+    "no": [
+      "trait_robot_artificial_physicists",
+      "trait_robot_artificial_sociologists",
+      "trait_robot_artificial_engineers"
+    ],
+    "allowed_planet_classes": [
+      "pc_ark"
+    ]
+  },
+  "trait_interconnected": {
+    "cost": 2,
+    "no": [
+      "trait_robot_double_jointed",
+      "trait_robot_emotion_emulators",
+      "trait_defence_drones"
+    ],
+    "allowed_planet_classes": [
+      "pc_ark"
+    ]
+  },
+  "trait_reavers": {
+    "cost": 2,
+    "no": [
+      "trait_charismatic",
+      "trait_terraphobic",
+      "trait_invasive"
+    ]
+  },
+  "trait_defence_drones": {
+    "cost": 1,
+    "no": [
+      "trait_robot_bulky",
+      "trait_interconnected"
+    ],
+    "allowed_planet_classes": [
+      "pc_ark",
+      "pc_habitat"
+    ]
+  },
+  "trait_terraphobic": {
+    "cost": -1,
+    "no": [
+      "trait_reavers",
+      "trait_adaptive",
+      "trait_extremely_adaptive"
+    ],
+    "allowed_planet_classes": [
+      "pc_ark",
+      "pc_habitat"
+    ]
   }
 }
 
@@ -1482,7 +1748,9 @@ machine_gestalt_disabled_traits = [
   "trait_robot_quarrelsome",
   "trait_robot_deviants",
   "trait_robot_decadent",
-  "trait_robot_wasteful"
+  "trait_robot_wasteful",
+  "trait_familial",
+  "trait_reavers"
 ]
 
 basegame_machine_background_traits = [
@@ -1499,6 +1767,9 @@ machine_ocean_traits = {
     "cost": 2,
     "no": [
       "trait_cave_dweller"
+    ],
+    "allowed_planet_classes": [
+      "pc_ocean"
     ]
   }
 }
@@ -1964,3 +2235,177 @@ incompatible_pathogenic = [
   "trait_egg_laying",
   "trait_nascent_stage"
 ]
+
+basegame_cyborg_traits = {
+  "trait_cyborg_power_drills": {
+    "cost": 1,
+    "no": [],
+    "allowed_civics": [
+      "civic_augmentation_bazaars"
+    ]
+  },
+  "trait_cyborg_harvesters": {
+    "cost": 1,
+    "no": [],
+    "allowed_civics": [
+      "civic_augmentation_bazaars"
+    ]
+  },
+  "trait_cyborg_superconductive": {
+    "cost": 1,
+    "no": [],
+    "allowed_civics": [
+      "civic_augmentation_bazaars"
+    ]
+  },
+  "trait_cyborg_logic_engines": {
+    "cost": 1,
+    "no": [],
+    "allowed_civics": [
+      "civic_augmentation_bazaars"
+    ]
+  },
+  "trait_cyborg_loyalty_circuits": {
+    "cost": 1,
+    "no": [
+      "trait_cyborg_apathy_loops"
+    ],
+    "allowed_origins": [
+      "origin_unplugged"
+    ],
+    "allowed_civics": [
+      "civic_augmentation_bazaars"
+    ]
+  },
+  "trait_cyborg_enhanced_memory": {
+    "cost": 1,
+    "no": [
+      "trait_cyborg_limited_memory"
+    ],
+    "allowed_origins": [
+      "origin_unplugged"
+    ]
+  },
+  "trait_cyborg_durable": {
+    "cost": 1,
+    "no": [
+      "trait_cyborg_high_maintenance"
+    ],
+    "allowed_origins": [
+      "origin_unplugged"
+    ]
+  },
+  "trait_cyborg_high_maintenance": {
+    "cost": -2,
+    "no": [
+      "trait_cyborg_durable"
+    ],
+    "allowed_origins": [
+      "origin_unplugged"
+    ]
+  },
+  "trait_cyborg_learning_algorithms": {
+    "cost": 1,
+    "no": [
+      "trait_cyborg_neural_limiters"
+    ],
+    "allowed_origins": [
+      "origin_unplugged"
+    ]
+  },
+  "trait_cyborg_neural_limiters": {
+    "cost": -2,
+    "no": [
+      "trait_cyborg_learning_algorithms"
+    ],
+    "allowed_origins": [
+      "origin_unplugged"
+    ]
+  },
+  "trait_cyborg_streamlined_protocols": {
+    "cost": 1,
+    "no": [
+      "trait_cyborg_high_bandwidth"
+    ],
+    "allowed_origins": [
+      "origin_unplugged"
+    ]
+  },
+  "trait_cyborg_high_bandwidth": {
+    "cost": -2,
+    "no": [
+      "trait_cyborg_streamlined_protocols"
+    ],
+    "allowed_origins": [
+      "origin_unplugged"
+    ]
+  },
+  "trait_cyborg_trading_algorithms": {
+    "cost": 1,
+    "no": [
+      "trait_cyborg_scarcity_algorithms"
+    ],
+    "allowed_civics": [
+      "civic_augmentation_bazaars"
+    ]
+  },
+  "trait_cyborg_stainless_steel_smile": {
+    "cost": 1,
+    "no": [
+      "trait_cyborg_welded_countenance"
+    ],
+    "allowed_civics": [
+      "civic_augmentation_bazaars"
+    ]
+  },
+  "trait_cyborg_bionic_engineers": {
+    "cost": 1,
+    "no": [
+      "trait_cyborg_bionic_physicists",
+      "trait_cyborg_bionic_sociologists"
+    ],
+    "allowed_origins": [
+      "origin_unplugged"
+    ]
+  },
+  "trait_cyborg_integrated_weaponry": {
+    "cost": 1,
+    "no": [
+      "trait_cyborg_delicate_frames"
+    ],
+    "allowed_origins": [
+      "origin_unplugged"
+    ]
+  },
+  "trait_cyborg_mass_produced": {
+    "cost": 1,
+    "no": [],
+    "allowed_origins": [
+      "origin_unplugged"
+    ]
+  },
+  "trait_cyborg_propaganda_machines": {
+    "cost": 1,
+    "no": [],
+    "allowed_civics": [
+      "civic_augmentation_bazaars"
+    ]
+  },
+  "trait_cyborg_limited_memory": {
+    "cost": -2,
+    "no": [
+      "trait_cyborg_enhanced_memory"
+    ],
+    "allowed_origins": [
+      "origin_unplugged"
+    ]
+  }
+}
+
+basegame_planet_class_disabled_traits = {
+  "pc_ark": [
+    "trait_resilient",
+    "trait_genetic_memory",
+    "trait_sedentary"
+  ]
+}

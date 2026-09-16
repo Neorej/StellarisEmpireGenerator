@@ -1,12 +1,14 @@
 basegame_origins = {
   "origin_default": {
+    "is_nomadic": null,
     "yes": {
       "authorities": [],
       "civics": [],
       "ethics": [],
       "species_class": [],
       "species_archetype": [],
-      "culture": []
+      "culture": [],
+      "traits": []
     },
     "no": {
       "authorities": [],
@@ -14,17 +16,134 @@ basegame_origins = {
       "ethics": [],
       "species_class": [],
       "species_archetype": [],
-      "culture": []
+      "culture": [],
+      "traits": []
     }
   },
-  "origin_red_giant": {
+  "origin_default_nomads": {
+    "is_nomadic": "yes",
     "yes": {
       "authorities": [],
       "civics": [],
       "ethics": [],
       "species_class": [],
       "species_archetype": [],
-      "culture": []
+      "culture": [],
+      "traits": []
+    },
+    "no": {
+      "authorities": [],
+      "civics": [],
+      "ethics": [],
+      "species_class": [],
+      "species_archetype": [],
+      "culture": [],
+      "traits": []
+    }
+  },
+  "origin_sacred_path": {
+    "is_nomadic": "yes",
+    "yes": {
+      "authorities": [],
+      "civics": [],
+      "ethics": [
+        [
+          "ethic_spiritualist",
+          "ethic_fanatic_spiritualist"
+        ]
+      ],
+      "species_class": [],
+      "species_archetype": [],
+      "culture": [],
+      "traits": []
+    },
+    "no": {
+      "authorities": [],
+      "civics": [],
+      "ethics": [],
+      "species_class": [],
+      "species_archetype": [],
+      "culture": [],
+      "traits": []
+    }
+  },
+  "origin_heirs_of_the_khan": {
+    "is_nomadic": "yes",
+    "yes": {
+      "authorities": [
+        [
+          "auth_oligarchic",
+          "auth_dictatorial",
+          "auth_imperial"
+        ]
+      ],
+      "civics": [],
+      "ethics": [
+        [
+          "ethic_militarist",
+          "ethic_fanatic_militarist"
+        ]
+      ],
+      "species_class": [],
+      "species_archetype": [],
+      "culture": [],
+      "traits": []
+    },
+    "no": {
+      "authorities": [],
+      "civics": [],
+      "ethics": [],
+      "species_class": [],
+      "species_archetype": [],
+      "culture": [],
+      "traits": []
+    }
+  },
+  "origin_forever_cruise": {
+    "is_nomadic": "yes",
+    "yes": {
+      "authorities": [],
+      "civics": [],
+      "ethics": [],
+      "species_class": [],
+      "species_archetype": [],
+      "culture": [],
+      "traits": []
+    },
+    "no": {
+      "authorities": [],
+      "civics": [
+        "civic_corporate_dominion",
+        "civic_fanatic_purifiers",
+        "civic_hive_bodysnatcher",
+        "civic_hive_devouring_swarm",
+        "civic_hive_scorched_earth",
+        "civic_machine_assimilator",
+        "civic_machine_terminator",
+        "civic_private_prospectors",
+        "civic_scorched_earth",
+        "civic_void_reavers"
+      ],
+      "ethics": [
+        "ethic_xenophobe",
+        "ethic_fanatic_xenophobe"
+      ],
+      "species_class": [],
+      "species_archetype": [],
+      "culture": [],
+      "traits": []
+    }
+  },
+  "origin_red_giant": {
+    "is_nomadic": "no",
+    "yes": {
+      "authorities": [],
+      "civics": [],
+      "ethics": [],
+      "species_class": [],
+      "species_archetype": [],
+      "culture": [],
+      "traits": []
     },
     "no": {
       "authorities": [],
@@ -47,10 +166,12 @@ basegame_origins = {
       "culture": [
         "biogenesis_01",
         "biogenesis_02"
-      ]
+      ],
+      "traits": []
     }
   },
   "origin_cosmic_dawn": {
+    "is_nomadic": "no",
     "yes": {
       "authorities": [],
       "civics": [],
@@ -59,7 +180,8 @@ basegame_origins = {
         "INF"
       ],
       "species_archetype": [],
-      "culture": []
+      "culture": [],
+      "traits": []
     },
     "no": {
       "authorities": [
@@ -88,10 +210,12 @@ basegame_origins = {
       "culture": [
         "biogenesis_01",
         "biogenesis_02"
-      ]
+      ],
+      "traits": []
     }
   },
   "origin_shroud_forged": {
+    "is_nomadic": "no",
     "yes": {
       "authorities": [
         "auth_machine_intelligence"
@@ -100,7 +224,8 @@ basegame_origins = {
       "ethics": [],
       "species_class": [],
       "species_archetype": [],
-      "culture": []
+      "culture": [],
+      "traits": []
     },
     "no": {
       "authorities": [],
@@ -113,17 +238,20 @@ basegame_origins = {
       "ethics": [],
       "species_class": [],
       "species_archetype": [],
-      "culture": []
+      "culture": [],
+      "traits": []
     }
   },
   "origin_mindwardens": {
+    "is_nomadic": "no",
     "yes": {
       "authorities": [],
       "civics": [],
       "ethics": [],
       "species_class": [],
       "species_archetype": [],
-      "culture": []
+      "culture": [],
+      "traits": []
     },
     "no": {
       "authorities": [],
@@ -143,17 +271,20 @@ basegame_origins = {
       ],
       "species_class": [],
       "species_archetype": [],
-      "culture": []
+      "culture": [],
+      "traits": []
     }
   },
   "origin_endbringers": {
+    "is_nomadic": "no",
     "yes": {
       "authorities": [],
       "civics": [],
       "ethics": [],
       "species_class": [],
       "species_archetype": [],
-      "culture": []
+      "culture": [],
+      "traits": []
     },
     "no": {
       "authorities": [],
@@ -172,10 +303,12 @@ basegame_origins = {
       "species_archetype": [
         "MACHINE"
       ],
-      "culture": []
+      "culture": [],
+      "traits": []
     }
   },
   "origin_evolutionary_predators": {
+    "is_nomadic": null,
     "yes": {
       "authorities": [],
       "civics": [],
@@ -187,7 +320,8 @@ basegame_origins = {
           "LITHOID"
         ]
       ],
-      "culture": []
+      "culture": [],
+      "traits": []
     },
     "no": {
       "authorities": [],
@@ -213,17 +347,22 @@ basegame_origins = {
       "species_archetype": [
         "MACHINE"
       ],
-      "culture": []
+      "culture": [],
+      "traits": [
+        "trait_adaptive_mutations"
+      ]
     }
   },
   "origin_starlit_citadel": {
+    "is_nomadic": "no",
     "yes": {
       "authorities": [],
       "civics": [],
       "ethics": [],
       "species_class": [],
       "species_archetype": [],
-      "culture": []
+      "culture": [],
+      "traits": []
     },
     "no": {
       "authorities": [],
@@ -234,10 +373,12 @@ basegame_origins = {
       "culture": [
         "biogenesis_01",
         "biogenesis_02"
-      ]
+      ],
+      "traits": []
     }
   },
   "origin_wilderness": {
+    "is_nomadic": "no",
     "yes": {
       "authorities": [
         "auth_hive_mind"
@@ -254,7 +395,8 @@ basegame_origins = {
       "culture": [
         "biogenesis_01",
         "biogenesis_02"
-      ]
+      ],
+      "traits": []
     },
     "no": {
       "authorities": [],
@@ -279,17 +421,28 @@ basegame_origins = {
       "ethics": [],
       "species_class": [],
       "species_archetype": [],
-      "culture": []
+      "culture": [],
+      "traits": [
+        "trait_incubator",
+        "trait_nomadic",
+        "trait_sedentary",
+        "trait_vat_grown",
+        "trait_nascent_stage",
+        "trait_auto_mod_biological",
+        "trait_adaptive_mutations"
+      ]
     }
   },
   "origin_treasure_hunters": {
+    "is_nomadic": null,
     "yes": {
       "authorities": [],
       "civics": [],
       "ethics": [],
       "species_class": [],
       "species_archetype": [],
-      "culture": []
+      "culture": [],
+      "traits": []
     },
     "no": {
       "authorities": [],
@@ -303,17 +456,20 @@ basegame_origins = {
       "ethics": [],
       "species_class": [],
       "species_archetype": [],
-      "culture": []
+      "culture": [],
+      "traits": []
     }
   },
   "origin_primal_calling": {
+    "is_nomadic": null,
     "yes": {
       "authorities": [],
       "civics": [],
       "ethics": [],
       "species_class": [],
       "species_archetype": [],
-      "culture": []
+      "culture": [],
+      "traits": []
     },
     "no": {
       "authorities": [],
@@ -326,17 +482,20 @@ basegame_origins = {
       "species_archetype": [
         "MACHINE"
       ],
-      "culture": []
+      "culture": [],
+      "traits": []
     }
   },
   "origin_storm_chasers": {
+    "is_nomadic": "no",
     "yes": {
       "authorities": [],
       "civics": [],
       "ethics": [],
       "species_class": [],
       "species_archetype": [],
-      "culture": []
+      "culture": [],
+      "traits": []
     },
     "no": {
       "authorities": [],
@@ -350,10 +509,12 @@ basegame_origins = {
       "ethics": [],
       "species_class": [],
       "species_archetype": [],
-      "culture": []
+      "culture": [],
+      "traits": []
     }
   },
   "origin_cybernetic_creed": {
+    "is_nomadic": null,
     "yes": {
       "authorities": [],
       "civics": [],
@@ -365,7 +526,8 @@ basegame_origins = {
       ],
       "species_class": [],
       "species_archetype": [],
-      "culture": []
+      "culture": [],
+      "traits": []
     },
     "no": {
       "authorities": [],
@@ -387,10 +549,12 @@ basegame_origins = {
       "species_archetype": [
         "MACHINE"
       ],
-      "culture": []
+      "culture": [],
+      "traits": []
     }
   },
   "origin_synthetic_fertility": {
+    "is_nomadic": null,
     "yes": {
       "authorities": [],
       "civics": [],
@@ -402,7 +566,8 @@ basegame_origins = {
           "LITHOID"
         ]
       ],
-      "culture": []
+      "culture": [],
+      "traits": []
     },
     "no": {
       "authorities": [],
@@ -410,9 +575,11 @@ basegame_origins = {
         "civic_augmentation_bazaars",
         "civic_chosen",
         "civic_corporate_chosen",
+        "civic_corporate_deep_sleep",
         "civic_corporate_galvanic_symbiosis",
         "civic_corporate_toxic_baths",
         "civic_corporate_toxic_baths_individual_machine",
+        "civic_deep_sleep",
         "civic_eager_explorers",
         "civic_entropy_drinkers",
         "civic_entropy_drinkers_corporate",
@@ -439,10 +606,32 @@ basegame_origins = {
       "species_archetype": [
         "MACHINE"
       ],
-      "culture": []
+      "culture": [],
+      "traits": [
+        "trait_rapid_breeders",
+        "trait_slow_breeders",
+        "trait_plantoid_bloomed",
+        "trait_humanoid_existential_iteroparity",
+        "trait_humanoid_psychological_infertility",
+        "trait_incubator",
+        "trait_exotic_metabolism",
+        "trait_plasmic",
+        "trait_plantoid_budding",
+        "trait_lithoid_budding",
+        "trait_vat_grown",
+        "trait_tiyanki",
+        "trait_nomadic",
+        "trait_sedentary",
+        "trait_nonadaptive",
+        "trait_adaptive",
+        "trait_extremely_adaptive",
+        "trait_egg_laying",
+        "trait_nascent_stage"
+      ]
     }
   },
   "origin_arc_welders": {
+    "is_nomadic": null,
     "yes": {
       "authorities": [],
       "civics": [],
@@ -451,7 +640,8 @@ basegame_origins = {
       "species_archetype": [
         "MACHINE"
       ],
-      "culture": []
+      "culture": [],
+      "traits": []
     },
     "no": {
       "authorities": [],
@@ -459,17 +649,20 @@ basegame_origins = {
       "ethics": [],
       "species_class": [],
       "species_archetype": [],
-      "culture": []
+      "culture": [],
+      "traits": []
     }
   },
   "origin_riftworld": {
+    "is_nomadic": null,
     "yes": {
       "authorities": [],
       "civics": [],
       "ethics": [],
       "species_class": [],
       "species_archetype": [],
-      "culture": []
+      "culture": [],
+      "traits": []
     },
     "no": {
       "authorities": [],
@@ -477,10 +670,12 @@ basegame_origins = {
       "ethics": [],
       "species_class": [],
       "species_archetype": [],
-      "culture": []
+      "culture": [],
+      "traits": []
     }
   },
   "origin_legendary_leader": {
+    "is_nomadic": "no",
     "yes": {
       "authorities": [
         "auth_dictatorial"
@@ -494,7 +689,8 @@ basegame_origins = {
           "LITHOID"
         ]
       ],
-      "culture": []
+      "culture": [],
+      "traits": []
     },
     "no": {
       "authorities": [],
@@ -504,10 +700,15 @@ basegame_origins = {
       "species_archetype": [
         "MACHINE"
       ],
-      "culture": []
+      "culture": [],
+      "traits": [
+        "trait_fleeting",
+        "trait_weak"
+      ]
     }
   },
   "origin_legendary_leader_death": {
+    "is_nomadic": null,
     "yes": {
       "authorities": [],
       "civics": [],
@@ -519,7 +720,8 @@ basegame_origins = {
           "LITHOID"
         ]
       ],
-      "culture": []
+      "culture": [],
+      "traits": []
     },
     "no": {
       "authorities": [],
@@ -527,10 +729,15 @@ basegame_origins = {
       "ethics": [],
       "species_class": [],
       "species_archetype": [],
-      "culture": []
+      "culture": [],
+      "traits": [
+        "trait_fleeting",
+        "trait_weak"
+      ]
     }
   },
   "origin_legendary_leader_imperial": {
+    "is_nomadic": null,
     "yes": {
       "authorities": [],
       "civics": [],
@@ -542,7 +749,8 @@ basegame_origins = {
           "LITHOID"
         ]
       ],
-      "culture": []
+      "culture": [],
+      "traits": []
     },
     "no": {
       "authorities": [],
@@ -550,10 +758,15 @@ basegame_origins = {
       "ethics": [],
       "species_class": [],
       "species_archetype": [],
-      "culture": []
+      "culture": [],
+      "traits": [
+        "trait_fleeting",
+        "trait_weak"
+      ]
     }
   },
   "origin_legendary_leader_dictatorial": {
+    "is_nomadic": null,
     "yes": {
       "authorities": [],
       "civics": [],
@@ -565,7 +778,8 @@ basegame_origins = {
           "LITHOID"
         ]
       ],
-      "culture": []
+      "culture": [],
+      "traits": []
     },
     "no": {
       "authorities": [],
@@ -573,17 +787,23 @@ basegame_origins = {
       "ethics": [],
       "species_class": [],
       "species_archetype": [],
-      "culture": []
+      "culture": [],
+      "traits": [
+        "trait_fleeting",
+        "trait_weak"
+      ]
     }
   },
   "origin_payback": {
+    "is_nomadic": "no",
     "yes": {
       "authorities": [],
       "civics": [],
       "ethics": [],
       "species_class": [],
       "species_archetype": [],
-      "culture": []
+      "culture": [],
+      "traits": []
     },
     "no": {
       "authorities": [],
@@ -610,17 +830,20 @@ basegame_origins = {
       "species_archetype": [
         "MACHINE"
       ],
-      "culture": []
+      "culture": [],
+      "traits": []
     }
   },
   "origin_broken_shackles": {
+    "is_nomadic": "no",
     "yes": {
       "authorities": [],
       "civics": [],
       "ethics": [],
       "species_class": [],
       "species_archetype": [],
-      "culture": []
+      "culture": [],
+      "traits": []
     },
     "no": {
       "authorities": [],
@@ -653,17 +876,20 @@ basegame_origins = {
       "species_archetype": [
         "MACHINE"
       ],
-      "culture": []
+      "culture": [],
+      "traits": []
     }
   },
   "origin_fear_of_the_dark": {
+    "is_nomadic": "no",
     "yes": {
       "authorities": [],
       "civics": [],
       "ethics": [],
       "species_class": [],
       "species_archetype": [],
-      "culture": []
+      "culture": [],
+      "traits": []
     },
     "no": {
       "authorities": [],
@@ -689,17 +915,20 @@ basegame_origins = {
       "culture": [
         "biogenesis_01",
         "biogenesis_02"
-      ]
+      ],
+      "traits": []
     }
   },
   "origin_overtuned": {
+    "is_nomadic": null,
     "yes": {
       "authorities": [],
       "civics": [],
       "ethics": [],
       "species_class": [],
       "species_archetype": [],
-      "culture": []
+      "culture": [],
+      "traits": []
     },
     "no": {
       "authorities": [
@@ -717,17 +946,20 @@ basegame_origins = {
       "species_archetype": [
         "MACHINE"
       ],
-      "culture": []
+      "culture": [],
+      "traits": []
     }
   },
   "origin_toxic_knights": {
+    "is_nomadic": "no",
     "yes": {
       "authorities": [],
       "civics": [],
       "ethics": [],
       "species_class": [],
       "species_archetype": [],
-      "culture": []
+      "culture": [],
+      "traits": []
     },
     "no": {
       "authorities": [],
@@ -746,10 +978,12 @@ basegame_origins = {
       "species_archetype": [
         "MACHINE"
       ],
-      "culture": []
+      "culture": [],
+      "traits": []
     }
   },
   "origin_progenitor_hive": {
+    "is_nomadic": null,
     "yes": {
       "authorities": [
         "auth_hive_mind"
@@ -758,7 +992,8 @@ basegame_origins = {
       "ethics": [],
       "species_class": [],
       "species_archetype": [],
-      "culture": []
+      "culture": [],
+      "traits": []
     },
     "no": {
       "authorities": [],
@@ -768,10 +1003,12 @@ basegame_origins = {
       "ethics": [],
       "species_class": [],
       "species_archetype": [],
-      "culture": []
+      "culture": [],
+      "traits": []
     }
   },
   "origin_subterranean": {
+    "is_nomadic": "no",
     "yes": {
       "authorities": [],
       "civics": [],
@@ -783,7 +1020,8 @@ basegame_origins = {
           "LITHOID"
         ]
       ],
-      "culture": []
+      "culture": [],
+      "traits": []
     },
     "no": {
       "authorities": [],
@@ -793,10 +1031,14 @@ basegame_origins = {
       "species_archetype": [
         "MACHINE"
       ],
-      "culture": []
+      "culture": [],
+      "traits": [
+        "trait_plantoid_phototrophic"
+      ]
     }
   },
   "origin_subterranean_machines": {
+    "is_nomadic": "no",
     "yes": {
       "authorities": [],
       "civics": [],
@@ -809,7 +1051,8 @@ basegame_origins = {
           "ROBOT"
         ]
       ],
-      "culture": []
+      "culture": [],
+      "traits": []
     },
     "no": {
       "authorities": [],
@@ -817,17 +1060,20 @@ basegame_origins = {
       "ethics": [],
       "species_class": [],
       "species_archetype": [],
-      "culture": []
+      "culture": [],
+      "traits": []
     }
   },
   "origin_star_slingshot": {
+    "is_nomadic": "no",
     "yes": {
       "authorities": [],
       "civics": [],
       "ethics": [],
       "species_class": [],
       "species_archetype": [],
-      "culture": []
+      "culture": [],
+      "traits": []
     },
     "no": {
       "authorities": [],
@@ -835,10 +1081,12 @@ basegame_origins = {
       "ethics": [],
       "species_class": [],
       "species_archetype": [],
-      "culture": []
+      "culture": [],
+      "traits": []
     }
   },
   "origin_shroudwalker_apprentice": {
+    "is_nomadic": null,
     "yes": {
       "authorities": [],
       "civics": [],
@@ -850,7 +1098,8 @@ basegame_origins = {
       ],
       "species_class": [],
       "species_archetype": [],
-      "culture": []
+      "culture": [],
+      "traits": []
     },
     "no": {
       "authorities": [],
@@ -864,17 +1113,20 @@ basegame_origins = {
       "species_archetype": [
         "MACHINE"
       ],
-      "culture": []
+      "culture": [],
+      "traits": []
     }
   },
   "origin_imperial_vassal": {
+    "is_nomadic": "no",
     "yes": {
       "authorities": [],
       "civics": [],
       "ethics": [],
       "species_class": [],
       "species_archetype": [],
-      "culture": []
+      "culture": [],
+      "traits": []
     },
     "no": {
       "authorities": [],
@@ -890,17 +1142,20 @@ basegame_origins = {
       "ethics": [],
       "species_class": [],
       "species_archetype": [],
-      "culture": []
+      "culture": [],
+      "traits": []
     }
   },
   "origin_here_be_dragons": {
+    "is_nomadic": "no",
     "yes": {
       "authorities": [],
       "civics": [],
       "ethics": [],
       "species_class": [],
       "species_archetype": [],
-      "culture": []
+      "culture": [],
+      "traits": []
     },
     "no": {
       "authorities": [],
@@ -914,10 +1169,12 @@ basegame_origins = {
       "ethics": [],
       "species_class": [],
       "species_archetype": [],
-      "culture": []
+      "culture": [],
+      "traits": []
     }
   },
   "origin_ocean_paradise": {
+    "is_nomadic": "no",
     "yes": {
       "authorities": [],
       "civics": [],
@@ -929,7 +1186,8 @@ basegame_origins = {
           "LITHOID"
         ]
       ],
-      "culture": []
+      "culture": [],
+      "traits": []
     },
     "no": {
       "authorities": [],
@@ -947,10 +1205,12 @@ basegame_origins = {
       "species_archetype": [
         "MACHINE"
       ],
-      "culture": []
+      "culture": [],
+      "traits": []
     }
   },
   "origin_ocean_machines": {
+    "is_nomadic": "no",
     "yes": {
       "authorities": [],
       "civics": [],
@@ -963,7 +1223,8 @@ basegame_origins = {
           "ROBOT"
         ]
       ],
-      "culture": []
+      "culture": [],
+      "traits": []
     },
     "no": {
       "authorities": [],
@@ -974,10 +1235,12 @@ basegame_origins = {
       "ethics": [],
       "species_class": [],
       "species_archetype": [],
-      "culture": []
+      "culture": [],
+      "traits": []
     }
   },
   "origin_necrophage": {
+    "is_nomadic": null,
     "yes": {
       "authorities": [],
       "civics": [],
@@ -989,7 +1252,8 @@ basegame_origins = {
           "LITHOID"
         ]
       ],
-      "culture": []
+      "culture": [],
+      "traits": []
     },
     "no": {
       "authorities": [
@@ -1013,17 +1277,24 @@ basegame_origins = {
       "species_archetype": [
         "MACHINE"
       ],
-      "culture": []
+      "culture": [],
+      "traits": [
+        "trait_plantoid_budding",
+        "trait_lithoid_budding",
+        "trait_tiyanki"
+      ]
     }
   },
   "origin_remnants": {
+    "is_nomadic": "no",
     "yes": {
       "authorities": [],
       "civics": [],
       "ethics": [],
       "species_class": [],
       "species_archetype": [],
-      "culture": []
+      "culture": [],
+      "traits": []
     },
     "no": {
       "authorities": [],
@@ -1037,17 +1308,20 @@ basegame_origins = {
       "ethics": [],
       "species_class": [],
       "species_archetype": [],
-      "culture": []
+      "culture": [],
+      "traits": []
     }
   },
   "origin_shattered_ring": {
+    "is_nomadic": "no",
     "yes": {
       "authorities": [],
       "civics": [],
       "ethics": [],
       "species_class": [],
       "species_archetype": [],
-      "culture": []
+      "culture": [],
+      "traits": []
     },
     "no": {
       "authorities": [],
@@ -1065,10 +1339,12 @@ basegame_origins = {
       "ethics": [],
       "species_class": [],
       "species_archetype": [],
-      "culture": []
+      "culture": [],
+      "traits": []
     }
   },
   "origin_void_dwellers": {
+    "is_nomadic": "no",
     "yes": {
       "authorities": [],
       "civics": [],
@@ -1080,7 +1356,8 @@ basegame_origins = {
           "LITHOID"
         ]
       ],
-      "culture": []
+      "culture": [],
+      "traits": []
     },
     "no": {
       "authorities": [],
@@ -1101,10 +1378,12 @@ basegame_origins = {
       "species_archetype": [
         "MACHINE"
       ],
-      "culture": []
+      "culture": [],
+      "traits": []
     }
   },
   "origin_void_machines": {
+    "is_nomadic": "no",
     "yes": {
       "authorities": [],
       "civics": [],
@@ -1117,7 +1396,8 @@ basegame_origins = {
           "ROBOT"
         ]
       ],
-      "culture": []
+      "culture": [],
+      "traits": []
     },
     "no": {
       "authorities": [],
@@ -1134,17 +1414,20 @@ basegame_origins = {
       "ethics": [],
       "species_class": [],
       "species_archetype": [],
-      "culture": []
+      "culture": [],
+      "traits": []
     }
   },
   "origin_scion": {
+    "is_nomadic": null,
     "yes": {
       "authorities": [],
       "civics": [],
       "ethics": [],
       "species_class": [],
       "species_archetype": [],
-      "culture": []
+      "culture": [],
+      "traits": []
     },
     "no": {
       "authorities": [],
@@ -1160,17 +1443,20 @@ basegame_origins = {
       "species_archetype": [
         "MACHINE"
       ],
-      "culture": []
+      "culture": [],
+      "traits": []
     }
   },
   "origin_shoulders_of_giants": {
+    "is_nomadic": "no",
     "yes": {
       "authorities": [],
       "civics": [],
       "ethics": [],
       "species_class": [],
       "species_archetype": [],
-      "culture": []
+      "culture": [],
+      "traits": []
     },
     "no": {
       "authorities": [],
@@ -1182,17 +1468,20 @@ basegame_origins = {
       "species_archetype": [
         "MACHINE"
       ],
-      "culture": []
+      "culture": [],
+      "traits": []
     }
   },
   "origin_common_ground": {
+    "is_nomadic": null,
     "yes": {
       "authorities": [],
       "civics": [],
       "ethics": [],
       "species_class": [],
       "species_archetype": [],
-      "culture": []
+      "culture": [],
+      "traits": []
     },
     "no": {
       "authorities": [],
@@ -1211,17 +1500,20 @@ basegame_origins = {
       ],
       "species_class": [],
       "species_archetype": [],
-      "culture": []
+      "culture": [],
+      "traits": []
     }
   },
   "origin_hegemon": {
+    "is_nomadic": null,
     "yes": {
       "authorities": [],
       "civics": [],
       "ethics": [],
       "species_class": [],
       "species_archetype": [],
-      "culture": []
+      "culture": [],
+      "traits": []
     },
     "no": {
       "authorities": [],
@@ -1241,17 +1533,20 @@ basegame_origins = {
       ],
       "species_class": [],
       "species_archetype": [],
-      "culture": []
+      "culture": [],
+      "traits": []
     }
   },
   "origin_doomsday": {
+    "is_nomadic": "no",
     "yes": {
       "authorities": [],
       "civics": [],
       "ethics": [],
       "species_class": [],
       "species_archetype": [],
-      "culture": []
+      "culture": [],
+      "traits": []
     },
     "no": {
       "authorities": [],
@@ -1259,10 +1554,12 @@ basegame_origins = {
       "ethics": [],
       "species_class": [],
       "species_archetype": [],
-      "culture": []
+      "culture": [],
+      "traits": []
     }
   },
   "origin_lithoid": {
+    "is_nomadic": "no",
     "yes": {
       "authorities": [],
       "civics": [],
@@ -1271,7 +1568,8 @@ basegame_origins = {
       "species_archetype": [
         "LITHOID"
       ],
-      "culture": []
+      "culture": [],
+      "traits": []
     },
     "no": {
       "authorities": [],
@@ -1295,17 +1593,20 @@ basegame_origins = {
       "culture": [
         "biogenesis_01",
         "biogenesis_02"
-      ]
+      ],
+      "traits": []
     }
   },
   "origin_life_seeded": {
+    "is_nomadic": "no",
     "yes": {
       "authorities": [],
       "civics": [],
       "ethics": [],
       "species_class": [],
       "species_archetype": [],
-      "culture": []
+      "culture": [],
+      "traits": []
     },
     "no": {
       "authorities": [],
@@ -1330,10 +1631,12 @@ basegame_origins = {
       "ethics": [],
       "species_class": [],
       "species_archetype": [],
-      "culture": []
+      "culture": [],
+      "traits": []
     }
   },
   "origin_post_apocalyptic": {
+    "is_nomadic": "no",
     "yes": {
       "authorities": [],
       "civics": [],
@@ -1345,7 +1648,8 @@ basegame_origins = {
           "LITHOID"
         ]
       ],
-      "culture": []
+      "culture": [],
+      "traits": []
     },
     "no": {
       "authorities": [],
@@ -1364,10 +1668,12 @@ basegame_origins = {
       "species_archetype": [
         "MACHINE"
       ],
-      "culture": []
+      "culture": [],
+      "traits": []
     }
   },
   "origin_post_apocalyptic_machines": {
+    "is_nomadic": "no",
     "yes": {
       "authorities": [],
       "civics": [],
@@ -1380,7 +1686,8 @@ basegame_origins = {
           "ROBOT"
         ]
       ],
-      "culture": []
+      "culture": [],
+      "traits": []
     },
     "no": {
       "authorities": [],
@@ -1396,10 +1703,12 @@ basegame_origins = {
       "ethics": [],
       "species_class": [],
       "species_archetype": [],
-      "culture": []
+      "culture": [],
+      "traits": []
     }
   },
   "origin_clone_army": {
+    "is_nomadic": null,
     "yes": {
       "authorities": [],
       "civics": [],
@@ -1411,7 +1720,8 @@ basegame_origins = {
           "LITHOID"
         ]
       ],
-      "culture": []
+      "culture": [],
+      "traits": []
     },
     "no": {
       "authorities": [],
@@ -1428,10 +1738,24 @@ basegame_origins = {
       "species_archetype": [
         "MACHINE"
       ],
-      "culture": []
+      "culture": [],
+      "traits": [
+        "trait_fertile",
+        "trait_slow_breeders",
+        "trait_rapid_breeders",
+        "trait_clone_soldier_infertile_full_potential",
+        "trait_clone_soldier_fertile",
+        "trait_plantoid_budding",
+        "trait_lithoid_budding",
+        "trait_tiyanki",
+        "trait_humanoid_psychological_infertility",
+        "trait_humanoid_existential_iteroparity",
+        "trait_egg_laying"
+      ]
     }
   },
   "origin_machine": {
+    "is_nomadic": "no",
     "yes": {
       "authorities": [
         "auth_machine_intelligence"
@@ -1440,7 +1764,8 @@ basegame_origins = {
       "ethics": [],
       "species_class": [],
       "species_archetype": [],
-      "culture": []
+      "culture": [],
+      "traits": []
     },
     "no": {
       "authorities": [],
@@ -1457,10 +1782,12 @@ basegame_origins = {
       "ethics": [],
       "species_class": [],
       "species_archetype": [],
-      "culture": []
+      "culture": [],
+      "traits": []
     }
   },
   "origin_unplugged": {
+    "is_nomadic": "no",
     "yes": {
       "authorities": [],
       "civics": [],
@@ -1471,8 +1798,14 @@ basegame_origins = {
         ]
       ],
       "species_class": [],
-      "species_archetype": [],
-      "culture": []
+      "species_archetype": [
+        [
+          "BIOLOGICAL",
+          "LITHOID"
+        ]
+      ],
+      "culture": [],
+      "traits": []
     },
     "no": {
       "authorities": [],
@@ -1519,10 +1852,14 @@ basegame_origins = {
       "culture": [
         "biogenesis_01",
         "biogenesis_02"
+      ],
+      "traits": [
+        "trait_nascent_stage"
       ]
     }
   },
   "origin_mechanists": {
+    "is_nomadic": null,
     "yes": {
       "authorities": [],
       "civics": [],
@@ -1534,7 +1871,8 @@ basegame_origins = {
       ],
       "species_class": [],
       "species_archetype": [],
-      "culture": []
+      "culture": [],
+      "traits": []
     },
     "no": {
       "authorities": [],
@@ -1548,17 +1886,20 @@ basegame_origins = {
       "species_archetype": [
         "MACHINE"
       ],
-      "culture": []
+      "culture": [],
+      "traits": []
     }
   },
   "origin_syncretic_evolution": {
+    "is_nomadic": null,
     "yes": {
       "authorities": [],
       "civics": [],
       "ethics": [],
       "species_class": [],
       "species_archetype": [],
-      "culture": []
+      "culture": [],
+      "traits": []
     },
     "no": {
       "authorities": [],
@@ -1578,10 +1919,12 @@ basegame_origins = {
       ],
       "species_class": [],
       "species_archetype": [],
-      "culture": []
+      "culture": [],
+      "traits": []
     }
   },
   "origin_tree_of_life": {
+    "is_nomadic": "no",
     "yes": {
       "authorities": [
         "auth_hive_mind"
@@ -1590,7 +1933,8 @@ basegame_origins = {
       "ethics": [],
       "species_class": [],
       "species_archetype": [],
-      "culture": []
+      "culture": [],
+      "traits": []
     },
     "no": {
       "authorities": [],
@@ -1602,10 +1946,12 @@ basegame_origins = {
       "ethics": [],
       "species_class": [],
       "species_archetype": [],
-      "culture": []
+      "culture": [],
+      "traits": []
     }
   },
   "origin_fruitful": {
+    "is_nomadic": "no",
     "yes": {
       "authorities": [],
       "civics": [],
@@ -1625,7 +1971,8 @@ basegame_origins = {
         ]
       ],
       "species_archetype": [],
-      "culture": []
+      "culture": [],
+      "traits": []
     },
     "no": {
       "authorities": [
@@ -1637,17 +1984,20 @@ basegame_origins = {
       "ethics": [],
       "species_class": [],
       "species_archetype": [],
-      "culture": []
+      "culture": [],
+      "traits": []
     }
   },
   "origin_galactic_doorstep": {
+    "is_nomadic": "no",
     "yes": {
       "authorities": [],
       "civics": [],
       "ethics": [],
       "species_class": [],
       "species_archetype": [],
-      "culture": []
+      "culture": [],
+      "traits": []
     },
     "no": {
       "authorities": [],
@@ -1655,17 +2005,20 @@ basegame_origins = {
       "ethics": [],
       "species_class": [],
       "species_archetype": [],
-      "culture": []
+      "culture": [],
+      "traits": []
     }
   },
   "origin_lost_colony": {
+    "is_nomadic": null,
     "yes": {
       "authorities": [],
       "civics": [],
       "ethics": [],
       "species_class": [],
       "species_archetype": [],
-      "culture": []
+      "culture": [],
+      "traits": []
     },
     "no": {
       "authorities": [],
@@ -1673,7 +2026,8 @@ basegame_origins = {
       "ethics": [],
       "species_class": [],
       "species_archetype": [],
-      "culture": []
+      "culture": [],
+      "traits": []
     }
   }
 }

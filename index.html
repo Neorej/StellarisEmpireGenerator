@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="Random empire generator for Stellaris; generates game-ready empires. Updated for Stellaris 4.3.2 (Cetus)">
+    <meta name="description" content="Random empire generator for Stellaris; generates game-ready empires. Updated for Stellaris 4.4.6 (Pegasus)">
     <title>Stellaris Empire Generator</title>
 
     <link rel="stylesheet" href="css/index.css">
@@ -27,6 +27,7 @@
     <script src="js/defines/origins.js"></script>
     <script src="js/defines/planets.js"></script>
     <script src="js/defines/rooms.js"></script>
+    <script src="js/defines/ship_sizes.js"></script>
     <script src="js/defines/species.js"></script>
     <script src="js/defines/traits.js"></script>
     <script src="js/defines/mods.js"></script>
@@ -66,7 +67,7 @@
     </div>
     <h1>Stellaris Empire Generator</h1>
     <p>
-        Tool for generating random empires for Stellaris, updated for 4.3.2 (Cetus)<br>
+        Tool for generating random empires for Stellaris, updated for 4.4.6 (Pegasus)<br>
         Assumes all DLC is installed. <br>
         <br>
         Put the generated empires in <i>%UserProfile%\Documents\Paradox Interactive\Stellaris\user_empire_designs_v3.4.txt</i>
@@ -240,6 +241,7 @@
             backgrounds                 = structuredClone(basegame_backgrounds);
             origins                     = structuredClone(basegame_origins);
             rooms                       = structuredClone(basegame_rooms);
+            nomad_ship_sizes            = structuredClone(basegame_nomad_ship_sizes);
             species                     = structuredClone(basegame_species);
             species_machine             = structuredClone(basegame_species_machine);
             traits                      = structuredClone(basegame_traits);
@@ -251,6 +253,8 @@
             paragon_traits              = structuredClone(basegame_paragon_traits);
             bad_paragon_traits          = structuredClone(basegame_bad_paragon_traits);
             treasure_hunter_traits      = structuredClone(basegame_treasure_hunter_traits);
+            cyborg_traits               = structuredClone(basegame_cyborg_traits);
+            planet_class_disabled_traits = structuredClone(basegame_planet_class_disabled_traits);
             planets                     = structuredClone(basegame_planets);
 
             // Load mod data
